@@ -1,6 +1,6 @@
 [![banner](doc/img/repo-banner@2x.png)](https://oceanprotocol.com)
 
-<h1 align="center">Marketplace Enhancement Proposals (MEPs)</h1>
+<h1 align="center">DEX Enhancement Proposals (DEPs)</h1>
 
 > ? Ocean Protocol
 > [oceanprotocol.com](https://oceanprotocol.com)
@@ -10,11 +10,11 @@ Table of Contents
 =================
 
 
-This is the Marketplace Enhancement Proposal project. We collect MEPs for Marketplaces, tools and any other related components related with Ocean Protocol Layer 3.
+This is the DEX Enhancement Proposal project. We collect DEPs for Marketplaces, tools and any other related components related with Ocean Protocol Layer 3.
 
-The process to add or change a MEP is the following:
-- A MEP is created and modified by pull requests according to [C4](./1).
-- MEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
+The process to add or change a DEP is the following:
+- A DEP is created and modified by pull requests according to [C4](./1).
+- DEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
 - Non-cosmetic changes are allowed only on [Raw](./2#raw-meps) and [Draft](./2#draft-meps) specifications.
 
 # Current MEPs
