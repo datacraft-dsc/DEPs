@@ -31,7 +31,7 @@ Table of Contents
 
 The Service Invocation API (**INVOKE**) is a specification for the Ocean Protocol to register and invoke compute jobs.
 
-INVOKE offers a general purpose computational interface
+INVOKE offers a general purpose computational interface that can run compute Jobs on demand.
 
 Compute services are defined as services available on the Ocean Network that
 
@@ -86,12 +86,23 @@ The Invoke API enables
 
 ## Roles
 
-Asset/algorithm owner: The owner of the algorithm, which is made available as a package (e.g. a docker image or a jar on a maven repo)
-Service provider: The entity that runs the algorithm on their server(s).
-Service consumer: The entity that invokes the service.
+- Asset/algorithm owner: The owner of the algorithm, 
+  - may be registered as an Ocean asset
+  - may be available as a deployable package (e.g. a docker image or a jar on a maven repo)
+- Service provider: The entity that runs the algorithm on their server(s).
+- Service consumer: The entity that invokes the service.a
+- Service instance: The software entity that is running the invokable service. 
+- Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
+  - Agent can be of many types, such as local or remote, and communicate via different interfaces.
+  - The rest of this document assumes a remote Agent that communicates over REST.
 
+### Provider flow
 
-![User flow ](./imgs/InvokeService.png)
+![Provider flow ](./imgs/InvokeService_serviceprovider_flow.png)
+
+### Consumer flow
+
+![Consumer flow ](./imgs/Invoke_service_consumer_flow.png)
 
 ## Technical requirements 
 
@@ -118,7 +129,7 @@ The service provider makes the service available in two temporal phases:
 
 The service provider registers the service and provides the spec for the Service Definition. This information describes 
 
-- the endpoints at which the service is available
+- the endpoints at which the service(s) are available
 - the configuration options accepted by the invoke method(s)
 - list of mandatory and optional arguments and their types, accepted by the invoke methods
 - sync/async nature of invoke methods
@@ -136,8 +147,21 @@ The service spec consists of 2 parts, Service definition and Service Invocation.
 
 ## Service definition
 
+The service definition is JSON formatted content, which is a part of the Service Provider DDO. 
+It contains the following sections sections:
+
+- service description: name and description fields
+- inputs: a list of maps, each of which contains data about a single argument.
+- outputs: a list of maps, each of which contains data about an artifact returned by the invocation.
+- service info: consumer-provided params on the service invocation
+- configuration options
+
 ```json 
 {
+ "servicedescription": {"name": "name of service",
+                        "description" : " free form description of service  ",
+                        "agent_type": "rest"},
+  
   "inputs" : [ 
               {
              "argname" :"inputasset1",
@@ -145,20 +169,58 @@ The service spec consists of 2 parts, Service definition and Service Invocation.
              "mandatory" : "true",
              }
              ]},
+  "outputs": [ 
+              {"argname" : "arg",
+              "type": "oceanasset"}
+  ], 
   "serviceinfo" : {
       "consumerid" : "consumerid", 
-      "invokeserviceagreementid" : "in_said"  },
+      "invokeserviceagreementid" : "in_said",
+      },
   "configuration" : {
       "job" : "options"
   }
 }
 ```
 
+### Inputs/outputs
+
+The invoke service can be modeled as a function invocation. In the following example
+
+```java
+public String callFunction(String input1, Integer input2)
+```
+
+observe that *callFunction* takes
+- a list of inputs, where each input has a name & a type definition
+- a single output, with a type definition
+
+The invoke service is modeled in the same fashion, where the *invoke* function takes a list of inputs, each of which has a name and type, and returns a *list* of outputs, each of which has a name & a type.
+
+Currently, two *types* of inputs have been defined
+
+- Ocean inputs: these are registered Ocean assets accepted as inputs to the invocation.
+- payloads: this is a data passed to the function invocation. 
+
+### Service info
+
+This section contains information about 
+
+- consumer identity 
+- service agreements
+
+### Configuration
+
+This section contains configuration options or tunable parameters.
+
+
+## Service Deployment
+ 
 ### Registering a new Service
 
 Registering a service 
 
-* is the same process as registering a new asset with an Ocean Agent.
+* requires that the service provide add the service details into the DDO and publish the updated DDO.
 * uses the same metadata as described in OEP8. In addition to the [regular metadata](https://github.com/oceanprotocol/OEPs/tree/master/8#base-attributes) it must specify the following:
 
 ```json
@@ -169,26 +231,21 @@ Registering a service
 }
 ```
 
-The metadata in the url specifies configuration required to fire an invoke job.
-Example configuration
-
-```json
-{ "oceaninputs" : ["inputasset1"]}
-```
-
-- Each input asset to be consumed must be named. On invoke, each named inputasset needs a map containing the asset id, asset url and other arguments (described in the invoke section)
-- Non-Ocean inputs such as URL-accessed payloads and configuration options can also be specified
-
 ### Retire a Service
 
-Retiring a service uses the same method as retiring an asset
+Retiring a service requires that the service provider remove the service details from its DDO and update the DDO
+
+## Service Delivery
+
+The rest of this document assumes that a REST Agent is used to delivering the service.
 
 ### Invoke a job
 
 #### Request
 
-- a POST request to the https://service-endpoint/jobs , along with the following JSON formatted payload
+- a POST request to the https://service-endpoint/jobs , along with JSON formatted payload as described in the Service Definition.
 
+Here's an example:
 ```json 
 {
   "inputs" : [ 
@@ -201,9 +258,10 @@ Retiring a service uses the same method as retiring an asset
              "serviceagreementid" : "sa_id",
              }
              ],
+    "serviceinfo": {
              "consumerid" : "consumerid",
              "invokeserviceagreementid" : "in_said" 
-  },
+             }
   "configuration" : {
       "job" : "options"
   }
@@ -237,7 +295,7 @@ Non-data asset inputs:
 | response code | description          | payload |
 |---------------|----------------------|---------|
 |           201 | job creation success | jobid   |
-|           500 | error                |         |
+|           500 | error                | data describing the error |
 
 ### Describe the status of the job
 
@@ -258,8 +316,9 @@ The arguments are to be passed as HTTP request parameters
 
 | response code | description                                                | payload                   |
 |---------------|------------------------------------------------------------|---------------------------|
-|            200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
+|           200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
 |           500 | error                                                      |                           |
+|               |                                                            |                           |
 
 ### Get the result of a job
 
@@ -272,7 +331,7 @@ The arguments are to be passed as HTTP request parameters
 The arguments are to be passed as HTTP request parameters
 
 | argument   | description                       |
-| --|--                                         |
+| --         + --                               |
 | consumerid | The consumer who invoked this job |
 |            |                                   |
 
@@ -300,7 +359,13 @@ Note: this response section is underspecified. It needs to handle
 
 - Can the API accept configuration options:
   - Yes the payload can contain any other inputs in the json object, other than ocean inputs
-  
+
+### Open questions
+
+
+* Should Squid invoke the service, or should the consumer invoke the service directly? 
+
+ 
   
 ## License
 
