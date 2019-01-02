@@ -153,8 +153,10 @@ It contains the following sections sections:
 - service description: name and description fields
 - inputs: a list of maps, each of which contains data about a single argument.
 - outputs: a list of maps, each of which contains data about an artifact returned by the invocation.
-- service info: consumer-provided params on the service invocation
-- configuration options
+- service info: consumer-provided params on the service invocation, including data about the service agreements.
+- configuration options: these are provider specified options to tune the invoke job.
+
+Example of service definition:
 
 ```json 
 {
@@ -183,6 +185,41 @@ It contains the following sections sections:
 }
 ```
 
+
+#### Service Info fields:
+
+| param                  | description                                         | Mandatory? |
+|------------------------|-----------------------------------------------------|------------|
+| consumerid             | user id of the consumer                             | no         |
+| invokeserviceagreementid | service agreement of the (purchased) invoke service | no         |
+
+
+The service definition must be included in the Service provider DDO thus:
+```json
+{
+
+    //metadata described in OEP 8
+    "services" : [
+    {"name": "service name",
+     "description" : "description of the service ",
+     "servicedefintion": {  
+         //service definition described above
+        },
+     "endpoint" : "https://service-url"}
+    ]
+}
+
+```
+
+- The DDO must contain a list against the "services" key
+- Each item in the list is a map which must contain
+  - name 
+  - description
+  - service definition (described above)
+  - service endpoint
+
+
+
 ### Inputs/outputs
 
 The invoke service can be modeled as a function invocation. In the following example
@@ -200,6 +237,16 @@ The invoke service is modeled in the same fashion, where the *invoke* function t
 Currently, two *types* of inputs have been defined
 
 - Ocean inputs: these are registered Ocean assets accepted as inputs to the invocation.
+
+The *oceanasset* type needs the following parameters:
+
+| param              | description                                 | Mandatory? |
+|--------------------|---------------------------------------------|------------|
+| assetid            | is the id of the asset on the Ocean network | yes        |
+| asseturl           | the URL where the asset is consumed from    | yes        |
+| serviceagreementid | ID of the service agreement                 | no         |
+| assetmetadataurl   | URL where the asset metadata is hosted      | no         |
+
 - payloads: this is a data passed to the function invocation. 
 
 ### Service info
@@ -214,22 +261,13 @@ This section contains information about
 This section contains configuration options or tunable parameters.
 
 
-## Service Deployment
+## Service Registration
  
 ### Registering a new Service
 
 Registering a service 
 
 * requires that the service provide add the service details into the DDO and publish the updated DDO.
-* uses the same metadata as described in OEP8. In addition to the [regular metadata](https://github.com/oceanprotocol/OEPs/tree/master/8#base-attributes) it must specify the following:
-
-```json
-{ "other" : "metadata",
-  "type"  : "algorithm",
-  "links" : [ {"name" : "My algorithm",
-               "url" : "https://github.com/my-algorithm/metadata"}]
-}
-```
 
 ### Retire a Service
 
@@ -239,13 +277,32 @@ Retiring a service requires that the service provider remove the service details
 
 The rest of this document assumes that a REST Agent is used to delivering the service.
 
-### Invoke a job
+### Heartbeat
+
+This endpoint is used by the consumer or Squid to check if the service is available
+
+#### Request
+
+- a GET request to the https://service-endpoint/heartbeat 
+
+#### Response
+
+| response code | description          | payload |
+|---------------|----------------------|---------|
+|           200 | service available  | empty|
+|           500 | server error  | data describing the error |
+|           503 | service unavailable | data describing the error |
+
+
+### Invoke a job (async)
+
+This is the primary interface by which a consumer can invoke a service/run a job.
 
 #### Request
 
 - a POST request to the https://service-endpoint/jobs , along with JSON formatted payload as described in the Service Definition.
 
-Here's an example:
+Here's an example of an invocation that defines a single input asset of type oceanasset.
 ```json 
 {
   "inputs" : [ 
@@ -268,34 +325,24 @@ Here's an example:
 }
 ```
 
+#### Request auth 
+
+TBD
+
 #### Arguments
 
-The value against the *inputs* key is a  list of maps. Each map defines a single input. each key is the input argument name, and the value is a map.
-
-| param              | description                                 | Mandatory? |
-|--------------------|---------------------------------------------|------------|
-| assetid            | is the id of the asset on the Ocean network | yes        |
-| asseturl           | the URL where the asset is consumed from    | yes        |
-| serviceagreementid | ID of the service agreement                 | no         |
-| assetmetadataurl   | URL where the asset metadata is hosted      | no         |
-
-- Each Ocean input asset must have the mandatory arguments. It can also have optional arguments.
-- Each invocation can have any number of input assets. The payload needs to contain a map where the keys are parameter names (as defined in the service metadata).
-
-Non-data asset inputs:
-
-| param                  | description                                         | Mandatory? |
-|------------------------|-----------------------------------------------------|------------|
-| consumerid             | user id of the consumer                             | no         |
-| invokeserviceagreementid | service agreement of the (purchased) invoke service | no         |
-
+The payload must contain data in the format specified in the service definition. 
 
 #### Response
 
 | response code | description          | payload |
 |---------------|----------------------|---------|
 |           201 | job creation success | jobid   |
-|           500 | error                | data describing the error |
+|           400 | bad request-not according to presribed format or invalid configuration options | error description|
+|           401 | not authorized (no authorization tokens provided) | error description|
+|           500 | error                | error description |
+|           503 | service unavailable | error description|
+|           8003 | service not paid for by consumer | error description|
 
 ### Describe the status of the job
 
@@ -317,8 +364,10 @@ The arguments are to be passed as HTTP request parameters
 | response code | description                                                | payload                   |
 |---------------|------------------------------------------------------------|---------------------------|
 |           200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
-|           500 | error                                                      |                           |
-|               |                                                            |                           |
+|           400 | invalid job id|  |
+|           500 | error                                                      |                         error description  |
+|           8001 | input assets cannot be retrieved |  error description|
+|           8002 | output assets cannot be registered | error description |
 
 ### Get the result of a job
 
@@ -340,7 +389,9 @@ The arguments are to be passed as HTTP request parameters
 | response code | description                                                | 
 |---------------|------------------------------------------------------------|
 |            200 | job result, a json formatted string| 
-|           500 | error                                                      |
+|           400 | invalid job id|  |
+|           401 | not authorized (no authorization tokens provided) | error description|
+|           500 | error                                                      | error description |
 
 The json response is of the form
 
@@ -355,23 +406,30 @@ Note: this response section is underspecified. It needs to handle
 - registering the generated asset on behalf of the service consumer
 - specifying the service agreement, purchase price, additional metadata. 
 
-### FAQ
+
+
+## FAQ
 
 - Can the API accept configuration options:
   - Yes the payload can contain any other inputs in the json object, other than ocean inputs
 
-### Open questions
+## Open questions
 
 
 * Should Squid invoke the service, or should the consumer invoke the service directly? 
 
- 
+Comparing pros and cons if Squid invokes the service
+| Pros                                                            | Cons                                        |
+| --                                                              | --                                          |
+| Easier for the consumer                                         | Difficult to Squid to handle being a proxy  |
+| Easier to incorporate on/off chain auth mechanisms such as SAEs | Consumer needs to be aware of SAE internals |
+| Easier to handle non-REST agents or local agents (e.g. k8s/Docker) | Need to define what's the endpoint, and who's the provider in case of local installs |
   
 ## License
 
-This OEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
-This OEP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This DOEP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses.
 
