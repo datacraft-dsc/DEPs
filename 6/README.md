@@ -20,7 +20,7 @@ Table of Contents
       * [Motivation](#motivation)
       * [Roles](#roles)
       * [Technical Requirements](#technical-requirements)
-    * [Specification](#specification)
+   * [Specification](#specification)
       * [Service Definition](#service-definition)
       * [Service Registration](#service-registration)
       * [Service Delivery](#service-delivery)
@@ -357,7 +357,7 @@ The payload must contain data in the format specified in the service definition.
 
 #### Arguments
 
-The arguments are to be passed as HTTP request parameters
+The arguments are to be passed as HTTP query arguments
 
 | argument   | description                       |
 | --      |  --                               |
@@ -382,10 +382,10 @@ The arguments are to be passed as HTTP request parameters
 
 #### Arguments
 
-The arguments are to be passed as HTTP request parameters
+The arguments are to be passed as HTTP query arguments
 
 | argument   | description                       |
-| --         + --                               |
+| --         | --                               |
 | consumerid | The consumer who invoked this job |
 |            |                                   |
 
