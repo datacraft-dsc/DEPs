@@ -13,21 +13,26 @@ Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
-   * [Service Invocation](#service-invocation)
+   * [Invoke Job capability](#invoke-job-capability)
+      * [Exclusions](#exclusions)
       * [Change Process](#change-process)
       * [Language](#language)
       * [Motivation](#motivation)
-      * [Application Abstraction](#application-abstraction)
-      * [Constraints](#constraints)
-      * [Options for a host platformOpti](#options-for-a-host-platform)
-      * [Suggested Choice](#suggested-choice)
-      * [Specification](#specification)
+      * [Roles](#roles)
+      * [Technical Requirements](#technical-requirements)
+    * [Specification](#specification)
+      * [Service Definition](#service-definition)
+      * [Service Registration](#service-registration)
+      * [Service Delivery](#service-delivery)
+      * [FAQ](#faq)
+      * [Open Questions](#open-questions)
+      * [License](#license)
 
       
 <!--te-->
 
 <a name="service-invocation"></a>
-# Service Invocation
+# Invoke Job capability
 
 The Service Invocation API (**INVOKE**) is a specification for the Ocean Protocol to register and invoke compute jobs.
 
@@ -39,7 +44,7 @@ Compute services are defined as services available on the Ocean Network that
 * Typically produce one or more Outputs (which will typically be references to generated data assets)
 * Support the provision of proofs by service providers upon service completion (after which tokens in escrow may be released) 
 
-# Exclusions
+## Exclusions
 
 * This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
 * This OEP does not cover service discovery.
@@ -118,7 +123,7 @@ The Invoke API enables
 * The unit of measurement must be 
   - a one-shot execution of a job (e.g. a data cleaning job)
   
-## Specification 
+# Specification 
 
 The **Service Metadata** information should be managed using an API on the Ocean Agent. 
 This API should expose the following capabilities in the Ocean Agent via HTTP REST.
@@ -202,7 +207,7 @@ The service definition must be included in the Service provider DDO thus:
     "services" : [
     {"name": "service name",
      "description" : "description of the service ",
-     "servicedefintion": {  
+     "servicedefinition": {  
          //service definition described above
         },
      "endpoint" : "https://service-url"}
@@ -419,11 +424,12 @@ Note: this response section is underspecified. It needs to handle
 * Should Squid invoke the service, or should the consumer invoke the service directly? 
 
 Comparing pros and cons if Squid invokes the service
+
 | Pros                                                            | Cons                                        |
 | --                                                              | --                                          |
 | Easier for the consumer                                         | Difficult to Squid to handle being a proxy  |
 | Easier to incorporate on/off chain auth mechanisms such as SAEs | Consumer needs to be aware of SAE internals |
-| Easier to handle non-REST agents or local agents (e.g. k8s/Docker) | Need to define what's the endpoint, and who's the provider in case of local installs |
+| Easier to handle non-REST agents or local agents (e.g. k8s/Docker) | Harder to define what's the endpoint, and who's the provider in case of local installs |
   
 ## License
 
