@@ -167,8 +167,15 @@ Example of service definition:
 {
  "servicedescription": {"name": "name of service",
                         "description" : " free form description of service  ",
-                        "agent_type": "rest"},
-  
+                        "agenttype": "rest",
+                        "endpoint": "https://serviceprovider/serviceendpoint",
+                        "version" : "0.2"}
+ "deployment" : { 
+                         "name" : "tensorflow/serving",
+                         "type": "docker",
+                         "url": "https://hub.docker.com/r/tensorflow/serving/tags/latest-gpu"} 
+                        },
+                         
   "inputs" : [ 
               {
              "argname" :"inputasset1",
@@ -177,7 +184,7 @@ Example of service definition:
              }
              ]},
   "outputs": [ 
-              {"argname" : "arg",
+              {"argname" : "output1",
               "type": "oceanasset"}
   ], 
   "serviceinfo" : {
@@ -189,9 +196,30 @@ Example of service definition:
   }
 }
 ```
+### Fields in service description:
 
 
-#### Service Info fields:
+| param       | description                             | Mandatory? |
+|-------------|-----------------------------------------|------------|
+| name        | name of the service                     | yes        |
+| description | Description of the service              | no         |
+| agenttype   | Type of agent which invokes the service | yes        |
+| endpoint    | URL Endpoint for the agent              | yes        |
+
+### Fields in deployment:
+
+In many cases, a service provider will deploy a service instance from a third party software package, such as a Docker instance or a Helm chart. In such cases, the service definition could include details about the deployed package. 
+Deployment is an optional section.
+
+
+| param       | description                             | Mandatory? |
+|-------------|-----------------------------------------|------------|
+| name        | name of the deployment | no|
+| type   | Type of container (e.g. Docker or Helm chart)| no|
+| url | URL pointer to the registry of this package | no|
+
+
+### Fields in service info:
 
 | param                  | description                                         | Mandatory? |
 |------------------------|-----------------------------------------------------|------------|
@@ -207,22 +235,19 @@ The service definition must be included in the Service provider DDO thus:
     "services" : [
     {"name": "service name",
      "description" : "description of the service ",
-     "servicedefinition": {  
+     "servicedefinition": {
          //service definition described above
         },
-     "endpoint" : "https://service-url"}
+       }
     ]
 }
 
 ```
 
-- The DDO must contain a list against the "services" key
-- Each item in the list is a map which must contain
-  - name 
-  - description
-  - service definition (described above)
-  - service endpoint
+Note that:
 
+- The DDO must contain a list against the "services" key
+- Each item in the list is a map which must contain a service definition
 
 
 ### Inputs/outputs
