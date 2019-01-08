@@ -275,7 +275,7 @@ The consumer invokes the job by HTTP POSTing to "https://blenderserviceprovider/
 |-------------|-----------------------------------------|------------|
 | name        | name of the service                     | yes        |
 | description | Description of the service              | no         |
-| agenttype   | Type of agent which invokes the service | yes        |
+| agenttype   | Type of agent which invokes the service | no      |
 | endpoint    | URL Endpoint for the agent              | yes        |
 
 ### Fields in deployment:
