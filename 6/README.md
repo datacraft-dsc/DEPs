@@ -50,7 +50,7 @@ Compute services are defined as services available on the Ocean Network that
 * This OEP does not cover service discovery.
 * The OEP is not intended to apply to services where invocation / access is off-chain (e.g. high volume APIs or queue services)
 * This OEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
-* This OEP does not describe installation of the service and/or its dependencies.
+* This OEP does not describe details of installation of the service and/or its dependencies. 
 
 This specification is based on [Ocean Protocol technical whitepaper](https://github.com/oceanprotocol/whitepaper), [3/ARCH](../3/README.md), [4/KEEPER](../4/README.md) and [5/AGENT](../5/README.md).
 
