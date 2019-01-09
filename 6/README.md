@@ -4,7 +4,7 @@ name: API to register & invoke computer services
 type: Standard
 status: Raw
 editor: Mike Anderson <mike.anderson@dex.sg>
-contributors: 
+contributors: Kiran K <kiran.karkera@dex.sg> 
 ```
 
 <!--ts-->
@@ -13,42 +13,44 @@ Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
-   * [Service Invocation](#service-invocation)
+   * [Invoke Job capability](#invoke-job-capability)
+      * [Exclusions](#exclusions)
       * [Change Process](#change-process)
       * [Language](#language)
       * [Motivation](#motivation)
-      * [Specification](#specification)
-         * [Proposed Solution](#proposed-solution)
-         * [Registering a Service](#registering-a-service)
-         * [Retrieve metadata of an Service](#retrieve-metadata-of-a-service)
-         * [Updating Service Metadata](#updating-service-metadata)
-         * [Retiring a Service](#retiring-a-service)
-         * [Invoking a Service](#invoking-a-service)
-         * [Providing Service proof](#proving-a-service)
-         * [Consuming Service results](#consuming-service-results)
-         * [Targeted Release](#targeted-release)
-      * [Copyright Waiver](#copyright-waiver)
+      * [Roles](#roles)
+      * [Technical Requirements](#technical-requirements)
+   * [Specification](#specification)
+      * [Service Definition](#service-definition)
+      * [Service Registration](#service-registration)
+      * [Service Delivery](#service-delivery)
+      * [FAQ](#faq)
+      * [Open Questions](#open-questions)
+      * [License](#license)
 
       
 <!--te-->
 
 <a name="service-invocation"></a>
-# Service Invocation
+# Invoke Job capability
 
-The Service Invocation API (**INVOKE**) is a specification for the Ocean Protocol to register and invoke computational services.
+The Service Invocation API (**INVOKE**) is a specification for the Ocean Protocol to register and invoke compute jobs.
 
-INVOKE offers a general purpose computational interface
+INVOKE offers a general purpose computational interface that can run compute Jobs on demand.
 
 Compute services are defined as services available on the Ocean Network that
 
-* Can be invoked by any Ocean Agent connected to the Ocean Network (subject to access restrictions)
 * May accept one or more Input parameters (which will typically be data assets to be used or algorithms to be run)
 * Typically produce one or more Outputs (which will typically be references to generated data assets)
 * Support the provision of proofs by service providers upon service completion (after which tokens in escrow may be released) 
 
-This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define there, providing that they conform with this API specification
-This OEP does not cover service discovery.
-The OEP is not intended to apply to services where invocation / access is off-chain (e.g. high volume APIs or queue services)
+## Exclusions
+
+* This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
+* This OEP does not cover service discovery.
+* The OEP is not intended to apply to services where invocation / access is off-chain (e.g. high volume APIs or queue services)
+* This OEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
+* This OEP does not describe details of installation of the service and/or its dependencies. 
 
 This specification is based on [Ocean Protocol technical whitepaper](https://github.com/oceanprotocol/whitepaper), [3/ARCH](../3/README.md), [4/KEEPER](../4/README.md) and [5/AGENT](../5/README.md).
 
@@ -67,40 +69,523 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 Ocean network aims to power marketplaces for relevant AI-related data services.
 There is a need for a standardised **interface** for the invocation of compute services so that different implementations can be provided and invoked by users of the Ocean Protocol.
 
-Requirements are:
+Example of data related services that could be offered by Ocean actors:
 
-* ASSETS are DATA objects describing RESOURCES under control of a PUBLISHER
-* SERVICES are compute services according to the protocol defioned in this OEP
-* PROVIDERS register and offer SERVICES 
-* PROVIDERS may publish SERVICE METADATA relating to the service offered
-* CONSUMER can identify services with a unique ID on the Ocean Network 
-* CONSUMER can invoke services via any OCEAN AGENT (subject to contract and access requirements) 
-* SERICES may require INPUTS 
-* SERICES may produce OUTPUTS
-* INPUT ASSETS must be available for the service provider to consume
-* SERVICES may fail, in which case failure should be reported with relevant information to the CONSUMER
-* PROVIDER provides SERVICE and PROOF 
-* VERIFIER validates PROOF
-* SERVICE CONTRACT must be settled and any tokens transfered after receipt of valid PROOF
-* OUTPUT ASSETS, if created, must be identified and communicated to the CONSUMER 
-  
+* A data cleaning service that removes noise from data
+* A model training service that returns a trained model given training data
+* A model verification service that returns metrics of a model's performance, given a model and a test data set.
+* A consent service which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry.
+
+It may be observed that these services
+
+- Enable creation of dataset(s)
+- Accept input dataset(s) and transform it in some fashion
+
+The Invoke API enables
+
+- provides Ocean users tools to transform data assets registered on the Ocean network.
+- facilitates a workflow pipeline of data asset transformations.
+- enables provenance tracking by Ocean provenance aware algorithms.
+
 <a name="specification"></a>
-## Specification 
+
+## Roles
+
+- Asset/algorithm owner: The owner of the algorithm, 
+  - may be registered as an Ocean asset
+  - may be available as a deployable package (e.g. a docker image or a jar on a maven repo)
+- Service provider: The entity that runs the algorithm on their server(s).
+- Service consumer: The entity that invokes the service.a
+- Service instance: The software entity that is running the invokable service. 
+- Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
+  - Agent can be of many types, such as local or remote, and communicate via different interfaces.
+  - The rest of this document assumes a remote Agent that communicates over REST.
+
+### Provider flow
+
+![Provider flow ](./imgs/InvokeService_serviceprovider_flow.png)
+
+### Consumer flow
+
+![Consumer flow ](./imgs/Invoke_service_consumer_flow.png)
+
+## Technical requirements 
+
+* The service may be offered free or for a price
+* The service may be offered in trusted mode or trustless mode (backed by Service Execution Agreements) 
+* the service must be identified with its asset ID on the Ocean Network
+* the service must register its metadata with the OCEAN agent
+* may accept configuration options to tune the algorithm/job to be run.
+* may register ocean assets generated as a result of the job. the registered assets must be in the name of the service coinsumer
+* may return a payload
+* may accept a list of ocean assets as inputs to the job  (along with access tokens to consume the asset)
+* may accept a data payload as an input
+* The unit of measurement must be 
+  - a one-shot execution of a job (e.g. a data cleaning job)
+  
+# Specification 
 
 The **Service Metadata** information should be managed using an API on the Ocean Agent. 
-As general rule, only the INDISPENSABLE information to run the Smart Contracts MUST be stored in the Decentralised VM
+This API should expose the following capabilities in the Ocean Agent via HTTP REST.
 
-This API should exposes the following capabilities in the Ocean Agent:
+The service provider makes the service available in two temporal phases:
 
-* Registering a new Service
-* Retrieve metadata information of an Service
-* Update the metadata of an existing Service 
-* Retire a Service
+### Service registration
 
-The following restrictions apply during the design/implementation of this OEP:
+The service provider registers the service and provides the spec for the Service Definition. This information describes 
 
-* The SERVICES registered in the system MUST be associated to the PROVIDER registering the services
-* Basic information about the SERVICES (ids, pricing, reference to service endpoints) MUST be stored in the Decentralised VM  
-* AGENT MUST NOT store or rely on any other information about the Services during this process
+- the endpoints at which the service(s) are available
+- the configuration options accepted by the invoke method(s)
+- list of mandatory and optional arguments and their types, accepted by the invoke methods
+- sync/async nature of invoke methods
+- data returned by methods.
 
-### Proposed Solution
+### Service delivery
+
+The Service Delivery phase consists of 
+
+- the consumer calling the invoke method(s) 
+- the service executing the invoke methods. These could be jobs that take a significant amount of time to complete.
+- the consumer retrieving the result(s) of the invoke method(such as data payloads, created assets and/or associated proofs), or getting a notification (e.g. via a webhook).
+
+The service spec consists of 2 parts, Service definition and Service Invocation. 
+
+## Service definition
+
+The service definition is JSON formatted content, which is a part of the Service Provider DDO. 
+It contains the following sections:
+
+| Section             | Description| Mandatory section ? |
+| --                  | --          |--|
+| service description | name and description fields                                                                      | yes|
+| deployment          | Details about deployed service, if installed by the service provider | no|
+| service_installation | metadata describing service installation | no|
+| inputs              | Inputs consumed by the service                                                                   | yes|
+| output              | Outputs generated by the service                                                                 | yes|
+|  configuration options   |provider specified options to tune the invoke job| no|
+
+### Examples
+
+1. Example of service definition for a service that trains a model.
+  - the service provider provisions and installs the service
+  - the service takes 2 datasets (training + test dataset) of type ocean asset
+  - the service returns a single output (a trained model) of type ocean asset
+
+```json 
+{
+ "servicedescription": {"name": "name of service",
+                        "description" : " free form description of service  ",
+                        "agenttype": "rest",
+                        "endpoint": "https://modeltrainingserviceprovider/train",
+                        "version" : "0.2"},
+ "deployment" : { 
+                         "name" : "tensorflow/serving",
+                         "type": "docker",
+                         "url": "https://hub.docker.com/r/tensorflow/serving/tags/latest-gpu"} 
+                        },
+  "inputs" : [{
+             "argname" :"training",
+             "type": "oceanasset",
+             "mandatory" : "true"},
+             {
+             "argname" :"test",
+             "type": "oceanasset",
+             "mandatory" : "true"}]},
+  "outputs": [ 
+              {"argname" : "trained_model",
+              "type": "oceanasset"}], 
+  "configuration" : {
+      "job" : "options"
+  }
+}
+```
+
+Example of the invocation payload for the service described above
+
+The consumer invokes the job by http POSTing to "https://modeltrainingserviceprovider/train"
+```json
+{
+  "inputs" : [{
+             "argname" :"training",
+             "assetid" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
+             "asseturl" : "https://some.service.provider/path-to-training-dataset"
+             },
+             {
+             "argname" :"test",
+             "assetid" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA73",
+             "asseturl" : "https://some.service.provider/path-to-test-dataset"
+             }],
+  "slainfo" : {
+      "consumerAddress" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72", 
+      "serviceAgreementid" : "bb23s87856d59867503f80a690357406857698570b964ac8dcc9d86da4ada010",
+      "serviceDefinitionId" : "df7escc856d59867503f80a690357406857698570b964ac8dcc9d86da4a832de",
+      "signature" : "elided for clarity"
+      },
+  "configuration" : {
+      "training_epochs" : "100"
+  }
+}
+```
+
+2. Example of service definition that runs [Blender](https://www.blender.org/) to render scenes, given a .blend file
+  - the consumer installs the service. The example uses Docker, however the consumer can choose to install a different package (say, a Kubernetes helm chart), based on service provider's supported  containers.
+  - The service takes a blend file as input
+  - the service generates an Ocean asset (the generated video)as output.
+
+```json 
+{
+ "servicedescription": {"name": "name of service",
+                        "description" : " free form description of service  ",
+                        "agenttype": "rest",
+                        "endpoint": "https://blenderserviceprovider/blend",
+                        "version" : "0.2"},
+ "service_installation" : {"container_supported" : ["docker"]},
+  "inputs" : [{
+             "argname" :"blendfile",
+             "type": "runcommand",
+             "mandatory" : "true"}],
+  "outputs": [{"argname" : "generated_video",
+              "type": "oceanasset"}] 
+}
+```
+
+Example of the invocation payload for the service described above
+
+The consumer invokes the job by HTTP POSTing to "https://blenderserviceprovider/blend"
+```json
+{
+ "service_installation" : {"package_type": "docker",
+                           "docker_image": "https://hub.docker.com/r/ikester/blender-autobuild/tags/2.79"},
+  "inputs" : [{
+             "argname" :"blendfile",
+             "exec" : "docker run --rm -v /source/path/:/media/ ikester/blender /media/blendfile.blend -o /media/frame_### -f 1"}],
+  "slainfo" : {
+      "consumerAddress" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72", 
+      "serviceAgreementid" : "bb23s87856d59867503f80a690357406857698570b964ac8dcc9d86da4ada010",
+      "serviceDefinitionId" : "df7escc856d59867503f80a690357406857698570b964ac8dcc9d86da4a832de",
+      "signature" : "elided for clarity"
+      },
+}
+```
+
+### Fields in service description:
+
+
+| param       | description                             | Mandatory? |
+|-------------|-----------------------------------------|------------|
+| name        | name of the service                     | yes        |
+| description | Description of the service              | no         |
+| agenttype   | Type of agent which invokes the service | no      |
+| endpoint    | URL Endpoint for the agent              | yes        |
+
+### Fields in deployment:
+
+In many cases, a service provider will deploy a service instance from a third party software package, such as a Docker instance or a Helm chart. In such cases, the service definition could include details about the deployed package. 
+Deployment is an optional section.
+
+
+| param       | description                             | Mandatory? |
+|-------------|-----------------------------------------|------------|
+| name        | name of the deployment | no|
+| type   | Type of container (e.g. Docker or Helm chart)| no|
+| url | URL pointer to the registry of this package | no|
+
+
+### Fields in SLA info:
+
+| param               | description                          | Mandatory? |
+|---------------------|--------------------------------------|------------|
+| consumerAddress     | Address of the consumer              | yes      |
+| serviceDefinitionId | Identifier of the service definition | yes      |
+| serviceAgreementId  | Identifier of the service agreement  | yes        |
+| signature           | Signature using the private key (public key counterpart is provided in the request) | yes        |
+
+
+The service definition must be included in the Service provider DDO thus:
+```json
+{
+
+    //metadata described in OEP 8
+    "services" : [
+    {"name": "service name",
+     "description" : "description of the service ",
+     "servicedefinition": {
+         //service definition described above
+        },
+       }
+    ]
+}
+
+```
+
+Note that:
+
+- The DDO must contain a list against the "services" key
+- Each item in the list is a map which must contain a service definition
+
+
+### Inputs/outputs
+
+Consider the following examples
+
+1. Java function
+```java
+    public String callFunction(String input1, Integer input2)
+```
+
+observe that *callFunction* takes
+- a list of inputs, where each input has a name & a type definition
+- a single output, with a type definition
+
+2. Command line execution
+
+```sh
+docker run --rm -v /source/path/:/media/ ikester/blender /media/blendfile.blend -o /media/frame_### -f 1
+```
+
+The command 
+- takes a set of arguments which define both inputs and output (paths) 
+
+The invoke service is designed to satisfy the API requirements for both cases. It can accept 
+- one or more inputs
+  - each of which may have a name and (optional)type, 
+- return one or more outputs 
+  - each of which may have a name & (optional) type.
+
+Currently, three *types* of inputs have been defined
+
+- Ocean inputs: these are registered Ocean assets accepted as inputs to the invocation.
+
+The *oceanasset* type needs the following parameters:
+
+| param              | description                                 | Mandatory? |
+|--------------------|---------------------------------------------|------------|
+| assetid            | is the id of the asset on the Ocean network | yes        |
+| asseturl           | the URL where the asset is consumed from    | yes        |
+
+- The *runCommand* type, which run a single command to start the service. It needs the following parameters
+
+| param | description        | Mandatory? |
+|-------|--------------------|------------|
+| exec  | the command to run | yes        |
+|       |                    |            |
+
+- payloads: data passed to the invocation. For example, a consent service that filters for users who have apriori granted consent, can accept the set of users as a data payload.
+
+### Service info
+
+This section contains information about 
+
+- consumer identity 
+- service agreements
+
+### Configuration
+
+This section contains per-service bespoke configuration options or tunable parameters .
+
+
+## Service Registration
+ 
+### Registering a new Service
+
+Registering a service 
+
+* requires that the service provide add the service details into the DDO and publish the updated DDO.
+
+### Retire a Service
+
+Retiring a service requires that the service provider remove the service details from its DDO and update the DDO
+
+## Service Delivery
+
+The rest of this document assumes that a REST Agent is used to delivering the service.
+
+### Heartbeat
+
+This endpoint is used by the consumer or Squid to check if the service is available
+
+#### Request
+
+- a GET request to the https://service-endpoint/heartbeat 
+
+#### Response
+
+| response code | description          | payload |
+|---------------|----------------------|---------|
+|           200 | service available  | empty|
+|           500 | server error  | data describing the error |
+|           503 | service unavailable | data describing the error |
+
+
+### Invoke a job (async)
+
+This is the primary interface by which a consumer can invoke a service/run a job.
+
+#### Request
+
+- a POST request to the https://service-endpoint/jobs , along with JSON formatted payload as described in the Service Definition.
+
+Here's an example of an invocation that defines a single input asset of type oceanasset.
+```json 
+{
+  "inputs" : [ 
+              {
+             "argname" :"inputasset1",
+             "type": "oceanasset",
+             "mandatory" : "true",
+             "assetid" : "ocnassetid",
+             "asseturl" : "url to consume the asset ",
+             "serviceagreementid" : "sa_id",
+             }
+             ],
+    "serviceinfo": {
+             "consumerid" : "consumerid",
+             "invokeserviceagreementid" : "in_said" 
+             }
+  "configuration" : {
+      "job" : "options"
+  }
+}
+```
+
+#### Request auth 
+
+TBD
+
+#### Arguments
+
+The payload must contain data in the format specified in the service definition. 
+
+#### Response
+
+| response code | description          | payload |
+|---------------|----------------------|---------|
+|           201 | job creation success | jobid   |
+|           400 | bad request-not according to presribed format or invalid configuration options | error description|
+|           401 | not authorized (no authorization tokens provided) | error description|
+|           500 | error                | error description |
+|           503 | service unavailable | error description|
+|           8003 | service not paid for by consumer | error description|
+
+### Describe the status of the job
+
+#### Request
+
+- an HTTP GET request to https://service-endpoint/jobs/status/jobid
+
+#### Arguments
+
+The arguments are to be passed as HTTP query arguments
+
+| argument   | description                       |
+| --      |  --                               |
+| consumerid | The consumer who invoked this job |
+|            |                                   |
+
+#### Response
+
+| response code | description                                                | payload                   |
+|---------------|------------------------------------------------------------|---------------------------|
+|           200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
+|           400 | invalid job id|  |
+|           500 | error                                                      |                         error description  |
+|           8001 | input assets cannot be retrieved |  error description|
+|           8002 | output assets cannot be registered | error description |
+
+### Get the result of a job
+
+#### Request
+
+- an HTTP GET request to https://service-endpoint/jobs/result/jobid
+
+#### Arguments
+
+The arguments are to be passed as HTTP query arguments
+
+| argument   | description                       |
+| --         | --                               |
+| consumerid | The consumer who invoked this job |
+|            |                                   |
+
+#### Response
+
+| response code | description                                                | 
+|---------------|------------------------------------------------------------|
+|            200 | job result, a json formatted string| 
+|           400 | invalid job id|  |
+|           401 | not authorized (no authorization tokens provided) | error description|
+|           500 | error                                                      | error description |
+
+The json response is of the form
+
+```json
+{ "oceanoutputs" : [ "generatedassetid1", "generatedassetid2"]}
+
+```
+
+It can contain other keys such as non-Ocean payloads.
+Note: this response section is underspecified. It needs to handle
+
+- registering the generated asset on behalf of the service consumer
+- specifying the service agreement, purchase price, additional metadata. 
+
+
+
+## FAQ
+
+- Can the API accept configuration options:
+  - Yes the payload can contain any other inputs in the json object, other than ocean inputs
+
+## Open questions
+
+
+* Should Squid invoke the service, or should the consumer invoke the service directly? 
+
+Comparing pros and cons if Squid invokes the service
+
+| Pros                                                            | Cons                                        |
+| --                                                              | --                                          |
+| Easier for the consumer                                         | Difficult to Squid to handle being a proxy  |
+| Easier to incorporate on/off chain auth mechanisms such as SAEs | Consumer needs to be aware of SAE internals |
+| Easier to handle non-REST agents or local agents (e.g. k8s/Docker) | Harder to define what's the endpoint, and who's the provider in case of local installs |
+  
+## License
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+
+This DEP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
