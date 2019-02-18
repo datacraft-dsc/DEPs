@@ -23,45 +23,12 @@
           "type": "object",
           "oneOf": [
             {
-              "$ref": "#/definitions/purchased-ocean-asset"
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/purchased-ocean-asset"
             }
           ]
         }
       }
     }
-  },
-  "definitions": {
-     "purchased-ocean-asset": {
-      "properties": {
-        "asset-did": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
-        },
-        "service-definition-id": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
-        },
-        "service-agreement-id": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
-        },
-        "signature": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9]{75}"
-        },
-        "consumer-address": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9x]{42}"
-        }
-      },
-      "required": [
-        "asset-did",
-        "service-definition-id",
-        "consumer-address",
-        "signature",
-        "service-agreement-id"
-      ],
-      "additionalProperties": false
-    }
   }
 }
+
