@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for openrefine service",
+  "type": "object",
+  "required": [
+    "operation",
+    "params"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "openrefine"
+      ]
+    },
+    "params": {
+      "type": "object",
+      "required": [
+        "csv"
+      ],
+      "properties": {
+        "csv": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ocean-asset"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        }
+      },
+      "required": [
+        "asset-did"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

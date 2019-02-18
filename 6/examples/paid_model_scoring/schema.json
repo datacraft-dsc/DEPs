@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for model scoring invoke",
+  "type": "object",
+  "required": [
+    "operation",
+    "params"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "scoring"
+      ]
+    },
+    "params": {
+      "type": "object",
+      "required": [
+        "notebook",
+        "test-dataset",
+        "saved-model"
+      ],
+      "properties": {
+        "saved-model": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/purchased-ocean-asset"
+            }
+          ]
+        },
+        "notebook": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ocean-asset"
+            }
+          ]
+        },
+        "test-dataset": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ocean-asset"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        }
+      },
+      "required": [
+        "asset-did"
+      ],
+      "additionalProperties": false
+    },
+    "purchased-ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-definition-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-agreement-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{75}"
+        },
+        "consumer-address": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9x]{42}"
+        }
+      },
+      "required": [
+        "asset-did",
+        "service-definition-id",
+        "consumer-address",
+        "signature",
+        "service-agreement-id"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

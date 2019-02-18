@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for openrefine service",
+  "type": "object",
+  "required": [
+    "operation",
+    "params"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "openrefine"
+      ]
+    },
+    "params": {
+      "type": "object",
+      "required": [
+        "csv"
+      ],
+      "properties": {
+        "csv": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/purchased-ocean-asset"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {
+     "purchased-ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-definition-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-agreement-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{75}"
+        },
+        "consumer-address": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9x]{42}"
+        }
+      },
+      "required": [
+        "asset-did",
+        "service-definition-id",
+        "consumer-address",
+        "signature",
+        "service-agreement-id"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
