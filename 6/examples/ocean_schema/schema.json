@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for common ocean properties",
+  "type": "object",
+  "required": [],
+  "definitions": {
+    "ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        }
+      },
+      "required": [
+        "asset-did"
+      ],
+      "additionalProperties": false
+    },
+    "purchased-ocean-asset": {
+      "properties": {
+        "asset-did": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-definition-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "service-agreement-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{75}"
+        },
+        "consumer-address": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9x]{42}"
+        }
+      },
+      "required": [
+        "asset-did",
+        "service-definition-id",
+        "consumer-address",
+        "signature",
+        "service-agreement-id"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
+
