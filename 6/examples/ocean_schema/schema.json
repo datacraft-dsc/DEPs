@@ -4,15 +4,15 @@
   "type": "object",
   "required": [],
   "definitions": {
-    "ocean-asset": {
+    "squidasset": {
       "properties": {
-        "asset-did": {
+        "assetdid": {
           "type": "string",
           "pattern": "^[a-fA-F0-9]{64}"
         }
       },
       "required": [
-        "asset-did"
+        "assetdid"
       ],
       "additionalProperties": false
     },
