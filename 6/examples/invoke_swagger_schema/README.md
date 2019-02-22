@@ -4,8 +4,9 @@ This describes the process of creating an ocean invoke endpoint using OpenAPI
 
 ## Concepts:
 
-Endpoint : a URL where the invocable service has been made availble by the agent.
-Operation: the operation that be invoked at the endpoint. For the purpose of this discussion, lets assume that `ResNet model training` and `ResNet model prediction` are 2 operations. ResNet is a type of neural network used for image classification.
+- Endpoint : a URL where the invocable service has been made availble by the agent.
+
+- Operation: the operation that be invoked at the endpoint. For the purpose of this discussion, lets assume that `ResNet model training` and `ResNet model prediction` are 2 operations. ResNet is a type of neural network used for image classification.
 
 There are 2 ways of implementing this:
 
@@ -21,27 +22,28 @@ Example:
 
 Endpoint : http://resnetprovider.com/invoke
 
-payload for training (note params are elided for clarity):
-`json
+HTTP POST payload (encoded as a JSON String) for training (note params are elided for clarity):
+```json
 { "operation": "training",
   "params": {}}
-`
+```
 
  payload for prediction:
-`json
+```json
 { "operation": "prediction",
   "params": {}}
-`
+```
 
 The rest of this document uses the first approach, one endpoint per operation.
 
 ## TL;DR version
 
 - Install [Swagger-codegen](https://github.com/swagger-api/swagger-codegen#development-in-docker). I've linked to the dockerized version, however, it can also be run locally.
-- Create or modify a yaml file describing an Ocean invoke service. Here's an example which takes 2 arguments
+- Create or modify a yaml file describing an Ocean invoke service. Here's [an example](https://github.com/DEX-Company/DEPs/blob/simplify_oep6/6/examples/invoke_swagger_schema/ocean.yaml) which takes 2 arguments
   - a string 
   - an ocean asset. 
 - Choose the language you want to implement the service in. For example, if you choose to implement the service in python+flask, you could run
+
 `./run-in-docker.sh generate -i path/to/ocean.yaml \
     -l python-flask -o /gen/out/ocean-invoke -DpackageName=oceaninvoke`
 
