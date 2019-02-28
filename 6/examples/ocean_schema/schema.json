@@ -7,19 +7,19 @@
     "initialize-service-agreement": {
       "properties": {
         "asset-did": {
-          "type": "string",
+          "type": "string"
         },
         "service-definition-id": {
-          "type": "string",
+          "type": "string"
         },
         "service-agreement-id": {
-          "type": "string",
+          "type": "string"
         },
         "signature": {
-          "type": "string",
+          "type": "string"
         },
         "consumer-address": {
-          "type": "string",
+          "type": "string"
         }
       },
       "required": [
@@ -34,10 +34,10 @@
     "purchased-asset": {
       "properties": {
         "service-agreement-id": {
-          "type": "string",
+          "type": "string"
         },
         "consumer-address": {
-          "type": "string",
+          "type": "string"
         }
       },
       "required": [
