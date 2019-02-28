@@ -8,23 +8,18 @@
       "properties": {
         "asset-did": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
         },
         "service-definition-id": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
         },
         "service-agreement-id": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
         },
         "signature": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{75}"
         },
         "consumer-address": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9x]{42}"
         }
       },
       "required": [
@@ -40,11 +35,9 @@
       "properties": {
         "service-agreement-id": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
         },
         "consumer-address": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9x]{42}"
         }
       },
       "required": [
