@@ -4,19 +4,7 @@
   "type": "object",
   "required": [],
   "definitions": {
-    "squidasset": {
-      "properties": {
-        "assetdid": {
-          "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}"
-        }
-      },
-      "required": [
-        "assetdid"
-      ],
-      "additionalProperties": false
-    },
-    "purchased-ocean-asset": {
+    "initialize-service-agreement": {
       "properties": {
         "asset-did": {
           "type": "string",
@@ -47,7 +35,36 @@
         "service-agreement-id"
       ],
       "additionalProperties": false
+    },
+    "purchased-asset": {
+      "properties": {
+        "service-agreement-id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}"
+        },
+        "consumer-address": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9x]{42}"
+        }
+      },
+      "required": [
+        "consumer-address",
+        "service-agreement-id"
+      ],
+      "additionalProperties": false
+    },
+    "invoke-payload": {
+      "properties": {
+        "operation": {
+          "type": "string"
+        },
+        "params": {
+            "type": "object"
+        }
+      },
+      "required": [
+          "operation","params"
+      ]
     }
   }
 }
-
