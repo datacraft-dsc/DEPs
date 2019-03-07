@@ -3,23 +3,78 @@ info:
   description: 'This is a sample Ocean invoke endpoint.'
   version: 1.0.0
   title: Ocean Invoke endpoint 
-host: localhost:8080
-basePath: /v2
+host: localhost:8031
+basePath: /api/v1/brizo/services
 schemes:
   - http
 paths:
-  /invokesync:
+  /operations:
+    get:
+      summary: List all operations
+      operationId: listOperations
+      tags:
+        - operations
+      responses:
+        "200":
+          description: A array of operations
+          schema:
+            $ref: '#/definitions/OperationsResponse'
+
+  /operation/{did}:
+    get:
+      summary: List operation
+      operationId: listOperation
+      tags:
+        - operation
+      parameters:
+        - name: did
+          in: path
+          description: Operation did 
+          required: true
+          type: string
+      responses:
+        "200":
+          description: the payload required for operation
+          type: array
+          items: 
+            $ref: '#/definitions/InvokeParam'
+ 
+  /access/initialize:
+    post:
+      tags:
+        - initialize
+      summary: initialize an operation
+      description: ''
+      operationId: initialize
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the request
+          required: true
+          schema:
+            $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AW9vFxYZ-Blx0bsejwI5A4XWusbks5cgMeYwA%3D%3D#/definitions/initialize-service-agreement'
+      responses:
+        '200':
+          description: successful operation
+        '201':
+          description: successful created
+        '405':
+          description: Invalid input
+
+  /invoke:
     post:
       tags:
         - invoke
       summary: invoke an operation
-      description: ''
-      operationId: invokeOperation
+      description: 'invoke'
+      operationId: invoke
       consumes:
         - application/json
-        - application/xml
       produces:
-        - application/xml
         - application/json
       parameters:
         - in: body
@@ -31,17 +86,40 @@ paths:
       responses:
         '200':
           description: successful operation
-          schema:
-            $ref: '#/definitions/InvokeSyncResponse'
         '405':
           description: Invalid input
-  /invokeasync:
+
+  /freeinvoke:
     post:
       tags:
         - invoke
       summary: invoke an operation
+      description: 'invoke'
+      operationId: invoke
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the operation invoked
+          required: true
+          schema:
+            $ref: '#/definitions/FreeOperation'
+      responses:
+        '200':
+          description: successful operation
+        '405':
+          description: Invalid input
+
+  /invokeasync:
+    post:
+      tags:
+        - invoke
+      summary: invoke an operation asynchronously
       description: ''
-      operationId: invokeOperation
+      operationId: invokeasync
       consumes:
         - application/json
         - application/xml
@@ -56,7 +134,7 @@ paths:
           schema:
             $ref: '#/definitions/Operation'
       responses:
-        '200':
+        '201':
           description: launched job 
           schema:
             $ref: '#/definitions/InvokeAsyncResponse'
@@ -64,20 +142,67 @@ paths:
           description: Invalid input
 
 definitions:
+  FreeOperation:
+    title: a free operation
+    description: A free operation to invoke
+    type: object
+    required:
+      - payload  
+    properties:
+      payload:
+        $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AW9vFxYZ-Blx0bsejwI5A4XWusbks5cgMeYwA%3D%3D#/definitions/invoke-payload'
+    xml:
+      name: FreeOperation
+ 
+  InvokeParam:
+    title: an invoke param
+    description: A parameter to invoke operation
+    type: object
+    required:
+      - paramname  
+      - type
+    properties:
+      paramname:
+        type: string
+      type:
+        type: string
+        enum: [string, asset]
+    xml:
+      name: InvokeParam
+
   Operation:
     title: an operation
     description: An operation to invoke
     type: object
     required:
-      - to_hash  
-      - saved_model
+      - payload  
+      - operationSAInfo
     properties:
-      to_hash:
-        type: string
-      saved_model:
-        $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AKrzqinuuF3_pgLeU3SW_CZlRPrks5ceJ2RwA%3D%3D#/definitions/squidasset'
+      payload:
+        $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AW9vFxYZ-Blx0bsejwI5A4XWusbks5cgMeYwA%3D%3D#/definitions/invoke-payload'
+      operationSAInfo:
+        $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AW9vFxYZ-Blx0bsejwI5A4XWusbks5cgMeYwA%3D%3D#/definitions/purchased-asset'
     xml:
       name: Operation
+
+  OperationDef:
+    title: An operation definition 
+    description: Describes 
+    type: object
+    properties:
+      name:
+        type: string
+      did:
+        type: string
+ 
+  OperationsResponse:
+    title: A response to list operations 
+    description: Describes all the operations 
+    type: array
+    items:
+      oneOf:
+        - $ref: '#/definitions/OperationDef'
+  
   InvokeSyncResponse:
     title: A response to invoke sync
     description: Describes the result of calling invoke sync
