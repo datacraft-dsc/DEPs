@@ -58,6 +58,15 @@
       "required": [
           "operation","params"
       ]
+    },
+    "params": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^.*": {
+          "type": "string"
+        }
+      }
     }
   }
 }
