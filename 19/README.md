@@ -4,7 +4,7 @@ name: Ocean Standard Endpoints
 type: Standard
 status: Raw
 editor: Mike Anderson <mike.anderson@dex.sg>
-contributors: 
+contributors:
 ```
 
 **Table of Contents**
@@ -78,12 +78,13 @@ Endpoints are specified in the following form in the DDO:
 
 ### Current endpoint types
 
-Endpoint type          |   Description
------------------------|----------------------
-Ocean.Meta.v1          | Endpoint for the Meta Agent API v1 (OEP15 - TBC)
-Ocean.Market.v1        | Endpoint for the Market Agent API (OEP16 - TBC)
-Ocean.Storage.v1       | Endpoint for a generalised storage API (OEP17 - TBC)
-Ocean.Invoke.v1        | Endpoint for an invokable service API (OEP6 - TBC)
+Endpoint type           |   Description
+------------------------|----------------------
+Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (OEP15 - TBC)
+Ocean.Market.v1         | Endpoint for the Market Agent API (OEP16 - TBC)
+Ocean.Storage.v1        | Endpoint for a generalised storage API (OEP17 - TBC)
+Ocean.Invoke.v1         | Endpoint for an invokable service API (OEP6 - TBC)
+Ocean.Authentication.v1 | Endpoint the Authentication API (DEP20)
 
 
 ## Changes Required

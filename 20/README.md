@@ -25,7 +25,7 @@ contributors:
 
 # Authentication
 
-This DEP defines how Starfish applications should handle authentication.
+This DEP defines how Agents implmenting a DEP API should handle authentication.
 
 
 ## Change Process
@@ -42,14 +42,17 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The main motivations of this DEP are:
 
-* Define a standard set of authentication guidlines for Starfish APIs
+* Define a standard set of authentication guidlines for DEP APIs
 * Provide a basis for a DEP on Authorization
 
 ## Specification
 
 Requirements are:
 
-* Each Starfish API may restrict access to authenticated users
+* Agents wishing to restrict acccess should use the authentication method
+  defined in this DEP.
+* The decision of whether or not to authenticate a user given any set of
+  credentials is left to the policy of the service provider operating the agent
 
 ## Proposed Solution
 
@@ -59,19 +62,25 @@ generally, and especially so on a platform designed for decentralization.
 The methods of authentication are certain to evolve (most likely as
 supersets) yet will begin with mechanisms familiar to developers today.
 
-It is recommended that implementations serve API's over TLS (SSL) as
-to ensure HTTP headers are not sent in cleartext.
+The endpoint for the Authentication API is defined in [19/ENDPOINTS](../19/README.md) as **Ocean.Authentication.v1**
+
+### Transport Layer Security
+
+It is REQUIRED that production implementations of services including the
+this DEP Authentication API are provided over Transport Layer Security (TLS).
+This ensure that both any credentials provided via query parameters
+(the URI) or HTTP headers are not transmitted as cleartext.
 
 ### HTTP Basic Authentication
 
-A Starfish application may have specified users (including usernames
+An agent implementing a DEP API may have specified users (including usernames
 and passwords) as part of an initial configuration.
 
 These credentials may be used with HTTP Basic Authentication.
 
 ### OAuth2 Token Authentication
 
-Each Starfish service should have a mechanism (API) for generating
+Each DEP 20 implementing service should have a mechanism (API) for generating
 access tokens.
 
 These tokens act as a means to associate an API request with
@@ -84,7 +93,8 @@ grants (to be covered in a DEP on Authorization).
 
 The list of changes to apply in the proposed solution are:
 
-* Modify Starfish libraries to support one (or more) of the proposed Authentication schemes
+* Modify Agent API reference implementations to offer authentication methods
+  as defined in this DEP.
 
 ## References
 
