@@ -4,7 +4,7 @@ name: Authentication
 type: Standard
 status: Raw
 editor: Tom Marble <tmarble@info9.net>
-contributors:
+contributors: Mike Anderson <mike.anderson@dex.sg>
 ```
 
 **Table of Contents**
