@@ -14,16 +14,6 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Invoke Job capability](#invoke-job-capability)
-      * [Exclusions](#exclusions)
-      * [Change Process](#change-process)
-      * [Language](#language)
-      * [Motivation](#motivation)
-      * [Roles](#roles)
-      * [Technical Requirements](#technical-requirements)
-   * [Specification](#specification)
-      * [Service Definition](#service-definition)
-      * [Service Registration](#service-registration)
-      * [Service Delivery](#service-delivery)
       * [FAQ](#faq)
       * [Open Questions](#open-questions)
       * [License](#license)
@@ -32,97 +22,14 @@ Table of Contents
 <!--te-->
 
 <a name="service-invocation"></a>
-# Invoke Job capability
-
-The Service Invocation API (**INVOKE**) is a specification for the Ocean Protocol to register and invoke compute jobs.
-
-INVOKE offers a general purpose computational interface that can run compute Jobs on demand.
-
-Compute services are defined as services available on the Ocean Network that
-
-* May accept one or more Input parameters (which will typically be data assets to be used or algorithms to be run)
-* Typically produce one or more Outputs (which will typically be references to generated data assets)
-* Support the provision of proofs by service providers upon service completion (after which tokens in escrow may be released) 
-
-## Exclusions
-
-* This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
-* This OEP does not cover service discovery.
-* The OEP is not intended to apply to services where invocation / access is off-chain (e.g. high volume APIs or queue services)
-* This OEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
-* This OEP does not describe details of installation of the service and/or its dependencies. 
-
-This specification is based on [Ocean Protocol technical whitepaper](https://github.com/oceanprotocol/whitepaper), [3/ARCH](../3/README.md), [4/KEEPER](../4/README.md) and [5/AGENT](../5/README.md).
-
-
-<a name="change-process"></a>
-## Change Process
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-<a name="language"></a>
-## Language
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
+# Implementing an Invoke-able service 
 
 <a name="motivation"></a>
 ## Motivation
 
-Ocean network aims to power marketplaces for relevant AI-related data services.
-There is a need for a standardised **interface** for the invocation of compute services so that different implementations can be provided and invoked by users of the Ocean Protocol.
-
-Example of data related services that could be offered by Ocean actors:
-
-* A data cleaning service that removes noise from data
-* A model training service that returns a trained model given training data
-* A model verification service that returns metrics of a model's performance, given a model and a test data set.
-* A consent service which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry.
-
-It may be observed that these services
-
-- Enable creation of dataset(s)
-- Accept input dataset(s) and transform it in some fashion
-
-The Invoke API enables
-
-- provides Ocean users tools to transform data assets registered on the Ocean network.
-- facilitates a workflow pipeline of data asset transformations.
-- enables provenance tracking by Ocean provenance aware algorithms.
-
 <a name="specification"></a>
 
-## Roles
-
-- Asset/algorithm owner: The owner of the algorithm, 
-  - may be registered as an Ocean asset
-  - may be available as a deployable package (e.g. a docker image or a jar on a maven repo)
-- Service provider: The entity that runs the algorithm on their server(s).
-- Service consumer: The entity that invokes the service.a
-- Service instance: The software entity that is running the invokable service. 
-- Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
-  - Agent can be of many types, such as local or remote, and communicate via different interfaces.
-  - The rest of this document assumes a remote Agent that communicates over REST.
-
-### Provider flow
-
-![Provider flow ](./imgs/InvokeService_serviceprovider_flow.png)
-
-### Consumer flow
-
-![Consumer flow ](./imgs/Invoke_service_consumer_flow.png)
-
-## Technical requirements 
-
-* The service may be offered free or for a price
-* The service may be offered in trusted mode or trustless mode (backed by Service Execution Agreements) 
-* the service must be identified with its asset ID on the Ocean Network
-* the service must register its metadata with the OCEAN agent
-* may accept configuration options to tune the algorithm/job to be run.
-* may register ocean assets generated as a result of the job. the registered assets must be in the name of the service coinsumer
-* may return a payload
-* may accept a list of ocean assets as inputs to the job  (along with access tokens to consume the asset)
-* may accept a data payload as an input
-* The unit of measurement must be 
-  - a one-shot execution of a job (e.g. a data cleaning job)
-  
+ 
 # Specification 
 
 The **Service Metadata** information should be managed using an API on the Ocean Agent. 

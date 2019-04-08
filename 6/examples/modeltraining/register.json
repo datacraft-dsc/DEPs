@@ -1,0 +1,18 @@
+{
+ "servicedescription": {"name": "name of service",
+                        "description" : " free form description of service  ",
+                        "agenttype": "rest",
+                        "endpoint": "https://modeltrainingserviceprovider/train",
+                        "version" : "0.2"},
+   "inputs" : [{
+             "argname" :"training",
+             "type": "oceanasset",
+             "mandatory" : "true"},
+             {
+             "argname" :"test",
+             "type": "oceanasset",
+             "mandatory" : "true"}],
+  "outputs": [ 
+              {"argname" : "trained_model",
+              "type": "oceanasset"}] 
+  }
