@@ -172,261 +172,111 @@ It contains the following sections:
 
 ```
 
-Example of the invocation payload for the service described above
-
-The consumer invokes the job by http POSTing to "https://modeltrainingserviceprovider/train"
-```json
-{
-  "inputs" : [{
-             "argname" :"training",
-             "assetid" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
-             "asseturl" : "https://some.service.provider/path-to-training-dataset"
-             },
-             {
-             "argname" :"test",
-             "assetid" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA73",
-             "asseturl" : "https://some.service.provider/path-to-test-dataset"
-             }],
-  "slainfo" : {
-      "consumerAddress" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72", 
-      "serviceAgreementid" : "bb23s87856d59867503f80a690357406857698570b964ac8dcc9d86da4ada010",
-      "serviceDefinitionId" : "df7escc856d59867503f80a690357406857698570b964ac8dcc9d86da4a832de",
-      "signature" : "elided for clarity"
-      },
-  "configuration" : {
-      "training_epochs" : "100"
-  }
-}
-```
-
-2. Example of service definition that runs [Blender](https://www.blender.org/) to render scenes, given a .blend file
-  - the consumer installs the service. The example uses Docker, however the consumer can choose to install a different package (say, a Kubernetes helm chart), based on service provider's supported  containers.
-  - The service takes a blend file as input
-  - the service generates an Ocean asset (the generated video)as output.
-
-```json 
-{
- "servicedescription": {"name": "name of service",
-                        "description" : " free form description of service  ",
-                        "agenttype": "rest",
-                        "endpoint": "https://blenderserviceprovider/blend",
-                        "version" : "0.2"},
- "service_installation" : {"container_supported" : ["docker"]},
-  "inputs" : [{
-             "argname" :"blendfile",
-             "type": "runcommand",
-             "mandatory" : "true"}],
-  "outputs": [{"argname" : "generated_video",
-              "type": "oceanasset"}] 
-}
-```
-
-Example of the invocation payload for the service described above
-
-The consumer invokes the job by HTTP POSTing to "https://blenderserviceprovider/blend"
-```json
-{
- "service_installation" : {"package_type": "docker",
-                           "docker_image": "https://hub.docker.com/r/ikester/blender-autobuild/tags/2.79"},
-  "inputs" : [{
-             "argname" :"blendfile",
-             "exec" : "docker run --rm -v /source/path/:/media/ ikester/blender /media/blendfile.blend -o /media/frame_### -f 1"}],
-  "slainfo" : {
-      "consumerAddress" : "0x00a329c0648769A73afAc7F9381E08FB43dBEA72", 
-      "serviceAgreementid" : "bb23s87856d59867503f80a690357406857698570b964ac8dcc9d86da4ada010",
-      "serviceDefinitionId" : "df7escc856d59867503f80a690357406857698570b964ac8dcc9d86da4a832de",
-      "signature" : "elided for clarity"
-      },
-}
-```
-
-### Fields in service description:
 
 
-| param       | description                             | Mandatory? |
-|-------------|-----------------------------------------|------------|
-| name        | name of the service                     | yes        |
-| description | Description of the service              | no         |
-| agenttype   | Type of agent which invokes the service | no      |
-| endpoint    | URL Endpoint for the agent              | yes        |
-
-### Fields in deployment:
-
-In many cases, a service provider will deploy a service instance from a third party software package, such as a Docker instance or a Helm chart. In such cases, the service definition could include details about the deployed package. 
-Deployment is an optional section.
-
-
-| param       | description                             | Mandatory? |
-|-------------|-----------------------------------------|------------|
-| name        | name of the deployment | no|
-| type   | Type of container (e.g. Docker or Helm chart)| no|
-| url | URL pointer to the registry of this package | no|
-
-
-### Fields in SLA info:
-
-| param               | description                          | Mandatory? |
-|---------------------|--------------------------------------|------------|
-| consumerAddress     | Address of the consumer              | yes      |
-| serviceDefinitionId | Identifier of the service definition | yes      |
-| serviceAgreementId  | Identifier of the service agreement  | yes        |
-| signature           | Signature using the private key (public key counterpart is provided in the request) | yes        |
-
-
-The service definition must be included in the Service provider DDO thus:
-```json
-{
-
-    //metadata described in OEP 8
-    "services" : [
-    {"name": "service name",
-     "description" : "description of the service ",
-     "servicedefinition": {
-         //service definition described above
-        },
-       }
-    ]
-}
-
-```
-
-Note that:
-
-- The DDO must contain a list against the "services" key
-- Each item in the list is a map which must contain a service definition
 
 
 ### Inputs/outputs
 
-Consider the following examples
-
-1. Java function
-```java
-    public String callFunction(String input1, Integer input2)
-```
-
-observe that *callFunction* takes
-- a list of inputs, where each input has a name & a type definition
-- a single output, with a type definition
-
-2. Command line execution
-
-```sh
-docker run --rm -v /source/path/:/media/ ikester/blender /media/blendfile.blend -o /media/frame_### -f 1
-```
-
-The command 
-- takes a set of arguments which define both inputs and output (paths) 
-
-The invoke service is designed to satisfy the API requirements for both cases. It can accept 
+The invoke service can accept 
 - one or more inputs
-  - each of which may have a name and (optional)type, 
+  - each of which must have a name and type*, 
 - return one or more outputs 
-  - each of which may have a name & (optional) type.
+  - each of which must have a name and type.
 
-Currently, three *types* of inputs have been defined
+Currently, type *types* of inputs have been defined
 
-- Ocean inputs: these are registered Ocean assets accepted as inputs to the invocation.
-
-The *oceanasset* type needs the following parameters:
-
-| param              | description                                 | Mandatory? |
-|--------------------|---------------------------------------------|------------|
-| assetid            | is the id of the asset on the Ocean network | yes        |
-| asseturl           | the URL where the asset is consumed from    | yes        |
-
-- The *runCommand* type, which run a single command to start the service. It needs the following parameters
-
-| param | description        | Mandatory? |
-|-------|--------------------|------------|
-| exec  | the command to run | yes        |
-|       |                    |            |
-
-- payloads: data passed to the invocation. For example, a consent service that filters for users who have apriori granted consent, can accept the set of users as a data payload.
-
-### Service info
-
-This section contains information about 
-
-- consumer identity 
-- service agreements
-
-### Configuration
-
-This section contains per-service bespoke configuration options or tunable parameters .
-
-
-## Service Registration
- 
-### Registering a new Service
-
-Registering a service 
-
-* requires that the service provide add the service details into the DDO and publish the updated DDO.
-
-### Retire a Service
-
-Retiring a service requires that the service provider remove the service details from its DDO and update the DDO
+- asset: these are registered Ocean assets
+- string : string formatted data passed to the invocation. 
 
 ## Service Delivery
 
 The rest of this document assumes that a REST Agent is used to delivering the service.
 
-### Heartbeat
+### Get Operations
 
-This endpoint is used by the consumer or Squid to check if the service is available
+Return a list of operations offered by this endpoint 
 
 #### Request
 
-- a GET request to the https://service-endpoint/heartbeat 
+- a GET request to the http://endpoint/api/v1/brizo/services/operations
 
 #### Response
 
+returns a list, where each element is map containing:
+
+- the DID of the operation
+- the name of the operation
+
+Example response with 2 operations:
+```json
+[
+  {
+    "did": "hashing_did",
+    "name": "hashing"
+  },
+  {
+    "did": "echo_did",
+    "name": "echo"
+  }
+]
+```
+
 | response code | description          | payload |
 |---------------|----------------------|---------|
-|           200 | service available  | empty|
+|           200 | service available    | empty|
 |           500 | server error  | data describing the error |
 |           503 | service unavailable | data describing the error |
 
+### Get Operation
 
-### Invoke a job (async)
+Return the schema required by this operation
+
+#### Request
+
+- a GET request to the http://localhost:8031/api/v1/brizo/services/operation/operation_did 
+
+#### Response
+
+Returns a list of arguments, where each element is a map. Each map can have 2 arguments:
+
+- name of the argument.
+- type of the asset. These can be of 2 type: asset, and string
+
+Example response with a single asset argument:
+```json
+[
+  {
+    "name": "to_hash",
+    "type": "asset",
+  }
+]
+```
+
+| response code | description          | payload |
+|---------------|----------------------|---------|
+|           200 | service available    | empty|
+|           500 | server error  | data describing the error |
+|           503 | service unavailable | data describing the error |
+
+### Invoke a job 
 
 This is the primary interface by which a consumer can invoke a service/run a job.
 
 #### Request
 
-- a POST request to the https://service-endpoint/jobs , along with JSON formatted payload as described in the Service Definition.
+- a POST request to the https://service-endpoint/api/v1/brizo/services/invoke/operation_did along with JSON formatted payload as described in the Service Definition.
 
-Here's an example of an invocation that defines a single input asset of type oceanasset.
+Here's an example of an invocation that defines a single input asset of type asset.
 ```json 
 {
-  "inputs" : [ 
-              {
-             "argname" :"inputasset1",
-             "type": "oceanasset",
-             "mandatory" : "true",
-             "assetid" : "ocnassetid",
-             "asseturl" : "url to consume the asset ",
-             "serviceagreementid" : "sa_id",
+    "to_hash": {
+             "assetid" : "assetid",
+             "purchase_token" : "value_of_purchase_token" 
              }
-             ],
-    "serviceinfo": {
-             "consumerid" : "consumerid",
-             "invokeserviceagreementid" : "in_said" 
-             }
-  "configuration" : {
-      "job" : "options"
-  }
 }
 ```
 
-#### Request auth 
-
-TBD
-
-#### Arguments
-
-The payload must contain data in the format specified in the service definition. 
 
 #### Response
 
@@ -445,14 +295,7 @@ The payload must contain data in the format specified in the service definition.
 
 - an HTTP GET request to https://service-endpoint/jobs/status/jobid
 
-#### Arguments
-
-The arguments are to be passed as HTTP query arguments
-
-| argument   | description                       |
-| --      |  --                               |
-| consumerid | The consumer who invoked this job |
-|            |                                   |
+The default return (for a valid jobid ) is a string enum with started/in progress/completed/errot.
 
 #### Response
 
@@ -470,15 +313,6 @@ The arguments are to be passed as HTTP query arguments
 
 - an HTTP GET request to https://service-endpoint/jobs/result/jobid
 
-#### Arguments
-
-The arguments are to be passed as HTTP query arguments
-
-| argument   | description                       |
-| --         | --                               |
-| consumerid | The consumer who invoked this job |
-|            |                                   |
-
 #### Response
 
 | response code | description                                                | 
@@ -491,7 +325,7 @@ The arguments are to be passed as HTTP query arguments
 The json response is of the form
 
 ```json
-{ "oceanoutputs" : [ "generatedassetid1", "generatedassetid2"]}
+{ "outputs" : [ "generatedassetid1", "generatedassetid2"]}
 
 ```
 
@@ -503,24 +337,11 @@ Note: this response section is underspecified. It needs to handle
 
 
 
-## FAQ
-
-- Can the API accept configuration options:
-  - Yes the payload can contain any other inputs in the json object, other than ocean inputs
 
 ## Open questions
 
+- Authentication and Authorization headers are not yet defined in this DEP
 
-* Should Squid invoke the service, or should the consumer invoke the service directly? 
-
-Comparing pros and cons if Squid invokes the service
-
-| Pros                                                            | Cons                                        |
-| --                                                              | --                                          |
-| Easier for the consumer                                         | Difficult to Squid to handle being a proxy  |
-| Easier to incorporate on/off chain auth mechanisms such as SAEs | Consumer needs to be aware of SAE internals |
-| Easier to handle non-REST agents or local agents (e.g. k8s/Docker) | Harder to define what's the endpoint, and who's the provider in case of local installs |
-  
 ## License
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
