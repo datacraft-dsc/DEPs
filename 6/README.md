@@ -95,7 +95,7 @@ The Invoke API enables
   - may be registered as an Ocean asset
   - may be available as a deployable package (e.g. a docker image or a jar on a maven repo)
 - Service provider: The entity that runs the algorithm on their server(s).
-- Service consumer: The entity that invokes the service.a
+- Service consumer: The entity that invokes the service.
 - Service instance: The software entity that is running the invokable service. 
 - Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
   - Agent can be of many types, such as local or remote, and communicate via different interfaces.
@@ -103,11 +103,11 @@ The Invoke API enables
 
 ### Provider flow
 
-![Provider flow ](./imgs/InvokeService_serviceprovider_flow.png)
+![Provider flow ](https://user-images.githubusercontent.com/89076/55699303-d1eb4c00-59fc-11e9-9c93-59939e15283d.png)
 
 ### Consumer flow
 
-![Consumer flow ](./imgs/Invoke_service_consumer_flow.png)
+![Consumer flow ](https://user-images.githubusercontent.com/89076/55699307-d6176980-59fc-11e9-9227-03a0d661bc57.png)
 
 ## Technical requirements 
 
