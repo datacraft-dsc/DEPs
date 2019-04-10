@@ -11,7 +11,7 @@ contributors:
 
 <!--ts-->
 
-   * [Ocean Standard Endpoints](#ocean-standard-endpoints)
+   * [DEP Standard Endpoints](#dep-standard-endpoints)
       * [Change Process](#change-process)
       * [Language](#language)
       * [Motivation](#motivation)
@@ -23,15 +23,15 @@ contributors:
 
 <!--te-->
 
-# Ocean Standard Endpoints
+# DEP Standard Endpoints
 
-This OEP defines how API endpoints should exposed by Ocean Agents.
+This DEP defines how API endpoints should exposed by Agents in the ecosystem.
 
 In order to enable clients to locate specfic APIs, we must define standard endpoints.
 These endpoints are optional, but required if an Identity wishes their endpoints to be consumed
-by standard Ocean client tools.
+by standard DEP-compatible client tools.
 
-Endpoints exposed should be declared in the relevant DDO of an Actor who wished to offer these endpoints.
+Endpoints exposed should be declared in the relevant DDO of an Agent that offers these endpoints.
 
 ## Change Process
 
@@ -54,10 +54,10 @@ The main motivations of this OEP are:
 
 Requirements are:
 
-* Each Ocean API must be allocated a unique endpoint type
-* Each Ocean Agent wishing to expose Ocean APIs must register a DDO
+* Each DEP API must be allocated a unique endpoint type
+* Each Agent wishing to expose Ocean APIs must register a DDO
 * Each Agent DDO may specify one or more services as per the W3C DID spec
-* If the service represents an Ocean API, the "type" of the service must be the endpoint type
+* If the service represents an DEP API, the "type" of the service must be the endpoint type
 * The endpoint type should include a version number, to allow for protocol evolution
 
 
@@ -80,10 +80,10 @@ Endpoints are specified in the following form in the DDO:
 
 Endpoint type           |   Description
 ------------------------|----------------------
-Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (OEP15 - TBC)
-Ocean.Market.v1         | Endpoint for the Market Agent API (OEP16 - TBC)
-Ocean.Storage.v1        | Endpoint for a generalised storage API (OEP17 - TBC)
-Ocean.Invoke.v1         | Endpoint for an invokable service API (OEP6 - TBC)
+Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (DEP15)
+Ocean.Market.v1         | Endpoint for the Market Agent API (TBC)
+Ocean.Storage.v1        | Endpoint for a generalised storage API (TBC)
+Ocean.Invoke.v1         | Endpoint for an invokable service API (TBC)
 Ocean.Authentication.v1 | Endpoint the Authentication API (DEP20)
 
 
