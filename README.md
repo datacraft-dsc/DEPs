@@ -23,7 +23,11 @@ Short Name        | Title                                                       
 ------------------|--------------------------------------------------------------|--------------|------------|-------
 [1/C4](1)         | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
 [2/COSS](2)       | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
+[3/ARCH](3)       | Architecture & Principles                                    | Meta         | TBC        | Mike Anderson
+[4/STARFISH](4)   | Starfish abstract API                                        | Standard     | TBC        | Tom Marble
+[5/IDENTITY](5)   | Agent and asset identity                                     | Standard     | TBC        | Mike Anderson
 [6/INVOKE](6)     | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
+[7/STORAGE](7)    | Asset Content Storage API                                    | Standard     | TBC        | Mike Anderson
 [8/META](8)       | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
 [12/PROV](12)     | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
 [15/META-API](15) | Metadata API                                                 | Standard     | Raw        | Mike Anderson
