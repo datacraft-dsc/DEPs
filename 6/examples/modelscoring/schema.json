@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for model scoring invoke",
+  "type": "object",
+  "required": [
+    "operation",
+    "params"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "scoring"
+      ]
+    },
+    "returns": {
+      "type": "object",
+      "required": [
+        "predictions"
+      ],
+        "properties": {
+        "predictions": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/ocean-asset"
+            }
+          ]
+        }
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": [
+        "notebook",
+        "test-dataset",
+        "saved-model"
+      ],
+      "properties": {
+        "saved-model": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/ocean-asset"
+            }
+          ]
+        },
+        "notebook": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/ocean-asset"
+            }
+          ]
+        },
+        "test-dataset": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/ocean-asset"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+

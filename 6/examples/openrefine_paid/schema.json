@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for openrefine service",
+  "type": "object",
+  "required": [
+    "operation",
+    "params"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "openrefine"
+      ]
+    },
+    "params": {
+      "type": "object",
+      "required": [
+        "csv"
+      ],
+      "properties": {
+        "csv": {
+          "type": "object",
+          "oneOf": [
+            {
+              "$ref": "https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9JSpdHVkeByVG8Ty15swQi9a20F-ks5cc7b7wA%3D%3D#/definitions/purchased-ocean-asset"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,195 @@
+swagger: '2.0'
+info:
+  description: 'This is a sample Ocean invoke endpoint.'
+  version: 1.0.0
+  title: Ocean Invoke endpoint 
+host: localhost:8030
+basePath: /api/v1/brizo/services
+schemes:
+  - http
+paths:
+  /access/initialize:
+    post:
+      tags:
+        - initialize
+      summary: initialize an operation
+      description: ''
+      operationId: initialize
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the request
+          required: true
+          schema:
+            $ref: '#/definitions/ISA'
+      responses:
+        '200':
+          description: successful operation
+        '201':
+          description: successful created
+        '405':
+          description: Invalid input
+  /consume:
+    post:
+      tags:
+        - initialize
+      summary: initialize an operation
+      description: ''
+      operationId: consume
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the operation invoked
+          required: true
+          schema:
+            $ref: '#/definitions/Consume'
+      responses:
+        '200':
+          description: successful operation
+        '405':
+          description: Invalid input
+
+
+  /invokesync:
+    post:
+      tags:
+        - invoke
+      summary: invoke an operation
+      description: ''
+      operationId: invokesync
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the operation invoked
+          required: true
+          schema:
+            $ref: '#/definitions/Operation'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/InvokeSyncResponse'
+        '405':
+          description: Invalid input
+  /invokeasync:
+    post:
+      tags:
+        - invoke
+      summary: invoke an operation
+      description: ''
+      operationId: invokeasync
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: params for the operation invoked
+          required: true
+          schema:
+            $ref: '#/definitions/Operation'
+      responses:
+        '200':
+          description: launched job 
+          schema:
+            $ref: '#/definitions/InvokeAsyncResponse'
+        '405':
+          description: Invalid input
+
+definitions:
+  Operation:
+    title: an operation
+    description: An operation to invoke
+    type: object
+    required:
+      - to_hash  
+      - saved_model
+    properties:
+      to_hash:
+        type: string
+      saved_model:
+        $ref: 'https://raw.githubusercontent.com/DEX-Company/DEPs/simplify_oep6/6/examples/ocean_schema/schema.json?token=AAFb9AKrzqinuuF3_pgLeU3SW_CZlRPrks5ceJ2RwA%3D%3D#/definitions/squidasset'
+    xml:
+      name: Operation
+  ISA:
+    title: an operation
+    description: An operation to invoke
+    type: object
+    required:
+      - did
+      - serviceDefinitionId
+      - serviceAgreementId
+      - signature
+      - consumerAddress
+    properties:
+      did:
+        type: string
+      serviceDefinitionId:
+        type: string
+      serviceAgreementId:
+        type: string
+      signature:
+        type: string
+      consumerAddress:
+        type: string
+    xml:
+      name: ISA
+  Consume:
+    title: an operation
+    description: An operation to invoke
+    type: object
+    required:
+      - url
+      - serviceAgreementId
+      - consumerAddress
+    properties:
+      serviceAgreementId:
+        type: string
+      url:
+        type: string
+      consumerAddress:
+        type: string
+    xml:
+      name: Consume
+  InvokeSyncResponse:
+    title: A response to invoke sync
+    description: Describes the result of calling invoke sync
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
+  InvokeAsyncResponse:
+    title: A response to invoke asynchronous
+    description: Describes the result of calling invoke async
+    type: object
+    required:
+      - jobid  
+    properties:
+      jobid:
+        type: string
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'

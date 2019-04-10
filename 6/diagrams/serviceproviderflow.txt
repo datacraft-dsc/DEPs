@@ -1,0 +1,16 @@
+title Service provider flow
+
+alt service startup
+ServiceProvider->ServiceInstance: start service instance
+
+ServiceProvider->RestAgent: start REST agent
+
+Note left of RestAgent: This starts the REST service listening for requests
+
+
+end alt
+
+alt service registration
+note right of ServiceProvider: Create a DDO with list of services offered and the endpoints they are available at.
+ServiceProvider->OceanNetwork: Register DID, DDO with list of services
+end alt

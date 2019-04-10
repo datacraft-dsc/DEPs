@@ -1,0 +1,6 @@
+{
+  "operation": "python-script",
+  "params": {
+    "script": "print(\"Hello Ocean.\")"
+  }
+}
