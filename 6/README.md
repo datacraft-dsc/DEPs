@@ -184,7 +184,7 @@ Return a list of operations offered by this endpoint
 
 #### Request
 
-- a GET request to the http://endpoint/api/v1/brizo/services/operations
+- a GET request to the http://endpoint/operations
 
 #### Response
 
@@ -219,7 +219,7 @@ Return the schema required by this operation
 
 #### Request
 
-- a GET request to the http://localhost:8031/api/v1/brizo/services/operation/operation_did 
+- a GET request to the http://endpoint/services/operation/operation_did 
 
 #### Response
 
