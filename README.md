@@ -17,12 +17,16 @@ The process to add or change a DEP is the following:
 - DEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
 - Non-cosmetic changes are allowed only on [Raw](./2#raw-meps) and [Draft](./2#draft-meps) specifications.
 
-# Current MEPs
+# Current DEPs
 
 Short Name       | Title                                                        | Type         | Status     | Editor
 -----------------|--------------------------------------------------------------|--------------|------------|-------
-[1/C4](1)        | Collective Code Construction Contract                        | Meta         | Draft      | 
-[2/COSS](2)      | Consensus-Oriented Specification System                      | Meta         | Draft      | 
+[1/C4](1)        | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
+[2/COSS](2)      | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
+[6/INVOKE](6)    | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
+[8/META](8)      | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
+[12/PROV](12)    | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
+[15/META-API](6) | Metadata API                                      			| Standard     | Raw        | Mike Anderson
 
 
 
