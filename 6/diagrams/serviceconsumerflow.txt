@@ -1,0 +1,34 @@
+title Service consumer flow
+
+alt locate service provider
+ServiceConsumer->Starfish: given DID of service provider, get list of services
+note right of ServiceConsumer: Resolve the DDO, which contains the list of services and endpoint.
+
+Starfish->OceanNetwork: get DDO for DID
+OceanNetwork->ServiceConsumer: returns a DDO
+
+end alt
+alt locate operation
+Note right of ServiceConsumer: One of the services is an invoke endpoint.
+ServiceConsumer->Starfish: Get list of operations available at invoke endpoint
+
+
+Starfish->RestAgent: Get list of operations
+Note left of RestAgent: returns list of operations, along with schema for each operation
+
+Note right of ServiceConsumer: Selects operation to invoke
+Note right of ServiceConsumer: operation and/or assets needed for it may need purchase
+
+end alt
+alt invoke service
+ServiceConsumer->Starfish: Invoke operation
+Starfish->RestAgent: Invoke operation
+
+
+Note left of RestAgent: THe operation may be asynchronous
+
+RestAgent->Starfish: Return result
+Note left of RestAgent: result may contain payload or assets
+Starfish->ServiceConsumer: result of invoke operation
+
+end alt
