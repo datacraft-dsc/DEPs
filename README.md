@@ -19,14 +19,16 @@ The process to add or change a DEP is the following:
 
 # Current DEPs
 
-Short Name       | Title                                                        | Type         | Status     | Editor
------------------|--------------------------------------------------------------|--------------|------------|-------
-[1/C4](1)        | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
-[2/COSS](2)      | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
-[6/INVOKE](6)    | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
-[8/META](8)      | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
-[12/PROV](12)    | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
-[15/META-API](6) | Metadata API                                      			| Standard     | Raw        | Mike Anderson
+Short Name        | Title                                                        | Type         | Status     | Editor
+------------------|--------------------------------------------------------------|--------------|------------|-------
+[1/C4](1)         | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
+[2/COSS](2)       | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
+[6/INVOKE](6)     | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
+[8/META](8)       | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
+[12/PROV](12)     | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
+[15/META-API](15) | Metadata API                                                 | Standard     | Raw        | Mike Anderson
+[19/ENDPOINTS](19)| DEP Standard Endpoint                                        | Standard     | Raw        | Mike Anderson
+[20/AUTH](20)     | Authentication standard and API                              | Standard     | Raw        | Tom Marble
 
 
 
