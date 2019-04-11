@@ -165,11 +165,33 @@ Currently, type *types* of inputs have been defined
 - asset: these are registered Ocean assets
 - string : string formatted data passed to the invocation. 
 
+The value supported by each input are the following:
+
+- *asset* type is represented by a map with 2 keys:
+  - asset_id: the asset id 
+  - purchase_token: a token indicating proof of purchase. This field is optional.__
+  
+Example:
+```json
+{"myasset": { "asset_id": "26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
+               "purchase_token": "98e41a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136"}}
+```
+
+- *string* : the value is a string
+
+Example:
+```json
+{"myasset": "mystringasset"}
+```
+
+
+
+
 ## Service Delivery
 
 The rest of this document assumes that a REST Agent is used to delivering the service.
 
-The Invoke API implementer needs to host the following APIs.
+The Invoke API must host the following APIs.
 
 - Get Operation (returns a list of operations)
 - Get Operation Details (returns the payload required by an operation)
@@ -184,25 +206,30 @@ Return a list of operations offered by this endpoint
 
 #### Request
 
-- a GET request to the http://endpoint/api/v1/brizo/services/operations
+- a GET request to the http://endpoint/operations
 
 #### Response
 
-returns a list, where each element is map containing:
+must return a list, where each element is map containing:
 
 - the DID of the operation
 - the name of the operation
+- the mode (sync/async) of the operation is an optional array field. It can accept values "sync" and "async" 
+- description is an optional field describing the operation
 
 Example response with 2 operations:
 ```json
 [
   {
-    "did": "hashing_did",
-    "name": "hashing"
+    "did": "26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
+    "name": "hashing",
+    "description":"hashes the input",
+    "mode":["sync","async"]
   },
   {
-    "did": "echo_did",
-    "name": "echo"
+    "did": "503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+    "name": "echo",
+    "description":"echoes the input"
   }
 ]
 ```
@@ -210,6 +237,7 @@ Example response with 2 operations:
 | response code | description          | payload |
 |---------------|----------------------|---------|
 |           200 | service available    | empty|
+|           401 | unauthorized access | empty|
 |           500 | server error  | data describing the error |
 |           503 | service unavailable | data describing the error |
 
@@ -219,60 +247,97 @@ Return the schema required by this operation
 
 #### Request
 
-- a GET request to the http://localhost:8031/api/v1/brizo/services/operation/operation_did 
+- a GET request to the http://endpoint/operation/{operation_did} 
+- operation_did argument is a path parameter indicating the requested DID
 
 #### Response
 
-Returns a list of arguments, where each element is a map. Each map can have 2 arguments:
+must a return a (JSON encoded) map with 2 keys:
+
+- input (list of input parameters)
+- output (list of output parameters)
+
+Each element of the list must be a map. Each map can have 2 arguments:
 
 - name of the argument.
 - type of the asset. These can be of 2 type: asset, and string
 
-Example response with a single asset argument:
+Example response with a single asset input and a single output asset:
 ```json
-[
-  {
-    "name": "to_hash",
-    "type": "asset",
-  }
-]
+{
+"input":[{"name": "to_hash", "type": "asset"},
+"output":[{"name": "hash_value", "type": "asset"}
+]}
 ```
 
 | response code | description          | payload |
 |---------------|----------------------|---------|
-|           200 | service available    | empty|
+|           200 | ok | json formatted schema definition |
+|           401 | unauthorized access |  - |
+|           422 | invalid DID |  - |
 |           500 | server error  | data describing the error |
 |           503 | service unavailable | data describing the error |
 
-### Invoke a job 
+### Invoke a job asynchronously
 
 This is the primary interface by which a consumer can invoke a service/run a job.
 
 #### Request
 
-- a POST request to the https://service-endpoint/api/v1/brizo/services/invoke/operation_did along with JSON formatted payload as described in the Service Definition.
+- a POST request to the https://service-endpoint/invokeasync/operation_did along with JSON formatted payload as described by the get operation schema.
+- The keys in the map are parameter names as specified in the get operation schema
+- the values are one of 
+  - a  map (if the type is asset)
+  - a string (if the type is a string)
+  
+Here's an example of an request that defines a single input asset of type asset.
 
-Here's an example of an invocation that defines a single input asset of type asset.
 ```json 
 {
     "to_hash": {
              "assetid" : "assetid",
              "purchase_token" : "value_of_purchase_token" 
-             }
+    }
 }
 ```
 
 
 #### Response
 
-| response code | description          | payload |
-|---------------|----------------------|---------|
-|           201 | job creation success | jobid   |
-|           400 | bad request-not according to presribed format or invalid configuration options | error description|
-|           401 | not authorized (no authorization tokens provided) | error description|
-|           500 | error                | error description |
-|           503 | service unavailable | error description|
-|           8003 | service not paid for by consumer | error description|
+If the server accepts the request, the response contains the jobid.
+
+| response code | description                                                                    | payload           |
+|---------------|--------------------------------------------------------------------------------|-------------------|
+|           201 | job creation success                                                           | jobid             |
+|           400 | bad request-not according to presribed format or invalid configuration options | error description |
+|           401 | not authorized (no authorization tokens provided)                              | error description |
+|           500 | error                                                                          | error description |
+|           503 | service unavailable                                                            | error description |
+|          8003 | service not paid for by consumer                                               | error description |
+|               |                                                                                |                   |
+
+### Invoke a job synchronously
+
+This is an alternative convenience interface by which a consumer can invoke a service/run a job. This is a synchronous request, and is expected to be used for job that finish quickly.
+
+#### Request
+
+- a POST request to the https://service-endpoint/invoke/operation_did along with JSON formatted payload as described by the get operation schema.
+- The payload is the same as the asynchronous invocation
+
+#### Response
+
+The response format is the same as returned by the get job result operation.
+
+| response code | description                                                                    | payload             |
+|---------------|--------------------------------------------------------------------------------|---------------------|
+|           200 | ok                                                                             | result of operation |
+|           400 | bad request-not according to presribed format or invalid configuration options | error description   |
+|           401 | not authorized (no authorization tokens provided)                              | error description   |
+|           500 | error                                                                          | error description   |
+|           503 | service unavailable                                                            | error description   |
+|          8003 | service not paid for by consumer                                               | error description   |
+
 
 ### Describe the status of the job
 
@@ -287,10 +352,11 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 | response code | description                                                | payload                   |
 |---------------|------------------------------------------------------------|---------------------------|
 |           200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
-|           400 | invalid job id|  |
-|           500 | error                                                      |                         error description  |
-|           8001 | input assets cannot be retrieved |  error description|
-|           8002 | output assets cannot be registered | error description |
+|           400 | invalid job id                                             |                           |
+|           500 | error                                                      | error description         |
+|          8001 | input assets cannot be retrieved                           | error description         |
+|          8002 | output assets cannot be registered                         | error description         |
+|               |                                                            |                           |
 
 ### Get the result of a job
 
@@ -300,21 +366,24 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 
 #### Response
 
-| response code | description                                                | 
-|---------------|------------------------------------------------------------|
-|            200 | job result, a json formatted string| 
-|           400 | invalid job id|  |
-|           401 | not authorized (no authorization tokens provided) | error description|
-|           500 | error                                                      | error description |
+| response code | description                                       | payload           |
+|---------------|---------------------------------------------------|-------------------|
+|           200 | job result, a json formatted string               |                   |
+|           400 | invalid job id                                    |                   |
+|           401 | not authorized (no authorization tokens provided) | error description |
+|           500 | error                                             | error description |
 
-The json response is of the form
+The response must contain a JSON payload, which must contain a map where each value is one of
+
+- an asset id generated by the operation.
+- the payload response generated by the operation
+
+Example of a an operation that returns 2 assets:
 
 ```json
 { "outputs" : [ "generatedassetid1", "generatedassetid2"]}
 
 ```
-
-It can contain other keys such as non-Ocean payloads.
 Note: this response section is underspecified. It needs to handle
 
 - registering the generated asset on behalf of the service consumer
