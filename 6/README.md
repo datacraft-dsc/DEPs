@@ -262,7 +262,7 @@ Each element of the list must be a map. Each map can have 2 arguments:
 Example response with a single asset input and a single output asset:
 ```json
 {
-"input":[{"name": "to_hash", "type": "asset"}]
+"input":[{"name": "to_hash", "type": "asset"}],
 "output":[{"name": "hash_value", "type": "asset"}]
 }
 ```
@@ -369,7 +369,7 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 |           401 | not authorized (no authorization tokens provided) | error description |
 |           500 | error                                             | error description |
 
-The response must contain a JSON payload, which must contain a map against the "output" keys.
+The response must contain a JSON payload, which must contain a map with key as defined in the "output" schema.
  Each value in the map must be one of (as defined in the schema)
 
 - a map (if type is asset )
@@ -378,8 +378,7 @@ The response must contain a JSON payload, which must contain a map against the "
 Example of a an operation that returns 1 asset
 
 ```json
-{ "outputs" : 
-           "hashed_value": {
+{"hashed_value": {
              "assetid" : "assetid",
              "purchase_token" : "value_of_purchase_token" 
     }
