@@ -48,7 +48,6 @@ Compute services are defined as services available on the Ocean Network that
 
 * This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
 * This OEP does not cover service discovery.
-* The OEP is not intended to apply to services where invocation / access is off-chain (e.g. high volume APIs or queue services)
 * This OEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
 * This OEP does not describe details of installation of the service and/or its dependencies. 
 
@@ -115,11 +114,10 @@ The Invoke API enables
 * The service may be offered in trusted mode or trustless mode (backed by Service Execution Agreements) 
 * the service must be identified with its asset ID on the Ocean Network
 * the service must register its metadata with the OCEAN agent
-* may accept configuration options to tune the algorithm/job to be run.
-* may register ocean assets generated as a result of the job. the registered assets must be in the name of the service coinsumer
-* may return a payload
 * may accept a list of ocean assets as inputs to the job  (along with access tokens to consume the asset)
+* may register ocean assets generated as a result of the job. the ownership of the registered assets is an open item. 
 * may accept a data payload as an input
+* may return a payload
 * The unit of measurement must be 
   - a one-shot execution of a job (e.g. a data cleaning job)
   
@@ -154,21 +152,21 @@ The service spec consists of 2 parts, Service definition and Service Invocation.
 
 ### Inputs/outputs
 
-The invoke service can accept 
+The invoke service must accept 
 - one or more inputs
   - each of which must have a name and type*, 
 - return one or more outputs 
   - each of which must have a name and type.
 
-Currently, type *types* of inputs have been defined
+The *types* of inputs/outputs accepted are:
 
-- asset: these are registered Ocean assets
+- asset: these are registered Ocean assets identified by the asset DID
 - string : string formatted data passed to the invocation. 
 
 The value supported by each input are the following:
 
 - *asset* type is represented by a map with 2 keys:
-  - asset_id: the asset id 
+  - asset_id: the asset DID 
   - purchase_token: a token indicating proof of purchase. This field is optional.__
   
 Example:
@@ -189,13 +187,12 @@ Example:
 
 ## Service Delivery
 
-The rest of this document assumes that a REST Agent is used to delivering the service.
-
-The Invoke API must host the following APIs.
+The Invoke service implementation must host the following APIs.
 
 - Get Operation (returns a list of operations)
 - Get Operation Details (returns the payload required by an operation)
-- invoke Operation (invoke the operation)
+- Invoke Operation (invoke the operation)
+- Invoke Async Operation (invoke the operation asynchronously)
 - Get job status (get the status of an invoked job)
 - Get job result (get the restult of an invoked job)
 
@@ -265,9 +262,9 @@ Each element of the list must be a map. Each map can have 2 arguments:
 Example response with a single asset input and a single output asset:
 ```json
 {
-"input":[{"name": "to_hash", "type": "asset"},
-"output":[{"name": "hash_value", "type": "asset"}
-]}
+"input":[{"name": "to_hash", "type": "asset"}]
+"output":[{"name": "hash_value", "type": "asset"}]
+}
 ```
 
 | response code | description          | payload |
@@ -351,12 +348,11 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 
 | response code | description                                                | payload                   |
 |---------------|------------------------------------------------------------|---------------------------|
-|           200 | job status, one of: started, in progress, completed, error | {"status" : "inprogress"} |
+|           200 | job status, one of: started, in progress, completed, error |           |
 |           400 | invalid job id                                             |                           |
 |           500 | error                                                      | error description         |
 |          8001 | input assets cannot be retrieved                           | error description         |
 |          8002 | output assets cannot be registered                         | error description         |
-|               |                                                            |                           |
 
 ### Get the result of a job
 
@@ -373,15 +369,21 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 |           401 | not authorized (no authorization tokens provided) | error description |
 |           500 | error                                             | error description |
 
-The response must contain a JSON payload, which must contain a map where each value is one of
+The response must contain a JSON payload, which must contain a map against the "output" keys.
+ Each value in the map must be one of (as defined in the schema)
 
-- an asset id generated by the operation.
-- the payload response generated by the operation
+- a map (if type is asset )
+- a string (if type is string )
 
-Example of a an operation that returns 2 assets:
+Example of a an operation that returns 1 asset
 
 ```json
-{ "outputs" : [ "generatedassetid1", "generatedassetid2"]}
+{ "outputs" : 
+           "hashed_value": {
+             "assetid" : "assetid",
+             "purchase_token" : "value_of_purchase_token" 
+    }
+}
 
 ```
 Note: this response section is underspecified. It needs to handle
