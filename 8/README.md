@@ -137,9 +137,56 @@ In addition to the base attributes, the following Attributes are defined for inv
 
 Invokable services are defined in greater detail in OEP6.
 
-Attribute       |   Type        |   Required    | Description
-----------------|---------------|---------------|----------------------
-**params**        | Text          | Yes           | A list of parameters accepted by the invokable service
+This section consists of a list, where each element is a map containing a definition of an **operation**
+Each **operation** must have the following attributes: 
+
+| Attribute  | Value Type | Required | Description                                     |
+|------------|------------|----------|-------------------------------------------------|
+| **did**    | text       | Yes      | the DID for this operation                      |
+| **params** | map        | Yes      | A list of parameters accepted by this operation |
+| **type**   | Text       | Yes      | Type of this Asset should be "invoke"           |
+| **mode**   | list       | Optional | A list with values "sync" and/or "async"        |
+|            |            |          |                                                 |
+
+The value against the key **params** must be a map with the following attributes:
+
+| Attribute  | Value Type | Required | Description                                                      |
+|------------|------------|----------|------------------------------------------------------------------|
+| **inputs** | map        | Yes      | A map where keys are (input)parameter names and value is a map   |
+| **output** | map        | Yes      | A map where keys are (output) parameter names and value is a map |
+
+The values for **inputs** and **outputs** must be a map with the following attributes:
+
+- Keys are the parameter names
+- Value against the parameter name must be a map. This map must contain 
+  - A **type** key, and the value must be one of **asset** or **string**.
+  - Optional attributes can be added in this map.
+    - **position** is a recommended attribute, where the key is **position**, and the value is an integer indicating the argument index. 
+
+Example of an invokeable service  definition:
+```json
+[
+  {
+    "did": "26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
+    "name": "hashing",
+    "description":"hashes the input",
+    "mode":["sync","async"],
+    "params" : {
+      "inputs":{"to_hash":{"type": "asset"}},
+      "outputs":{"hash_value": {"type": "asset"}}
+    }
+  },
+  {
+    "did": "503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+    "name": "echo",
+    "description":"echoes the input"
+    "mode":["sync"],
+    "params" : {
+      "inputs":{"to_echo":{"type": "string"}},
+      "outputs":{"echo_value": {"type": "string"}}
+  }
+]
+```
 
 ## Bundle attributes
 
