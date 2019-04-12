@@ -179,7 +179,7 @@ Example of an invokeable service  definition:
   {
     "did": "503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
     "name": "echo",
-    "description":"echoes the input"
+    "description":"echoes the input",
     "mode":["sync"],
     "params" : {
       "inputs":{"to_echo":{"type": "string"}},
