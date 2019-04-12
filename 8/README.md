@@ -183,8 +183,8 @@ Example of an invokeable service  definition:
     "mode":["sync"],
     "params" : {
       "inputs":{"to_echo":{"type": "string"}},
-      "outputs":{"echo_value": {"type": "string"}}
-  }
+      "outputs":{"echo_value": {"type": "string"}}}
+   }
 ]
 ```
 
