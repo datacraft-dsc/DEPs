@@ -1,10 +1,10 @@
 ```
-shortname: 6/CSAPI
-name: API to register & invoke computer services   
+shortname: 6/INVOKEAPI
+name: API to register & invoke compute services   
 type: Standard
 status: Raw
-editor: Mike Anderson <mike.anderson@dex.sg>
-contributors: Kiran K <kiran.karkera@dex.sg> 
+editor: Kiran K <kiran.karkera@dex.sg> 
+contributor: Mike Anderson <mike.anderson@dex.sg>
 ```
 
 <!--ts-->
@@ -46,12 +46,10 @@ Compute services are defined as services available on the Ocean Network that
 
 ## Exclusions
 
-* This OEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
-* This OEP does not cover service discovery.
-* This OEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
-* This OEP does not describe details of installation of the service and/or its dependencies. 
-
-This specification is based on [Ocean Protocol technical whitepaper](https://github.com/oceanprotocol/whitepaper), [3/ARCH](../3/README.md), [4/KEEPER](../4/README.md) and [5/AGENT](../5/README.md).
+* This DEP does not prescribe the exact type of compute services offered. It is open to service provider implementations to define them, providing that they conform with this API specification
+* This DEP does not cover service discovery.
+* This DEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
+* This DEP does not describe details of installation of the service and/or its dependencies. 
 
 
 <a name="change-process"></a>
@@ -75,37 +73,38 @@ Example of data related services that could be offered by Ocean actors:
 * A model verification service that returns metrics of a model's performance, given a model and a test data set.
 * A consent service which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry.
 
-It may be observed that these services
+It may be observed that these services:
 
 - Enable creation of dataset(s)
 - Accept input dataset(s) and transform it in some fashion
+- May require remote acquisition of input dataset 
 
-The Invoke API enables
+The Invoke API 
 
-- provides Ocean users tools to transform data assets registered on the Ocean network.
-- facilitates a workflow pipeline of data asset transformations.
-- enables provenance tracking by Ocean provenance aware algorithms.
+- Provides Ocean users tools to transform data assets registered on the Ocean network.
+- Facilitates a workflow pipeline of data asset transformations.
+- Enables provenance tracking by Ocean provenance aware algorithms.
 
 <a name="specification"></a>
 
 ## Roles
 
 - Asset/algorithm owner: The owner of the algorithm, 
-  - may be registered as an Ocean asset
-  - may be available as a deployable package (e.g. a docker image or a jar on a maven repo)
+  - May be registered as an Ocean asset
+  - May be available as a deployable package (e.g. a docker image or a jar on a maven repo)
 - Service provider: The entity that runs the algorithm on their server(s).
 - Service consumer: The entity that invokes the service.
-- Service instance: The software entity that is running the invokable service. 
 - Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
   - Agent can be of many types, such as local or remote, and communicate via different interfaces.
   - The rest of this document assumes a remote Agent that communicates over REST.
 
 ### Provider flow
 
+
 ![Provider flow ](https://user-images.githubusercontent.com/89076/55699303-d1eb4c00-59fc-11e9-9c93-59939e15283d.png)
 
 ### Consumer flow
-
+change name to invokable rest agent
 ![Consumer flow ](https://user-images.githubusercontent.com/89076/55699307-d6176980-59fc-11e9-9227-03a0d661bc57.png)
 
 ## Technical requirements 
@@ -197,6 +196,7 @@ The Invoke service implementation must host the following APIs.
 - Get job result (get the restult of an invoked job)
 
 
+move this and get operation schema to DEP8
 ### Get Operations
 
 Return a list of operations offered by this endpoint 
@@ -267,6 +267,10 @@ Example response with a single asset input and a single output asset:
 }
 ```
 
+inputs and outputs, keys are parameter name, values are map, 
+{"to_hash": { "type":"asset"}}
+may optionally include other metadata (e.g. position is recommended for API usability)
+
 | response code | description          | payload |
 |---------------|----------------------|---------|
 |           200 | ok | json formatted schema definition |
@@ -303,6 +307,8 @@ Here's an example of an request that defines a single input asset of type asset.
 
 If the server accepts the request, the response contains the jobid.
 
+TBD: add example of jobid, and JSON encoded
+
 | response code | description                                                                    | payload           |
 |---------------|--------------------------------------------------------------------------------|-------------------|
 |           201 | job creation success                                                           | jobid             |
@@ -336,6 +342,7 @@ The response format is the same as returned by the get job result operation.
 |          8003 | service not paid for by consumer                                               | error description   |
 
 
+merge status and response APIs.
 ### Describe the status of the job
 
 #### Request
@@ -346,13 +353,16 @@ The default return (for a valid jobid ) is a string enum with started/in progres
 
 #### Response
 
+add example of re
 | response code | description                                                | payload                   |
 |---------------|------------------------------------------------------------|---------------------------|
 |           200 | job status, one of: started, in progress, completed, error |           |
 |           400 | invalid job id                                             |                           |
-|           500 | error                                                      | error description         |
+|           500 | error                                                      | json encoded error description |
 |          8001 | input assets cannot be retrieved                           | error description         |
 |          8002 | output assets cannot be registered                         | error description         |
+
+move 8001/2 under 400.
 
 ### Get the result of a job
 
@@ -375,11 +385,12 @@ The response must contain a JSON payload, which must contain a map with key as d
 - a map (if type is asset )
 - a string (if type is string )
 
-Example of a an operation that returns 1 asset
+Example of a an operation that returns 1 asset 
+TBD replace asset_did with did everywhere.
 
 ```json
 {"hashed_value": {
-             "assetid" : "assetid",
+             "did" : "did",
              "purchase_token" : "value_of_purchase_token" 
     }
 }
@@ -393,9 +404,10 @@ Note: this response section is underspecified. It needs to handle
 
 ## Open questions
 
-- Authentication and Authorization headers are not yet defined in this DEP
+- Authentication and Authorization headers are not yet defined in this DEP. Refer to the that DEP.
 - Assets generated by the invoke service needs to be purchased by the consumer in order to view them. The mechanics of this are yet to be defined.
 - The details of purchase_token are yet to be defined. In the squid world, the purchase token is the service agreement id.
+- Add a trust question
 
 ## License
 
