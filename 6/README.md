@@ -100,11 +100,11 @@ The Invoke API
 ### Provider flow
 
 
-![Provider flow ](https://user-images.githubusercontent.com/89076/55699303-d1eb4c00-59fc-11e9-9c93-59939e15283d.png)
+![Provider flow ](https://user-images.githubusercontent.com/89076/56111344-3d4b9580-5f8a-11e9-9e5a-384734735e22.png)
 
 ### Consumer flow
-change name to invokable rest agent
-![Consumer flow ](https://user-images.githubusercontent.com/89076/55699307-d6176980-59fc-11e9-9227-03a0d661bc57.png)
+
+![Consumer flow ](https://user-images.githubusercontent.com/89076/56111353-42a8e000-5f8a-11e9-9aaa-da31d41df0e6.png)
 
 ## Technical requirements 
 
@@ -136,6 +136,8 @@ The service provider registers the service and provides the spec for the Service
 - Sync/async nature of invoke methods
 - Data returned by methods.
 
+The schemas for Invoke service registration are specified in the Invoke section of DEP 8
+
 ### Service delivery
 
 The Service Delivery phase consists of 
@@ -144,79 +146,43 @@ The Service Delivery phase consists of
 - The service executing the operation. These could be jobs that take a significant amount of time to complete.
 - The consumer retrieving the result(s) of the operations(such as data payloads, created assets and/or associated proofs), or getting a notification (e.g. via a webhook).
 
-The service spec consists of 2 parts, Service definition and Service Invocation. 
-
-## Service definition
-
-### Inputs/outputs
-
-The service definition includes:
-- The endpoint where the service is available
-- The list of supported operations
-- The inputs and output params for each operation
-
-Each operation must accept 
-- One or more inputs
-  - Each of which must have a name and type*, 
-- Return one or more outputs 
-  - Each of which must have a name and type.
-
-The **types** of inputs/outputs accepted are:
-
-- **asset**: These are registered Ocean assets identified by the asset DID
-- **string**: string formatted data passed to the invocation. 
-
-The value supported by each input are the following:
-
-- **asset** type is represented by a map with 2 keys:
-  - did: the asset DID 
-  - purchasetoken: a token indicating proof of purchase. This field is optional.
-  
-Example of **asset** input type
-```json
-{"myasset": { "did": "26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
-               "purchasetoken": "98e41a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136"}}
-```
-
-- **string** : the value is a string
-
-Example of **string** asset type
-```json
-{"myasset": "mystringasset"}
-```
-
 ## Service Delivery
 
 The Invoke service implementation must host the following APIs.
 
-- Invoke Operation (invoke the operation)
-- Invoke Async Operation (invoke the operation asynchronously)
-- Get job status (get the status of an invoked job, and the result if completed)
+| API                    | Description                                                   |
+| -                      | -                                                             |
+| Invoke Async Operation | Invoke an operation asynchronously                            |
+| Invoke Operation       | Invoke an operation synchronously                             |
+| Get Job status         | Get the status of an invoked job, and the result if completed |
 
 Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
 
-### Invoke a job asynchronously
+### Invoke async Operation
 
 This is the primary interface by which a consumer can invoke a service/run a job.
 
 #### Request
 
+The caller API must make
+
 - A POST request to the https://service-endpoint/invokeasync/operation_did along with JSON formatted payload as described by the asset schema.
 
-- The keys in the map are parameter names as specified in the get operation schema
-- The values are one of 
-  - A map (if the type is asset)
-  - A string (if the type is a string)
+- The path argument operation_did must be the DID of the operation asset.
+- The keys in the (payload) map must be parameter names as specified in the schema
+- The values must be one of 
+  - A map (if the type is **asset**)
+  - A string (if the type is a **string**)
   
 Here's an example of an request that defines a single input asset of type asset.
 
-- The single argument **to_hash** is the parameter name
+- The key **to_hash** is the parameter name
 - Since the type is **asset** (as declared in the schema), the value must be a map with the **did** (and other optional keys)
 
 ```json 
 {
     "to_hash": {
-             "did" : "did",
+             "did" : "sample_did",
              "purchase_token" : "value_of_purchase_token" 
     }
 }
@@ -242,12 +208,15 @@ If the server accepts the request, the response must be a JSON encoded map with 
 |               |                                                                                |                                           |
 
 
-### Invoke a job synchronously
-This is an convenience interface by which a consumer can invoke a service/run a job. This is a synchronous request, and is expected to be used for job that finish quickly.
+### Invoke operation synchronously
+This is an convenience interface by which a consumer can invoke a service/run a job. This is a synchronous request, and is expected to be used for jobs that finish quickly.
 
 #### Request
 
+The caller API must make
+
 - A POST request to the https://service-endpoint/invoke/operation_did along with JSON formatted payload as described by the asset schema.
+- The path argument operation_did must be the DID of the operation asset.
 - The payload is the same as the asynchronous invocation
 
 #### Response
@@ -255,23 +224,27 @@ This is an convenience interface by which a consumer can invoke a service/run a 
 The response format is the same as returned by the get job result operation.
 
 
-### Get the result of a job
+### Get job status 
 
 #### Request
 
-- an HTTP GET request to https://service-endpoint/jobs/result/jobid
+The caller API must make
+- An HTTP GET request to https://service-endpoint/jobs/result/jobid
+- The path parameter **jobid** must be the value returned by the Invoke Async Operation response
 
 #### Response
 
-The response must contain a JSON payload.  It must return a map with the **status** key, the value of which can be one of "scheduled", "inprogress", "error".
-If the job has completed, it must also contain a **result** map with key(s) as defined in the "output" schema.
+The response must contain a JSON payload. 
+
+- It must return a map with the **status** key, the value of which can be one of "scheduled", "inprogress", "error".
+- Once the job has completed, it must also contain a map against the **result** key. The map with key(s) as defined in the "output" schema.
  Each value in the map must be one of (as defined in the schema)
 
-- A map (if type is asset )
-- A string (if type is string )
+- A map (if type is **asset**)
+- A string (if type is **string**)
 
 
-| response code | description                                       | payload           |
+| Response code | Description                                       | Payload           |
 |---------------|---------------------------------------------------|-------------------|
 |           200 | job result                                        |                   |
 |           400 | Bad request                                       | described below   |
@@ -279,7 +252,7 @@ If the job has completed, it must also contain a **result** map with key(s) as d
 
 HTTP methods that return error can encode further information in the payload. The payload must have **errorcode** and **description** fields.
 
-| error code | description                         |
+| Error code | Description                         |
 |------------|-------------------------------------|
 |       8001 | unknown job id                      |
 |       8003 | service not paid for by consumer    |
@@ -295,21 +268,15 @@ Example of a an operation that returns 1 asset
                "purchase_token" : "value_of_purchase_token"}
              }
 }
-
 ```
-
-Note: this response section is underspecified. It needs to address
-
-- registering the generated asset on behalf of the service consumer
-- specifying the service agreement, purchase price, additional metadata. 
-
 
 ## Open questions
 
-- Authentication and Authorization headers are not yet defined in this DEP. Refer to the that DEP.
-- Assets generated by the invoke service needs to be purchased by the consumer in order to view them. The mechanics of this are yet to be defined.
-- The details of purchase_token are yet to be defined. In the squid world, the purchase token is the service agreement id.
-- Add a trust question
+- Authentication and Authorization headers are not yet defined in this DEP. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20).
+- Assets generated by the invoke service needs to be purchased by the consumer in order to view them. The mechanics of this are yet to be agreed on.
+  - One approach is to have the service provider register the asset using their (service provider's) identity. The consumer can then purchase the asset.
+- The details of purchase_token are yet to be defined. 
+  - For Squid assets, the purchase_token must be a service agreement id to confirm that the asset's content can be accessed by the service provider. 
 
 ## License
 
