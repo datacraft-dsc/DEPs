@@ -275,4 +275,4 @@ Example of a an operation that returns 1 asset
 
 ## License
 
-This DEP is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
