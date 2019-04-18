@@ -1,6 +1,6 @@
 [![banner](doc/img/repo-banner@2x.png)](https://oceanprotocol.com)
 
-<h1 align="center">Data Economy Protocol (DEPs)</h1>
+<h1 align="center">Data Ecosystem Proposals (DEPs)</h1>
 
 > ? Ocean Protocol
 > [oceanprotocol.com](https://oceanprotocol.com)
@@ -9,8 +9,8 @@
 Table of Contents
 =================
 
-
-This is the Data Economy Protocol project.
+This is the Data Ecosystem Proposal project, designed to specify standards for the development of 
+interoperable data ecosystems, building upon the capabilities of the Ocean Network.
 
 The process to add or change a DEP is the following:
 - A DEP is created and modified by pull requests according to [C4](./1).
