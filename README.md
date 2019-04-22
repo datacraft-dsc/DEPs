@@ -9,7 +9,7 @@
 Table of Contents
 =================
 
-This is the Data Ecosystem Proposal project, designed to specify standards for the development of 
+This is the Data Ecosystem Proposal project, designed to specify standards for the development of
 interoperable data ecosystems, building upon the capabilities of the Ocean Network.
 
 The process to add or change a DEP is the following:
@@ -32,7 +32,8 @@ Short Name        | Title                                                       
 [12/PROV](12)     | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
 [15/META-API](15) | Metadata API                                                 | Standard     | Raw        | Mike Anderson
 [19/ENDPOINTS](19)| DEP Standard Endpoint                                        | Standard     | Raw        | Mike Anderson
-[20/AUTH](20)     | Authentication standard and API                              | Standard     | Raw        | Tom Marble
+[20/AUTHENTICATION ](20)     | Authentication standard and API                              | Standard     | Raw        | Tom Marble
+[21/AUTHORIZATION ](21)     | Authorization and API                              | Standard     | Raw        | Tom Marble
 
 
 
@@ -46,5 +47,3 @@ Short Name        | Title                                                       
 ## Administrators
 
 - Mike - @mikera
-
-
