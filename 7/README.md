@@ -1,6 +1,6 @@
 ```
 shortname: 7/STORAGE
-name: Asset Metadata definition
+name: Universal Storage API
 type: Standard
 status: Raw
 editor: Mike Anderson <mike.anderson@dex.sg>
@@ -11,7 +11,8 @@ Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
-   * [Asset Metadata](#asset-metadata)
+   * [Universal Storage](#universal-storage)
+      * [Requirements](#requirements)
       * [Change Process](#change-process)
       * [Language](#language)
       * [Motivation](#motivation)
@@ -26,6 +27,12 @@ Ocean has a core mission of making data assets visible and discoverable, with a 
 To ensure that clients are able to make use of assets from service providers throughout the ecosystem, it is necessary
 to provide a universal storage API for accessing asset content that is independent of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers.
+
+## Requirements
+
+- The storage API must provide a simple interface to asset content via standard web protocols
+- The storage API must support any type of asset content
+- The storage API must integrate with relevant authentication and authorisation mechanisms
 
 
 ## Change Process
