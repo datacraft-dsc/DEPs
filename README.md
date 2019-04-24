@@ -27,7 +27,7 @@ Short Name        | Title                                                       
 [4/STARFISH](4)   | Starfish abstract API                                        | Standard     | TBC        | Tom Marble
 [5/IDENTITY](5)   | Agent and asset identity                                     | Standard     | TBC        | Mike Anderson
 [6/INVOKE](6)     | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
-[7/STORAGE](7)    | Asset Content Storage API                                    | Standard     | TBC        | Mike Anderson
+[7/STORAGE](7)    | Universal Storage API                                        | Standard     | Raw        | Mike Anderson
 [8/META](8)       | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
 [12/PROV](12)     | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
 [15/META-API](15) | Metadata API                                                 | Standard     | Raw        | Mike Anderson
