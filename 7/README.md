@@ -71,6 +71,25 @@ Upload follows the following rules:
 - Storage agents may store a single instance of data where multiple assets have the same content hash
 
 
+## Download
+
+The download endpoint enables clients to download the content of a specific asset.
+
+Success or failure of the upload operation is indicated as follows:
+
+| Response code | Description                                       | Payload           |
+|---------------|---------------------------------------------------|-------------------|
+|           200 | Success                                           | Asset content     |
+|           401 | not authenticated                                 | error description |
+|           403 | not authorised                                    | error description |
+|           404 | Asset not registered / visible                    | error description |
+
+
+Download follows the following rules:
+- Storage agents should deliver downloaded content via TLS (HTTPS protocol)
+- The HTTP response should have a HTTP `Content-Type` set to the content type specified in the asset metadata if this exists, otherwise `application/octet-stream` for content of unknown type.
+- The HTTP response may include a `Content-Disposition` header appropriate to the asset (see relevant IETF RFCs)
+
 ## Change Process
 
 This document is governed by the [2/COSS](../2/README.md) (COSS).
