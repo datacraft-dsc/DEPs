@@ -172,7 +172,7 @@ Example of `params` for an operation that hashes the input data asset, it accept
 {
     "params" : {"to_hash":{"type": "asset",
                            "position":0,
-                           "required":True}}
+                           "required":true}}
 }
 ```
 
