@@ -19,7 +19,6 @@ Table of Contents
       * [References](#references)
 
 
-
 # Universal Storage 
 
 Ocean has a core mission of making data assets visible and discoverable, with a decentralised protocol for data exchange.
@@ -28,9 +27,23 @@ To ensure that clients are able to make use of assets from service providers thr
 to provide a universal storage API for accessing asset content that is independent of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers.
 
+## Motivation
+
+In the absence of a defined standard for storage, asset consumers would need to separately determine and negotiate
+methods for accessing asset content. This would undermine the vision of Ocean to provide a universal interoperable
+substrate for data and AI services - it would simply become a network of custom point-to-point integrations with
+tight coupling between producers and consumers.
+
+The main motivations of this DEP are:
+
+* Establish a standard asset content storage API to allow interoperability between participants in the Ocean ecosystem
+* Ensure the storage API is easy to use and consistent with existing internet tools and standards
+* Ensure the standard enables support for key features of the OCean Protocol
+
+
 ## Requirements
 
-- The storage API must provide a simple interface to asset content via standard web protocols
+- The storage API must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
 - The storage API must support any type of asset content
 - The storage API must integrate with relevant authentication and authorisation mechanisms
 
@@ -90,6 +103,7 @@ Download follows the following rules:
 - The HTTP response should have a HTTP `Content-Type` set to the content type specified in the asset metadata if this exists, otherwise `application/octet-stream` for content of unknown type.
 - The HTTP response may include a `Content-Disposition` header appropriate to the asset (see relevant IETF RFCs)
 
+
 ## Change Process
 
 This document is governed by the [2/COSS](../2/README.md) (COSS).
@@ -98,20 +112,6 @@ This document is governed by the [2/COSS](../2/README.md) (COSS).
 ## Language
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
-
-
-## Motivation
-
-In the absence of a defined standard for storage, asset consumers would need to separately determine and negotiate
-methods for accessing asset content. This would undermine the vision of Ocean to provide a universal interoperable
-substrate for data and AI services - it would simply become a network of custom point-to-point integrations with
-tight coupling between producers and consumers.
-
-The main motivations of this DEP are:
-
-* Establish a standard asset content storage API to allow interoperability between participants in the Ocean ecosystem
-* Ensure the storage API is easy to use and consistent with existing internet tools and standards
-* Ensure the standard enables support for key features of the OCean Protocol
 
 
 ## References
