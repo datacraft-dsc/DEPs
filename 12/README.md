@@ -20,12 +20,11 @@ Table of Contents
          * [Activities](#Activities)
       * [Provenance for Ocean Entities and Interactions](#provenance-for-ocean-entities-and-interactions)
       * [Motivation and Use cases](#motivation-and-use-cases)
-      * [OCN Prov w.r.t W3C Prov](#ocn-prov-wrt-w3c-prov)
+    * [Definitions](#definitions)
       * [Ocean IDs](#ocean-ids)
       * [Ocean Prov entities](#ocean-prov-entities)
-      * [Use case 1 : Publishing](#use-case-1--publishing)
-      * [Use case 2 : Importing](#use-case-2--importing)
-      * [Usecase 3: A service generating a new asset from existing assets](#usecase-3-a-service-generating-a-new-asset-from-existing-assets)
+      * [Provenance Metadata sections](#provenance-metadata-sections)
+      * [Use cases](#use-cases)
       * [FAQ](#faq)
       
 # Provenance for Ocean assets and services 
@@ -190,23 +189,23 @@ Activities can be categorized into two types:
 Ocean adds the following additional *prov:type* for entities, activities and agents. Note that the prefixes `op` and `prov` are namespace prefixes that correspond to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). The standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
 
 * Entities:
-  - op:asset : An Ocean data asset 
-  - op:this: a special attribute value that refers to the Entity being published or generated. 
+  - opf:asset : An Ocean data asset 
+  - opf:this: a special attribute value that refers to the Entity being published or generated. 
   
 * Activities:
 
-  - op:publish : The act of publishing a data asset
-  - op:import : The act of importing a data asset which is defined in an existing data catalog. `Import` is used to distinguish from `publish` to indicate that the provenance metadata was already associated with the data asset.
-  - op:invoke : The act of invoking an operation.
+  - opf:publish : The act of publishing a data asset
+  - opf:import : The act of importing a data asset which is defined in an existing data catalog. `Import` is used to distinguish from `publish` to indicate that the provenance metadata was already associated with the data asset.
+  - opf:invoke : The act of invoking an operation.
 
 * Agents:
 
-  - op:did : DID of an Ocean Agent, if available.
-  - op:address: The address of the agent, which is needed to look up the asset id (TODO: where is asset id defined?)
-  - op:id_type : The type of the agent id, could be `ethereum_account` or `did`  TODO:remove
+  - opf:did : DID of an Ocean Agent, if available.
+  - opf:address: The address of the agent, which is needed to look up the asset id (TODO: where is asset id defined?)
+  - opf:id_type : The type of the agent id, could be `ethereum_account` or `did`
 
 
-## Sections 
+## Provenance Metadata Sections 
 
 Recall that the asset metadata is a JSON object, which is an unordered set of name/value pairs. Provenance metadata is represented as a name/value pair in the asset metadata object, where the **name** must be "provenance". 
 Note that provenance information is optional. However, if the **name** provenance exists, the value against that name must be JSON object with valid provenance metadata, as described in the rest of this document.
@@ -222,9 +221,7 @@ The JSON Object representing provenance information consists of the following pr
     "agent": { // Map of agents by IDs
     },
     <relationName>: { // A map of relations of type relationName by their IDs
-    },
-    ...
-    "bundle": { // Map of named bundles by IDs
+    }
     }
 }
 ```
@@ -249,22 +246,22 @@ Additionally, the DEP recommends that the following **relations** should be decl
 
 - the **names** must be valid Ocean DIDs.
 - the json object against each **name** must  contain the type property, where types can be one of the supported ocean asset types (e.g. asset, bundle or operation)
-- the **name** `op:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
+- the **name** `opf:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
 
 Example of an entity declaration:
 ```
 {
 	"entity": {
-		"op:this": {
+		"opf:this": {
 			"prov:type": {
-				"$": "op:asset",
+				"$": "opf:asset",
 				"type": "prov:string"
 			}
 		},
 
-		"op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd": {
+		"opf:did:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d462201a6": {
 			"prov:type": {
-				"$": "op:asset",
+				"$": "opf:asset",
 				"type": "prov:string"
 			}
 		}
@@ -284,22 +281,22 @@ This DEP supports three types of activities:
 Each activity addresses a different use case, and therefore impacts the provenance metadata.
 
 -  Publishing
-  - the "op:this" property must be present in the *entity* JSON object.
+  - the "opf:this" property must be present in the *entity* JSON object.
  
 - Importing
-  - the "op:this" property must be present in the *entity* JSON object.
+  - the "opf:this" property must be present in the *entity* JSON object.
   
 - Invoking an operation
-  - the "op:this" property must be present in the *entity* JSON object.
+  - the "opf:this" property must be present in the *entity* JSON object.
   - A list of entities that were consumed by this operation as inputs.
   
   
 #### Properties of activity
 Activities must declare
 
-- an identifier, which must be a qualified name as defined by Prov-DM. 
+- an identifier, which must be a qualified name as defined by Provenance Data model. 
 - a "prov:type" property, indicating the type of the activity, as described above.
-- if the "prov:type" is `operation`, it must contain `op:params` and `op:results` properties. These are the inputs to, and output from, the invoke operation.
+- if the "prov:type" is `operation`, it must contain `opf:params` and `opf:results` properties. These are the inputs to, and output from, the invoke operation.
 
 It is recommended that activities declare
 -  start and endtime properties
@@ -307,24 +304,22 @@ It is recommended that activities declare
 Example of an activity:
 ```
 {
-	"activity": {
-		"op:op_asf29fj291lkd": {
-			"prov:endTime": "2018-02-02T14:07:13",
-			"prov:startTime": "2018-02-02T11:03:23",
-			"prov:type": {
-				"$": "op:operation",
-				"type": "prov:string"
-			},
-			"op:params": {
-				"to-hash": {
-					"did": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd"
-				}
-			},
-			"op:results": {
-				"result1": "op:this"
-			}
-		}
-	}
+"activity": {
+    "opf:617c906f-4f29-49d7-a111-ab0ff2bb0d45": {
+      "prov:type": {
+        "$": "ocn:operation",
+        "type": "xsd:string"
+      },
+      "prov:endTime": "2019-05-22T10:13:04.779+08:00",
+      "opf:results": {
+        "$": "{\"results\":{\"hashval\": {\"did\":\"a6cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
+        "type": "xsd:string"
+      },
+      "opf:params": {
+        "$": "{\"params\":{\"to-hash\": {\"did\":\"26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
+        "type": "xsd:string"
+      }
+    }
 }
 ```
 
@@ -336,9 +331,14 @@ The agent is the service provider responsible for running the activity.
 - If it is a publisher, the publisher's account must be declared.
 ```
 {
-	"agent": {
-		"op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135": {}
-	}
+ "agent": {
+    "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
+      "prov:type": {
+        "$": "ocn:ethereum-account",
+        "type": "xsd:string"
+      }
+    }
+  }
 }
 ```
 
@@ -349,47 +349,53 @@ Each attribute object must include an identifier (e.g. "_:wbg4_", which includes
 
 * Generation attribute (The Entity that was generated by the activity). It must specify the attributes
 
-- `prov:entity`: the identifier of the entity that was generated, identified by `op:this`
+- `prov:entity`: the identifier of the entity that was generated, identified by `opf:this`
 - `prov:activity` : the identifier of the activity (e.g. invoking an operation) that generated the entity
 
 Example:
 ```
 {
   "wasGeneratedBy": {
-    "_:wGB4": {
-      "prov:entity": "op:this",
-      "prov:activity": "op:op_asf29fj291lkd"
+    "_:wGB1": {
+      "prov:entity": "opf:this",
+      "prov:activity": "opf:617c906f-4f29-49d7-a111-ab0ff2bb0d45"
     }
   }
+}
 ```
 
 * Association attribute (the agent involved in the activity). It must specify
+
 - `prov:agent`: the identifier of the agent
 -  `prov:activity` : the identifier of the activity
 
 Example:
 ```
-"wasAssociatedWith": {
-    "_:wAW4": {
-      "prov:agent": "op:op_abvfwi89sjek",
-      "prov:activity": "op:op_asf29fj291lkd"
+{
+  "wasAssociatedWith": {
+    "_:wAW1": {
+      "prov:agent": "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+      "prov:activity": "opf:617c906f-4f29-49d7-a111-ab0ff2bb0d45"
     }
   }
+}  
+
 ```
 
 * Derivedby attribute (The source Entity from which the new Entity was derived). This section must specify:
 
-- `prov:generatedEntity` : the entity that was generated. Usually `op:this`.
+- `prov:generatedEntity` : the entity that was generated. Usually `opf:this`.
 - `prov:usedEntity`: the identifier of the entity that was used as an input to the activity. If multiple entities were consumed, each one must be defined as a separate property. 
+- This attribute is not mandatory for publish or import operations.
 
 Example:
 ```
 "wasDerivedFrom": {
     "_:wDF2": {
-      "prov:generatedEntity": "op:this",
-      "prov:usedEntity": "op:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde"
+      "prov:generatedEntity": "opf:this",
+      "prov:usedEntity": "opf:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde"
     }
-    }
+}
 ```
 
 ## Use cases
@@ -398,88 +404,29 @@ Example:
 
 It is recommended that the publisher includes prov metadata when an asset is published for the first time on Ocean.
 
-Example section:
+It must include:
 
-* Prefixes used
-
-```
-"prefix": {
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "prov": "http://www.w3.org/ns/prov#",
-    "op": "http://www.oceanprotocol.com/prov",
-  }
-
-```
-
-* The Agent involved, could be a prov:Person, prov:Organisation or prov:SoftwareAgent
- ```
-"agent": {
-    "op:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde": {
-      "prov:type": {
-                "$": "ocn:ethereum-account",
-                "type": "prov:string"
-      }
-    }
-  }
-```
-
-* The Activity (publish) 
- 
-```
-  "activity": {
-    "op:op_asf29fj291lkd": {
-      "prov:type": {
-				"$": "op:publish",
-				"type": "prov:string"
-		}
-    }
-  }
-```
-
-* The Entity (data asset) that was published
-
-- An "prov:type" attribute that could take values `op:asset` or `op:operation`.
-  
-Example:
-```
-"entity": {
-    "op:this": {
-    "prov:type": {
-				"$": "op:asset",
-				"type": "prov:string"
-			}
-    }
-  }
-```
-
-* Generation attribute 
+- The Agent involved, which is identified using the ethereum account
+- The Activity with type publish 
+- The Entity (data asset) that was published
+- Generation relation 
   - IDs for the Entity generated by the publishing activity 
-  
-```
-{
-  "wasGeneratedBy": {
-    "_:wGB4": {
-      "prov:entity": "op:this",
-      "prov:activity": "op:op_asf29fj291lkd"
-    }
-  }
-```
 
 ### Usecase 2: Importing data asset usecase
 
 When a user imports a data asset, the suggested provenance is similar to the publishing use case, with the exception of:
 
-- the _type_ of the activity should be `op:import`.
+- the _type_ of the activity should be `opf:import`.
 
 ### Usecase 3: A service generating a new asset from existing assets
 
-Ocean Invoke operations such as data cleaning, model training and others, generate a new data asset. This process could have the following characteristics
+Ocean Invoke operations such as data cleaning, model training and others, generate new data assets. This process could have the following characteristics
 
 - It could use one or more data assets or algorithms as input  (e.g a trained model would need an algorithm, and a training set as inputs)
 - It could generate one of more data assets or algorithms as output (e.g. a trained model, and predictions from the model, could be the output of the activity)
 
 
-The provenance graph must specify the following nodes:
+The provenance metadata must include:
 
 - Agents:
   - The Agent (software implementation that runs the operation) that invoked the service 
@@ -491,205 +438,23 @@ The provenance graph must specify the following nodes:
   
 - Activity: 
   - The operation that was invoked (e.g model training)
+  - The input params and output (results) sent and received from the Invoke REST Endpoint.
   
 It must specify the following relations:
 
 - Generation (wasGeneratedBy)
 - Derivation (wasDerivedBy):
-  - The source Entity from which the new Entity was derived
+  - The source Entities from which the new Entity was derived
 - Association (wasAssociatedWith)
   - the agent(s) associated with the activity.
   
-Example: 
-
-* The agent involved. In this case, the service consumer, and the data cleaning service implementation.
-```
-"agent": {
-"op:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
-      "prov:type": {
-           "$": "op:ethereum-account",
-           "type": "prov:string"
-      }
-    },
-    "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135": {
-      "prov:type": {
-           "$": "prov:SoftwareAgent",
-           "type": "prov:QUALIFIED_NAME"
-      }
-    }
-  }
-```
-
-* The activity (data cleaning) 
-
-```
-  "activity": {
-    "op:op_asf29fj291lkd": {
-      "prov:endTime": "2018-02-02T14:07:13", 
-      "prov:startTime": "2018-02-02T11:03:23", 
-      "prov:type": {
-				"$": "op:operation",
-				"type": "prov:string"
-			},
-      "op:params": {
-				"to-hash": {
-					"did": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd"
-				}
-			},
-			"op:results": {
-				"hashval": "op:this"
-			}
-    }
-  }
-```
-
-* The Entity (a single data asset) that was generated
-
-Example:
-```
-"entity": {
-    "op:this": {
-      "prov:value": {
-        "$": "op:asset",
-        "type": "xsd:string"
-      }
-    }
-  }
-```
-
-* Generation attribute (The Entity that was generated by the activity)
-```
-{
-  "wasGeneratedBy": {
-    "_:wGB4": {
-      "prov:entity": "op:this",
-      "prov:activity": "op:op_asf29fj291lkd"
-    }
-  }
-```
-
-* Association attribute (the agents involved in the activity)
-```
-"wasAssociatedWith": {
-    "_:wAW4": {
-      "prov:agent": "op:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
-      "prov:activity": "op:op_asf29fj291lkd"
-    },
-    "_:wAW5": {
-      "prov:agent": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
-      "prov:activity": "op:op_asf29fj291lkd"
-    }
-  }
-```
-
-* Derivedby attribute
-  - The source Entity from which the new Entity was derived
-```
-"wasDerivedFrom": {
-    "_:wDF2": {
-      "prov:generatedEntity": "op:this",
-      "prov:usedEntity": "op:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde"
-    }
-    }
-```
-
-
 ## FAQ
 
-
-2. Multiple entities/assets can be generated while generating a new asset. If "implicit"/self asset ids are assumed, then we cannot pinpoint the asset referenced. 
- - Each asset should have its own asset metadata, multiple assets should not share the same metadata.
- 
-4. Which entity generates the provenance metadata?
+1. Which entity generates the provenance metadata?
  - When a operation generates an asset, the service must create valid provenance metadata.
- - When a user creates a derived data asset (e.g by cleaning a raw data asset), then they may manually add provenance metadata.
+ - When a user creates a derived data asset (e.g by cleaning a raw data asset), it is recommended that they use Starfish utilities to add provenance metadata.
  
 ## License
 
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
  
-## TODO
-
-```
-"agent": {
-"op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
-      "prov:label": "Hospital data administrator",
-      "prov:type": {
-           "$": "prov:Person",
-           "type": "prov:QUALIFIED_NAME"
-      }
-    }
-  }
-```
-
-```
-{
-	"prefix": {
-		"xsd": "http://www.w3.org/2001/XMLSchema#",
-		"prov": "http://www.w3.org/ns/prov#",
-		"op": "http://www.oceanprotocol.com/prov"
-	},
-
-	"agent": {
-		"op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135": {}
-	},
-	"activity": {
-		"op:op_asf29fj291lkd": {
-			"prov:endTime": "2018-02-02T14:07:13",
-			"prov:startTime": "2018-02-02T11:03:23",
-			"prov:type": "op:operation",
-			"op:params": {
-				"to-hash": {
-					"did": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd"
-				}
-			},
-			"op:results": {
-				"result1": "op:this"
-			}
-		}
-	},
-	"entity": {
-		"op:this": {
-			"prov:type": {
-				"$": "op:asset",
-				"type": "xsd:QName"
-			}
-		},
-
-		"op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd": {
-			"prov:type": {
-				"$": "op:asset",
-				"type": "xsd:QName"
-			}
-		}
-	},
-
-	"wasGeneratedBy": {
-		"_:wGB4": {
-			"prov:entity": "op:this",
-			"prov:activity": "op:op_asf29fj291lkd"
-		}
-	},
-	"wasAssociatedWith": {
-		"_:wAW4": {
-			"prov:agent": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135",
-			"prov:activity": "op:op_asf29fj291lkd"
-		}
-
-	},
-
-	"used": {
-		"_:u1": {
-			"prov:entity": "op:did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/abcd",
-			"prov:activity": "op:op_asf29fj291lkd"
-		}
-	},
-	"wasDerivedFrom": {
-		"_:wDF2": {
-			"prov:generatedEntity": "op:this",
-			"prov:usedEntity": "op:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde"
-		}
-	}
-}
-
-```
