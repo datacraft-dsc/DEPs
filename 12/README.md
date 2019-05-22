@@ -20,7 +20,7 @@ Table of Contents
          * [Activities](#Activities)
       * [Provenance for Ocean Entities and Interactions](#provenance-for-ocean-entities-and-interactions)
       * [Motivation and Use cases](#motivation-and-use-cases)
-    * [Definitions](#definitions)
+   * [Definitions](#definitions)
       * [Ocean IDs](#ocean-ids)
       * [Ocean Prov entities](#ocean-prov-entities)
       * [Provenance Metadata sections](#provenance-metadata-sections)
@@ -127,7 +127,7 @@ In the Ocean context
 
 * Data Assets and Algorithms are Entities. 
 * Publishers, Consumers and Service Providers are Agents.
-* Publishing and invoking services are Activities. 
+* Publishing and invoking Operations are Activities. 
 
 Comparing a colloquial statement with the canonical Provenance definition:
 
@@ -186,29 +186,29 @@ Activities can be categorized into two types:
  
 ## Ocean Prov entities
 
-Ocean adds the following additional *prov:type* for entities, activities and agents. Note that the prefixes `op` and `prov` are namespace prefixes that correspond to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). The standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
+Ocean adds the following additional *prov:type* for entities, activities and agents. Note that the prefixes `opf` and `prov` are namespace prefixes that correspond to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). The standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
 
 * Entities:
-  - opf:asset : An Ocean data asset 
-  - opf:this: a special attribute value that refers to the Entity being published or generated. 
+  - `opf:asset` : An Ocean data asset .
+  - `opf:this`: A special attribute value that refers to the Entity being published or generated. 
   
 * Activities:
 
-  - opf:publish : The act of publishing a data asset
-  - opf:import : The act of importing a data asset which is defined in an existing data catalog. `Import` is used to distinguish from `publish` to indicate that the provenance metadata was already associated with the data asset.
-  - opf:invoke : The act of invoking an operation.
+  - `opf:publish` : The act of publishing a data asset.
+  - `opf:import` : The act of importing a data asset which is defined in an existing data catalog. `Import` is used to distinguish from `publish` to indicate that prior provenance metadata associated with the data asset will be incorporated.
+  - `opf:invoke` : The act of invoking an operation.
 
 * Agents:
 
-  - opf:did : DID of an Ocean Agent, if available.
-  - opf:address: The address of the agent, which is needed to look up the asset id (TODO: where is asset id defined?)
-  - opf:id_type : The type of the agent id, could be `ethereum_account` or `did`
+  - `opf:did` : DID of an Ocean Agent, if available.
+  - `opf:address`: The address of the consumer.
+  - `opf:id_type` : The type of the agent id, could be `ethereum_account` or `did`
 
 
 ## Provenance Metadata Sections 
 
-Recall that the asset metadata is a JSON object, which is an unordered set of name/value pairs. Provenance metadata is represented as a name/value pair in the asset metadata object, where the **name** must be "provenance". 
-Note that provenance information is optional. However, if the **name** provenance exists, the value against that name must be JSON object with valid provenance metadata, as described in the rest of this document.
+Recall that the asset metadata is a JSON object, which is an unordered set of name/value pairs. Provenance metadata is represented as a name/value pair in the asset metadata object, where the **name** must be `provenance`. 
+Note that provenance information is optional. However, if the **name** `provenance`exists, the value against that name must be a JSON object with valid provenance metadata, as described in the rest of this document.
 
 The JSON Object representing provenance information consists of the following properties (this section is taken from the prov-json Overview)
 
@@ -229,9 +229,9 @@ The JSON Object representing provenance information consists of the following pr
 Each property is itself a JSON Object. 
 This DEP recommends that the provenance object must contain the following properties:
 
-- **entity** Data asset being published
-- **activity** Activity could be one of publish, import, or operation 
-- **agent** Agent (the ID of the person, organization or software) that published the data asset
+- **Entity** Data asset being published
+- **Activity** Activity could be one of publish, import, or operation 
+- **Agent** Agent (the ID of the person, organization or software) that published the data asset
 
 Additionally, the DEP recommends that the following **relations** should be declared:
 
@@ -242,11 +242,11 @@ Additionally, the DEP recommends that the following **relations** should be decl
 
 ### Entity
 
-**entity** is a JSON object consisting of name/value pairs. This object must contain references to all ocean assets involved in the activity (described in the activity section). 
+**Entity** is a JSON object consisting of name/value pairs. This object must contain references to all ocean assets involved in the activity (described in the activity section). 
 
-- the **names** must be valid Ocean DIDs.
-- the json object against each **name** must  contain the type property, where types can be one of the supported ocean asset types (e.g. asset, bundle or operation)
-- the **name** `opf:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
+- The **name** must be valid Ocean DIDs.
+- The json object against each **name** must  contain the type property, where types can be one of the supported ocean asset types (e.g. asset, bundle or operation)
+- The **name** `opf:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
 
 Example of an entity declaration:
 ```
@@ -281,25 +281,26 @@ This DEP supports three types of activities:
 Each activity addresses a different use case, and therefore impacts the provenance metadata.
 
 -  Publishing
-  - the "opf:this" property must be present in the *entity* JSON object.
+   - The `opf:this` property must be present in the *entity* JSON object.
  
 - Importing
-  - the "opf:this" property must be present in the *entity* JSON object.
+   - The `opf:this` property must be present in the *entity* JSON object.
   
 - Invoking an operation
-  - the "opf:this" property must be present in the *entity* JSON object.
-  - A list of entities that were consumed by this operation as inputs.
+   - The `opf:this` property must be present in the *entity* JSON object.
+   - A list of entities that were consumed by this operation as inputs.
   
   
 #### Properties of activity
 Activities must declare
 
-- an identifier, which must be a qualified name as defined by Provenance Data model. 
-- a "prov:type" property, indicating the type of the activity, as described above.
-- if the "prov:type" is `operation`, it must contain `opf:params` and `opf:results` properties. These are the inputs to, and output from, the invoke operation.
+- An identifier, which must be a qualified name as defined by Provenance Data model. 
+- A `prov:type` property, indicating the type of the activity, as described above.
+- If the `prov:type` is `operation`, it must contain `opf:params` and `opf:results` properties. These are the inputs to, and output from, the invoke operation.
 
 It is recommended that activities declare
--  start and endtime properties
+
+-  Start and endtime properties
 
 Example of an activity:
 ```
@@ -347,10 +348,10 @@ The agent is the service provider responsible for running the activity.
 This DEP recommends that the following attributes should be used. Other attributes defined in the prov standard (e.g. usedBy or wasAttributedTo) can be used as well.
 Each attribute object must include an identifier (e.g. "_:wbg4_", which includes an optional prefix as well as a local part)
 
-* Generation attribute (The Entity that was generated by the activity). It must specify the attributes
+Generation attribute (The Entity that was generated by the activity). It must specify the attributes
 
-- `prov:entity`: the identifier of the entity that was generated, identified by `opf:this`
-- `prov:activity` : the identifier of the activity (e.g. invoking an operation) that generated the entity
+- `prov:entity`: The identifier of the entity that was generated, identified by `opf:this`
+- `prov:activity` : The identifier of the activity (e.g. invoking an operation) that generated the entity
 
 Example:
 ```
@@ -364,10 +365,10 @@ Example:
 }
 ```
 
-* Association attribute (the agent involved in the activity). It must specify
+Association attribute (the agent involved in the activity). It must specify
 
-- `prov:agent`: the identifier of the agent
--  `prov:activity` : the identifier of the activity
+- `prov:agent`: The identifier of the agent
+- `prov:activity` : The identifier of the activity
 
 Example:
 ```
@@ -378,15 +379,15 @@ Example:
       "prov:activity": "opf:617c906f-4f29-49d7-a111-ab0ff2bb0d45"
     }
   }
-}  
-
+}
 ```
 
-* Derivedby attribute (The source Entity from which the new Entity was derived). This section must specify:
+Derivedby attribute (The source Entity from which the new Entity was derived). This section must specify:
 
-- `prov:generatedEntity` : the entity that was generated. Usually `opf:this`.
-- `prov:usedEntity`: the identifier of the entity that was used as an input to the activity. If multiple entities were consumed, each one must be defined as a separate property. 
+- `prov:generatedEntity` : The entity that was generated. Usually `opf:this`.
+- `prov:usedEntity`: The identifier of the entity that was used as an input to the activity. If multiple entities were consumed, each one must be defined as a separate property. 
 - This attribute is not mandatory for publish or import operations.
+
 
 Example:
 ```
@@ -402,21 +403,21 @@ Example:
 
 ### Usecase 1: Publishing use case 
 
-It is recommended that the publisher includes prov metadata when an asset is published for the first time on Ocean.
+It is recommended that the publisher includes Prov metadata when an asset is published.
 
 It must include:
 
 - The Agent involved, which is identified using the ethereum account
-- The Activity with type publish 
+- The Activity with type `publish`
 - The Entity (data asset) that was published
 - Generation relation 
-  - IDs for the Entity generated by the publishing activity 
+  - Identify the Entity generated by the publishing activity 
 
 ### Usecase 2: Importing data asset usecase
 
-When a user imports a data asset, the suggested provenance is similar to the publishing use case, with the exception of:
+When a user imports a data asset, the suggested provenance is similar to the publishing use case, with the exception that:
 
-- the _type_ of the activity should be `opf:import`.
+- The _type_ of the activity should be `opf:import`.
 
 ### Usecase 3: A service generating a new asset from existing assets
 
@@ -429,12 +430,12 @@ Ocean Invoke operations such as data cleaning, model training and others, genera
 The provenance metadata must include:
 
 - Agents:
-  - The Agent (software implementation that runs the operation) that invoked the service 
+  - The Agent (software implementation that runs the operation) that runs the Operation 
   - The consumer that invoked the operation
 
 - Entities:
   - A list of of inputs to this activity. It could contains a list of data assets and algorithms.
-  - a list of outputs generated by this activity, referred to as "this" identifier. If multiple outputs are generated, each one is registered as a separate asset. 
+  - A list of outputs generated by this activity, referred to as "this" identifier. If multiple outputs are generated, each one is registered as a separate asset. 
   
 - Activity: 
   - The operation that was invoked (e.g model training)
@@ -446,13 +447,13 @@ It must specify the following relations:
 - Derivation (wasDerivedBy):
   - The source Entities from which the new Entity was derived
 - Association (wasAssociatedWith)
-  - the agent(s) associated with the activity.
+  - The agent(s) associated with the activity.
   
 ## FAQ
 
 1. Which entity generates the provenance metadata?
- - When a operation generates an asset, the service must create valid provenance metadata.
- - When a user creates a derived data asset (e.g by cleaning a raw data asset), it is recommended that they use Starfish utilities to add provenance metadata.
+  - When a operation generates an asset, the service provider must create valid provenance metadata.
+  - When a user creates a derived data asset (e.g by cleaning a raw data asset), it is recommended that they use Starfish utilities to add provenance metadata.
  
 ## License
 
