@@ -124,10 +124,10 @@ In addition to the base attributes, the following Attributes are defined for dat
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**size**        | Text          | Yes           | Size of the asset (e.g. 18mb). In the absence of a unit (mb, kb etc.), KB will be assumed
+**size**        | Text          | No           | Size of the asset (e.g. 18mb). In the absence of a unit (mb, kb etc.), KB will be assumed
 **encoding**    | Text          | No            | File encoding (e.g. UTF-8)
 **compression** | Text          | No            | File compression (e.g. no, gzip, bzip2, etc)
-**contentType** | Text          | Yes           | File format if applicable
+**contentType** | Text          | No           | File format if applicable
 **contentUrls** | Text          | No           | List of content urls resolving the ASSET files
 **contentHash** | Text          | No           | keccak256 hash of asset data. Required if publisher wishes to offer integrity checks
 
