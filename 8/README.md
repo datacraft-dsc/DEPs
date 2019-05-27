@@ -65,12 +65,12 @@ Base attributes are always part of the Asset Metadata schema. Those attributes c
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**name**        | Text          | Yes           | Descriptive name of the Asset
-**type**        | Text          | Yes           | Type of the Asset. Helps to filter by kind of asset, initially ("data", "invoke", "bundle", "algorithm", "container", "workflow", "other")
+**name**        | Text          | No           | Descriptive name of the Asset
+**type**        | Text          | No           | Type of the Asset. Helps to filter by kind of asset, initially ("data", "invoke", "bundle", "algorithm", "container", "workflow", "other")
 **description** | Text          | No            | Details of what the resource is. For a data set explain what the data represents and what it can be used for
-**dateCreated** | DateTime      | Yes           | The date on which  was created or was added
-**author**      | Text          | Yes           | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
-**license**     | Text          | Yes           | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
+**dateCreated** | DateTime      | No           | The date on which  was created or was added
+**author**      | Text          | No           | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
+**license**     | Text          | No           | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
 **copyrightHolder**| Text       | No            | The party holding the legal copyright. Empty by default
 **links**       | Array of Link | No            | Mapping of links for data samples, or links to find out more information. 
 **inLanguage**  | Text          | No            | The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
