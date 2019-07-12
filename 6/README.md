@@ -281,6 +281,8 @@ Example of an operation that failed
 }
 ```
 
+Since the `json` type for params and results is quite loosely defined, implementations are free to define schemas for inputs (params) and outputs (results), either as part of the Operation metadata or elsewhere. It is recommended that implementations return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
+
 ### Invoke operation synchronously
 
 This is an convenience interface by which a consumer can invoke an operation. This is a synchronous request, and is expected to be used for jobs that finish quickly.
