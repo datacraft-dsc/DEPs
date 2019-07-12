@@ -2,20 +2,12 @@
 
 <h1 align="center">Data Ecosystem Proposals (DEPs)</h1>
 
-> ? Ocean Protocol
-> [oceanprotocol.com](https://oceanprotocol.com)
 
-
-Table of Contents
-=================
+# About
 
 This is the Data Ecosystem Proposal project, designed to specify standards for the development of
 interoperable data ecosystems, building upon the capabilities of the Ocean Network.
 
-The process to add or change a DEP is the following:
-- A DEP is created and modified by pull requests according to [C4](./1).
-- DEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
-- Non-cosmetic changes are allowed only on [Raw](./2#raw-meps) and [Draft](./2#draft-meps) specifications.
 
 # Current DEPs
 
@@ -35,14 +27,26 @@ Short Name        | Title                                                       
 [20/AUTHENTICATION ](20)     | Authentication standard and API                              | Standard     | Raw        | Tom Marble
 [21/AUTHORIZATION ](21)     | Authorization and API                              | Standard     | Raw        | Tom Marble
 
+# Process
 
+The process to add or change a DEP is the following:
+- A DEP is created and modified by pull requests according to [C4](./1).
+- DEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
+- Non-cosmetic changes are allowed only on [Raw](./2#raw-deps) and [Draft](./2#draft-deps) specifications.
+- The allocation of ID numbers to DEPs will be maintained by the project administrators.
 
 # Current Participants
 
 ## Contributors
 
-- Anyone who wants to contribute
-- The whole [OceanProtocol Team](https://github.com/orgs/oceanprotocol/people)
+The DEPs are open for anyone who wants to contribute.
+
+Current contributors include:
+- The DEX technical team
+
+## Editors
+
+See table of current DEPs
 
 ## Administrators
 
