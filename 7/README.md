@@ -45,6 +45,7 @@ The main motivations of this DEP are:
 
 - The storage API must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
 - The storage API must support any type of asset content
+- The storage API must allow content to be addressed by asset ID
 - The storage API must integrate with relevant authentication and authorisation mechanisms
 
 ## Endpoints
@@ -69,7 +70,7 @@ Success or failure of the upload operation is indicated as follows:
 | Response code | Description                                       | Payload           |
 |---------------|---------------------------------------------------|-------------------|
 |           200 | Upload successful                                 | None              |
-|           400 | Invalid data (hash failure)                       | error description |
+|           400 | Invalid content (hash failure)                    | error description |
 |           401 | not authenticated                                 | error description |
 |           403 | not authorised                                    | error description |
 |           404 | Asset not registered / found                      | error description |
@@ -81,7 +82,7 @@ Upload follows the following rules:
 - Storage agents should reject requests (status 403) in the case of authorisation failure
 - Storage agents must reject (status 404) requests to upload a non-existent asset
 - Storage agents should validate the content hash of uploaded data against the `contentHash` field of the asset metadata if this exists, and reject uplad with status 400 if the hash value is incorrect.
-- Storage agents may store a single instance of data where multiple assets have the same content hash
+- Storage agents may store a single instance of data where multiple assets have the same content hash (e.g. by using content-addressed storage)
 
 
 ## Download
