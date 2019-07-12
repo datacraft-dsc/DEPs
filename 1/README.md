@@ -89,7 +89,7 @@ C4 is meant to provide a reusable optimal collaboration model for open source so
 
 ### 2.6. Evolution of Public Contracts
 
-Definition: **Public Contracts** _noun_ - All public APIs and protocols. In other words, read the MEPs (and the things they reference) and you'll have a good start.
+Definition: **Public Contracts** _noun_ - All public APIs and protocols. In other words, read the DEPs (and the things they reference) and you'll have a good start.
 
 1. All Public Contracts (APIs or protocols) SHALL be documented.
 1. All Public Contracts SHOULD have space for extensibility and experimentation.
@@ -121,8 +121,8 @@ Copyright (c) 2018 BigchainDB GmbH.
 Copyright (c) 2018 OceanProtocol Foundation.
 Copyright (c) 2018 DEX Pte. Ltd.
 
-This MEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
-This MEP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This DEP is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses>.
