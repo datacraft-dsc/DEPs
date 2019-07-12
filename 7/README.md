@@ -99,11 +99,12 @@ Success or failure of the upload operation is indicated as follows:
 |           404 | Asset not registered / visible                    | error description |
 
 
-Download follows the following rules:
+Download behaviour follows the following rules:
 - Storage agents should deliver downloaded content via TLS (HTTPS protocol)
 - The HTTP response should have a HTTP `Content-Type` set to the content type specified in the asset metadata if this exists, otherwise `application/octet-stream` for content of unknown type.
 - The HTTP response may include a `Content-Disposition` header appropriate to the asset (see relevant IETF RFCs)
-
+- The storage agent must apply any relevant authorisation / authentication methods and return HTTP status 401 or 403 in event of failure
+- The storage agent should return HTTP status 404 rather than 403 if the requestor does not have access to asset metadata (this is to prevent information leaks regarding the existence of the asset)
 
 ## Change Process
 
