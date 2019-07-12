@@ -72,7 +72,7 @@ The metadata JSON is provided in the message body with a content type of `applic
 
 ```json
 
-  < Metadata as per OEP8 >
+  < Metadata as per DEP8 >
 
 ```
 #### Outputs
@@ -95,7 +95,7 @@ The API should return the metadata of the requested metadata ID if available, or
 
 ```json
 
-  < Metadata as per OEP8 >
+  < Metadata as per DEP8 >
 
 ```
 
