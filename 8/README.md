@@ -3,7 +3,7 @@ shortname: 8/ASSET-METADATA
 name: Asset Metadata definition
 type: Standard
 status: Raw
-editor: Enrique Ruiz <enrique@oceanprotocol.com>, Mike Anderson <mike.anderson@dex.sg>
+editor: Mike Anderson <mike.anderson@dex.sg>
 contributors: Aitor Argomaniz <aitor@oceanprotocol.com>, Kiran Karkera <kiran.karkera@dex.sg>,  Matthias Kretschmann <matthias@oceanprotocol.com>
 ```
 
@@ -35,7 +35,6 @@ As such, each Ocean Asset (dataset, algorithm, etc.) has Asset Metadata associat
 
 Assets without proper descriptive metadata can have poor visibility and discoverability, so it is generally in the publisher's interest to ensure good metadata is made available.
 
-This OEP doesn't detail the exact method of registering or publishing metadata in a metadata store.
 
 
 ## Change Process
