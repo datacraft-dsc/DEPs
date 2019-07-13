@@ -2,7 +2,7 @@
 shortname: 7/STORAGE
 name: Universal Storage API
 type: Standard
-status: Raw
+status: Draft
 editor: Mike Anderson <mike.anderson@dex.sg>
 contributors: 
 ```
@@ -21,7 +21,7 @@ Table of Contents
 
 # Universal Storage 
 
-Ocean has a core mission of making data assets visible and discoverable, with a decentralised protocol for data exchange.
+This DEP supports provides a generaliased decentralised protocol for data exchange between actors in the deata economy.
 
 To ensure that clients are able to make use of assets from service providers throughout the ecosystem, it is necessary
 to provide a universal storage API for accessing asset content that is independent of the underlying storage implementation,
@@ -30,15 +30,15 @@ i.e. we wish to avoid tight coupling between the implementation of asset consume
 ## Motivation
 
 In the absence of a defined standard for storage, asset consumers would need to separately determine and negotiate
-methods for accessing asset content. This would undermine the vision of Ocean to provide a universal interoperable
-substrate for data and AI services - it would simply become a network of custom point-to-point integrations with
+methods for accessing asset content. This would undermine the decentralised vision of providing universally interoperable
+solutions for data and AI services - it would simply become a network of custom point-to-point integrations with
 tight coupling between producers and consumers.
 
 The main motivations of this DEP are:
 
-* Establish a standard asset content storage API to allow interoperability between participants in the Ocean ecosystem
+* Establish a standard asset content storage API to allow interoperability between actors in the Data Economy
 * Ensure the storage API is easy to use and consistent with existing internet tools and standards
-* Ensure the standard enables support for key features of the OCean Protocol
+* Ensure the standard enables support for key features of the Ocean Protocol
 
 
 ## Requirements
@@ -106,14 +106,6 @@ Download behaviour follows the following rules:
 - The storage agent must apply any relevant authorisation / authentication methods and return HTTP status 401 or 403 in event of failure
 - The storage agent should return HTTP status 404 rather than 403 if the requestor does not have access to asset metadata (this is to prevent information leaks regarding the existence of the asset)
 
-## Change Process
-
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-
-## Language
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
 
 
 ## References
@@ -122,3 +114,9 @@ TBC:
 
 * A - https://foo.org
 
+## License
+
+Copyright (c) 2018 OceanProtocol Foundation.
+Copyright (c) 2019 DEX Pte. Ltd.
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
