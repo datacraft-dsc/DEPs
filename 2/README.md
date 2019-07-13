@@ -41,9 +41,9 @@ The author of the DEP is responsible for building consensus within the community
 
 ### Types of DEP
 There are three types of DEPs:
-* A **Standard Track DEP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using OceanProtocol products.
-* An **Informational DEP** describes a OceanProtocol design issue, or provides general guidelines or information to the OceanProtocol community, but does not propose a new feature. Informational DEPs do not necessarily represent OceanProtocol community consensus or a recommendation, so users and implementers are free to ignore Informational DEPs or follow their advice.
-* A **Meta DEP** describes a process surrounding OceanProtocol or proposes a change to a process.
+* A **Standard Track DEP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using DEP standards.
+* An **Informational DEP** describes a design issue, or provides general guidelines or information to the community, but does not propose a new feature. Informational DEPs do not necessarily represent OceanProtocol community consensus or a recommendation, so users and implementers are free to ignore Informational DEPs or follow their advice.
+* A **Meta DEP** describes a process surrounding the development of Data Ecosystem Proposals or proposes a change to a process.
 
 ### DEP Format
 A DEP is a set of Markdown documents (the main file SHOULD be called `README.md`), together with comments, attached files, and other resources. A DEP is identified by its number and short name (e.g. this DEP is **2/COSS**). The number of the DEP is also the name of the directory where its files are stored.
@@ -89,19 +89,19 @@ A DEP has six possible states that reflect its maturity and contractual weight:
 ![Lifecycle diagram](lifecycle.png)
 
 ### Raw DEPs
-All new DEPs are **raw** DEPs. Changes to raw DEPs can be unilateral and arbitrary. Those seeking to implement a raw DEP should ask for it to be made a draft DEP. Raw DEPs have no contractual weight.
+All new DEPs are **raw** DEPs. Changes to raw DEPs can be unilateral and arbitrary, at the discretion of the editor. Those seeking to implement a raw DEP should ask for it to be made a draft DEP. Raw DEPs have no contractual weight.
 
 ### Draft DEPs
-When raw DEPs can be demonstrated, they become **draft** DEPs. Changes to draft DEPs should be done in consultation with users. Draft DEPs are contracts between the editors and implementers.
+When raw DEPs can be demonstrated with working reference implementations, they become **draft** DEPs. Changes to draft DEPs should be done in consultation with users. Draft DEPs are contracts between the editors and implementers.
 
 ### Stable DEPs
-When draft DEPs are used by third parties, they become **stable** DEPs. Changes to stable DEPs should be restricted to cosmetic ones, errata and clarifications. Stable DEPs are contracts between editors, implementers, and end-users.
+When draft DEPs are intended for broad adoption by third parties, they become **stable** DEPs. Changes to stable DEPs should be restricted to cosmetic ones, errata and clarifications. Stable DEPs are contracts between editors, implementers, and end-users.
 
 ### Deprecated DEPs
 When stable DEPs are replaced by newer draft DEPs, they become **deprecated** DEPs. Deprecated DEPs should not be changed except to indicate their replacements, if any. Deprecated DEPs are contracts between editors, implementers and end-users.
 
 ### Retired DEPs
-When deprecated DEPs are no longer used in products, they become **retired** DEPs. Retired DEPs are part of the historical record. They should not be changed except to indicate their replacements, if any. Retired DEPs have no contractual weight.
+When deprecated DEPs should no longer used, they become **retired** DEPs. Retired DEPs are part of the historical record. They should not be changed except to indicate their replacements, if any. Retired DEPs have no contractual weight.
 
 ### Deleted DEPs
 Deleted DEPs are those that have not reached maturity (stable) and were discarded. They should not be used and are only kept for their historical
