@@ -31,10 +31,11 @@ i.e. we wish to avoid tight coupling between the implementation of asset consume
 >
 > (attributed to Albert Einstein)
 
-The Storage API defined here is hopefully "The Simplest Thing That Could Possibly Work". It has the following 
+The Storage API defined here is intended to be "The Simplest Thing That Could Possibly Work". It has the following 
 properties:
 - Asset content can be uploaded and retrieved via a REST API using standard HTTP methods
 - Request URLs can be simply calculated using the Asset ID
+- All typical success and failure conditions are communicated via regular HTTP status codes.
 
 ## Motivation
 
@@ -54,12 +55,14 @@ tight coupling between producers and consumers.
 ## Requirements
 
 - The storage API must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
-- The storage API must support any type of asset content
-- The storage API must allow content to be addressed by asset ID
+- The storage API must support any type of asset content (assuming it can be expressed as an ordered sequence of byte values)
+- The storage API must allow content to be addressed by the Asset's DID
 - The storage API must integrate with relevant authentication and authorisation mechanisms
-- The storage API should be easy to use and consistent with existing internet tools and standards as far as possible
+- The storage API should be easy to use and consistent with existing Internet tools and standards as far as possible
 
-## Endpoints
+## API Specification
+
+### Endpoints
 
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
@@ -67,7 +70,14 @@ tight coupling between producers and consumers.
 | uploadAsset      | POST   | /api/v1/assets/{id}          |
 | downloadAsset    | GET    | /api/v1/assets/{id}          |
 
-## Upload
+The Storage endpoints for any given asset DID can be constructed using the following procedure:
+
+1. Use a Universal Resolver to obtain the `DDO` for the `DID`
+2. Extract the `"Ocean.Storage.v1"` `Service Endpoint` from the DDO e.g. `"https://big.data-service.com/api/v1/assets"`
+3. Take the `Asset ID` from the `DID Path` e.g. `"23e33783fa7e81a78ed05310bdd4568e6cf23bf2a8d1f2498435f33e9b1848d1"`
+4. Compute `[Service Endpoint] + "/" + [Asset ID]` to get the correct Storage API URI
+
+### Upload
 
 The upload endpoints are used by client to upload a file as raw content for storage for a given
 asset ID. The asset must already be registered with the agent
@@ -96,7 +106,7 @@ Upload follows the following rules:
 - Storage agents may store a single instance of data where multiple assets have the same content hash (e.g. by using content-addressed storage)
 
 
-## Download
+### Download
 
 The download endpoint enables clients to download the content of a specific asset.
 
