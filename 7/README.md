@@ -21,24 +21,33 @@ Table of Contents
 
 # Universal Storage 
 
-This DEP supports provides a generaliased decentralised protocol for data exchange between actors in the deata economy.
+This DEP supports a generalised decentralised protocol for data exchange between actors in the data economy by providing an abstract API for asset content upload and download.
 
-To ensure that clients are able to make use of assets from service providers throughout the ecosystem, it is necessary
-to provide a universal storage API for accessing asset content that is independent of the underlying storage implementation,
-i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers.
+To ensure that clients are able to make use of assets from a diverse set service providers throughout the ecosystem, it is necessary
+to provide a universal storage API that is independent of the underlying storage implementation,
+i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers. 
+
+> “Everything should be made as simple as possible, but no simpler,”
+> - Attributed to Albert Einstein
+
+The Storage API defined here is hopefully "The Simplest Thing That Could Possibly Work". It has the following 
+properties:
+- Asset content can be uploaded and retrieved via a REST API using standard HTTP methods
+- Request URLs can be simply calculated using the Asset ID
 
 ## Motivation
 
-In the absence of a defined standard for storage, asset consumers would need to separately determine and negotiate
+We want any client in the data ecosystem to be able to access data content stored by any service provider, 
+regardless of the underlying technology choices made by the service providers (which are expected to evolve
+ over time). 
+ 
+This concept is analogous to HTTP: Web browsers should not need to know anything about the underlying 
+implementation of a web server in order to execute a GET request for an HTML page. 
+
+In the absence of such a defined standard for storage, asset consumers would need to separately determine and negotiate
 methods for accessing asset content. This would undermine the decentralised vision of providing universally interoperable
 solutions for data and AI services - it would simply become a network of custom point-to-point integrations with
 tight coupling between producers and consumers.
-
-The main motivations of this DEP are:
-
-* Establish a standard asset content storage API to allow interoperability between actors in the Data Economy
-* Ensure the storage API is easy to use and consistent with existing internet tools and standards
-* Ensure the standard enables support for key features of the Ocean Protocol
 
 
 ## Requirements
@@ -47,6 +56,7 @@ The main motivations of this DEP are:
 - The storage API must support any type of asset content
 - The storage API must allow content to be addressed by asset ID
 - The storage API must integrate with relevant authentication and authorisation mechanisms
+- The storage API should be easy to use and consistent with existing internet tools and standards as far as possible
 
 ## Endpoints
 
