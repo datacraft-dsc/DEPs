@@ -115,12 +115,12 @@ The download endpoint enables clients to download the content of a specific asse
 
 Success or failure of the upload operation is indicated as follows:
 
-| Response code | Description                                       | Payload           |
-|---------------|---------------------------------------------------|-------------------|
-|           200 | Success                                           | Asset content     |
-|           401 | not authenticated                                 | error description |
-|           403 | not authorised                                    | error description |
-|           404 | Asset not registered / visible                    | error description |
+| Response code | Description                                                         | Payload           |
+|---------------|---------------------------------------------------------------------|-------------------|
+|           200 | Success                                                             | Asset content     |
+|           401 | Client was not authenticated, but authentication was required       | error description |
+|           403 | Client was authenticated but not authorised to download this asset  | error description |
+|           404 | Asset not registered / metadata not visible                         | error description |
 
 
 Download behaviour follows the following rules:
