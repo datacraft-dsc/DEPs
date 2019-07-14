@@ -27,38 +27,16 @@ To ensure that clients are able to make use of assets from a diverse set service
 to provide a universal storage API that is independent of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers. 
 
-> “Everything should be made as simple as possible, but no simpler”
->
-> (attributed to Albert Einstein)
-
-The Storage API defined here is intended to be "The Simplest Thing That Could Possibly Work". It has the following 
-properties:
-- Asset content can be uploaded and retrieved via a REST API using standard HTTP methods
-- Request URLs can be simply calculated using the Asset ID
-- All typical success and failure conditions are communicated via regular HTTP status codes.
-
-## Motivation
-
-We want any client in the data ecosystem to be able to access data content stored by any service provider, 
-regardless of the underlying technology choices made by the service providers (which are expected to evolve
- over time). 
- 
-This concept is analogous to HTTP: Web browsers should not need to know anything about the underlying 
-implementation of a web server in order to execute a GET request for an HTML page. 
-
-In the absence of such a defined standard for storage, asset consumers would need to separately determine and negotiate
-methods for accessing asset content. This would undermine the decentralised vision of providing universally interoperable
-solutions for data and AI services - it would simply become a network of custom point-to-point integrations with
-tight coupling between producers and consumers.
-
 
 ## Requirements
 
-- The storage API must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
-- The storage API must support any type of asset content (assuming it can be expressed as an ordered sequence of byte values)
-- The storage API must allow content to be addressed by the Asset's DID
-- The storage API must integrate with relevant authentication and authorisation mechanisms
-- The storage API should be easy to use and consistent with existing Internet tools and standards as far as possible
+The Storage API:
+
+- must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
+- must support any type of asset content (assuming it can be expressed as an ordered sequence of byte values)
+- must allow content to be addressed via the Asset's DID
+- must integrate with relevant authentication and authorisation mechanisms
+- should be easy to use and consistent with existing Internet tools and standards as far as possible
 
 ## API Specification
 
@@ -129,6 +107,32 @@ Download behaviour follows the following rules:
 - The HTTP response may include a `Content-Disposition` header appropriate to the asset (see relevant IETF RFCs)
 - The storage agent must apply any relevant authorisation / authentication methods and return HTTP status 401 or 403 in event of failure
 - The storage agent should return HTTP status 404 rather than 403 if the requestor does not have access to asset metadata (this is to prevent information leaks regarding the existence of the asset)
+
+
+## Motivation
+
+> “Everything should be made as simple as possible, but no simpler”
+>
+> (attributed to Albert Einstein)
+
+The Storage API defined here is intended to be "The Simplest Thing That Could Possibly Work". It has the following 
+properties:
+- Asset content can be uploaded and retrieved via a REST API using standard HTTP methods
+- Request URLs can be simply calculated using the Asset ID
+- All typical success and failure conditions are communicated via regular HTTP status codes.
+- Asset content can be in any format, i.e. the protocol is fully agnostic to content type
+
+We want any client in the data ecosystem to be able to access data content stored by any service provider, 
+regardless of the underlying technology choices made by the service providers (which are expected to evolve
+ over time). 
+ 
+This concept is analogous to HTTP: Web browsers should not need to know anything about the underlying 
+implementation of a web server in order to execute a GET request for an HTML page. 
+
+In the absence of such a defined standard for storage, asset consumers would need to separately determine and negotiate
+methods for accessing asset content. This would undermine the decentralised vision of providing universally interoperable
+solutions for data and AI services - it would simply become a network of custom point-to-point integrations with
+tight coupling between producers and consumers.
 
 
 
