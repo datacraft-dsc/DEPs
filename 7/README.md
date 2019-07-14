@@ -27,8 +27,9 @@ To ensure that clients are able to make use of assets from a diverse set service
 to provide a universal storage API that is independent of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers. 
 
-> “Everything should be made as simple as possible, but no simpler,”
-> - Attributed to Albert Einstein
+> “Everything should be made as simple as possible, but no simpler”
+>
+> (attributed to Albert Einstein)
 
 The Storage API defined here is hopefully "The Simplest Thing That Could Possibly Work". It has the following 
 properties:
