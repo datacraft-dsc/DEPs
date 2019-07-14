@@ -44,7 +44,7 @@ C4 is meant to provide a reusable optimal collaboration model for open source so
 
 1. The project SHALL use open source licenses consistent with the open source definition (https://opensource.org/osd)
 1. All contributions to the project source code ("patches") SHALL use the same license as the project.
-1. A new contributor contributing a patch MUST agree to a Contributor License Agreement (CLA) before their patch can be merged.
+1. A new contributor contributing a patch MUST agree to a Contributor License Agreement (CLA) before their patch can be merged if the project requires one.
 1. Each Contributor SHALL be responsible for identifying themselves in the project Contributor list.
 
 ### 2.3. Patch Requirements
@@ -119,7 +119,7 @@ Definition: **Public Contracts** _noun_ - All public APIs and protocols. In othe
 Copyright (c) 2009-2016 Pieter Hintjens.
 Copyright (c) 2018 BigchainDB GmbH.
 Copyright (c) 2018 OceanProtocol Foundation.
-Copyright (c) 2018 DEX Pte. Ltd.
+Copyright (c) 2019 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
