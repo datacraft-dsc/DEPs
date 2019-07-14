@@ -45,12 +45,6 @@ The Invoke API (**INVOKE**) is a specification to register and invoke compute op
 * This DEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
 * This DEP does not describe details of installation of the operations and/or its dependencies. 
 
-## Change Process
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-## Language
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
-
 ## Overview
 
 The Ocean ecosystem's data publishers make data assets available for consumption. However, data assets are only the first part of a data pipeline. The finished products are usually models, predictions or dashboards and these are created by algorithms that transform the raw data, clean it, train models and generate predictions. 
