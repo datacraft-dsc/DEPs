@@ -80,7 +80,10 @@ The Storage endpoints for any given asset DID can be constructed using the follo
 ### Upload
 
 The upload endpoints are used by client to upload a file as raw content for storage for a given
-asset ID. The asset must already be registered with the agent
+asset ID. The Storage API is agnostic to the file format used for content.
+
+The asset metadata must already be registered with the agent. The result of
+attempts to upload content for an unregistered asset is undefined.
 
 The PUT and POST endpoints perform the same function, with the following difference:
 - For PUT, the asset content must be the body of the HTTP PUT request
@@ -102,7 +105,7 @@ Upload follows the following rules:
 - Storage agents should reject requests (status 401) in the case of authentication failure
 - Storage agents should reject requests (status 403) in the case of authorisation failure
 - Storage agents must reject (status 404) requests to upload a non-existent asset
-- Storage agents should validate the content hash of uploaded data against the `contentHash` field of the asset metadata if this exists, and reject uplad with status 400 if the hash value is incorrect.
+- Storage agents should validate the content hash of uploaded data against the `contentHash` field of the asset metadata if this exists, and reject upload with status 400 if the hash value is incorrect.
 - Storage agents may store a single instance of data where multiple assets have the same content hash (e.g. by using content-addressed storage)
 
 
