@@ -91,23 +91,23 @@ The PUT and POST endpoints perform the same function, with the following differe
 
 Success or failure of the upload operation is indicated as follows:
 
-| Response code | Description                                       | Payload           |
-|---------------|---------------------------------------------------|-------------------|
-|           200 | Upload successful                                 | None              |
-|           400 | Invalid content (hash failure)                    | error description |
-|           401 | not authenticated                                 | error description |
-|           403 | not authorised                                    | error description |
-|           404 | Asset not registered / found                      | error description |
+| Response code | Description                                        | JSON Response Payload |  
+|---------------|----------------------------------------------------|-----------------------|
+|           200 | Upload successful                                  | None                  |
+|           400 | Invalid content (hash failure)                     | error description     |
+|           401 | not authenticated                                  | error description     |
+|           403 | not authorised                                     | error description     |
+|           404 | Asset not registered / found                       | error description     |
+|           507 | Insufficient Storage available at service provider | error description     |
 
-
-Upload follows the following rules:
-- Storage agents must ensure the data is persisted in storage in the case of a 2xx response
-- Storage agents should reject requests (status 401) in the case of authentication failure
-- Storage agents should reject requests (status 403) in the case of authorisation failure
-- Storage agents must reject (status 404) requests to upload a non-existent asset
-- Storage agents should validate the content hash of uploaded data against the `contentHash` field of the asset metadata if this exists, and reject upload with status 400 if the hash value is incorrect.
-- Storage agents may store a single instance of data where multiple assets have the same content hash (e.g. by using content-addressed storage)
-
+To comply with the API, storage agents:
+- must ensure the data is persisted in storage in the case of a 2xx response
+- must reject requests (status 401) in the case of authentication failure
+- must reject requests (status 403) in the case of authorisation failure (but where authentication succeeded)
+- should reject (status 404) requests to upload a non-registered asset (this is recommended behaviour)
+- must validate the content hash of uploaded data against the `contentHash` field of the asset metadata if this exists, and reject upload with status 400 if the hash value is incorrect.
+- may store a single instance of data where multiple assets have the same content hash (e.g. by using content-addressed storage)
+- may reject storage requests for a reason at the discretion of the service provider (e.g. only accepting certain asset types), in which case the response should contain a meaningful reason
 
 ### Download
 
