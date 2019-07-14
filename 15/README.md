@@ -131,3 +131,9 @@ the requested metadata ID.
 |           403 | The caller is not authorised to register the asset metadata                    | map with error code and error description |
 |           404 | The asset metadata was not found                                               | map with error code and error description |
 
+## License
+
+Copyright (c) 2018 OceanProtocol Foundation.
+Copyright (c) 2019 DEX Pte. Ltd.
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

@@ -189,3 +189,9 @@ The list of changes to apply in the proposed solution are:
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 * https://oauth.net/2/
 * https://developer.github.com/v3/#authentication
+
+## License
+
+Copyright (c) 2019 DEX Pte. Ltd.
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

@@ -97,3 +97,9 @@ The list of changes to apply in the proposed solution are:
 ## References
 
 * https://w3c-ccg.github.io/did-spec/
+
+## License
+
+Copyright (c) 2019 DEX Pte. Ltd.
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

@@ -116,7 +116,6 @@ TBC:
 
 ## License
 
-Copyright (c) 2018 OceanProtocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

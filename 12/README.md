@@ -457,5 +457,7 @@ It must specify the following relations:
  
 ## License
 
-Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
+Copyright (c) 2019 DEX Pte. Ltd.
+
+This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
  
