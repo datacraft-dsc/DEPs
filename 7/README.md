@@ -13,18 +13,23 @@ Table of Contents
    * [Table of Contents](#table-of-contents)
    * [Universal Storage](#universal-storage)
       * [Requirements](#requirements)
-      * [Change Process](#change-process)
-      * [Language](#language)
+      * [API Specification](#api-specification)
+         * [Endpoints](#endpoints)
+         * [Upload](#upload)
+         * [Download](#download)
       * [Motivation](#motivation)
       * [References](#references)
+      * [License](#license)
 
 
 # Universal Storage 
 
-This DEP supports a generalised decentralised protocol for data exchange between actors in the data economy by providing an abstract API for asset content upload and download.
+This DEP supports a generalised decentralised protocol for data exchange between actors 
+in the data economy by providing an abstract API for asset content upload and download.
 
-To ensure that clients are able to make use of assets from a diverse set service providers throughout the ecosystem, it is necessary
-to provide a universal storage API that is independent of the underlying storage implementation,
+To ensure that clients are able to make use of assets from a diverse set service providers 
+throughout the ecosystem, it is necessary to provide a universal storage API that is independent 
+of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers. 
 
 
