@@ -95,7 +95,7 @@ All new DEPs are **raw** DEPs. Changes to raw DEPs can be unilateral and arbitra
 When raw DEPs can be demonstrated with working reference implementations, they become **draft** DEPs. Changes to draft DEPs should be done in consultation with users. Draft DEPs are contracts between the editors and implementers.
 
 ### Stable DEPs
-When draft DEPs are intended for broad adoption by third parties, they become **stable** DEPs. Changes to stable DEPs should be restricted to cosmetic ones, errata and clarifications. Stable DEPs are contracts between editors, implementers, and end-users.
+When draft DEPs and their implementation(s) are intended for broad adoption by third parties, they become **stable** DEPs. Changes to stable DEPs should be restricted to cosmetic ones, errata and clarifications. Stable DEPs are contracts between editors, implementers, and end-users.
 
 ### Deprecated DEPs
 When stable DEPs are replaced by newer draft DEPs, they become **deprecated** DEPs. Deprecated DEPs should not be changed except to indicate their replacements, if any. Deprecated DEPs are contracts between editors, implementers and end-users.
@@ -108,7 +108,7 @@ Deleted DEPs are those that have not reached maturity (stable) and were discarde
 value. Only Raw and Draft DEPs can be deleted.
 
 ## Editorial control
-A DEP MUST have a single responsible editor, the only person who SHALL change the status of the DEP through the lifecycle stages.
+A DEP MUST have a single responsible editor, the only person who SHALL change the status of the DEP through the lifecycle stages (TBC - Suggest a DEP Review Board in future to formalise this process).
 
 A DEP MAY also have additional contributors who contribute changes to it. It is RECOMMENDED to use the [C4 process](../1/README.md) to maximize the scale and diversity of contributions.
 
