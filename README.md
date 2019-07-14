@@ -46,6 +46,7 @@ This repository of DEPs is maintained by DEX Pte. Ltd. as a service to the Ocean
 The process to add or change a DEP is the following:
 - A DEP is created and modified by pull requests according to [C4](./1).
 - DEP lifecycle SHOULD follow the lifecycle defined in [COSS](./2).
+- A DEP Should be licensed under the [Apache License Version 2.0](./LICENSE) (exceptions may be allowed).
 - Non-cosmetic changes are allowed only on [Raw](./2#raw-deps) and [Draft](./2#draft-deps) specifications.
 - The allocation of ID numbers to DEPs will be maintained by the project administrators.
 
