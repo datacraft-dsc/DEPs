@@ -103,9 +103,10 @@ Definition: **Public Contracts** _noun_ - All public APIs and protocols. In othe
 ### 2.7. Project Administration
 
 1. The project founders SHALL act as Administrators to manage the set of project Maintainers.
+1. The Administrators SHALL approve a single responsible Editor for each DEP, which will usually be the lead Contributor for that DEP
 1. The Administrators SHALL ensure their own succession over time by promoting the most effective Maintainers.
 1. A new Contributor who makes correct patches, who clearly understands the project goals, and the process SHOULD be invited to become a Maintainer.
-1. Administrators SHOULD remove Maintainers who are inactive for an extended period of time, or who repeatedly fail to apply this process accurately.
+1. Administrators SHOULD remove Maintainers and Editors who are inactive for an extended period of time, or who repeatedly fail to apply this process accurately.
 1. Administrators SHOULD block or ban "bad actors" who cause stress and pain to others in the project. This should be done after public discussion, with a chance for all parties to speak. A bad actor is someone who repeatedly ignores the rules and culture of the project, who is needlessly argumentative or hostile, or who is offensive, and who is unable to self-correct their behavior when asked to do so by others.
 
 ## Implementations
