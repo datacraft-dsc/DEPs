@@ -13,7 +13,7 @@ You should consider adopting the DEP standards if:
 - You need to orchestrate data services across multiple organisations / participants
 - You need the ability to remotely invoke operations on a variety of data sources
 - You wish to unlock the value of existing data assets and services to a broader ecosystem
-- You plan to build solutions that make use of the underlying capabilities of the Ocean Network, or other decentralised ledgers designed for data exchange.
+- You plan to make use of the capabilities of the Ocean Network, or other decentralised systems designed for data exchange, but wish to maintain a level of abstraction away from specific implementation details.
 
 
 # Current DEPs
