@@ -19,8 +19,9 @@ Table of Contents
       * [Motivation](#motivation)
       * [Roles](#roles)
       * [Technical Requirements](#technical-requirements)
-   * [Specification](#specification)
-      * [Service Delivery](#service-delivery)
+   * [API Definition](#api-definition)
+      * [Methods](#methods)
+      * [Authentication and Authorization](#authentication-and-authorization)
       * [Open Questions](#open-questions)
       * [License](#license)
 
@@ -53,8 +54,6 @@ The Invoke API specification provides a path that satisfied three sets of actors
 - for data consumers to apply algorithms to data assets
 - for data publishers to make data assets available while choosing appropriate trust levels to prevent data escapes
 - for service providers to make useful algorithms available
-
-Diagram to be added
 
 ## Motivation
 
@@ -116,14 +115,15 @@ The Invoke service
 * The unit of measurement must be 
   - a one-shot execution of a job (e.g. a data cleaning job)
   
-# Specification 
+# API Definition 
 
+This section is normative.
 
 The **Operation Metadata** information should be managed using an API on the Invokable Rest Agent. 
 The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST. 
 
 
-## Service Delivery
+## Methods
 
 The Invoke implementation must host the following APIs.
 
@@ -133,7 +133,8 @@ The Invoke implementation must host the following APIs.
 | Invoke Operation       | Invoke an operation synchronously                             |/invoke/operation-id|
 | Get Job status         | Get the status of an invoked job, and the result if completed |/jobs/jobid|
 
-Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
+- Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
+- The types of HTTP Requests (e.g. GET, POST) are defined in [RFC 2616](https://tools.ietf.org/html/rfc2616)
 
 ### Invoke async Operation
 
@@ -141,11 +142,11 @@ This is the primary interface by which a consumer can invoke an operation.
 
 #### Request
 
-The caller API must make
+The endpoint must accept 
 
-- A POST request to the `/invokeasync/operation-did` (e.g. https://service-endpoint/invokeasync/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
+- POST requests to the `/invokeasync/operation-did` (e.g. https://service-endpoint/invokeasync/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
 
-- The path argument operation-id must be the ID of the operation asset.
+- The path argument operation-id must be the DID of the operation asset.
 - The keys in the (payload) map must be parameter names as specified in the operation metadata.
 - All required parameters must be included.
 
@@ -154,6 +155,8 @@ The caller API must make
   - A valid JSON data type (if the type is a **json**)
 
 #### Design considerations
+
+This section is non-normative.
 
 The values are categorized into two types (`asset` and `json`) to support libraries such as Starfish in:
 
@@ -191,7 +194,7 @@ Here's an example of a parameterized request which specifies the algorithm to be
 
 #### Response
 
-If the server accepts the request, the response must be a JSON encoded map with the **jobid** and the corresponding value.
+The response to a valid request must be a JSON encoded map with the **jobid** and the corresponding value. Invalid requests must return a response code as described below.
 
 ```json 
 {
@@ -213,17 +216,17 @@ If the server accepts the request, the response must be a JSON encoded map with 
 
 #### Request
 
-The caller API must make
+The endpoint must accept
 
 - An HTTP GET request to `/jobs/jobid` 
 - The path parameter `jobid` must be the value returned by the Invoke Async Operation response
 
 #### Response
 
-The response must contain a JSON payload. 
+The response to a valid request must contain a JSON payload. 
 
 - It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|unknown] 
-- Once the job has completed, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
+- Once the job has completed, and if it succeeded, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
 - A map (if type is **asset**)
@@ -245,7 +248,7 @@ The Job result payload must have **errorcode** and **description** fields in cas
 |       8004 | asset id XX contents not accessible |
 |            |                                     |
 
-Example of a an operation that succeeded and returns one asset 
+Example of an operation that succeeded and returns one asset 
 
 
 ```json
@@ -280,7 +283,7 @@ This is an convenience interface by which a consumer can invoke an operation. Th
 
 #### Request
 
-The caller API must make
+The endpoint must accept
 
 - A POST request to the https://service-endpoint/invoke/operation_id along with JSON formatted payload described by the params section of the operation metadata.
 - The path argument operation_id must be the ID of the operation asset.
@@ -290,14 +293,15 @@ The caller API must make
 
 The response format is the same as returned by the get job result operation.
 
+## Authentication and Authorization
+
+Implementations may use various ways to authenticate and authorize that are transparent to the API.
 
 ## Open questions
 
 - Authentication and Authorization headers are not yet defined in this DEP. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20).
 - Assets generated by the invoke service may need to be purchased by the consumer in order to view them. It is up to the service provider to decide if the created asset needs to be purchased, if required.
 
-- The details of access_token are yet to be defined. 
-  - For Squid assets, the access_token must be a service agreement id to confirm that the asset's content can be accessed by the service provider. 
 
 ## License
 
