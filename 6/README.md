@@ -29,6 +29,8 @@ Table of Contents
 
 # Introduction
 
+This section contains a non-normative introduction to the Invoke API.
+
 The Invoke API (**INVOKE**) is a specification to register and invoke compute operations. These compute operations could:
 
 * Accept Input parameters (zero or more; which will typically be data assets to be used or algorithms to be run)
@@ -44,7 +46,7 @@ The Invoke API (**INVOKE**) is a specification to register and invoke compute op
 
 ## Overview
 
-The Ocean ecosystem's data publishers make data assets available for consumption. However, data assets are only the first part of a data pipeline. The finished products are usually models, predictions or dashboards and these are created by algorithms that transform the raw data, clean it, train models and generate predictions. 
+Data publishers make data assets available for consumption. However, data assets are only the first part of a data pipeline. The finished products are usually models, predictions or dashboards and these are created by algorithms that transform the raw data, clean it, train models and generate predictions. 
 
 The Invoke API specification provides a path that satisfied three sets of actors
 
@@ -56,10 +58,10 @@ Diagram to be added
 
 ## Motivation
 
-The Ocean ecosystem provides decentralised marketplaces for relevant AI-related data services.
-There is a need for a standardised **interface** for the invocation of compute operations so that different implementations can be provided and invoked by users of the Ocean Protocol.
+The data ecosystem provides decentralised marketplaces for relevant AI-related data services.
+There is a need for a standardised **interface** for the invocation of compute operations so that different implementations can be provided and invoked by users in the data ecosystem.
 
-Example of operations that could be offered by Ocean actors:
+Example of operations that could be offered by data ecosystem actors:
 
 * A data cleaning operation that removes noise from data
 * A model training operation that returns a trained model given training data
@@ -74,30 +76,22 @@ It may be observed that these operations:
 
 The Invoke API 
 
-- Provides Ocean users tools to transform data assets registered on the Ocean network.
+- Provides tools to transform data assets.
 - Facilitates a workflow pipeline of data asset transformations.
-- Enables provenance tracking by Ocean provenance aware algorithms.
+- Enables provenance tracking by provenance aware algorithms.
 
-### Trust
-
-Data publishers in the Ocean ecosystem want to publish data assets, and data consumers want to run algorithms on data assets they purchase. However, some datasets may contain sensitive information (e.g. personally identifiable information, health records, financial information) and data publishers may be concerned about the possibility of a data escape. 
-
-The Invoke API provides a mechanism for Ocean ecosystem actors to run algorithms on data, while minimizing the possibility of data escape. The details of trust levels and the systems required to prevent data escape are described in a different DEP.
-
-
-
-## Roles
+## Entities
 
 - Asset/algorithm owner: The owner of the algorithm, 
-  - May be registered as an Ocean asset
+  - May be registered as a data asset
   - May be available as a deployable package (e.g. a docker image or a jar on a maven repo)
 - Service provider: The actor that runs the algorithm on their server(s).
 - Service consumer: The actor that invokes the service.
-- Agent: The software entity that enables Service Instance interactions  with the rest of the Ocean community.
+- Agent: The software entity that enables Service Instance interactions with the rest of the data ecosystem.
   - Agent can be of many types, such as local or remote, and communicate via different interfaces.
   - The rest of this document assumes a remote Agent that communicates over REST.
 
-The rest of this document is written for the perspective of a data consumer. Data Publishers are advised to read DEP XX for instructions to implement Operations. 
+The rest of this document is written for the perspective of a data consumer. 
 
 ### Consumer flow
 
@@ -108,10 +102,10 @@ The rest of this document is written for the perspective of a data consumer. Dat
 The Invoke service
 * May be offered free or for a price
 * May be offered in trusted mode or trustless mode (backed by Service Execution Agreements) 
-* Must be identified with its asset ID on the Ocean Network
-* Must register its metadata with the OCEAN agent
-* May accept a list of ocean assets as inputs to the job  (along with access tokens to consume the asset)
-* May register ocean assets generated as a result of the job. the ownership of the registered assets is an open item. 
+* Must be identified with its DID
+* Must register its metadata with an agent
+* May accept a list of assets as inputs to the job  (along with access tokens to consume the asset)
+* May register assets generated as a result of the job. 
 * May accept a data payload as an input
 * May return a payload
 * The unit of measurement must be 
@@ -119,8 +113,9 @@ The Invoke service
   
 # Specification 
 
+
 The **Operation Metadata** information should be managed using an API on the Invokable Rest Agent. 
-The service providers hosting the API should expose the following capabilities in the Ocean Agent via HTTP REST. 
+The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST. 
 
 
 ## Service Delivery
@@ -158,7 +153,7 @@ The caller API must make
 The values are categorized into two types (`asset` and `json`) to support libraries such as Starfish in:
 
 - Validating if payloads adhere to the operation schema 
-- Adding support for Ocean-aware metadata such as `ocean assets` which require `did`s and `access_token`s to be fully specified.
+- Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
 
 
 Here's an example of an request that defines a single input asset of type asset.
