@@ -15,8 +15,6 @@ Table of Contents
    * [Table of Contents](#table-of-contents)
    * [Introduction](#introduction)
       * [Exclusions](#exclusions)
-      * [Change Process](#change-process)
-      * [Language](#language)
       * [Motivation](#motivation)
       * [Roles](#roles)
       * [Technical Requirements](#technical-requirements)
