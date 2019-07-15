@@ -24,18 +24,30 @@ Table of Contents
 This DEP describes the conceptual reference architecture for Decentralised Data Ecosystems supported 
 by the broader set of DEP standards.
 
-
 ## Vision
 
-The Storage API:
+We envision a world where:
 
-- must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
-- must support any type of asset content (assuming it can be expressed as an ordered sequence of byte values)
-- must allow content to be addressed via the Asset's DID
-- must integrate with relevant authentication and authorisation mechanisms
-- should be easy to use and consistent with existing Internet tools and standards as far as possible
+- Data and AI services can be harnessed by all for the good of humanity, and
+not controlled by a handful of powerful gatekeepers. 
+- The costs of developing AI solutions are minimised, so that the value of the "long tail" of Data and AI
+assets can be realised.
+- Interoperability is built into the ecosystem from the ground up, so that solutions can be built to
+span across a broad range of participants without expensive bespoke integration work.
+
+It is the goal of this DEP to outline a reference architecture and architectural principles that can support
+this vision. 
 
 ## Principles
+
+- No centralised point of control
+- Decentralised ownership of assets and services
+- Support for orchestration of Data Supply Lines
+- Decentralised trust rules
+- Abstraction from specific technology choices
+- Support for arbitrary data formats
+- Available over the public internet
+- Peer-to-peer model
 
 ## Decisions
 
@@ -48,9 +60,9 @@ The Storage API:
 
 ## Motivation
 
-> “Everything should be made as simple as possible, but no simpler”
+> “Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. ”
 >
-> (attributed to Albert Einstein)
+> (Edsger Dijkstra)
 
 
 
