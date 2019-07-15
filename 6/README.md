@@ -88,6 +88,7 @@ The Invoke API
 - Service provider: The actor that runs the algorithm on their server(s).     
   - InvokeEndpoint: The services are made available on one or more REST Endpoints on a Service Provider's server or cloud.
   
+- Storage Provider: The entity providing a storage service compliant with [DEP-8](https://github.com/DEX-Company/DEPs/tree/master/7)
 - Service consumer: The actor that invokes the service.
 
 - Agent: The software entity that enables Service Instance interactions with the rest of the data ecosystem.
