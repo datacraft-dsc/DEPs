@@ -3,7 +3,7 @@ shortname: 15/META-API
 name: Metadata Agent API
 type: Standard
 status: Raw
-editor: Bill Barman <bill@oceanprotocol.com>
+editor: Bill Barman <bill.barman@dex.sg>
 contributors: Mike Anderson <mike.anderson@dex.sg>
 ```
 
@@ -14,10 +14,9 @@ Table of Contents
    * [Table of Contents](#table-of-contents)
 
 
-
 # Metadata Agent API
 
-This OEP describes the API by which Agents in the Ocean ecosystem can store and provide verifiable metadata to Ocean clients.
+This DEP describes the API by which Agents in the Ocean ecosystem can store and provide verifiable metadata to Ocean clients.
 
 Metadata is identified by the hash of its content, i.e. a Meta Agent acts as content-addressable storage of metadata records.
 
@@ -34,7 +33,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Motivation
 
-The main motivations of this OEP are:
+The main motivations of this DEP are:
 
 * Ensure that clients can access metadata for any asset or off-chain data structure in the Ocean ecosystem
 * Ensure that the data can be verifiable and persistent within the storage system.
@@ -82,7 +81,7 @@ If the server accepts the request, the response must be a JSON string value cont
 Example:
 
 
-```json 
+```json
 "2baa473780e786e9e513fc285f443b6bf015a67939ecc82d4fa30bc9284e7436"
 ```
 
@@ -93,7 +92,7 @@ Example:
 |           400 | The asset was not in a permitted format, or validation failed                  | map with error code and error description |
 |           401 | Authentication was required but valid authentication not provided              | map with error code and error description |
 |           403 | The caller is not authorised to register the asset metadata                    | map with error code and error description |
-           
+
 
 -------------------------------------------------------------------------------
 ### getMetaData
@@ -109,7 +108,7 @@ The Asset ID (i.e. the keccak256 hash of the metadata) is provided in the URL.
 
 #### Outputs
 
-The API should return the metadata of the requested Asset ID if available. 
+The API should return the metadata of the requested Asset ID if available.
 
 This returned metadata should be identical to the metadata provided to the addMetadata endpoint, i.e. it should be possible to validate the hash code of the returned metadata as the Asset ID.
 
