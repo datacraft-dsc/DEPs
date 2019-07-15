@@ -106,14 +106,13 @@ The rest of this document is written for the perspective of a data consumer.
 ## Technical requirements 
 
 The Invoke service
-* May be offered free or for a price
-* May be offered in trusted mode or trustless mode (backed by Service Execution Agreements) 
+* May be offered for a price
 * Must be identified with its DID
 * Must register its metadata with an agent
 * May accept a list of assets as inputs to the job  (along with access tokens to consume the asset)
 * May register assets generated as a result of the job. 
 * May accept a data payload as an input
-* May return a payload
+* May return the result of the execution as the payload, or register the result of the execution as an asset.
 * The unit of measurement must be 
   - a one-shot execution of a job (e.g. a data cleaning job)
   
