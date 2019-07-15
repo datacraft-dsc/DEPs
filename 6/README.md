@@ -85,17 +85,22 @@ The Invoke API
 - Asset/algorithm owner: The owner of the algorithm, 
   - May be registered as a data asset
   - May be available as a deployable package (e.g. a docker image or a jar on a maven repo)
-- Service provider: The actor that runs the algorithm on their server(s).
+- Service provider: The actor that runs the algorithm on their server(s).     
+  - InvokeEndpoint: The services are made available on one or more REST Endpoints on a Service Provider's server or cloud.
+  
 - Service consumer: The actor that invokes the service.
+
 - Agent: The software entity that enables Service Instance interactions with the rest of the data ecosystem.
   - Agent can be of many types, such as local or remote, and communicate via different interfaces.
   - The rest of this document assumes a remote Agent that communicates over REST.
+  
+- Starfish : A library used by consumers and providers to interact with the data ecosystem.
 
 The rest of this document is written for the perspective of a data consumer. 
 
 ### Consumer flow
 
-![Consumer flow ](https://user-images.githubusercontent.com/89076/56566746-fdb62680-65e5-11e9-9bd0-987d45d0f876.png)
+![Consumer flow ](https://user-images.githubusercontent.com/89076/61201489-3f52fb00-a717-11e9-90c9-cb51fe1afbc2.png)
 
 ## Technical requirements 
 
