@@ -141,7 +141,9 @@ but could also be fully decentralised capabilities.
 
 ## Decisions
 
-TBD: Architecture decisions under review
+This section will be extended to list formal architectural decisions related to the reference architecture.
+
+TBC: Architecture decisions under internal DEX review
 
 | Topic         | Decision                                                         |
 |---------------|---------------------------------------------------------------------|
