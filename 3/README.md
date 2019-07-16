@@ -14,6 +14,7 @@ Table of Contents
    * [Architecture](#architecture)
       * [Vision](#vision)
       * [Principles](#principles)
+      * [Architecture Layers](#architecture-layers)
       * [Decisions](#decisions)
       * [References](#references)
       * [License](#license)
@@ -49,12 +50,20 @@ this vision.
 - Available over the public internet
 - Peer-to-peer model
 
+## Architecture Layers
+
+The components of a decentralised data ecosystem architecture can be conceptualised in four layers
+
+![Architecture Layers diagram](images/layers.png "Architecture Layers")
+
+
 ## Decisions
 
+TBD: Architecture decisions under review
 
-| Topic         | Description                                                         | Rationale           |
-|---------------|---------------------------------------------------------------------|-------------------|
-|           xx | xx                                                             | xx     |
+| Topic         | Decision                                                         |
+|---------------|---------------------------------------------------------------------|
+|           xx | xx                                                             |
 
 
 
