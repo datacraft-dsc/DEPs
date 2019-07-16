@@ -19,7 +19,6 @@ Table of Contents
       * [References](#references)
       * [License](#license)
 
-
 # Architecture
 
 This DEP describes the conceptual reference architecture for Decentralised Data Ecosystems supported 
@@ -71,12 +70,21 @@ case or set of users. Examples might include:
  
 ### Orchestration Layer
 
-This layer is responsible for orchestrating the interactions between decetralised data assets and services in
+This layer is responsible for orchestrating the interactions between decentralised data assets and services in
 order to meet the requirements of the application layer. 
 
-A central concept of the orchestration layer is to provide the capabilities required to assemble a flow of 
-data assets across multiple participants, possibly including arbitrary computations, and thus forming a 
-Data Supply Line.
+> “Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. ”
+>
+> (Edsger Dijkstra)
+
+A central concept of the orchestration layer is to provide a toolkit required to assemble a flow of 
+arbitrary data assets across arbitrary  participants, possibly including arbitrary computations, and thus forming a 
+Data Supply Line. This is made possible by abstraction away from specific technologies to a common set of abstract
+concepts (Assets, Operations, Agents etc.) that are defined in the DEP standards to have common interfaces.
+
+Data Supply lines are typically orchestrated according to the custom requirements of the use case they are serving.
+For example, the diagram below shows the application of predictive modelling to anonymised patient data sets from
+multiple healthcare providers, with secure aggregation of data handled by a trusted broker. 
 
 ![Data Supply Line example diagram](images/data-supply-line.png "Data Supply Line example")
 
@@ -84,8 +92,8 @@ A significant set of open source software code providing the functionality for t
 the form of the Starfish developer toolkit (described in [DEP4](../4/README.md), which includes a set of libraries suitable for orchestrating
 data assets and services according to the DEP standards.
 
-A typical pattern for implementing the orchestration layer is therefore for the user application to depend
-upon the Starfish libraries to provide orchestration capabilities. This is the recommended approach, however 
+A typical pattern for implementing the orchestration layer is therefore for the user application to make use
+of the Starfish libraries to provide orchestration capabilities. This is the recommended approach, however 
 implementors may choose a different model (e.g. adopting an enterprise middleware solution to perform this 
 orchestration function).
 
@@ -95,7 +103,7 @@ This layer is responsible for providing access to data assets and services in th
 of a service provider. 
 
 In order to enable ecosystem interoperbility, the Integration layer must expose these assets and services to 
-the ecosystem according to a set of DEP standard APIs. Key examples of such APIs include:
+the ecosystem according to a set of abstract DEP standard APIs. Key examples of such APIs include:
  - Ability to remotely invoke compute operations (see [DEP6](../6/README.md))
  - Access to raw asset data (see [DEP7](../7/README.md))
  - Access to asset metadata and provenance (see [DEP15](../15/README.md))
@@ -115,19 +123,20 @@ This layer provides the underlying data assets and services.
 
 Because a layer of abstraction is provided via the integration layer, there is no restriction on the type of
 underlying technology used. This is a significant advantage of this layered design, because it allows
-any existing storage / compute infratructure to be plugged in to the global decentralised data ecosystem
-without the need for expensive replacements or upgrades (typically, a lightweight adapter as the integration 
-layer is all that is required).
+any existing storage / compute infrastructure to be plugged in to the global decentralised data ecosystem
+without the need for expensive replacements or upgrades (typically, a lightweight adapter to play the role
+of the integration layer is all that is required).
 
 Examples of capabilities that may be valuable to integrate into the data ecosystem include:
  - Big Data storage and compute technologies (e.g. Spark, Hadoop )
+ - Traditional storage (e.g. file systems, SQL databases)
  - Secure Compute Hardware (e.g. Intel SGX)
- - Decentralised storage networks (e.g. IPFS, Filecoin)
+ - Proprietary machine learning algorithms
+ - Data cleaning / ETL processes
+ - Decentralised networks (e.g. IPFS, Filecoin)
 
 Note that these capabilities may be under the control of a single service provider (who may also be the data owner)
 but could also be fully decentralised capabilities.
-
-
 
 
 ## Decisions
@@ -138,13 +147,6 @@ TBD: Architecture decisions under review
 |---------------|---------------------------------------------------------------------|
 |           xx | xx                                                             |
 
-
-
-## Motivation
-
-> “Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. ”
->
-> (Edsger Dijkstra)
 
 
 
