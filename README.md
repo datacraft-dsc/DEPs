@@ -1,4 +1,3 @@
-[![banner](doc/img/repo-banner@2x.png)](https://oceanprotocol.com)
 
 <h1 align="center">Data Ecosystem Proposals (DEPs)</h1>
 
