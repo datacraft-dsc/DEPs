@@ -11,8 +11,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Overview](#overview)
-      * [What is provenance?](#what-is-provenance?)
-         * [W3C Provenance overview](#w3c-provenance-overview)
+       * [W3C Provenance](#w3c-provenance)
          * [Entities](#Entities)
          * [Agents](#Agents)
          * [Activities](#Activities)
@@ -26,7 +25,7 @@ Table of Contents
    * [FAQ](#faq)
    * [License](#license)
       
-## Overview 
+# Overview 
 
 W3C defines provenance as:
 
@@ -53,9 +52,9 @@ A database of provenance metadata can help answer questions such as:
 * What were the inputs to the process that generated this data asset.
 * Which versions of a data asset were used to train a specific model version
 
-### W3C Provenance overview 
+## W3C Provenance
 
-Provenance can be modeled as a graph consisting nodes and connections between the nodes. The nodes in the graph are:
+Provenance (as defined by the W3C Provenance standard) can be modeled as a graph consisting nodes and connections between the nodes. The nodes in the graph are:
 
 ### Entities 
 
@@ -137,21 +136,21 @@ Use cases:
 
 # Definitions 
 
+This section is normative
 Provenance information is serialized in PROV-JSON, which is a JSON representation of the PROV data model. 
-
 Provenance metadata must be compatible with W3C Prov. However, it may have additional constraints outlined below.
 
 ## Identifiers
 
 #### Assets
 
-Prov metadata identifies assets with the asset DID.
+Prov metadata must identify assets by the asset DID.
 
 #### Agents 
 
-Prov metadata identifies agents based on category:
+Prov metadata must identify agents based on category:
 - Service providers such as Storage service provider, with the DID
-- Consumers could be identified by specifying
+- Consumers must be identified by specifying
   - The account associated with the Agent.
   - If the user has a DID, s/he is encouraged to use the DID as the identifier. 
 
@@ -166,7 +165,7 @@ Activities can be categorized into two types:
 
 Agents with underlying implementations (e.g. an OceanProtocol Agents) must use *prov:type* for entities, activities and agents. The Agent must use a namespace prefix that corresponds to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). For example, Ocean Protocol uses the `opf` and `prov` namespace prefixes. The standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
 
-This DEP recommends the use of the following values for *prov:type* depending on the type of entity. The rest of this document assumes that `ns` refers to a namespaces prefix defined by the agent. For example, OceanProtocol would use `opf` as the namespace prefix.
+This DEP recommends the use of the following values for *prov:type* depending on the type of entity. The rest of this document assumes that `ns` refers to a namespaces prefix defined by the agent. 
 
 * Entities:
   - `ns:asset` : A data asset .
@@ -210,7 +209,7 @@ Each property is itself a JSON Object.
 This DEP recommends that the provenance object must contain the following properties:
 
 - **Entity** Data asset being published
-- **Activity** Activity could be one of publish, import, or operation 
+- **Activity** Activity must be one of publish, import, or operation 
 - **Agent** Agent (the ID of the person, organization or software) that published the data asset
 
 Additionally, the DEP recommends that the following **relations** should be declared:
@@ -268,7 +267,7 @@ Each activity addresses a different use case, and therefore impacts the provenan
   
 - Invoking an operation
    - The `ns:this` property must be present in the *entity* JSON object.
-   - A list of entities that were consumed by this operation as inputs.
+   - A list of entities that were consumed by this operation must be listed in the inputs.
   
   
 #### Properties of activity
@@ -397,14 +396,14 @@ It must include:
 
 When a user imports a data asset, the suggested provenance is similar to the publishing use case, with the exception that:
 
-- The _type_ of the activity should be `ns:import`.
+- The _type_ of the activity must be `ns:import`.
 
 ### Usecase 3: A service generating a new asset from existing assets
 
-Ocean Invoke operations such as data cleaning, model training and others, generate new data assets. This process could have the following characteristics
+Invoke operations such as data cleaning, model training and others, generate new data assets. This process could have the following characteristics
 
-- It could use one or more data assets or algorithms as input  (e.g a trained model would need an algorithm, and a training set as inputs)
-- It could generate one of more data assets or algorithms as output (e.g. a trained model, and predictions from the model, could be the output of the activity)
+- It may use one or more data assets or algorithms as input  (e.g a trained model would need an algorithm, and a training set as inputs)
+- It may generate one of more data assets or algorithms as output (e.g. a trained model, and predictions from the model, could be the output of the activity)
 
 
 The provenance metadata must include:
