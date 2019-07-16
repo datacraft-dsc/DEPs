@@ -56,6 +56,79 @@ The components of a decentralised data ecosystem architecture can be conceptuali
 
 ![Architecture Layers diagram](images/layers.png "Architecture Layers")
 
+### Application Layer
+
+This layer is responsible for interaction with the end user and delivering value-creating functionality
+to the ecosystem.
+
+In general, applications in this layer will be custom applications or products designed to support a particular use
+case or set of users. Examples might include:
+
+ - A user-friendly data marketplace application allowing the buying and selling of data assets
+ - A consumer website making use of data assets and services to improve customer experience
+ - A data science project performing machine learning on customer data sets
+ - An enterprise system making use of data assets for real-time decision making
+ 
+### Orchestration Layer
+
+This layer is responsible for orchestrating the interactions between decetralised data assets and services in
+order to meet the requirements of the application layer. 
+
+A central concept of the orchestration layer is to provide the capabilities required to assemble a flow of 
+data assets across multiple participants, possibly including arbitrary computations, and thus forming a 
+Data Supply Line.
+
+![Data Supply Line example diagram](images/data-supply-line.png "Data Supply Line example")
+
+A significant set of open source software code providing the functionality for this layer is provided in
+the form of the Starfish developer toolkit (described in [DEP4](../4/README.md), which includes a set of libraries suitable for orchestrating
+data assets and services according to the DEP standards.
+
+A typical pattern for implementing the orchestration layer is therefore for the user application to depend
+upon the Starfish libraries to provide orchestration capabilities. This is the recommended approach, however 
+implementors may choose a different model (e.g. adopting an enterprise middleware solution to perform this 
+orchestration function).
+
+### Integration Layer
+
+This layer is responsible for providing access to data assets and services in the ecosystem under the control
+of a service provider. 
+
+In order to enable ecosystem interoperbility, the Integration layer must expose these assets and services to 
+the ecosystem according to a set of DEP standard APIs. Key examples of such APIs include:
+ - Ability to remotely invoke compute operations (see [DEP6](../6/README.md))
+ - Access to raw asset data (see [DEP7](../7/README.md))
+ - Access to asset metadata and provenance (see [DEP15](../15/README.md))
+
+Typically the layer is implemented as a set of one or more Agents which are hosted in a secure environment 
+controlled by the service provider. These agents would serve their capabilites via APIs either to the whole
+ecosystem via the public internet or to a closed set of participants via a VPN / private network.
+
+The integration layer is responsible for enforcing any trust rules and access controls required by the 
+service provider, and may require access to the underlying storage and compute infrastructure that is being 
+managed by a service provider. For this reasons, it is extremely important that appropriate measures
+are taken to ensure the security of this layer, particularly if sensitive assets are at risk.
+
+### Capability Layer
+
+This layer provides the underlying data assets and services.
+
+Because a layer of abstraction is provided via the integration layer, there is no restriction on the type of
+underlying technology used. This is a significant advantage of this layered design, because it allows
+any existing storage / compute infratructure to be plugged in to the global decentralised data ecosystem
+without the need for expensive replacements or upgrades (typically, a lightweight adapter as the integration 
+layer is all that is required).
+
+Examples of capabilities that may be valuable to integrate into the data ecosystem include:
+ - Big Data storage and compute technologies (e.g. Spark, Hadoop )
+ - Secure Compute Hardware (e.g. Intel SGX)
+ - Decentralised storage networks (e.g. IPFS, Filecoin)
+
+Note that these capabilities may be under the control of a single service provider (who may also be the data owner)
+but could also be fully decentralised capabilities.
+
+
+
 
 ## Decisions
 
