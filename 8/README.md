@@ -36,22 +36,11 @@ As such, each Ocean Asset (dataset, algorithm, etc.) has Asset Metadata associat
 Assets without proper descriptive metadata can have poor visibility and discoverability, so it is generally in the publisher's interest to ensure good metadata is made available.
 
 
-
-## Change Process
-
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-
-## Language
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
-
-
 ## Motivation
 
-The main motivations of this OEP are:
+The main motivations of this DEP are:
 
-* Establish a standard Asset Metadata format to allow interoperability between participants in the Ocean ecosystem
+* Establish a standard Asset Metadata format to allow interoperability between participants in the data ecosystem
 * Specify the common attributes that HAVE to be added in Asset Metadata
 * Identify the recommended additional attributes that SHOULD be included in Asset Metadata to facilitate the ASSETS search
 * Provide an example of a possible structured Asset Metadata and additional links for reference
