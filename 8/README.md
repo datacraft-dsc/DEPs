@@ -29,9 +29,10 @@ Table of Contents
 
 # Asset Metadata 
 
-Ocean has a core mission of making data assets visible and discoverable, with a decentralised protocol for data exchange.
+Developing decentralised data ecosystems that are interoperable requires a standard for describing assets with metadata
+in a format that is machine readable and provides necessary information of the operation of relevant protocols.
 
-As such, each Ocean Asset (dataset, algorithm, etc.) has Asset Metadata associated with it. Asset Metadata is created by the asset publisher, and hashed to ensure integrity and ensure that the asset can be subsequently referenced as part of the provenance of other assets.
+As such, each Asset in the data ecosystem (dataset, operation, etc.) has Asset Metadata associated with it. Asset Metadata is created by the asset publisher, and hashed to ensure integrity and ensure that the asset can be subsequently referenced as an immutable part of the provenance of other assets.
 
 Assets without proper descriptive metadata can have poor visibility and discoverability, so it is generally in the publisher's interest to ensure good metadata is made available.
 
@@ -54,11 +55,11 @@ Base attributes are always part of the Asset Metadata schema. Those attributes c
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
 **name**        | Text          | Yes           | Descriptive name of the Asset
-**type**        | Text          | Yes           | Type of the Asset. Helps to filter by kind of asset, initially ("data", "invoke", "bundle", "algorithm", "container", "workflow", "other")
-**description** | Text          | No            | Details of what the resource is. For a data set explain what the data represents and what it can be used for
-**dateCreated** | DateTime      | Yes           | The date on which  was created or was added
-**author**      | Text          | Yes           | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
-**license**     | Text          | Yes           | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
+**type**        | Text          | Yes           | Type of the Asset. Helps to filter by kind of asset, (initially  "dataset", "operation", "bundle")
+**description** | Text          | No            | Details of what the resource is. For a data set this might explain what the data represents and what it can be used for
+**dateCreated** | DateTime      | No            | The timestamp at which the asset was created
+**author**      | Text          | No            | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
+**license**     | Text          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
 **copyrightHolder**| Text       | No            | The party holding the legal copyright. Empty by default
 **links**       | Array of Link | No            | Mapping of links for data samples, or links to find out more information. 
 **inLanguage**  | Text          | No            | The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
@@ -119,9 +120,9 @@ Attribute       |   Type        |   Required    | Description
 **contentUrls** | Text          | No           | List of content urls resolving the ASSET files
 **contentHash** | Text          | No           | keccak256 hash of asset data. Required if publisher wishes to offer integrity checks
 
-## Invokable service attributes
+## Invokable operation attributes
 
-In addition to the base attributes, the following Attributes are defined for invokable services only (with type: "invoke")
+In addition to the base attributes, the following Attributes are defined for invokable operations only (with type: "operation")
 
 Invokable services are defined in greater detail in OEP6.
 
