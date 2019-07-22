@@ -143,7 +143,8 @@ but could also be fully decentralised capabilities.
 
 This section will be extended to list formal architectural decisions related to the reference architecture.
 
-TBC: Architecture decisions under internal DEX review
+Note: Architecture decisions are currently under internal DEX review. Suggestions for new decisions
+and refinements to existing decisions from contributors are welcome.
 
 <table style="vertical-align:top">
   <tbody>
@@ -169,6 +170,38 @@ TBC: Architecture decisions under internal DEX review
           <li>Enable efficient integration of existing data ecosystems and technology</li>
           <li>Provide a flexible evolutionary path, allowing for further decentralisation of capabilities</li>
 		</ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Ocean Integration</td>
+      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
+      <td>
+        <ul>
+		  <li>Enable economic value exchange via the Ocean Token and smart contracts</li>
+          <li>Support immutable on-chain records of provenance</li>
+          <li>Provide an instance of a Universal Resolver to resolve DDOs according to the W3C DID specification</li>
+          <li>Provide a shared, public utility network as a service to the ecosystem</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Implementation independence</td>
+      <td>All components specified via DEPs may be freely implemented using different technology. All such implementations correctly implementing these open standards should be able to interoperate.</td>
+      <td>
+        <ul>
+		  <li>Avoid lock in to specific technology choices or vendors</li>
+		  <li>Allow evolution of ecosystem to tap into new technology innovations</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Open Source Reference Implementations</td>
+      <td>All official reference implementations referred to in DEPs must be available under an Open Source License according to the [Open Source Definition](https://opensource.org/osd). Non open-source implementations are welcome in the ecosystem, but will not be regarded as reference implementations.</td>
+      <td>
+        <ul>
+		  <li>Encourage benefits of community ownership of open source code</li>
+		  <li>Open Source Definition is industry accepted standard</li>
+		</ul>      
       </td>
     </tr>
     <tr>
