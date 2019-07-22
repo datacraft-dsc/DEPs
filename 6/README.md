@@ -14,8 +14,6 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Introduction](#introduction)
-      * [Overview](#overview)
-      * [Motivation](#motivation)
       * [Entities](#entities)
       * [Technical Requirements](#technical-requirements)
       * [Exclusions](#exclusions)
@@ -32,29 +30,9 @@ Table of Contents
 
 This section contains a non-normative introduction to the Invoke API.
 
-The Invoke API is a specification to invoke compute operations. These compute operations could:
+In order to build a data pipeline, actors in the data ecosystem need the ability to transform data assets. 
 
-* Accept Input parameters (zero or more; which will typically be data assets to be used or algorithms to be run)
-* Produce Outputs (zero or more; which will typically be references to generated data assets)
-
-## Overview
-
-Data publishers make data assets available for consumption. However, data assets are only the first part of a data pipeline. The finished products are usually models, predictions or dashboards and these are created by algorithms that transform the raw data, clean it, train models and generate predictions. 
-
-This specification enables data ecosystem actors to build a data pipeline capable of transforming data assets.
-
-## Motivation
-
-The data ecosystem provides decentralised marketplaces for relevant AI-related data services.
-There is a need for a standardised **interface** for the invocation of compute operations so that different implementations can be provided and invoked by users in the data ecosystem.
-
-Actors in the data ecosystem could be categorized as:
-
-- Data consumers/data scientists who transform data assets by using appropriate algorithms.
-- Data publishers who make data assets available for consumption. These data assets may be available in raw form, or may be obfuscated using homomorphic encryption or other techniques to prevent data escapes.  
-- Service providers providing data transformation algorithms and/or services. (e.g. a data cleaning service that removes outliers from data).
-
-Example of operations that could be offered by data ecosystem actors:
+Example of operations that could be offered:
 
 * A data cleaning operation that removes noise from data
 * A model training operation that returns a trained model given training data
@@ -69,18 +47,21 @@ It may be observed that these operations:
 
 The Invoke API 
 
-- Provides tools to transform data assets.
-- Facilitates a workflow pipeline of data asset transformations.
+- Provides a standardized interface to transform data assets.
+- Facilitates creation of data pipeline(s) of data asset transformations.
 - Aid in establishing the provenance of data assets (by using DEP-12).
+
+![User flow](https:)//user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png
 
 ## Entities
 
+- Asset: An Operation is registered as an Asset with a specific `type` (Operation) 
 - Account: An actor in the data system is identified using an Account.
-- Asset: An Invoke service is registered as an Asset with a specific `type` (Operation) 
-- Service provider: The actor that runs the algorithm on their server(s).     
-  - InvokeEndpoint: The services are made available on one or more REST Endpoints on a Service Provider's server or cloud.
+- Service provider: The actor that hosts the algorithm implemention on their server(s).
+  - InvokeEndpoint: The operation is made available on one or more REST Endpoints on a Service Provider's server or cloud.
   
-- Storage Provider: The entity providing a storage service compliant with [DEP-7](https://github.com/DEX-Company/DEPs/tree/master/7)
+- Storage Provider: The entity providing a storage service compliant with [DEP-7](https://github.com/DEX-Company/DEPs/tree/master/7). Note that the Invoke service provider may also run a Storage service, or use an external Storage service.
+
 - Service consumer: The actor that invokes the service.
 
 - Agent: The software entity that enables interactions with actors of the data ecosystem.
@@ -91,20 +72,22 @@ The rest of this document is written for the perspective of a data consumer.
 
 ### Consumer flow
 
+The following diagram is an example of consumer using Starfish to invoke an operation. Note that in this case, the Invoke Service provider uses an external Storage Provider. 
+
 ![Consumer flow ](https://user-images.githubusercontent.com/89076/61201489-3f52fb00-a717-11e9-90c9-cb51fe1afbc2.png)
 
 ## Technical requirements 
 
 The Invoke service
+
 * May be offered for a price
 * Must be identified with its DID
 * Must register its metadata with an agent
 * May accept asset(s) as input(s) to the job  (along with access tokens to consume the asset)
-* May register assets generated as a result of the job. 
 * May accept a JSON payload(s) as input(s)
-* May return the result of the execution as the payload, or register the result of the execution as an asset.
-* The unit of measurement must be 
-  - a one-shot execution of a job (e.g. a data cleaning job)
+* May return the result of the execution as the payload or as an asset
+  - If it returns **asset**, it must register the generated asset(s) 
+* Recommends that the operation must terminate within a specified time. The Invoke service is not designed to support subscription services (e.g. a service that is active for 30 days).
   
 ## Exclusions
 
@@ -117,9 +100,44 @@ The Invoke service
 
 This section is normative.
 
-The **Operation Metadata** information should be managed using an API on the Invokable Rest Agent. 
+The **Operation Metadata** information should be managed using [Metadata Agent API](https://github.com/DEX-Company/DEPs/tree/master/15). 
 The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST. 
 
+Here's an example of the Operation metadata for an operation that removes empty rows from a data asset.
+```
+{
+  "license": "CC-BY",
+  "dateCreated": "2019-05-07T08:17:31.521445Z",
+  "author": "Filtering Inc",
+  "name": "Filter rows in a CSV dataset",
+  "inLanguage": "en",
+  "description": "filter rows in a csv dataset, if more than 10 columns are empty",
+  "type": "operation",
+  "contentType": "application\/octet-stream",
+  "operation": {
+                 "modes": ["sync",
+                           "async"],
+                 "params": {
+                             "dataset": {
+                                          "type": "asset",
+                                          "position": 0,
+                                          "required": true
+                                        },
+                             "max-empty-columns": {
+                                                    "type": "json",
+                                                    "position": 1,
+                                                    "required": false
+                                                  }
+                           },
+                 "results": {
+                              "filtered-dataset": {
+                                                    "type": "asset"
+                                                  }
+                            }
+               },
+  "contentHash": "4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c48",
+  "tags": ["row filtering"]
+```
 
 ## Methods
 
@@ -142,15 +160,16 @@ This is the primary interface by which a consumer can invoke an operation.
 
 The endpoint must accept 
 
-- POST requests to the `/invokeasync/operation-did` (e.g. https://service-endpoint/invokeasync/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
+- POST requests to the `/invokeasync/operation-id` (e.g. https://service-endpoint/invokeasync/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
 
-- The path argument operation-id must be the DID of the operation asset.
+- The path argument operation-id must be the ID of the operation asset.
 - The keys in the (payload) map must be parameter names as specified in the operation metadata.
 - All required parameters must be included.
 
 - The values must be one of 
-  - A map (if the type is **asset**)
-  - A valid JSON data type (if the type is a **json**)
+  - A map (if the type is **asset**).
+    - The map must contain the DID (the Decentralized ID) against the key **did** 
+  - A valid JSON value (if the type is **json**). Here's the list of [valid JSON data types](https://json-schema.org/understanding-json-schema/reference/type.html)
 
 #### Design considerations
 
@@ -161,28 +180,25 @@ The values are categorized into two types (`asset` and `json`) to support librar
 - Validating if payloads adhere to the operation schema 
 - Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
 
+Here's an example of an request that defines a single input asset of type asset. The operation accepts an asset as input and returns the hash of the asset.
 
-Here's an example of an request that defines a single input asset of type asset.
-
-- The key `to_hash` is the parameter name
+- The key `to_hash` is the parameter name required by the operation (as declared in the operation's metadata)
 - Since the type is `asset` (as declared in the schema), the value must be a map with the `did` (and other optional keys)
 
 ```json 
 {
     "to_hash": {
-             "did" : "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
-             "access_token" : "cb0d65a716f613309693" 
+             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
     }
 }
 ```
 
-Here's an example of a parameterized request which specifies the algorithm to be used
+Here's an example of a request to the same operation which includes an optional parameter, the algorithm to be used for computing the hash.
 
 ```json 
 {
     "to_sign": {
-             "did" : "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
-             "access_token" : "cb0d65a716f613309693" 
+             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
     },
     "signing_algorithm": {
              "alg" : "ES256"
@@ -193,6 +209,8 @@ Here's an example of a parameterized request which specifies the algorithm to be
 #### Response
 
 The response to a valid request must be a JSON encoded map with the **jobid** and the corresponding value. Invalid requests must return a response code as described below.
+
+The choice of schema for the jobid's value is left to the implementor of the operation.
 
 ```json 
 {
@@ -207,8 +225,7 @@ The response to a valid request must be a JSON encoded map with the **jobid** an
 |           400 | bad request-not according to presribed format or invalid configuration options | map with error code and error description |
 |           401 | not authenticated (no authentication tokens provided)                              | map with error code and error description |
 |           403| not authorized (no authorization tokens provided)                              | map with error code and error description |
-|           500 | error                                                                          | -                                         |
-|           503 | service unavailable                                                            | -                                         |
+|           5XX | error                                                                          | -                                         |
 |               |                                                                                |                                           |
 
 ### Get job result 
@@ -229,38 +246,34 @@ The response to a valid request must contain a JSON payload.
  Each value in the map must be one of (as defined in the schema)
 
 - A map (if type is **asset**)
-- A JSON object (if type is **json**)
+- A JSON value (if type is **json**)
 
 
 | Response code | Description                                       | Payload           |
 |---------------|---------------------------------------------------|-------------------|
 |           200 | job result                                        | Job result             |
-| 404 | asset id not found | none|
+| 404 | job id not found | none|
 |           401 | not authenticated  | error description |
 |           403 | not authorised  | error description |
 
 The Job result payload must have **errorcode** and **description** fields in case of error in executing the operation.
+The following table lists error codes that are specific to operations. This list is indicative and may be expanded in future.
 
 | Error code | Description                         |
 |------------|-------------------------------------|
-|       8001 | unknown job id                      |
 |       8003 | service not paid for by consumer    |
 |       8004 | asset id XX contents not accessible |
 |            |                                     |
 
-Example of an operation that succeeded and returns one asset 
+Example of an operation which hashes the value of an asset. Its status is succeeded and returns the payload.
 
 
 ```json
 { "status":"succeeded",
-  "result": {"hashed_value": {
-               "did" : "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
-               "access_token" : "630363ce4a6a9d"}
-             }
-}
-```
+  "result": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
+``}`
 
-Example of an operation that is in progress  
+Example of an operation that is in progress
 
 ```json
 { "status":"running"}
@@ -271,11 +284,11 @@ Example of an operation that failed
 ```json
 { "status":"failed",
   "errorcode":8004,
-  "description":"Unable to access asset id 4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
+  "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
 }
 ```
 
-Since the `json` type for params and results is quite loosely defined, implementations are free to define schemas for inputs (params) and outputs (results), either as part of the Operation metadata or elsewhere. It is recommended that implementations return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
+Since the `json` type for params and results allows arbitrary JSON results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
 
 ### Invoke operation synchronously
 
@@ -291,17 +304,25 @@ The endpoint must accept
 
 #### Response
 
-The response format is the same as returned by the get job result operation.
+The response format is the same as returned by the get job result operation. 
 
 ## Authentication and Authorization
 
-Implementations may use various ways to authenticate and authorize that are transparent to the API.
+- Implementations may use various ways to authenticate and authorize that are transparent to the API. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20) for further details.
+- Implementations may use specific access rules for each API (e.g. getting job status) 
 
 ## Open questions
 
-- Authentication and Authorization headers are not yet defined in this DEP. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20).
-- Assets generated by the invoke service may need to be purchased by the consumer in order to view them. It is up to the service provider to decide if the created asset needs to be purchased, if required.
+- Assets generated by the invoke service may need to be purchased by the consumer in order to view them. 
 
+## Reference implementations
+
+- [Koi-clj](https://github.com/DEX-Company/koi-clj) is a reference implementation of an invokable service. 
+
+## Related Standards
+
+- [Provenance DEP](https://github.com/DEX-Company/DEPs/blob/master/12)
+- [Metadata DEP](https://github.com/DEX-Company/DEPs/blob/master/8)
 
 ## License
 
