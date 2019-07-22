@@ -145,7 +145,7 @@ This section will be extended to list formal architectural decisions related to 
 
 TBC: Architecture decisions under internal DEX review
 
-<table>
+<table style="vertical-align:top">
   <tbody>
     <tr>
       <th>Topic</th>
@@ -172,14 +172,9 @@ TBC: Architecture decisions under internal DEX review
       </td>
     </tr>
     <tr>
-      <td>col 2 is</td>
-      <td>centered</td>
-      <td>$12</td>
-    </tr>
-    <tr>
-      <td>zebra stripes</td>
-      <td>are neat</td>
-      <td>$1</td>
+      <td>TDB</td>
+      <td>Next Decision</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
