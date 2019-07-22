@@ -215,7 +215,7 @@ and refinements to existing decisions from contributors are welcome.
     <tr>
       <td>TDB</td>
       <td>Next Decision</td>
-      <td></td>
+      <td>Next Rationale</td>
     </tr>
   </tbody>
 </table>
@@ -236,23 +236,43 @@ and refinements to existing decisions from contributors are welcome.
       <th>Rationale</th>
     </tr>
     <tr>
-      <td>Ocean Integration</td>
-      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
+      <td>Asset Definition</td>
+      <td>An Asset shall be defined as an entity consisting of metadata and content, where:
+        <ul>
+          <li>Metadata is a file according to the format defined by DEP8</li>
+          <li>Content may be any data, or other resource that represents the asset</li>
+        </ul>
+      </td>
       <td>
         <ul>
-		  <li>Enable economic value exchange via the Ocean Token and smart contracts</li>
-          <li>Support immutable on-chain records of provenance</li>
-          <li>Provide an instance of a Universal Resolver to resolve DDOs according to the W3C DID specification</li>
-          <li>Provide a shared, public utility network as a service to the ecosystem</li>
+		  <li>Standardised metadata is necessary to allow interoperable services to work with arbitrary assets</li>
+		  <li>A broad definition of content is required, because we intend to allow any form of
+		  data, algorithm or other resource relevant to the data ecosystem to be represented as an asset</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Asset Identity</td>
+      <td>An asset shall be identified by the cryptographic hash of its metadata using the SHA3-256 hashing algorithm. This value represented in lowercase hex shall be knows as the Asset ID</td>
+      <td>
+        <ul>
+          <li>Enforces immutability of asset metadata</li>
+		  <li>Enables cryptographic verification of asset metadata using the Asset ID</li>
+          <li>Enables the recursive use of cryptographics hashes in asset metadata to establish a merkle tree, where appropriate</li>
+          <li>SHA3-256 is a recognised standard representing current best practice suitable for the applications envisaged in the data ecosystem</li>
 		</ul>      
       </td>
     </tr>
   </tbody>
 </table>
 
+Note: initial reference implementations used the Keccak256 hash function for asset identity, for consistency with Ethereum. A decision has been made to move to SHA3-256 as the established standard - reference implementations are currently being updated.
+
 ## References
 
 * W3C Decentralized Identifiers (DIDs) Specification - https://w3c-ccg.github.io/did-spec/
+* CSRC. (2019). "Hash Functions." Computer Security Resource Center, National Information Technology Laboratory. Updated 3 May 2019 - https://csrc.nist.gov/projects/hash-functions
+
 
 ## License
 
