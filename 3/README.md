@@ -145,11 +145,44 @@ This section will be extended to list formal architectural decisions related to 
 
 TBC: Architecture decisions under internal DEX review
 
-| Topic         | Decision                                                         |
-|---------------|---------------------------------------------------------------------|
-|           xx | xx                                                             |
-
-
+<table>
+  <tbody>
+    <tr>
+      <th>Topic</th>
+      <th>Decision</th>
+      <th>Rationale</th>
+    </tr>
+    <tr>
+      <td>Ecosystem Architecture Model</td>
+      <td>The Data Ecosystem will be regarded as consisting of four conceptual layers
+		<ul>
+		  <li>Application (dApps, CLI users, user environments etc.)</li>
+          <li>Orchestration (Client side libraries enabling DEP capabilities, e.g. Starfish)</li>
+          <li>Integration (Ecosystem agents offering standard APIs)</li>
+          <li>Capabilities (Any underlying data systems or other technology integrated into the ecosystem)</li>
+		</ul>
+      </td>
+      <td>
+        <ul>
+		  <li>Enable interfaces to be clearly defined between layers, especially between systems managed by different actors on a decentralised basis</li>
+          <li>Support common architectural patterns and est practices</li>
+          <li>Enable efficient integration of existing data ecosystems and technology</li>
+          <li>Provide a flexible evolutionary path, allowing for further decentralisation of capabilities</li>
+		</ul>
+      </td>
+    </tr>
+    <tr>
+      <td>col 2 is</td>
+      <td>centered</td>
+      <td>$12</td>
+    </tr>
+    <tr>
+      <td>zebra stripes</td>
+      <td>are neat</td>
+      <td>$1</td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## References
