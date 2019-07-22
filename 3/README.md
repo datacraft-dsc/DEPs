@@ -148,7 +148,7 @@ and refinements to existing decisions from contributors are welcome.
 
 ### General Decisions
 
-<table>
+<table style="width: 100%">
     <colgroup>
        <col span="1" style="width: 20%;">
        <col span="1" style="width: 40%;">
@@ -194,7 +194,7 @@ and refinements to existing decisions from contributors are welcome.
     </tr>
     <tr>
       <td>Implementation independence</td>
-      <td>All components specified via DEPs may be freely implemented using different technology. All such implementations correctly implementing these open standards should be able to interoperate.</td>
+      <td>All components and interfaces specified via DEPs may be freely implemented using different technology. All such implementations correctly implementing these open standards should be able to interoperate.</td>
       <td>
         <ul>
 		  <li>Avoid lock in to specific technology choices or vendors</li>
@@ -220,12 +220,39 @@ and refinements to existing decisions from contributors are welcome.
   </tbody>
 </table>
 
+### Asset Model
+
+<table>
+    <colgroup>
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 40%;">
+       <col span="1" style="width: 40%;">
+    </colgroup>
+
+  <tbody valign="top">
+    <tr>
+      <th>Topic</th>
+      <th>Decision</th>
+      <th>Rationale</th>
+    </tr>
+    <tr>
+      <td>Ocean Integration</td>
+      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
+      <td>
+        <ul>
+		  <li>Enable economic value exchange via the Ocean Token and smart contracts</li>
+          <li>Support immutable on-chain records of provenance</li>
+          <li>Provide an instance of a Universal Resolver to resolve DDOs according to the W3C DID specification</li>
+          <li>Provide a shared, public utility network as a service to the ecosystem</li>
+		</ul>      
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## References
 
-TBC:
-
-* A - https://foo.org
+* W3C Decentralized Identifiers (DIDs) Specification - https://w3c-ccg.github.io/did-spec/
 
 ## License
 
