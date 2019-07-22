@@ -21,17 +21,17 @@ Short Name        | Title                                                       
 ------------------|--------------------------------------------------------------|--------------|------------|-------
 [1/C4](1)         | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
 [2/COSS](2)       | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
-[3/ARCH](3)       | Architecture & Principles                                    | Meta         | TBC        | Mike Anderson
+[3/ARCH](3)       | Architecture & Principles                                    | Meta         | Draft      | Mike Anderson
 [4/STARFISH](4)   | Starfish abstract API                                        | Standard     | TBC        | Tom Marble
 [5/IDENTITY](5)   | Agent and asset identity                                     | Standard     | TBC        | Mike Anderson
-[6/INVOKE](6)     | Invokable Services                                           | Standard     | Raw        | Kiran Karkera
+[6/INVOKE](6)     | Invokable Services                                           | Standard     | Draft      | Kiran Karkera
 [7/STORAGE](7)    | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
-[8/META](8)       | Asset Metadata Standard                                      | Standard     | Raw        | Mike Anderson
-[12/PROV](12)     | Provenance Metadata                                          | Standard     | Raw        | Kiran Karkera
-[15/META-API](15) | Metadata API                                                 | Standard     | Raw        | Mike Anderson
-[19/ENDPOINTS](19)| DEP Standard Endpoint                                        | Standard     | Raw        | Mike Anderson
-[20/AUTHENTICATION ](20)     | Authentication standard and API                              | Standard     | Raw        | Tom Marble
-[21/AUTHORIZATION ](21)     | Authorization and API                              | Standard     | Raw        | Tom Marble
+[8/META](8)       | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
+[12/PROV](12)     | Provenance Metadata                                          | Standard     | Draft      | Kiran Karkera
+[15/META-API](15) | Metadata API                                                 | Standard     | Draft      | Mike Anderson
+[19/ENDPOINTS](19)| DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
+[20/AUTHENTICATION ](20)     | Authentication standard and API                   | Standard     | Raw        | Tom Marble
+[21/AUTHORISATION ](21)     | Authorisation stndard and API                              | Standard     | Raw        | Tom Marble
 
 
 # Contributing
