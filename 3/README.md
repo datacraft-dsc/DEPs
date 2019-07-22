@@ -146,14 +146,16 @@ This section will be extended to list formal architectural decisions related to 
 Note: Architecture decisions are currently under internal DEX review. Suggestions for new decisions
 and refinements to existing decisions from contributors are welcome.
 
-<table style="vertical-align:top">
+### General Decisions
+
+<table>
   <tbody>
     <tr>
       <th>Topic</th>
       <th>Decision</th>
       <th>Rationale</th>
     </tr>
-    <tr>
+    <tr valign="top">
       <td>Ecosystem Architecture Model</td>
       <td>The Data Ecosystem will be regarded as consisting of four conceptual layers
 		<ul>
