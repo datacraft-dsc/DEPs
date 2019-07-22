@@ -149,7 +149,7 @@ and refinements to existing decisions from contributors are welcome.
 ### General Decisions
 
 <table>
-  <tbody>
+  <tbody valign="top">
     <tr>
       <th>Topic</th>
       <th>Decision</th>
@@ -174,7 +174,7 @@ and refinements to existing decisions from contributors are welcome.
 		</ul>
       </td>
     </tr>
-    <tr>
+    <tr style="vertical-align:top">
       <td>Ocean Integration</td>
       <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
       <td>
