@@ -203,6 +203,7 @@ The response to a valid request must be a JSON encoded map with the **jobid** an
 | Response code | Description                                                                    | JSON payload                              |
 |---------------|--------------------------------------------------------------------------------|-------------------------------------------|
 |           201 | job creation success                                                           | map with jobid key                        |
+| 404 | asset id not found | none|
 |           400 | bad request-not according to presribed format or invalid configuration options | map with error code and error description |
 |           401 | not authenticated (no authentication tokens provided)                              | map with error code and error description |
 |           403| not authorized (no authorization tokens provided)                              | map with error code and error description |
@@ -234,6 +235,7 @@ The response to a valid request must contain a JSON payload.
 | Response code | Description                                       | Payload           |
 |---------------|---------------------------------------------------|-------------------|
 |           200 | job result                                        | Job result             |
+| 404 | asset id not found | none|
 |           401 | not authenticated  | error description |
 |           403 | not authorised  | error description |
 
