@@ -1,6 +1,6 @@
 ```
-shortname: 6/INVOKEAPI
-name: API to register & invoke compute services
+shortname: 6/INVOKE
+name: API to invoke compute services
 type: Standard
 status: Raw
 editor: Kiran K <kiran.karkera@dex.sg>
@@ -14,11 +14,11 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Introduction](#introduction)
-      * [Exclusions](#exclusions)
       * [Overview](#overview)
       * [Motivation](#motivation)
-      * [Roles](#roles)
+      * [Entities](#entities)
       * [Technical Requirements](#technical-requirements)
+      * [Exclusions](#exclusions)
    * [API Definition](#api-definition)
       * [Methods](#methods)
       * [Authentication and Authorization](#authentication-and-authorization)
@@ -32,33 +32,27 @@ Table of Contents
 
 This section contains a non-normative introduction to the Invoke API.
 
-The Invoke API (**INVOKE**) is a specification to register and invoke compute operations. These compute operations could:
+The Invoke API is a specification to invoke compute operations. These compute operations could:
 
 * Accept Input parameters (zero or more; which will typically be data assets to be used or algorithms to be run)
 * Produce Outputs (zero or more; which will typically be references to generated data assets)
-* Support the provision of proofs by service providers upon completion (e.g after which tokens in escrow may be released) 
-
-## Exclusions
-
-* This DEP does not prescribe the exact type of compute operations offered. It is open to service provider implementations to define them, providing that they conform with this API specification
-* This DEP does not cover discovery.
-* This DEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
-* This DEP does not describe details of installation of the operations and/or its dependencies. 
 
 ## Overview
 
 Data publishers make data assets available for consumption. However, data assets are only the first part of a data pipeline. The finished products are usually models, predictions or dashboards and these are created by algorithms that transform the raw data, clean it, train models and generate predictions. 
 
-The Invoke API specification provides a path that satisfied three sets of actors
-
-- for data consumers to apply algorithms to data assets
-- for data publishers to make data assets available while choosing appropriate trust levels to prevent data escapes
-- for service providers to make useful algorithms available
+This specification enables data ecosystem actors to build a data pipeline capable of transforming data assets.
 
 ## Motivation
 
 The data ecosystem provides decentralised marketplaces for relevant AI-related data services.
 There is a need for a standardised **interface** for the invocation of compute operations so that different implementations can be provided and invoked by users in the data ecosystem.
+
+Actors in the data ecosystem could be categorized as:
+
+- Data consumers/data scientists who transform data assets by using appropriate algorithms.
+- Data publishers who make data assets available for consumption. These data assets may be available in raw form, or may be obfuscated using homomorphic encryption or other techniques to prevent data escapes.  
+- Service providers providing data transformation algorithms and/or services. (e.g. a data cleaning service that removes outliers from data).
 
 Example of operations that could be offered by data ecosystem actors:
 
@@ -77,22 +71,19 @@ The Invoke API
 
 - Provides tools to transform data assets.
 - Facilitates a workflow pipeline of data asset transformations.
-- Enables provenance tracking by provenance aware algorithms.
+- Aid in establishing the provenance of data assets (by using DEP-12).
 
 ## Entities
 
-- Asset/algorithm owner: The owner of the algorithm, 
-  - May be registered as a data asset
-  - May be available as a deployable package (e.g. a docker image or a jar on a maven repo)
+- Account: An actor in the data system is identified using an Account.
+- Asset: An Invoke service is registered as an Asset with a specific `type` (Operation) 
 - Service provider: The actor that runs the algorithm on their server(s).     
   - InvokeEndpoint: The services are made available on one or more REST Endpoints on a Service Provider's server or cloud.
   
-- Storage Provider: The entity providing a storage service compliant with [DEP-8](https://github.com/DEX-Company/DEPs/tree/master/7)
+- Storage Provider: The entity providing a storage service compliant with [DEP-7](https://github.com/DEX-Company/DEPs/tree/master/7)
 - Service consumer: The actor that invokes the service.
 
-- Agent: The software entity that enables Service Instance interactions with the rest of the data ecosystem.
-  - Agent can be of many types, such as local or remote, and communicate via different interfaces.
-  - The rest of this document assumes a remote Agent that communicates over REST.
+- Agent: The software entity that enables interactions with actors of the data ecosystem.
   
 - Starfish : A library used by consumers and providers to interact with the data ecosystem.
 
@@ -108,13 +99,20 @@ The Invoke service
 * May be offered for a price
 * Must be identified with its DID
 * Must register its metadata with an agent
-* May accept a list of assets as inputs to the job  (along with access tokens to consume the asset)
+* May accept asset(s) as input(s) to the job  (along with access tokens to consume the asset)
 * May register assets generated as a result of the job. 
-* May accept a data payload as an input
+* May accept a JSON payload(s) as input(s)
 * May return the result of the execution as the payload, or register the result of the execution as an asset.
 * The unit of measurement must be 
   - a one-shot execution of a job (e.g. a data cleaning job)
   
+## Exclusions
+
+* This DEP does not prescribe the exact type of compute operations offered. It is open to service provider implementations to define them, providing that they conform with this API specification
+* This DEP does not cover discovery.
+* This DEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
+* This DEP does not describe details of installation of the operations and/or its dependencies. 
+
 # API Definition 
 
 This section is normative.
@@ -205,6 +203,7 @@ The response to a valid request must be a JSON encoded map with the **jobid** an
 | Response code | Description                                                                    | JSON payload                              |
 |---------------|--------------------------------------------------------------------------------|-------------------------------------------|
 |           201 | job creation success                                                           | map with jobid key                        |
+| 404 | asset id not found | none|
 |           400 | bad request-not according to presribed format or invalid configuration options | map with error code and error description |
 |           401 | not authenticated (no authentication tokens provided)                              | map with error code and error description |
 |           403| not authorized (no authorization tokens provided)                              | map with error code and error description |
@@ -236,6 +235,7 @@ The response to a valid request must contain a JSON payload.
 | Response code | Description                                       | Payload           |
 |---------------|---------------------------------------------------|-------------------|
 |           200 | job result                                        | Job result             |
+| 404 | asset id not found | none|
 |           401 | not authenticated  | error description |
 |           403 | not authorised  | error description |
 
