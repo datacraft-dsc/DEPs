@@ -240,7 +240,7 @@ Example:
 
 ## Example
 
-Here is a representation of an example Asset using the schema described:
+Here is a an example Asset using the schema described:
 
 ```json
 {
@@ -295,7 +295,7 @@ Here is a representation of an example Asset using the schema described:
 [Schema.org](https://schema.org/) is a collaborative, community activity with a mission to create, maintain, and promote schemas for structured data on the Internet,
 Data types use the [Schema.org primitive data types](https://schema.org/DataType).
 
-The Asset ontology for datasets is based in the public schema.org [DataSet schema](https://schema.org/Dataset).
+The Asset Metadata is based in part on the Dataset scheme from schema.org [DataSet schema](https://schema.org/Dataset).
 
 Schemas:
 
