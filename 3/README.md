@@ -263,6 +263,17 @@ and refinements to existing decisions from contributors are welcome.
 		</ul>      
       </td>
     </tr>
+    <tr>
+      <td>Data Assets</td>
+      <td>A Data Asset shall be a subtype of Asset defined by having immutable content analogous to the content of a file. Any content type may be supported (e.g. MIME types as specified in RFC2045 etc.) </td>
+      <td>
+        <ul>
+          <li>We need a standard, flexible way to provide a general purpose data asset than can be shared in the ecosystem in an interoperable manner</li>
+          <li>Enable adoption of existing, established Internet standards (MIME) for content types</li>
+          <li>Gain desirable property of data immutability for reasons of trusted provenance, caching, integrity verfification, performance etc.</li>
+		</ul>      
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -272,7 +283,7 @@ Note: initial reference implementations used the Keccak256 hash function for ass
 
 * W3C Decentralized Identifiers (DIDs) Specification - https://w3c-ccg.github.io/did-spec/
 * CSRC. (2019). "Hash Functions." Computer Security Resource Center, National Information Technology Laboratory. Updated 3 May 2019 - https://csrc.nist.gov/projects/hash-functions
-
+* MIME Standard RFC2045 - https://tools.ietf.org/html/rfc2045
 
 ## License
 
