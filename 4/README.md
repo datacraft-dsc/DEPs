@@ -51,12 +51,13 @@ available for remote invocation across the ecosystem (see DEP6)
 - "Data Supply Lines" can be constructed representing a flow of data assets and execution of
 algorithms / compute operations across many participants
 
-While it would be possible to build data ecosystems purely on the basis of the API Standards defined
-in DEPs, this would place considerable implementation burden on the application developer, who would
-have to recreate much of the functionality already offered by Starfish. In this sense, the main benefit
-of Starfish is to provide a shared open source toolkit so that application developers only need to
-focus on the high level orchestration required by their use case, and not worry about low-level 
-plumbing.
+There is no practical limit to the types of operations that can be created, and potentially 
+recombined in interesting ways to create novel data solutions. Orchestration of such 
+operations with Starfish is a perfect way to facilitate rapid innovation in data and AI 
+solutions, especially where these solutions must orchestrate data and 
+services across multiple parties in a decentralised or federated model.
+
+
 
 ## Specification
 
@@ -244,6 +245,13 @@ will need to take different according to their respective language ecosystems in
 - Naming conventions
 - Use of language syntax and idioms
 - Documentation
+
+While it would be possible to build data ecosystems purely on the basis of the API Standards defined
+in DEPs, this would place considerable implementation burden on the application developer, who would
+have to recreate much of the functionality already offered by Starfish. In this sense, the main benefit
+of Starfish is to provide a shared open source toolkit so that application developers only need to
+focus on the high level orchestration required by their use case, and not worry about low-level 
+plumbing.
 
 ## Implementations
 
