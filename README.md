@@ -23,7 +23,7 @@ Short Name        | Title                                                       
 [2/COSS](2)       | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
 [3/ARCH](3)       | Architecture & Principles                                    | Standard     | Draft      | Mike Anderson
 [4/STARFISH](4)   | Starfish abstract API                                        | Standard     | Raw        | Mike Anderson
-[5/IDENTITY](5)   | Agent and asset identity                                     | Standard     | TBC        | Mike Anderson
+[5/IDENTITY](5)   | Agent and Asset Identity                                     | Standard     | Raw        | Mike Anderson
 [6/INVOKE](6)     | Invokable Services                                           | Standard     | Draft      | Kiran Karkera
 [7/STORAGE](7)    | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)       | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
