@@ -20,7 +20,7 @@ Table of Contents
 
 ## Overview
 
-Starfish is an open source developer toolkit for building decentralised data ecosystems and use cases.
+Starfish is an open source developer toolkit for building centralize or decentralised data ecosystems and use cases.
 
 Starfish provides the tools and capabilities required for a application developer to create,
 orchestrate, execute and manage decentralised data supply lines spanning multiple parties in the 
@@ -86,9 +86,9 @@ Starfish must allow the ability to upload asset data content for a registered as
 Starfish may offer a combined "register plus upload" function as a developer convenience, provided that 
 these are also available as separate functions.
 
-#### Asset Content Access
+#### Data Asset Content Access
 
-Starfish must allow the user to request the content for a given asset
+Starfish must allow the user to request the content for a given data asset
 
 Starfish must accomodate the possibility that access to asset content may be impossible, and report 
 the failure reason accordingly
@@ -135,7 +135,7 @@ Standard APIs. If the DEP Standard APIs are available, a standard Remote Agent s
 Starfish should make it simple, as far as possible, for developers to create their own Capability 
 Agents for custom purposes, e.g. by extending a common base implementation.
 
-Note: providing a Capability Agent of this nature is a technique used in reference implementations 
+Note: Providing a Capability Agent of this nature is a technique used in reference implementations 
 to integrate the Ocean Network, by wrapping the Squid library provided by the Ocean Protocol Foundation.
 This technique is valuable because it allows a consistent Agent API to be maintained for user 
 while allowing for evolution and innovation in the underlying technology capabilities.
