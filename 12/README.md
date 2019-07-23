@@ -1,8 +1,8 @@
 ```
 shortname: 12/Prov
-name: Provenance metadata
+name: Publisher Declared Provenance
 type: Standard
-status: Raw
+status: Draft
 editor: Kiran Karkera <kiran.karkera@dex.sg>
 ```
 
