@@ -1,8 +1,8 @@
 ```
 shortname: 19/ENDPOINTS
-name: Ocean Standard Endpoints
+name: DEP Standard Endpoints
 type: Standard
-status: Raw
+status: Draft
 editor: Mike Anderson <mike.anderson@dex.sg>
 contributors:
 ```
@@ -12,58 +12,41 @@ contributors:
 <!--ts-->
 
    * [DEP Standard Endpoints](#dep-standard-endpoints)
-      * [Change Process](#change-process)
-      * [Language](#language)
       * [Motivation](#motivation)
       * [Specification](#specification)
          * [Endpoint Definition](#endpoint-definition)
-         * [Current Endpoint Types](#current-endpoint-types)
-      * [Changes Required](#changes-required)
+         * [Endpoint Types](#endpoint-types)
+      * [Implementations](#implementations)
       * [References](#references)
+      * [License](#license)
 
 <!--te-->
 
 # DEP Standard Endpoints
 
-This DEP defines how API endpoints should exposed by Agents in the ecosystem.
+This DEP defines how API endpoints should exposed by Agents in the ecosystem, and discovered
+by other actors in the ecosystem that wish to utilise these endpoints.
 
-In order to enable clients to locate specfic APIs, we must define standard endpoints.
-These endpoints are optional, but required if an Identity wishes their endpoints to be consumed
-by standard DEP-compatible client tools.
-
-Endpoints exposed should be declared in the relevant DDO of an Agent that offers these endpoints.
-
-## Change Process
-
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-
-## Language
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
+Endpoints exposed are be declared in the relevant DDO of an Agent that offers these endpoints,
+according to the W3C DID specification.
 
 
 ## Motivation
 
-The main motivations of this OEP are:
+In order to enable clients to locate specific APIs offered by service providers, we must provide a 
+method for a client to resolve network-accessible endpoints.
 
-* Define a standard set of endpoints for Ocean Agent APIs
-* Describe how these endpoints are specified within a DDO
+These endpoints are optional, but required if an service provider wishes their services 
+to be consumed by standard DEP-compatible client tools, such as code written with the Starfish
+developer toolkit.
+
 
 ## Specification
 
-Requirements are:
+### Endpoint Definition
 
-* Each DEP API must be allocated a unique endpoint type
-* Each Agent wishing to expose Ocean APIs must register a DDO
-* Each Agent DDO may specify one or more services as per the W3C DID spec
-* If the service represents an DEP API, the "type" of the service must be the endpoint type
-* The endpoint type should include a version number, to allow for protocol evolution
-
-
-## Proposed Solution
-
-### Endpoint definition
+Agents wishing their endpoints to be utilised by clients should register their endpoints in the DDO
+representing the agent via the Universal Resolver
 
 Endpoints are specified in the following form in the DDO:
 
@@ -76,23 +59,40 @@ Endpoints are specified in the following form in the DDO:
 }
 ```
 
-### Current endpoint types
+### Endpoint Resolution
+
+Clients should resolve DEP Standard API endpoints for a given Agent using the following procedure:
+1. Obtain the DID for the target agent
+2. Obtain the DDO for the agent's DID using the Universal Resolver
+3. Look up the desired endpoint type in the DDO's "services" section
+4. Make use of the "serviceEndpoint" thus identified for subsequent API calls
+
+Clients may adopt alternative mechanisms for resolving endpoints, however this is not 
+recommended as this approach will not be support interoperability across the ecosystem.
+
+### Endpoint types
+
+Each DEP Standard API must be allocated a unique endpoint type.
+
+The endpoint type must include a version number, to allow for protocol evolution.
+
+Each Agent's DDO may specify one or more services as per the W3C DID spec
+
+If the service represents an DEP Standard API, the "type" of the service must be the endpoint type
+
+Current allocated endpoint types are listed below:
 
 Endpoint type           |   Description
 ------------------------|----------------------
 Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (DEP15)
-Ocean.Market.v1         | Endpoint for the Market Agent API (TBC)
-Ocean.Storage.v1        | Endpoint for a generalised storage API (TBC)
-Ocean.Invoke.v1         | Endpoint for an invokable service API (TBC)
+Ocean.Invoke.v1         | Endpoint for an invokable service API (DEP6)
+Ocean.Storage.v1        | Endpoint for a generalised storage API (DEP7)
 Ocean.Authentication.v1 | Endpoint the Authentication API (DEP20)
+Ocean.Market.v1         | Endpoint for the Market Agent API (TBC)
 
+## Implementations
 
-## Changes Required
-
-The list of changes to apply in the proposed solution are:
-
-* Modify client libraries to look up the relevant endpoint from the DDO if available
-* Modify registration code for Agents to specify the correct endpoint types
+DEP Standard API endpoint resolution is supported in the Starfish Developer Toolkit.
 
 ## References
 
