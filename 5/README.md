@@ -20,8 +20,8 @@ Table of Contents
 
 ## Overview
 
-We utilise the W3C DID draft specification to provide identifiers to assets and agents in the 
-decentralised data ecosystem.
+The W3C DID draft specification provides a basis for decentralised identifiers for 
+assets and agents in the decentralised data ecosystem.
 
 *Agents* are identified by a DID, which can be resolved via a Universal Resolver to obtain a DDO 
 (DID Document) that describes the Agent.
@@ -43,6 +43,9 @@ In particular, these identities should have the following desirable properties:
 - They are *stable* - the identifier has meaning for a sufficiently long duration that it is useful to
 identify the same entity for the entire duration of an operation or sequence of operations
 - They are *unambiguous* - for a given identifier, there is only one entity that is referred to
+- They are *practical* in that they help us in the task of orchestrating decentralised data use cases.
+- They are *decentralised* in the sense that they are controlled by the owner of the entity in question
+and do not depend on a centralised authority.
 
 ## Specification
 
