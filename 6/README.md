@@ -51,7 +51,7 @@ The Invoke API
 - Facilitates creation of data pipeline(s) of data asset transformations.
 - Aid in establishing the provenance of data assets (by using DEP-12).
 
-![User flow](https:)//user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png
+![User flow](https://user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png)
 
 ## Entities
 
