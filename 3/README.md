@@ -274,10 +274,24 @@ and refinements to existing decisions from contributors are welcome.
 		</ul>      
       </td>
     </tr>
+      <tr>
+      <td>Operations</td>
+      <td>An Operation shall be a subtype of Asset representing a computational operation, which may take multiple inputs and multiple outputs</td>
+      <td>
+        <ul>
+          <li>Data assets alone are insufficient to deliver meaningful decentralised data use cases</li>
+          <li>A standardised representation of a computational operation is necessary to enable arbitrary services to participate in Data Supply Lines orchestrated according to DEP standards</li>
+		</ul>      
+      </td>
+    </tr>
   </tbody>
 </table>
 
 Note: initial reference implementations used the Keccak256 hash function for asset identity, for consistency with Ethereum. A decision has been made to move to SHA3-256 as the established standard - reference implementations are currently being updated.
+
+### Agent Model
+
+
 
 ## References
 
