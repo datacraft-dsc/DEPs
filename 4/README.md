@@ -2,7 +2,7 @@
 shortname: 4/STARFISH
 name: Starfish Abstract API
 type: Standard
-status: Draft
+status: Raw
 editor: Mike Anderson <mike.anderson@dex.sg>
 contributors: 
 ```
@@ -108,14 +108,46 @@ outside the scope of Starfish in general.
 
 ### Agents
 
-Note: In this context we consider Agents to be network-accessible servers hosting one or 
-more of the DEP Standard APIs. From the perspective of the Starfish user, these will usually 
-be considered as Remote Agents
+#### Remote Agents
+
+Note: In this context we consider Remote Agents to be network-accessible servers hosting one or 
+more of the DEP Standard APIs. 
+
+Starfish must allow Remote Agents to be resolved from a DID via the Universal Resolver capability.
+Resolving a Remote Agent should return a value that is conceptually equivalent to a "handle" for the
+remote agent.
+
+Starfish must allow a DID to be obtained for a Remote Agent, which can be passed to other parties as
+a stable identified for the Remote Agent.
+
+Starfish API functions performed using a Remote Agent (e.g. requesting asset content) must 
+be relayed to the actual Remote Agent via the appropriate DEP Standard APIs
+
+#### Capability Agents
+
+Starfish may offer specialised Capability Agent implementations that allow different underlying technology capabilities 
+to be accessed via the standard Agent APIs.
+
+Capability Agents are the recommended approach for a developer to integrate services or systems into 
+a Data Supply Line in situations where a remote or decentralised service does not support the DEP
+Standard APIs. If the DEP Standard APIs are available, a standard Remote Agent should be used.
+
+Starfish should make it simple, as far as possible, for developers to create their own Capability 
+Agents for custom purposes, e.g. by extending a common base implementation.
+
+Note: providing a Capability Agent of this nature is a technique used in reference implementations 
+to integrate the Ocean Network, by wrapping the Squid library provided by the Ocean Protocol Foundation.
+This technique is valuable because it allows a consistent Agent API to be maintained for user 
+while allowing for evolution and innovation in the underlying technology capabilities.
+
+Note: It is beyond the scope of Starfish to allow Capability Agents to be exposed to the ecosystem
+(to the extent that they could be invoked as Remote Agents by other parties), however
+service provider implementations may wish to offer this functionality.
 
 #### Local Agents
 
 Starfish may implement Local Agents, which offer functionality and interfaces equivalent to
-any other Agent ut intended for use only in the local environment.
+any other Agent but intended for use only in the local environment.
 
 Local Agents may be used where Agent functionality is desired but sharing across the ecosystem is
 unnecessary. Example of such usage may include:
