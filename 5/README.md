@@ -101,7 +101,7 @@ shows high potential as an emerging standard.
 We consider it valuable to make use of the DID Path to specify an Asset DID for multiple reasons:
 - Conceptually, the same Data Asset may be hosted by multiple Agents, and it is frequently 
 necessary to identify which instance is being referred to. 
-- Without specifying the Agent's network location, it is difficult work out where to obtain an asset from 
+- Without specifying the Agent's network location, it is difficult to work out where to obtain an asset from 
 (some indirect method would need to be used, e.g. a search engine)
 - This is consistent with the W3C DID spec section 4.5: "A DID path SHOULD be used to address resources 
 available via a DID service endpoint"
