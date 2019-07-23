@@ -148,8 +148,14 @@ and refinements to existing decisions from contributors are welcome.
 
 ### General Decisions
 
-<table>
-  <tbody>
+<table style="width: 100%">
+    <colgroup>
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 40%;">
+       <col span="1" style="width: 40%;">
+    </colgroup>
+
+  <tbody valign="top">
     <tr>
       <th>Topic</th>
       <th>Decision</th>
@@ -174,7 +180,7 @@ and refinements to existing decisions from contributors are welcome.
 		</ul>
       </td>
     </tr>
-    <tr>
+    <tr style="vertical-align:top">
       <td>Ocean Integration</td>
       <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
       <td>
@@ -188,7 +194,7 @@ and refinements to existing decisions from contributors are welcome.
     </tr>
     <tr>
       <td>Implementation independence</td>
-      <td>All components specified via DEPs may be freely implemented using different technology. All such implementations correctly implementing these open standards should be able to interoperate.</td>
+      <td>All components and interfaces specified via DEPs may be freely implemented using different technology. All such implementations correctly implementing these open standards should be able to interoperate.</td>
       <td>
         <ul>
 		  <li>Avoid lock in to specific technology choices or vendors</li>
@@ -209,17 +215,75 @@ and refinements to existing decisions from contributors are welcome.
     <tr>
       <td>TDB</td>
       <td>Next Decision</td>
-      <td></td>
+      <td>Next Rationale</td>
     </tr>
   </tbody>
 </table>
 
+### Asset Model
+
+<table>
+    <colgroup>
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 40%;">
+       <col span="1" style="width: 40%;">
+    </colgroup>
+
+  <tbody valign="top">
+    <tr>
+      <th>Topic</th>
+      <th>Decision</th>
+      <th>Rationale</th>
+    </tr>
+    <tr>
+      <td>Asset Definition</td>
+      <td>An Asset shall be defined as an entity consisting of metadata and content, where:
+        <ul>
+          <li>Metadata is a file according to the format defined by DEP8</li>
+          <li>Content may be any data, or other resource that represents the asset</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+		  <li>Standardised metadata is necessary to allow interoperable services to work with arbitrary assets</li>
+		  <li>A broad definition of content is required, because we intend to allow any form of
+		  data, algorithm or other resource relevant to the data ecosystem to be represented as an asset</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Asset Identity</td>
+      <td>An asset shall be identified by the cryptographic hash of its metadata using the SHA3-256 hashing algorithm. This value represented in lowercase hex shall be knows as the Asset ID</td>
+      <td>
+        <ul>
+          <li>Enforces immutability of asset metadata</li>
+		  <li>Enables cryptographic verification of asset metadata using the Asset ID</li>
+          <li>Enables the recursive use of cryptographics hashes in asset metadata to establish a merkle tree, where appropriate</li>
+          <li>SHA3-256 is a recognised standard representing current best practice suitable for the applications envisaged in the data ecosystem</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Data Assets</td>
+      <td>A Data Asset shall be a subtype of Asset defined by having immutable content analogous to the content of a file. Any content type may be supported (e.g. MIME types as specified in RFC2045 etc.) </td>
+      <td>
+        <ul>
+          <li>We need a standard, flexible way to provide a general purpose data asset than can be shared in the ecosystem in an interoperable manner</li>
+          <li>Enable adoption of existing, established Internet standards (MIME) for content types</li>
+          <li>Gain desirable property of data immutability for reasons of trusted provenance, caching, integrity verfification, performance etc.</li>
+		</ul>      
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Note: initial reference implementations used the Keccak256 hash function for asset identity, for consistency with Ethereum. A decision has been made to move to SHA3-256 as the established standard - reference implementations are currently being updated.
 
 ## References
 
-TBC:
-
-* A - https://foo.org
+* W3C Decentralized Identifiers (DIDs) Specification - https://w3c-ccg.github.io/did-spec/
+* CSRC. (2019). "Hash Functions." Computer Security Resource Center, National Information Technology Laboratory. Updated 3 May 2019 - https://csrc.nist.gov/projects/hash-functions
+* MIME Standard RFC2045 - https://tools.ietf.org/html/rfc2045
 
 ## License
 
