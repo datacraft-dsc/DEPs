@@ -51,7 +51,7 @@ The Invoke API
 - Facilitates creation of data pipeline(s) of data asset transformations.
 - Aid in establishing the provenance of data assets (by using DEP-12).
 
-![User flow](https:)//user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png
+![User flow](https://user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png)
 
 ## Entities
 
@@ -185,7 +185,7 @@ Here's an example of an request that defines a single input asset of type asset.
 - The key `to_hash` is the parameter name required by the operation (as declared in the operation's metadata)
 - Since the type is `asset` (as declared in the schema), the value must be a map with the `did` (and other optional keys)
 
-```json 
+```
 {
     "to_hash": {
              "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
@@ -195,7 +195,7 @@ Here's an example of an request that defines a single input asset of type asset.
 
 Here's an example of a request to the same operation which includes an optional parameter, the algorithm to be used for computing the hash.
 
-```json 
+```
 {
     "to_sign": {
              "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
@@ -212,7 +212,7 @@ The response to a valid request must be a JSON encoded map with the **jobid** an
 
 The choice of schema for the jobid's value is left to the implementor of the operation.
 
-```json 
+```
 {
     "jobid": "630363ce4a6a9ded23"
 }
@@ -268,20 +268,21 @@ The following table lists error codes that are specific to operations. This list
 Example of an operation which hashes the value of an asset. Its status is succeeded and returns the payload.
 
 
-```json
+```
 { "status":"succeeded",
   "result": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
-``}`
+}
+```
 
 Example of an operation that is in progress
 
-```json
+```
 { "status":"running"}
 ```
 
 Example of an operation that failed 
 
-```json
+```
 { "status":"failed",
   "errorcode":8004,
   "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
