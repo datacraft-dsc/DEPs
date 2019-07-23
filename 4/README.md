@@ -248,6 +248,7 @@ will need to take different according to their respective language ecosystems in
 ## Implementations
 
 | Language | Repository | Status |
+|-|-|-|
 | Python | https://github.com/DEX-Company/starfish-py | Alpha |
 | Java | https://github.com/DEX-Company/starfish-java | Alpha |
 | Clojure | https://github.com/DEX-Company/starfish-clj | Alpha |
