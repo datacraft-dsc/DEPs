@@ -51,7 +51,7 @@ A DEP is a set of Markdown documents (the main file SHOULD be called `README.md`
 Every DEP (including branches) carries a different number. New versions of the same DEP have new numbers.
 
 ### DEP template
-Each DEP MUST customize and include this header:
+Each DEP must customise and include this header:
 ````
 ```
 shortname: [number/shortname]
