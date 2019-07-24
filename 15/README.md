@@ -2,9 +2,9 @@
 shortname: 15/META-API
 name: Metadata Agent API
 type: Standard
-status: Raw
-editor: Bill Barman <bill.barman@dex.sg>
-contributors: Mike Anderson <mike.anderson@dex.sg>
+status: Draft
+editor: Mike Anderson <mike.anderson@dex.sg>
+contributors: Mike Anderson <mike.anderson@dex.sg>, Bill Barman <bill.barman@dex.sg>
 ```
 
 
