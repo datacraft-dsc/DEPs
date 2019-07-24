@@ -3,8 +3,8 @@ shortname: 20/AUTHENTICATION
 name: Authentication
 type: Standard
 status: Raw
-editor: Tom Marble <tmarble@info9.net>
-contributors: Mike Anderson <mike.anderson@dex.sg>, Paul Galwas
+editor: TBD
+contributors: Mike Anderson <mike.anderson@dex.sg>, Paul Galwas, Tom Marble <tmarble@info9.net>
 ```
 
 **Table of Contents**
@@ -26,7 +26,7 @@ contributors: Mike Anderson <mike.anderson@dex.sg>, Paul Galwas
 
 # Authentication
 
-This DEP defines how to handle authentication in the Data Ecosystem Protocol
+This DEP defines how to handle authentication in the Data Ecosystem
 
 
 ## Change Process
@@ -43,12 +43,12 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The main motivations of this DEP are:
 
-* Define a standard set of authentication guidelines for the Data Ecosystem Protocol
-* Provide a basis for a DEP on Authorization
+* Define a standard set of authentication guidelines for the Data Ecosystem
+* Provide a basis for a DEP on Authorisation
 
 ## Specification
 
-Authentication in the Data Ecosystem Protocol can be divided into three
+Authentication in the Data Ecosystem can be divided into three
 importantly distinct contexts:
 
 1. The Marketplace context

@@ -38,7 +38,7 @@ Short Name        | Title                                                       
 
 DEPs are open source standard documents free for all in the community to use.
 
-This repository of DEPs is maintained by DEX Pte. Ltd. as a service to the Ocean Protocol community and the broader data economy.
+This repository of DEPs is maintained by DEX Pte. Ltd. as a contribution to the Ocean Protocol community and the broader data economy.
 
 ## Contribution process
 

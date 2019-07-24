@@ -56,10 +56,10 @@ for the following principles:
 - Peer-to-peer model
 
 DEX is a founding company of the Ocean Protocol Foundation. While the DEPs represent 
-open standards and do not mandate the use of the Ocean Network, a key goal 
-of DEX development efforts is provision of convenient tools to build use cases 
-and a vibrant data ecosystem on Ocean Protocol, and reference implementations are 
-designed to support this.
+open standards and do not mandate the use of the Ocean Network or any specific software 
+produced by DEX (e.g. Starfish), a key goal of DEX development efforts is provision 
+of convenient tools to build use cases and a vibrant data ecosystem on Ocean Protocol, 
+and reference implementations are designed to support this.
 
 ## Architecture Layers
 

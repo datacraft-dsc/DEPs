@@ -3,8 +3,8 @@ shortname: 21/AUTHORIZATION
 name: Authorization
 type: Standard
 status: Raw
-editor: Tom Marble <tmarble@info9.net>
-contributors: Paul Galwas
+editor: TBD
+contributors: Paul Galwas, Tom Marble <tmarble@info9.net>
 ```
 
 **Table of Contents**
@@ -23,16 +23,7 @@ contributors: Paul Galwas
 
 # Authorization
 
-This DEP defines how to handle authorization in the Data Ecosystem Protocol
-
-## Change Process
-
-This document is governed by the [2/COSS](../2/README.md) (COSS).
-
-
-## Language
-
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://tools.ietf.org/html/bcp14) \[[RFC2119](https://tools.ietf.org/html/rfc2119)\] \[[RFC8174](https://tools.ietf.org/html/rfc8174)\] when, and only when, they appear in all capitals, as shown here.
+This DEP defines how to handle authorisation in the Data Ecosystem
 
 
 ## Motivation
