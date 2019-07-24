@@ -30,8 +30,8 @@ Short Name        | Title                                                       
 [12/PROV](12)     | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
 [15/META-API](15) | Metadata API                                                 | Standard     | Draft      | Mike Anderson
 [19/ENDPOINTS](19)| DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
-[20/AUTHENTICATION ](20)     | Authentication Standard and API                   | Standard     | Raw        | Tom Marble
-[21/AUTHORISATION ](21)     | Authorisation Standard and API                              | Standard     | Raw        | Tom Marble
+[20/AUTHENTICATION ](20)     | Authentication Standard and API                   | Standard     | Raw        | TBD
+[21/AUTHORISATION ](21)     | Authorisation Standard and API                              | Standard     | Raw        | TBD
 
 
 # Contributing
