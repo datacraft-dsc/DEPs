@@ -64,7 +64,7 @@ Current contributors include:
 - The DEX and Ocean technical team
 
 We prefer small, focused PRs that address a specific issue with a specific DEP and provide
-clear rationale for why the change is improvement where appropriate. PRs will reviewed and 
+clear rationale for the where appropriate. PRs will be reviewed and 
 if appropriate merged by the relevant DEP Editor(s).
 
 
