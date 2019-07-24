@@ -4,8 +4,8 @@
 
 # About
 
-This is the Data Ecosystem Proposal project, which defines a set of standards for the development of
-interoperable, decentralised data ecosystems.
+This is the Data Ecosystem Proposal project, which defines a set of open standards for the 
+development of interoperable, decentralised data ecosystems.
 
 You should consider adopting the DEP standards if:
 
@@ -30,8 +30,8 @@ Short Name        | Title                                                       
 [12/PROV](12)     | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
 [15/META-API](15) | Metadata API                                                 | Standard     | Draft      | Mike Anderson
 [19/ENDPOINTS](19)| DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
-[20/AUTHENTICATION ](20)     | Authentication standard and API                   | Standard     | Raw        | Tom Marble
-[21/AUTHORISATION ](21)     | Authorisation stndard and API                              | Standard     | Raw        | Tom Marble
+[20/AUTHENTICATION ](20)     | Authentication Standard and API                   | Standard     | Raw        | Tom Marble
+[21/AUTHORISATION ](21)     | Authorisation Standard and API                              | Standard     | Raw        | Tom Marble
 
 
 # Contributing
