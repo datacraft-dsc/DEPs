@@ -20,7 +20,7 @@ This DEP describes the API by which Agents in the Ocean ecosystem can store and 
 
 Metadata is identified by the hash of its content, i.e. a Meta Agent acts as content-addressable storage of metadata records.
 
-This service is primary used for storing Asset meta data, but should be open enough to provide meta data storage for other forms of metadata within the Ocean ecosystem.
+This service is primary used for storing Asset metadata, but should be open enough to provide metadata storage for other forms of metadata within the Ocean ecosystem.
 
 ## Change Process
 
@@ -35,8 +35,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 The main motivations of this DEP are:
 
-* Ensure that clients can access metadata for any asset or off-chain data structure in the Ocean ecosystem
-* Ensure that the data can be verifiable and persistent within the storage system.
+* Ensure that clients can access metadata for any asset in the data ecosystem.
+* Ensure that metadata can be stored and verified by appropriate Agents.
 
 
 #### Base URL
@@ -124,7 +124,7 @@ the requested metadata ID.
 
 | Response code | Description                                                                    | JSON response payload                     |
 |---------------|--------------------------------------------------------------------------------|-------------------------------------------|
-|           200 | Metadata successfully retreived                                                | Asset Metadata as JSON                    |
+|           200 | Metadata successfully retrieved                                                | Asset Metadata as JSON                    |
 |           400 | The request was incorrectly formed (i.e. invalid asset ID)                     | map with error code and error description |
 |           401 | Authentication was required but valid authentication not provided              | map with error code and error description |
 |           403 | The caller is not authorised to register the asset metadata                    | map with error code and error description |
@@ -132,7 +132,7 @@ the requested metadata ID.
 
 ## License
 
-Copyright (c) 2018 OceanProtocol Foundation.
+Copyright (c) 2018 Ocean Protocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

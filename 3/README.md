@@ -33,21 +33,32 @@ not controlled by a handful of powerful gatekeepers.
 - The costs of developing AI solutions are minimised, so that the value of the "long tail" of Data and AI
 assets can be realised.
 - Interoperability is built into the ecosystem from the ground up, so that solutions can be built to
-span across a broad range of participants without expensive bespoke integration work.
+span across a broad range of participants without inefficient / expensive bespoke integration work.
 
 It is the goal of this DEP to outline a reference architecture and architectural principles that can support
 this vision. 
 
 ## Principles
 
+The DEPs specify standards for the development of interoperable data ecosystems. The design of 
+such standards and systems that implement them will inevitably require good judgement around 
+specific decisions and technical trade-off, and we will make such decisions with a preference
+for the following principles:
+
+- Open source and open standards
 - No centralised point of control
 - Decentralised ownership of assets and services
-- Support for orchestration of Data Supply Lines
-- Decentralised trust rules
+- Support for orchestration of decentralised Data Supply Lines
+- Decentralisation of trust rules
 - Abstraction from specific technology choices
 - Support for arbitrary data formats
 - Available over the public internet
 - Peer-to-peer model
+
+DEX is a founding company of the Ocean Protocol Foundation. While the DEPs represent 
+open standards and do not mandate the use of the Ocean Network, a key goal 
+of DEX development efforts is provision of convenient tools to build use cases with the 
+Ocean Protocol, and reference implementations are designed to support this.
 
 ## Architecture Layers
 

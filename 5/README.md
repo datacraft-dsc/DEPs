@@ -31,7 +31,10 @@ with the DID of an Agent hosting the Asset to create an Asset DID, which fully i
 asset in the context of an Agent in the ecosystem.
 
 This DEP does *not* consider the identity of individual data subjects (e.g. individuals whose
-personal data appears in one or more data assets). In general, 
+personal data appears in one or more data assets). In general, data assets may contain
+data related to multiple individuals and the method of encoding / managing / processing such 
+data at the individual level will be handled by service providers according to their use cases
+and in accordance with legal obligations and relevant regulations.
 
 ## Motivation
 

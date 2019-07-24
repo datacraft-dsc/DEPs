@@ -12,7 +12,7 @@ You should consider adopting the DEP standards if:
 - You need to orchestrate data services across multiple organisations / participants
 - You need the ability to remotely invoke operations on a variety of data sources
 - You wish to unlock the value of existing data assets and services to a broader ecosystem
-- You plan to make use of the capabilities of the Ocean Network, or other decentralised systems designed for data exchange, but wish to maintain a level of abstraction away from specific implementation details.
+- You plan to primarily make use of the capabilities of the Ocean Network, but wish to maintain a level of abstraction away from specific implementation details.
 
 
 # Current DEPs
@@ -61,7 +61,12 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 The DEPs are open for anyone who wants to contribute.
 
 Current contributors include:
-- The DEX technical team
+- The DEX and Ocean technical team
+
+We prefer small, focused PRs that address a specific issue with a specific DEP and provide
+clear rationale for why the change is improvement where appropriate. PRs will reviewed and 
+if appropriate merged by the relevant DEP Editor(s).
+
 
 ## Editors
 
