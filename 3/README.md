@@ -57,8 +57,9 @@ for the following principles:
 
 DEX is a founding company of the Ocean Protocol Foundation. While the DEPs represent 
 open standards and do not mandate the use of the Ocean Network, a key goal 
-of DEX development efforts is provision of convenient tools to build use cases with the 
-Ocean Protocol, and reference implementations are designed to support this.
+of DEX development efforts is provision of convenient tools to build use cases 
+and a vibrant data ecosystem on Ocean Protocol, and reference implementations are 
+designed to support this.
 
 ## Architecture Layers
 
