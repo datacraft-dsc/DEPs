@@ -7,7 +7,7 @@ editor: Mike Anderson <mike.anderson@dex.sg>
 contributors: 
 ```
 
-#Glossary
+# Glossary
 
 This Glossary provides definitions of common terms used in DEPs.
 
@@ -69,6 +69,10 @@ Acronym for "Data Ecosystem Proposal", a document defining open standards for th
 DEPs are technology neutral, and free for anyone to implement and use. Systems making use of
 DEP standards will gain the benefits of interoperability with other systems in the Data 
 Ecosystem, including the capability to participate in decentralised Data Supply Lines.
+
+## DEP Standard APIs
+
+An API provided by an Agent which conforms to the API Standards specified in the DEPs.
 
 ## DID
 
