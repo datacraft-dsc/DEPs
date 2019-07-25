@@ -62,6 +62,14 @@ is designed to be executed by one or more Agents, can transfer Data Assets betwe
 participants, and can transform Data Assets through the use of Operations to create new Data
 Assets.
 
+## DEP
+
+Acronym for "Data Ecosystem Proposal", a document defining open standards for the data economy.
+
+DEPs are technology neutral, and free for anyone to implement and use. Systems making use of
+DEP standards will gain the benefits of interoperability with other systems in the Data 
+Ecosystem, including the capability to participate in decentralised Data Supply Lines.
+
 ## DID
 
 A *Decentralised Identifier* conforming to the W3C DID spec.
@@ -71,9 +79,6 @@ be assigned to individuals, enabling self-sovereign identity management
 
 See: https://w3c-ccg.github.io/did-spec/
 
-## DEP
-
-Acronym for "Data Ecosystem Proposal", a document defining open standards for the data economy.
 
 ## Ocean Network
 
