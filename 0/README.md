@@ -21,6 +21,16 @@ by the Agent's operator. Open source reference implementations of Agents are ava
 for operators to configure and deploy if they wish, or alternatively operators may wish
 to develop their own Agents - the only requirement is conformance to the DEP Standard APIs.
 
+## Asset
+
+An entity in the Data Ecosystem which has potential value, and may be utilised by participants
+using systems supporting the DEPs standards.
+
+## Bundle
+
+A special type of Asset that represents a collection of other Assets. A Bundle can be regarded
+as analogous to a folder or directory in traditional computer file systems.
+
 ## Consumer
 
 A participant in the data system who acquires and utilises Assets in the Data Ecosystem.
@@ -67,9 +77,25 @@ including:
 - Establishing immutable provenance records
 - Providing a Universal Resolver for DIDs / DDOs
 
+## Operation
+
+A sepcial type of Asset representing a computational service that can be "Invoked" via the DEP
+Standard APIs (see DEP6 for detailed specification).
+
+An Operation may accept one or more inputs, and product one or more outputs. Typically, inputs
+will be references to source data assets and the outputs will be new assets produced by algorithms
+executed upon the input assets.
+
+Examples of Operations may include:
+- Data cleaning
+- Anonymisation / removal of Personally Identifiable Information
+- Training a machine learning model
+- Aggregating multiple source data sets
+
 ## Publisher
 
-A participant in the data system who creates Assets and makes them available to others.
+A participant in a Data Ecosystem who creates Assets and makes them available to others. A Publisher
+is typically the Data Owner of the asset, or someone acting on the Data Owner's behalf.
 
 ## Starfish
 
