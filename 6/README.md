@@ -293,7 +293,7 @@ Since the `json` type for params and results allows arbitrary JSON results, impl
 
 ### Invoke operation synchronously
 
-This is an convenience interface by which a consumer can invoke an operation. This is a synchronous request, and is expected to be used for jobs that finish quickly.
+This is an convenience interface by which a consumer can invoke an operation. This is a synchronous request, and is expected to be used for jobs that finish quickly. Since the implementation is on top of low level protocols (as TCP/IP) the user should be aware of that waiting time may be limited by these protocols.
 
 #### Request
 
