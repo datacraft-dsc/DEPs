@@ -26,6 +26,13 @@ to develop their own Agents - the only requirement is conformance to the DEP Sta
 An entity in the Data Ecosystem which has potential value, and may be utilised by participants
 using systems supporting the DEPs standards.
 
+## Asset Metadata
+
+A JSON data object that describes an Asset in the Data Ecosystem. Every valid Asset in the 
+Ecosystem must have valid Metadata associated with it.
+
+Asset Metadata standards are defined in DEP8.
+
 ## Bundle
 
 A special type of Asset that represents a collection of other Assets. A Bundle can be regarded
@@ -37,7 +44,7 @@ A participant in the data system who acquires and utilises Assets in the Data Ec
 
 ## Data Asset
 
-A subtype of Asset that represents a single data object that can be utilised in the data ecosystem.
+An Asset that represents a single data object that can be utilised in the data ecosystem.
 
 A Data Asset may have any content format, at the discretion of its Publisher. However it is recommended
 that Publishers make use of existing standard data formats (e.g. CSV files) to maximise utility to 
