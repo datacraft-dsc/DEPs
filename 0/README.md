@@ -21,6 +21,18 @@ by the Agent's operator. Open source reference implementations of Agents are ava
 for operators to configure and deploy if they wish, or alternatively operators may wish
 to develop their own Agents - the only requirement is conformance to the DEP Standard APIs.
 
+## Consumer
+
+A participant in the data system who acquires and utilises Assets in the Data Ecosystem.
+
+## Data Asset
+
+A subtype of Asset that represents a single data object that can be utilised in the data ecosystem.
+
+A Data Asset may have any content format, at the discretion of its Publisher. However it is recommended
+that Publishers make use of existing standard data formats (e.g. CSV files) to maximise utility to 
+Consumers
+
 ## Data Ecosystem
 
 An interconnected network of participants who are able to interoperate using standard protocols
@@ -45,6 +57,19 @@ See: https://w3c-ccg.github.io/did-spec/
 ## DEP
 
 Acronym for "Data Ecosystem Proposal", a document defining open standards for the data economy.
+
+## Ocean Network
+
+The Ocean Protocol Foundation provides the Ocean Network as a public service utility to the 
+data economy. The Network provides important capabilities for decentralised data exchange,
+including:
+- Value exchange / transactions using the Ocean Token
+- Establishing immutable provenance records
+- Providing a Universal Resolver for DIDs / DDOs
+
+## Publisher
+
+A participant in the data system who creates Assets and makes them available to others.
 
 ## Starfish
 
