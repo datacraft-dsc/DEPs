@@ -77,6 +77,11 @@ including:
 - Establishing immutable provenance records
 - Providing a Universal Resolver for DIDs / DDOs
 
+## OEP
+
+Acronyn for "Ocean Enhancement Proposal", which defines enhancements to the Ocean Network and
+related technologies. Current OEPs can be found at: https://github.com/oceanprotocol/OEPs
+
 ## Operation
 
 A sepcial type of Asset representing a computational service that can be "Invoked" via the DEP
