@@ -9,6 +9,18 @@ contributors:
 
 #Glossary
 
+This Glossary provides definitions of common terms used in DEPs.
+
+## Agent
+
+A network-connected service operated by a participant of the data ecosystem that is able
+to offer one or more DEP Standard APIs to other participants in the ecosystem.
+
+Typically, an Agent will be server-side software hosted in a virtual environment managed
+by the Agent's operator. Open source reference implementations of Agents are available
+for operators to configure and deploy if they wish, or alternatively operators may wish
+to develop their own Agents - the only requirement is conformance to the DEP Standard APIs.
+
 ## Data Ecosystem
 
 An interconnected network of participants who are able to interoperate using standard protocols
@@ -16,7 +28,19 @@ such as those defined in the DEPs
 
 ## Data Supply Line
 
-An orchestrated set of data flows that creates value in a Data Ecosystem
+An orchestrated set of data flows that creates value in a Data Ecosystem. A Data Supply Line
+is designed to be executed by one or more Agents, can transfer Data Assets between different
+participants, and can transform Data Assets through the use of Operations to create new Data
+Assets.
+
+## DID
+
+A *Decentralised Identifier* conforming to the W3C DID spec.
+
+DIDs are used to refer to Agents and Assets in the Decentralised Data Ecosystem. DIDs may also
+be assigned to individuals, enabling self-sovereign identity management
+
+See: https://w3c-ccg.github.io/did-spec/
 
 ## DEP
 
@@ -27,34 +51,8 @@ Acronym for "Data Ecosystem Proposal", a document defining open standards for th
 Starfish is an open source developer toolkit for building applications and use cases with
 decentralised Data Supply Lines
 
-<table style="width: 100%">
-    <colgroup>
-       <col span="1" style="width: 20%;">
-       <col span="1" style="width: 40%;">
-       <col span="1" style="width: 40%;">
-    </colgroup>
 
-  <tbody valign="top">
-    <tr>
-      <th>Term</th>
-      <th>Definition</th>
-    </tr>
-    <tr valign="top">
-      <td>Ecosystem Architecture Model</td>
-      <td>The Data Ecosystem will be regarded as consisting of four conceptual layers
-		<ul>
-		  <li>Application (dApps, CLI users, user environments etc.)</li>
-          <li>Orchestration (Client side libraries enabling DEP capabilities, e.g. Starfish)</li>
-          <li>Integration (Ecosystem agents offering standard APIs)</li>
-          <li>Capabilities (Any underlying data systems or other technology integrated into the ecosystem)</li>
-		</ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-## License
+# License
 
 Copyright (c) 2019 DEX Pte. Ltd.
 
