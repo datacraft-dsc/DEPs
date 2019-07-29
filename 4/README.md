@@ -66,10 +66,10 @@ services across multiple parties in a decentralised or federated model.
 #### Asset Creation
 
 Starfish must provide the ability to create data assets, where the creator of the asset may specify 
-both metadata and data content
+both metadata and data content.
 
 Starfish should provide automatic creation of default metadata, for developer convenience, subject to the 
-expectation that the user may override such defaults
+expectation that the user may override such defaults.
 
 #### Asset registration
 
@@ -89,17 +89,17 @@ these are also available as separate functions.
 
 #### Asset Content Access
 
-Starfish must allow the user to request the content for a given asset
+Starfish must allow the user to request the content for a given asset.
 
 Starfish must accomodate the possibility that access to asset content may be impossible, and report 
-the failure reason accordingly
+the failure reason accordingly.
 
-Starfish must allow the content, if available, to be used to create another asset
+Starfish must allow the content, if available, to be used to create another asset.
 
 Starfish should allow the user to validate the content according to its cryptographic hash.
 
 Starfish should make the content available in forms convenient for the developer to 
-utilise in their given language or environment (e.g. byte arrays, streams, writing to filesystem etc.)
+utilise in their given language or environment (e.g. byte arrays, streams, writing to filesystem etc.).
 
 Starfish may provide additional utilities to handle specific common content types (e.g. CSV files),
 where this is particularly appropriate for the given implementation. It is recommended that 
@@ -122,7 +122,7 @@ Starfish must allow a DID to be obtained for a Remote Agent, which can be passed
 a stable identified for the Remote Agent.
 
 Starfish API functions performed using a Remote Agent (e.g. requesting asset content) must 
-be relayed to the actual Remote Agent via the appropriate DEP Standard APIs
+be relayed to the actual Remote Agent via the appropriate DEP Standard APIs.
 
 #### Capability Agents
 
@@ -156,7 +156,7 @@ unnecessary. Example of such usage may include:
 - Development of agent functionality prior to packaging for remote usage
 
 Local agents must conform to the same interfaces as remote agents, with certain limitations
-e.g. it will tpically not be possible to pass meaningful references to Local Agents to remote parties 
+e.g. it will typically not be possible to pass meaningful references to Local Agents to remote parties 
 in the ecosystem.
 
 Note: It is beyond the scope of Starfish to allow Local Agents to be exposed to the ecosystem
@@ -166,41 +166,41 @@ service provider implementations may wish to offer this functionality.
 ### Operations
 
 Note: In this context we consider Operations to be a subtype of asset which represents a computation
-according to the specification in DEP6
+according to the specification in DEP6.
 
 #### Resolving Operations
 
 Starfish must allow an Operation provided by a Remote Agent to be resolved into an operation
 that may be used in the developer's context. This resolved Operation can be considered as a "handle"
-to the Remote Operation
+to the Remote Operation.
 
 #### Invocation
 
-Starfish must allow the developer to "invoke" an Operation, in the sense defined in DEP6
+Starfish must allow the developer to "invoke" an Operation, in the sense defined in DEP6.
 
 Starfish must allow input parameters to be passed to the invoked Operation, where such input
 parameters may be JSON values or Assets as defined in DEP6. Parameters should be provided in 
-a manner that is idiomatic for the given language implementation (e.g. passing a named map)
+a manner that is idiomatic for the given language implementation (e.g. passing a named map).
 
 Starfish must allow invocation to be made either synchronously or asynchronously.
 
 Starfish must allow the user to check the status of asynchronous invocation jobs.
 
 Starfish must allow the user to examine the results of a successfully completed operation (which
-may include either directly returned JSON values or Assets provided as results)
+may include either directly returned JSON values or Assets provided as results).
 
 Starfish must handle the case of invocation failure, and report errors back to the user including
 the reason for failure (including, but not limited to: authorisation failure, network failure, 
-invalid parameters, server failure, timeout etc.)
+invalid parameters, server failure, timeout etc.).
 
 #### Local Operations
 
-Starfish must allow the user to create an Operation in the scope of their local environment
+Starfish must allow the user to create an Operation in the scope of their local environment.
 
 Starfish must allow Local Operations to be used in the same way as Remote Operations in the context
-of the local environment
+of the local environment.
 
-Starfish should allow the user to provide arbitrary executable code for their local operation
+Starfish should allow the user to provide arbitrary executable code for their local operation.
 
 Note: It is beyond the scope of Starfish to allow Local Operations to be exposed to the ecosystem
 (to the extent that they could be invoked as Remote Operations by other parties), however
@@ -230,7 +230,7 @@ Starfish must report errors whenever a requested operation cannot be successfull
 should never fail silently).
 
 Starfish must report errors back to the user using the conventional mechanism for error reporting
-used by the implementation language (e.g. raising an Exception in Java)
+used by the implementation language (e.g. raising an Exception in Java).
 
 Starfish should provide meaningful human-readable error messages back to the caller, in whatever form
 is idiomatic for the implementation language.

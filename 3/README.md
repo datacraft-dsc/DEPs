@@ -85,7 +85,7 @@ case or set of users. Examples might include:
 This layer is responsible for orchestrating the interactions between decentralised data assets and services in
 order to meet the requirements of the application layer. 
 
-> “Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. ”
+> â€œBeing abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. â€
 >
 > (Edsger Dijkstra)
 
@@ -186,7 +186,7 @@ and refinements to existing decisions from contributors are welcome.
       <td>
         <ul>
 		  <li>Enable interfaces to be clearly defined between layers, especially between systems managed by different actors on a decentralised basis</li>
-          <li>Support common architectural patterns and est practices</li>
+          <li>Support common architectural patterns and best practices</li>
           <li>Enable efficient integration of existing data ecosystems and technology</li>
           <li>Provide a flexible evolutionary path, allowing for further decentralisation of capabilities</li>
 		</ul>

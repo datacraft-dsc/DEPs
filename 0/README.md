@@ -48,12 +48,12 @@ An Asset that represents a single data object that can be utilised in the data e
 
 A Data Asset may have any content format, at the discretion of its Publisher. However it is recommended
 that Publishers make use of existing standard data formats (e.g. CSV files) to maximise utility to 
-Consumers
+Consumers.
 
 ## Data Ecosystem
 
 An interconnected network of participants who are able to interoperate using standard protocols
-such as those defined in the DEPs
+such as those defined in the DEPs.
 
 ## Data Supply Line
 
@@ -96,14 +96,14 @@ including:
 ## OEP
 
 Acronyn for "Ocean Enhancement Proposal", which defines enhancements to the Ocean Network and
-related technologies. Current OEPs can be found at: https://github.com/oceanprotocol/OEPs
+related technologies. Current OEPs can be found at: https://github.com/oceanprotocol/OEPs.
 
 ## Operation
 
-A sepcial type of Asset representing a computational service that can be "Invoked" via the DEP
+A special type of Asset representing a computational service that can be "Invoked" via the DEP
 Standard APIs (see DEP6 for detailed specification).
 
-An Operation may accept one or more inputs, and product one or more outputs. Typically, inputs
+An Operation may accept one or more inputs, and produce one or more outputs. Typically, inputs
 will be references to source data assets and the outputs will be new assets produced by algorithms
 executed upon the input assets.
 
@@ -121,7 +121,7 @@ is typically the Data Owner of the asset, or someone acting on the Data Owner's 
 ## Starfish
 
 Starfish is an open source developer toolkit for building applications and use cases with
-decentralised Data Supply Lines
+decentralised Data Supply Lines.
 
 
 # License
