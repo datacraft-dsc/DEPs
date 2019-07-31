@@ -54,8 +54,8 @@ Base attributes are always part of the Asset Metadata schema. Those attributes c
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**name**        | Text          | Yes           | Descriptive name of the Asset
-**type**        | Text          | Yes           | Type of the Asset. Helps to filter by kind of asset, allowed values are:  ("dataset", "operation", "bundle")
+**name**        | Text          | No            | Human-readable, descriptive name of the Asset. Should be relatively short, e.g. "UK Rainfall Averages 2018"
+**type**        | Text          | No            | Type of the Asset. Helps to filter by kind of asset, allowed values are:  ("dataset", "operation", "bundle")
 **description** | Text          | No            | Details of what the resource is. For a data set this might explain what the data represents and what it can be used for
 **dateCreated** | DateTime      | No            | The timestamp at which the asset was created
 **author**      | Text          | No            | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
@@ -113,7 +113,7 @@ In addition to the base attributes, the following Attributes are defined for dat
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**size**        | Text          | Yes           | Size of the asset (e.g. 18mb). In the absence of a unit (mb, kb etc.), KB will be assumed
+**size**        | Text          | No            | Size of the asset in bytes
 **encoding**    | Text          | No            | File encoding (e.g. UTF-8)
 **compression** | Text          | No            | File compression (e.g. no, gzip, bzip2, etc)
 **contentType** | Text          | No           | File format if applicable
