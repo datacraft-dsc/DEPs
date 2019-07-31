@@ -21,12 +21,12 @@ contributors: Mike Anderson <mike.anderson@dex.sg>
 
 # Overview 
 
-This DEP describes a payment system using arbitrary ERC20 Tokens, which allows data assets and services to be made available
-for purchase using a direct token payment.
+This DEP describes a payment system using ERC20 Tokens such as the Ocean Token, which allows data assets and services 
+to be made available for purchase using a direct token payment.
 
-The direct payment mechanism, by definition does *not* support escrow or on-chain dispute resolution. Actors wishing to make
-use of such features should use a different payment mechanism, for example the Service Execution Agreements available on the
-Ocean Network.
+The direct payment mechanism, by definition, does *not* support escrow, proof of service delivery or on-chain dispute resolution. 
+Actors wishing to make use of such features should use a different payment mechanism, for example the Service Execution Agreements 
+available on the Ocean Network.
 
 Direct Payment is functionally equivalent to transferring tokens, so should only be used is situations where the consumer 
 is willing to accept the risk that the publisher / service provider does not subsequently provide the asset or service. 
