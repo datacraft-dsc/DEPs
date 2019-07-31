@@ -17,23 +17,24 @@ You should consider adopting the DEP standards if:
 
 # Current DEPs
 
-Short Name        | Title                                                        | Type         | Status     | Editor
-------------------|--------------------------------------------------------------|--------------|------------|-------
-[0/GLOSSARY](0)   | Data Ecosystem Glossary                                      | Reference    | Draft      | Mike Anderson
-[1/C4](1)         | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
-[2/COSS](2)       | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
-[3/ARCH](3)       | Architecture & Principles                                    | Standard     | Draft      | Mike Anderson
-[4/STARFISH](4)   | Starfish Abstract API                                        | Standard     | Raw        | Mike Anderson
-[5/IDENTITY](5)   | Agent and Asset Identity                                     | Standard     | Raw        | Mike Anderson
-[6/INVOKE](6)     | Invokable Services                                           | Standard     | Draft      | Kiran Karkera
-[7/STORAGE](7)    | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
-[8/META](8)       | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
-[9/SQUID-INT](8)  | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
-[12/PROV](12)     | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
-[15/META-API](15) | Metadata API                                                 | Standard     | Draft      | Mike Anderson
-[19/ENDPOINTS](19)| DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
-[20/AUTHENTICATION ](20)     | Authentication Standard and API                   | Standard     | Raw        | TBD
-[21/AUTHORISATION ](21)     | Authorisation Standard and API                              | Standard     | Raw        | TBD
+Short Name             | Title                                                        | Type         | Status     | Editor
+-----------------------|--------------------------------------------------------------|--------------|------------|-------
+[0/GLOSSARY](0)        | Data Ecosystem Glossary                                      | Reference    | Draft      | Mike Anderson
+[1/C4](1)              | Collective Code Construction Contract                        | Meta         | Draft      | Mike Anderson
+[2/COSS](2)            | Consensus-Oriented Specification System                      | Meta         | Draft      | Mike Anderson
+[3/ARCH](3)            | Architecture & Principles                                    | Standard     | Draft      | Mike Anderson
+[4/STARFISH](4)        | Starfish Abstract API                                        | Standard     | Raw        | Mike Anderson
+[5/IDENTITY](5)        | Agent and Asset Identity                                     | Standard     | Raw        | Mike Anderson
+[6/INVOKE](6)          | Invokable Services                                           | Standard     | Draft      | Kiran Karkera
+[7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
+[8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
+[9/SQUID-INT](9)       | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
+[10/TOKEN-PAY](10)     | Direct Payments with ERC20 Tokens                            | Standard     | Raw        | Ilya Bukalov
+[12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
+[15/META-API](15)      | Metadata API                                                 | Standard     | Draft      | Mike Anderson
+[19/ENDPOINTS](19)     | DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
+[20/AUTHENTICATION](20)| Authentication Standard and API                              | Standard     | Raw        | TBD
+[21/AUTHORISATION](21) | Authorisation Standard and API                               | Standard     | Raw        | TBD
 
 
 # Contributing
