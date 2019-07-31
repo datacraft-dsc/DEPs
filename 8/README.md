@@ -63,7 +63,7 @@ Attribute       |   Type        |   Required    | Description
 **license**     | Text          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
 **copyrightHolder**| Text       | No            | The party holding the legal copyright. 
 **links**       | Array of Link | No            | Mapping of links for data samples, or links to find out more information. 
-**inLanguage**  | Text          | No            | The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
+**inLanguage**  | Text          | No            | The language used in this instance of Asset Metadata. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
 **tags**        | Array of Text | No            | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. Empty by default
 **additionalInformation** | Map | No            | Additional JSON content at discretion of publisher
 
