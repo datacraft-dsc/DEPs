@@ -113,11 +113,10 @@ In addition to the base attributes, the following Attributes are defined for dat
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**size**        | Text          | No            | Size of the asset in bytes
+**size**        | Text          | No            | Exact size of the asset in bytes, encoded as a decimal String
 **encoding**    | Text          | No            | File encoding (e.g. UTF-8)
 **compression** | Text          | No            | File compression (e.g. no, gzip, bzip2, etc)
-**contentType** | Text          | No           | File format if applicable
-**contentUrls** | Text          | No           | List of content urls resolving the ASSET files
+**contentType** | Text          | No           | File format if applicable, as a MIME type
 **contentHash** | Text          | No           | keccak256 hash of asset data. Required if publisher wishes to offer integrity checks
 
 ## Invokable operation attributes
