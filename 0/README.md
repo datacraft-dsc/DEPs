@@ -83,6 +83,18 @@ be assigned to individuals, enabling self-sovereign identity management
 
 See: https://w3c-ccg.github.io/did-spec/
 
+## Listing
+
+An entity representing an Asset that is available for trade in the data economy.
+
+Listings are able to represent data about the commercial terms on which an Asset may be acquired or accessed, including:
+- Pricing
+- Commercial terms and conditions
+- Restrictions to specific geographies
+
+Unlike Assets, the state of a Listing is assumed to be mutable, e.g. pricing may chnage over time. Furthermore, it
+is possible for a single Asset to be listed multiple times (e.g. in different marketplaces, or under different terms).
+
 
 ## Ocean Network
 
