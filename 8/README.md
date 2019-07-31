@@ -49,7 +49,8 @@ The main motivations of this DEP are:
 
 ## Base attributes
 
-Base attributes are always part of the Asset Metadata schema. Those attributes could be mandatory if they need to be completed by the publisher or can be stored empty. The following attributes are included as part of the Asset Metadata:
+The following attributes may be included as part of Asset Metadata, and have specific meanings which participants should
+interpret accordingly.
 
 
 Attribute       |   Type        |   Required    | Description
@@ -57,10 +58,10 @@ Attribute       |   Type        |   Required    | Description
 **name**        | Text          | No            | Human-readable, descriptive name of the Asset. Should be relatively short, e.g. "UK Rainfall Averages 2018"
 **type**        | Text          | No            | Type of the Asset. Helps to filter by kind of asset, allowed values are:  ("dataset", "operation", "bundle")
 **description** | Text          | No            | Details of what the resource is. For a data set this might explain what the data represents and what it can be used for
-**dateCreated** | DateTime      | No            | The timestamp at which the asset was created
-**author**      | Text          | No            | Name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
+**dateCreated** | Text (Date)   | No            | The timestamp at which the asset was created (ISO 8601 String format)
+**author**      | Text          | No            | Free text name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
 **license**     | Text          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
-**copyrightHolder**| Text       | No            | The party holding the legal copyright. Empty by default
+**copyrightHolder**| Text       | No            | The party holding the legal copyright. 
 **links**       | Array of Link | No            | Mapping of links for data samples, or links to find out more information. 
 **inLanguage**  | Text          | No            | The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
 **tags**        | Array of Text | No            | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. Empty by default
@@ -68,7 +69,9 @@ Attribute       |   Type        |   Required    | Description
 
 ### Additional Information
 
-These are examples of attributes that can enhance the discoverability of a resource:
+Additional attributes are totally free to add and can be defined by the publisher.
+
+These are examples of attributes that might help describe or enhance the discoverability of a resource:
 
 | Attribute         | Description                                                                                                                  |
 | -                 | -                                                                                                                            |
@@ -81,8 +84,9 @@ These are examples of attributes that can enhance the discoverability of a resou
 | keyword           | A list of keywords/tags describing a dataset                                                                                 |
 | structured-markup | A link to machine readable structured markup (such as ttl/json-ld/rdf) describing the dataset                                |                                                                                                                  |
 
-Additional attributes are totally free to add and can be defined by the publisher, in addition to the base attributes
-
+Additional information is opaque to the DEP Standards, and has no speific meaning from a protocol perspective. 
+Specific implementations may make use of this information, e.g. service providers might define their own standards for data
+formats here, which could affect processing in some circumstances.
 
 ### Links
 
