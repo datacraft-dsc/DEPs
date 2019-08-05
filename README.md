@@ -29,7 +29,7 @@ Short Name             | Title                                                  
 [7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
 [9/SQUID-INT](9)       | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
-[10/TOKEN-PAY](10)     | Direct Payments with ERC20 Tokens                            | Standard     | Raw        | Ilya Bukalov
+[10/TOKEN-PAY](10)     | Direct Payments with Ocean Tokens                            | Standard     | Raw        | Ilya Bukalov
 [12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
 [15/META-API](15)      | Metadata API                                                 | Standard     | Draft      | Mike Anderson
 [19/ENDPOINTS](19)     | DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
