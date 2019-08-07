@@ -63,9 +63,9 @@ and reference implementations are designed to support this.
 
 ## Architecture Layers
 
-The components of a decentralised data ecosystem architecture can be conceptualised in four layers
+The components of a decentralised data ecosystem architecture can be conceptualised in four layers.
 
-![Architecture Layers diagram](images/layers.png "Architecture Layers")
+![Architecture Layers diagram](images/layers-1.png "Architecture Layers")
 
 ### Application Layer
 
