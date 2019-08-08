@@ -42,7 +42,7 @@ this vision.
 
 The DEPs specify standards for the development of interoperable data ecosystems. The design of 
 such standards and systems that implement them will inevitably require good judgement around 
-specific decisions and technical trade-off, and we will make such decisions with a preference
+specific decisions and technical trade-offs, and we will make such decisions with a preference
 for the following principles:
 
 - Open source and open standards
@@ -85,7 +85,7 @@ case or set of users. Examples might include:
 This layer is responsible for orchestrating the interactions between decentralised data assets and services in
 order to meet the requirements of the application layer. 
 
-> “Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise. ”
+> "Being abstract is something profoundly different from being vague... The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise."
 >
 > (Edsger Dijkstra)
 
