@@ -39,7 +39,7 @@ on the adoption of common standards.
 We draw an analogy to the growth in world trade enabled by container shipping: the explosive growth
 rates of world trade since 1970 were strongly enabled by the adoption of ISO Standards for 
 shipping containers. Such standards enable the construction and operation of much larger container ships,
-dockside intrastructure such as container cranes and container terminals, all of which are able to
+dockside infrastructure such as container cranes and container terminals, all of which are able to
 interoperate in global supply chains thanks to the common standards.
 
 In the same way, Starfish provides a common abstraction to enable decentralised data infrastructure to 
