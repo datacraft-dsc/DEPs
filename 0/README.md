@@ -95,6 +95,13 @@ Listings are able to represent data about the commercial terms on which an Asset
 Unlike Assets, the state of a Listing is assumed to be mutable, e.g. pricing may chnage over time. Furthermore, it
 is possible for a single Asset to be listed multiple times (e.g. in different marketplaces, or under different terms).
 
+## Marketplace
+
+A Marketplace is a service or software product that enables buyers and sellers of data to discover Assets, validate and 
+verify trust attributes, and perform economic transactions such as buying access to these Assets.
+
+Marketplace operators may choose who is allowed to make use of the marketplace functionality: it could be open to all in
+the ecosystem, or restricted to a trusted set of participants.
 
 ## Ocean Network
 
@@ -125,15 +132,43 @@ Examples of Operations may include:
 - Training a machine learning model
 - Aggregating multiple source data sets
 
+## Provenance
+
+Provenance is a record of ownership or origin of an Asset, which may be valuable in enhancing the
+trustworthiness of an Asset and therefore its economic value and suitability for use in regulated 
+environments or in situations where higher levels of trust are required.
+
+There are multiple forms of Provenance possible according to DEP standards, including:
+
+- Publisher Declared Provenance, which forms part of Asset Metadata according to DEP12
+- On-chain Provenance, which refers to immutable record of registration and/or purchase history recorded 
+on a decentralised ledger.
+
+
 ## Publisher
 
 A participant in a Data Ecosystem who creates Assets and makes them available to others. A Publisher
 is typically the Data Owner of the asset, or someone acting on the Data Owner's behalf.
 
+## Service Provider
+
+A Service Provider is a participant in the data ecosystem who makes assets available to other participants
+via one or more Agents supporting the DEP Standard APIs. Service providers may provider additional APIs
+not covered by the DEP Standards, but should be aware that this will limit the ability for such functionality
+to be used in an interoperable fashion, since such features will not be available to be used in general 
+purpose data supply lines.
+
+Service providers may choose to make their assets free to all, available for a free, or restricted to 
+a controlled set of participants according to access control rules. This is at the discretion of the service
+provider.
+
 ## Starfish
 
 Starfish is an open source developer toolkit for building applications and use cases with
-decentralised Data Supply Lines.
+decentralised Data Supply Lines, available for multiple programming languages.
+
+The core set of abstract operations in Starfish are defined in DEP4, however the specific library functions
+and patterns may vary based on the implementation language. 
 
 
 # License
