@@ -37,10 +37,11 @@ i.e. we wish to avoid tight coupling between the implementation of asset consume
 
 The Storage API:
 
-- must provide a simple interface to asset content via standard web protocols (HTTP / HTTPS)
+- must provide a simple interface to download asset content is a single step
+- must support standard web protocols (HTTP / HTTPS)
 - must support any type of asset content (assuming it can be expressed as an ordered sequence of byte values)
 - must allow content to be addressed via the Asset's DID
-- must integrate with relevant authentication and authorisation mechanisms
+- must integrate with authentication and authorisation mechanisms as required by the Storage Agent
 - should be easy to use and consistent with existing Internet tools and standards as far as possible
 
 ## API Specification
