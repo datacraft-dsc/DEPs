@@ -194,7 +194,7 @@ and refinements to existing decisions from contributors are welcome.
     </tr>
     <tr style="vertical-align:top">
       <td>Ocean Integration</td>
-      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a blockchain capability</td>
+      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a optional blockchain capability</td>
       <td>
         <ul>
 		  <li>Enable economic value exchange via the Ocean Token and smart contracts</li>
@@ -225,9 +225,16 @@ and refinements to existing decisions from contributors are welcome.
       </td>
     </tr>
     <tr>
-      <td>TDB</td>
-      <td>Next Decision</td>
-      <td>Next Rationale</td>
+      <td>Dependencies on underlying protocols</td>
+      <td>DEP Standards may refer to underlying protocols (e.g. the Ocean Protocol or ODBC for database access) but must not
+          absolutely require these as a hard dependency</td>
+      <td>
+        <ul>
+		  <li>Choice of underlying protocols / substrates should be left as implementation choices for the ecosystem</li>
+		  <li>Enables evolution of the DEP Standards independent of underlying technology choices</li>
+		  <li>Prevent "lock in" to specific technology choices mandated by the DEP standards</li>
+		</ul>    
+	  </td>
     </tr>
   </tbody>
 </table>
