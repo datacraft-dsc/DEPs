@@ -21,7 +21,7 @@ Table of Contents
       * [Methods](#methods)
       * [Authentication and Authorization](#authentication-and-authorization)
       * [Open Questions](#open-questions)
-      * [License](#license)
+   * [License](#license)
 
       
 <!--te-->
@@ -325,7 +325,7 @@ The response format is the same as returned by the get job result operation.
 - [Provenance DEP](https://github.com/DEX-Company/DEPs/blob/master/12)
 - [Metadata DEP](https://github.com/DEX-Company/DEPs/blob/master/8)
 
-## License
+# License
 
 Copyright (c) 2019 DEX Pte. Ltd.
 
