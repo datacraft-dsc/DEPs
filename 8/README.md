@@ -19,8 +19,8 @@ Table of Contents
       * [Base attributes](#base-attributes)
         * [Additional Information](#additional-information)
         * [Links](#links)
-      * [Data asset attributes](#data-asset-attributes)
-      * [Invokable service attributes](#invokable-service-attributes)
+      * [Data Asset attributes](#data-asset-attributes)
+      * [Operation attributes](#invokable-service-attributes)
       * [Bundle attributes](#bundle-attributes)
       * [Example](#example)
       * [References](#references)
@@ -37,35 +37,45 @@ As such, each Asset in the data ecosystem (dataset, operation, etc.) has Asset M
 Assets without proper descriptive metadata can have poor visibility and discoverability, so it is generally in the publisher's interest to ensure good metadata is made available.
 
 
-## Motivation
+# Motivation
 
 The main motivations of this DEP are:
 
 * Establish a standard Asset Metadata format to allow interoperability between participants in the data ecosystem
-* Specify the common attributes that HAVE to be added in Asset Metadata
+* Specify the common attributes that must be included in Asset Metadata under certain circumstances
 * Identify the recommended additional attributes that SHOULD be included in Asset Metadata to facilitate the ASSETS search
-* Provide an example of a possible structured Asset Metadata and additional links for reference
+* Provide a examples structured Asset Metadata and additional links for reference
+
+## Asset Types
+
+Assets must be one of the following types:
+
+Type            | Description
+----------------|---------------
+**dataset**     | A Data Asset which represents some form of content, e.g. a CSV file          
+**operation**   | An asset that represents a computational operation that may be invoked          
+**bundle**      | A composite Asset that may contain other Assets.          
 
 
 ## Base attributes
 
-The following attributes may be included as part of Asset Metadata, and have specific meanings which participants should
-interpret accordingly.
+The following attributes may be included as part of Asset Metadata for any Asset, and have 
+specific meanings which participants should interpret accordingly.
 
 
-Attribute       |   Type        |   Required    | Description
-----------------|---------------|---------------|----------------------
-**name**        | Text          | No            | Human-readable, descriptive name of the Asset. Should be relatively short, e.g. "UK Rainfall Averages 2018"
-**type**        | Text          | No            | Type of the Asset. Helps to filter by kind of asset, allowed values are:  ("dataset", "operation", "bundle")
-**description** | Text          | No            | Details of what the resource is. For a data set this might explain what the data represents and what it can be used for
-**dateCreated** | Text (Date)   | No            | The timestamp at which the asset was created (ISO 8601 String format)
-**author**      | Text          | No            | Free text name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
-**license**     | Text          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ). If it's not specified, the following value will be added: "No License Specified"
-**copyrightHolder**| Text       | No            | The party holding the legal copyright. 
-**links**       | Array of Link | No            | Mapping of links for data samples, or links to find out more information. 
-**inLanguage**  | Text          | No            | The language used in this instance of Asset Metadata. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47)
-**tags**        | Array of Text | No            | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. Empty by default
-**additionalInformation** | Map | No            | Additional JSON content at discretion of publisher
+Attribute          |   Type          |   Required    | Description
+-------------------|-----------------|---------------|----------------------
+**name**           | String          | No            | Human-readable, descriptive name of the Asset. Should be relatively short, e.g. "UK Rainfall Averages 2018"
+**type**           | String          | No            | Type of the Asset. Allowed values are: "dataset", "operation", "bundle" according to the Asset Types defined above. If no type is specified, it is assumed to be "dataset"
+**description**    | String          | No            | Details of what the resource is. For a data set this might explain what the data represents and what it can be used for
+**dateCreated**    | String (Date)   | No            | The timestamp at which the asset was created with ISO 8601 String format e.g. "2019-08-13T06:05:27+00:00"
+**creator**        | String          | No            | Free text name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
+**license**        | String          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ).
+**copyrightHolder**| String          | No            | The party holding the legal copyright. 
+**links**          | Array of Link   | No            | Mapping of links for data samples, or links to find out more information. 
+**inLanguage**     | String          | No            | The language used in this instance of Asset Metadata. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47). Assumed to be "en" if not specified.
+**tags**           | Array of String | No            | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. Empty by default
+**additionalInformation** | JSON Map | No            | Additional aritrary JSON content at discretion of publisher
 
 ### Additional Information
 
@@ -84,9 +94,13 @@ These are examples of attributes that might help describe or enhance the discove
 | keyword           | A list of keywords/tags describing a dataset                                                                                 |
 | structured-markup | A link to machine readable structured markup (such as ttl/json-ld/rdf) describing the dataset                                |                                                                                                                  |
 
-Additional information is opaque to the DEP Standards, and has no speific meaning from a protocol perspective. 
-Specific implementations may make use of this information, e.g. service providers might define their own standards for data
-formats here, which could affect processing in some circumstances.
+Additional information is opaque to the DEP Standards, and has no specific meaning from a protocol perspective. Solutions
+intended to work with arbitrary Assets should make no assumptions about the content or existence of additional
+information in the Asset Metadata.
+
+Some implementations may make use of this information, e.g. service providers might define their own standards 
+for data formats here, which could affect processing in some circumstances. Service providers making this choice
+should be aware that their implementation may not be compatible with all valid Assets as a result.
 
 ### Links
 
@@ -111,32 +125,29 @@ Links may be to either a URL or another Asset. We expect tribes and/or marketpla
 on agreements of typical formats for linked data: The Ocean protocol itself does not mandate any
 specific formats as requirements are likely to be domain-specific.
 
-## Data asset attributes
+## Data Asset attributes
 
-In addition to the base attributes, the following Attributes are defined for data assets only (with type: "dataset")
+In addition to the base attributes, the following Attributes are defined for Data Assets only (with type: "dataset")
 
 Attribute       |   Type        |   Required    | Description
 ----------------|---------------|---------------|----------------------
-**size**        | Text          | No            | Exact size of the asset in bytes, encoded as a decimal String
-**encoding**    | Text          | No            | File encoding (e.g. UTF-8)
-**compression** | Text          | No            | File compression (e.g. no, gzip, bzip2, etc)
-**contentType** | Text          | No           | File format if applicable, as a MIME type
-**contentHash** | Text          | No           | keccak256 hash of asset data. Required if publisher wishes to offer integrity checks
+**size**        | String        | No            | Exact size of the asset in bytes, encoded as a decimal String
+**contentType** | String        | No            | File format if applicable, as a MIME type
+**encoding**    | String        | No            | File encoding if relevant to content type (e.g. UTF-8)
+**compression** | String        | No            | File compression (e.g. gzip, bzip2, etc). Assumed to be uncompressed if not included
+**contentHash** | Text          | No            | SHA3-256 hash of asset data. Required if publisher wishes to offer integrity checks
 
-## Invokable operation attributes
+## Operation attributes
 
-In addition to the base attributes, the following Attributes are defined for invokable operations only (with type: "operation")
+Attribute       |   Type        |   Required    | Description
+----------------|---------------|---------------|----------------------
+**operation**   | JSON Map      | Yes           | Operation descriptor map as defined below
 
-Invokable services are defined in greater detail in OEP6.
 
-### Base attributes
+### Operation descriptor map
 
-- The base attribute value for an operation **type** must be **operation**.
-
-### Operation attributes
-
-This section is a map entry, where the key is **operation** and the value is a map containing a definition of the **operation**.
-It must have the following attributes: 
+This section must be included whenever the Asset Type is **operation** and the value is a map 
+containing a definition of the **operation**, which contains the following attributes: 
 
 | Attribute   | Value Type | Required | Description                                |
 |-------------|------------|----------|--------------------------------------------|
@@ -156,7 +167,7 @@ The values for **params** and **results** must be a map with the following attri
 | **required** | boolean    | Optional | Indicates that this parameter is mandatory. If absent, default value is True | params          |
 
 
-Example of `params` for an operation that hashes the input data asset, it accepts one input:
+Example of `params` for an operation that hashes the input data asset, it accepts one input where:
 - parameter name for the value to be hashed is `to_hash`
 - param value is of type asset, which required the DID of the asset to be passed.
 
