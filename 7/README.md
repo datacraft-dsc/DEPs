@@ -84,7 +84,7 @@ Success or failure of the upload operation is indicated as follows:
 |           404 | Asset not registered / found                       | error description     |
 |           507 | Insufficient Storage available at service provider | error description     |
 
-To comply with the API, storage agents:
+To comply with the API, storage agents supporting upload:
 - must ensure the data is persisted in storage in the case of a 2xx response
 - must reject requests (status 401) in the case of authentication failure
 - must reject requests (status 403) in the case of authorisation failure (but where authentication succeeded)
