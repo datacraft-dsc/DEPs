@@ -61,20 +61,6 @@ services across multiple parties in a decentralised or federated model.
 
 ## Specification
 
-### Agents
-
-#### Resolve Agent via DID
-
-Gets an existing Agent via the Universal Resolver
-
-#### Create and Register Agent DDO 
-
-Creates an Agent with a registered DDO on the Universal Resolver
-
-#### Create Agent with Local DDO
-
-Primarily for local / test usage.
-
 ### Assets
 
 #### Asset Creation
@@ -229,6 +215,20 @@ Overall goals for marketplace capabilities include:
 
 - The ability for asset consumers to execute transactions using the Ocean Network
 - The ability for asset publishers to create / manage listings of assets for sale on a data marketplace
+
+### Universal Resolver
+
+#### Resolve Agent via DID
+
+Gets an existing Agent via the Universal Resolver
+
+#### Create and Register Agent DDO 
+
+Creates an Agent with a registered DDO on the Universal Resolver
+
+#### Create Agent with Local DDO
+
+Primarily for local / test usage.
 
 ### General functionality
 
