@@ -61,6 +61,20 @@ services across multiple parties in a decentralised or federated model.
 
 ## Specification
 
+### Agents
+
+#### Resolve Agent via DID
+
+Gets an existing Agent via the Universal Resolver
+
+#### Create and Register Agent DDO 
+
+Creates an Agent with a registered DDO on the Universal Resolver
+
+#### Create Agent with Local DDO
+
+Primarily for local / test usage.
+
 ### Assets
 
 #### Asset Creation
