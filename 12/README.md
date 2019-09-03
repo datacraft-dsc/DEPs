@@ -440,4 +440,9 @@ It must specify the following relations:
 Copyright (c) 2019 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
+
+The sections and diagrams quoted from the W3C Prov standard are covered by W3C copyright. 
+
+* "Copyright © 2013 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang). http://www.w3.org/Consortium/Legal/2015/doc-license"
+* [URL to the original W3C document](https://www.w3.org/TR/2013/NOTE-prov-primer-20130430/). 
  
