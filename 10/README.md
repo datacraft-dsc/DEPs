@@ -46,15 +46,40 @@ The Token payments system:
 ## Direct Payment Contract
 
 The Direct Payment contract is a smart contract deployed on an Ethereum-compatible network that enables direct ERC20 token
-payments for data assets and services
+payments for data assets and services. Direct Payment Contract can be created by anyone and deployed in any network but to be compatible with this specification it must generate the event with the following signature:
+```
+event TokenSent(
+	address indexed _from,
+	address indexed _to,
+	uint256 _amount,
+        bytes32 _reference1,
+	bytes32 indexed _reference2
+  );
+```
+Direct Payment contract is supposed to perform 3 functions:
+1. To assign any (but only one) ERC20 token to perform transaction
+2. To implement Allowance API by calling transferFrom function of ERC20 token. Purchaser must set Direct Payment Contract address as spender in approve() function beforehand to  start using this contract. 
+3. To log edditional information of transaction
 
 ## Allowance API
 
 The Allowance API enables a consumer to allow the direct payment contract to transfer tokens from the consumer's account.
+There is no special requirements for implementation of this API since it is the part of existing ERC20 token interface:
+```
+transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
+approve(address _spender, uint256 _value) public returns (bool success)
+allowance(address _owner, address _spender) public view returns (uint256 remaining)
+```
+Using these methods any ERC20 token can be allowed to be transferred by third party address (or Direct Payment Contract as a special case) to recipient with prior agreement of purchaser
 
 ## Purchase API
 
 The Purchase API provides functionality for a client to make a direct payment for a data asset or service.
+It has the following interface:
+```
+void sendTokenAndLog(address to, uint256 amount, bytes32 reference1, bytes32 reference2)
+```
+It is called by purchaser directly and this transaction is signed by purchaser as well and is sent to blockchain. This way additional information as _reference1_ and _reference2_ apart from token transaction (_amount_, _address of account_from_, _address of account_to_) is recorded to blockchain. _reference2_ must be unique for life because only this way it is possible clearly to distinguish transactions.
 
 ## Purchase Confirmation API
 
@@ -63,7 +88,11 @@ a specific data asset or service.
 
 Service providers should use this API to verify successful purchase before authorising consumer access to the protected
 data asset or service.
-
+It has the following interface:
+```
+bool check_is_paid(address_from, address_to, amount_paid, reference)
+```
+Having these 4 parameters it is possible to clearly conclude whether the payment has been done or not by searching in blockchain ledger.
 
 # References
 
