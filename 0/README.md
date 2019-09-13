@@ -57,9 +57,10 @@ such as those defined in the DEPs.
 
 ## Data Supply Line
 
-An orchestrated set of data flows that creates value in a Data Ecosystem. A Data Supply Line
-is designed to be executed by one or more Agents, can transfer Data Assets between different
-participants, and can transform Data Assets through the use of Operations to create new Data
+An orchestrated set of data flows that is designed to create value in a Data Ecosystem.
+
+A Data Supply Line may be executed by one or more Agents, can transfer Assets between different
+participants, and can transform Assets through the use of Operations to create new, more valuable
 Assets.
 
 ## DEP
@@ -150,9 +151,18 @@ on a decentralised ledger.
 A participant in a Data Ecosystem who creates Assets and makes them available to others. A Publisher
 is typically the Data Owner of the asset, or someone acting on the Data Owner's behalf.
 
+## Resolver
+
+A service available to the Data Ecosystem that maps DIDs to DDOs, effectively acting as a shared directory
+of decentralised services in the data ecosystem.
+
+The Ocean Network provides a resolver which handles DIDs registered on the Ocean network, which have the form:
+
+`did:op:21f8a3a788fe465f81b146af04ed4c9bd7d9158bebbc458a8ca92d5dd57335d3`
+
 ## Service Provider
 
-A Service Provider is a participant in the data ecosystem who makes assets available to other participants
+A Service Provider is a participant in the data ecosystem who makes Assets available to other participants
 via one or more Agents supporting the DEP Standard APIs. Service providers may provider additional APIs
 not covered by the DEP Standards, but should be aware that this will limit the ability for such functionality
 to be used in an interoperable fashion, since such features will not be available to be used in general 
