@@ -146,7 +146,7 @@ tight coupling between producers and consumers.
 
 TBC:
 
-* A - https://foo.org
+* RFC6266 regarding Content Disposition Headers - [https://tools.ietf.org/html/rfc6266]
 
 ## License
 
