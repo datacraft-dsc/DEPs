@@ -144,8 +144,6 @@ tight coupling between producers and consumers.
 
 ## References
 
-TBC:
-
 * RFC6266 regarding Content Disposition Headers - [https://tools.ietf.org/html/rfc6266]
 
 ## License
