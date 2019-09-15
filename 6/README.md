@@ -28,11 +28,11 @@ Table of Contents
 
 # Introduction
 
-This section contains a non-normative introduction to the Invoke API.
+The Invoke API is a standardised solution to the problem of executing code (Operations) upon Assets in 
+the context of a decentralised data ecosystem.
 
-In order to build a data pipeline, actors in the data ecosystem need the ability to transform data assets. 
-
-Example of operations that could be offered:
+In order to build a useful data pipeline, actors in the data ecosystem will generally need the ability 
+to transform and process data assets. Example of operations that could be offered:
 
 * A data cleaning operation that removes noise from data
 * A model training operation that returns a trained model given training data
@@ -55,7 +55,7 @@ The Invoke API
 
 ## Entities
 
-- Asset: An Operation is registered as an Asset with a specific `type` (Operation) 
+- Operation: A computation that may be executed via the Invoke API is as represented an Asset with a specific `type` ("operation") 
 - Account: An actor in the data system is identified using an Account.
 - Service provider: The actor that hosts the algorithm implemention on their server(s).
   - InvokeEndpoint: The operation is made available on one or more REST Endpoints on a Service Provider's server or cloud.
@@ -175,7 +175,7 @@ The endpoint must accept
 
 This section is non-normative.
 
-The values are categorized into two types (`asset` and `json`) to support libraries such as Starfish in:
+The values are categorised into two types (`asset` and `json`) to support libraries such as Starfish in:
 
 - Validating if payloads adhere to the operation schema 
 - Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
@@ -210,6 +210,10 @@ Here's an example of a request to the same operation which includes an optional 
 
 The response to a valid request must be a JSON encoded map with the **jobid** and the corresponding value. Invalid requests must return a response code as described below.
 
+The Service Provider should reject operations that the requestor is not authorised to perform with a 403 status.
+Service providers should use this 403 response in situations where the operation requested is not trusted for
+security reasons.
+
 The choice of schema for the jobid's value is left to the implementor of the operation.
 
 ```
@@ -222,9 +226,9 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 |---------------|--------------------------------------------------------------------------------|-------------------------------------------|
 |           201 | job creation success                                                           | map with jobid key                        |
 | 404 | asset id not found | none|
-|           400 | bad request-not according to presribed format or invalid configuration options | map with error code and error description |
+|           400 | bad request-not according to prescribed format or invalid configuration options | map with error code and error description |
 |           401 | not authenticated (no authentication tokens provided)                              | map with error code and error description |
-|           403| not authorized (no authorization tokens provided)                              | map with error code and error description |
+|           403| not authorised (no authorisation tokens provided)                              | map with error code and error description |
 |           5XX | error                                                                          | -                                         |
 |               |                                                                                |                                           |
 
@@ -307,9 +311,10 @@ The endpoint must accept
 
 The response format is the same as returned by the get job result operation. 
 
-## Authentication and Authorization
+## Authentication and Authorisation
 
-- Implementations may use various ways to authenticate and authorize that are transparent to the API. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20) for further details.
+- Implementations should ensure that requests which may result in execution of untrusted code are tightly controlled
+- Implementations may use various ways to authenticate and authorise that are transparent to the API. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20) for further details.
 - Implementations may use specific access rules for each API (e.g. getting job status) 
 
 ## Open questions
