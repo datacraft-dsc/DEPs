@@ -208,13 +208,42 @@ service provider agent implementations may wish to offer this functionality.
 
 ### Marketplace
 
-Starfish standards for marketplace operations are yet to be formally defined, and are currently under
+Starfish standards for marketplace operations are are currently under
 development as part of the reference implementations.
 
 Overall goals for marketplace capabilities include:
 
-- The ability for asset consumers to execute transactions using the Ocean Network
 - The ability for asset publishers to create / manage listings of assets for sale on a data marketplace
+- The ability for asset consumers to execute transactions using the Ocean Network
+
+
+#### Create listing
+
+Allows a publisher to create a listing on a Marketplace for an asset that they control.
+
+#### Update listing
+
+Allows a publisher to update a listing that they control on a Marketplace.
+
+Possible changes include:
+ - Changing the status of the listing (e.g. disabling it)
+ - Changing the price
+ - Changing terms and conditions of sale
+
+#### Get Listing
+
+Retrieves a listing from a marketplace, allowing the Consumer to inspect the terms and conditions of the 
+listing before purchase.
+
+#### Purchase
+
+Provides the capability for a Consumer to purchase an Asset via a Listing, making a payment using an
+appropriate mechanism (e.g. Sending Ocean Tokens to the publisher)
+
+#### Purchase confirmation
+
+Provide the ability for the Consumer to check that a purchase is complete, and for a service provider to
+verify that payment has been made before granting access to the purchased Asset.
 
 ### Universal Resolver
 
