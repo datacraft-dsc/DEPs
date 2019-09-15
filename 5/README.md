@@ -79,7 +79,7 @@ Developer Toolkit.
 ### Asset Identity
 
 An Asset must have metadata, and its Asset ID is defined to be the SHA3-256 cryptographic hash of 
-its metadata (encoded as a UTF-8 byte sequence), represented in 4 lowercase hex charcaters. 
+its metadata (encoded as a UTF-8 byte sequence), represented in 64 lowercase hex charcaters. 
 
 An example of an asset ID would be:
 
