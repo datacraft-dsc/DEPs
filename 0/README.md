@@ -93,7 +93,9 @@ Listings are able to represent data about the commercial terms on which an Asset
 - Commercial terms and conditions
 - Restrictions to specific geographies
 
-Unlike Assets, the state of a Listing is assumed to be mutable, e.g. pricing may chnage over time. Furthermore, it
+A marketplace is responsible for maintaining a set of active listings for any assets that are intended for purchase
+using DEP standardised purchase functionality. In general, the set of active Listings is assumed to be mutable, 
+e.g. pricing may change over time. Furthermore, it
 is possible for a single Asset to be listed multiple times (e.g. in different marketplaces, or under different terms).
 
 ## Marketplace
@@ -115,7 +117,7 @@ including:
 
 ## OEP
 
-Acronyn for "Ocean Enhancement Proposal", which defines enhancements to the Ocean Network and
+Acronym for "Ocean Enhancement Proposal", which defines enhancements to the Ocean Network and
 related technologies. Current OEPs can be found at: https://github.com/oceanprotocol/OEPs.
 
 ## Operation
@@ -144,7 +146,7 @@ There are multiple forms of Provenance possible according to DEP standards, incl
 - Publisher Declared Provenance, which forms part of Asset Metadata according to DEP12
 - On-chain Provenance, which refers to immutable record of registration and/or purchase history recorded 
 on a decentralised ledger.
-
+- Logs maintained at the discretion of service providers or marketplaces
 
 ## Publisher
 
