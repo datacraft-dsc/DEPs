@@ -310,7 +310,64 @@ Note: initial reference implementations used the Keccak256 hash function for ass
 
 ### Agent Model
 
+<table>
+    <colgroup>
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 40%;">
+       <col span="1" style="width: 40%;">
+    </colgroup>
 
+  <tbody valign="top">
+    <tr>
+      <th>Topic</th>
+      <th>Decision</th>
+      <th>Rationale</th>
+    </tr>
+    <tr>
+      <td>Agent Definition</td>
+      <td>An Agent shall be defined as a system that provides services to the ecosystem according to the DEP standards.
+      </td>
+      <td>
+        <ul>
+		  <li>Ensure clarity on the definition of which systems are considered as Agents</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Agent Resolution</td>
+      <td>An Agent should be registered with a DDO, and this DDO should be resolvable
+         using a DID on a public service via an appropriate Resolver implementation</td>
+      <td>
+        <ul>
+          <li>Enables Agents to be addressed in a standard fashion using DIDs as identifiers</li>
+          <li>Consistency with use of DIDs / DDOs on Ocean Network</li>
+          <li>Conforms with W3C DID standard</li>
+          <li>Not mandatory because some operators may chose to run a private Agent, using some other means of DDO resolution (e.g. secret sharing between known parties)</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Agent APIs</td>
+      <td>An Agent must support one or more of the DEP Standard APIs, and these services should be declared in its DDO</td>
+      <td>
+        <ul>
+          <li>Necessary for the capability of the Agent to provide its services to the ecosystem in an interoperable way</li>
+		</ul>      
+      </td>
+    </tr>
+    <tr>
+      <td>Security Responsibility</td>
+      <td>Responsibility for the security of the Agent rests with the operator.</td>
+      <td>
+        <ul>
+          <li>Decentralised responsibility for security naturally rests with the operator of the Agent</li>
+          <li>Necessary because the DEPs do not mandate or control the nature of the technology deployment
+             and configuration of the Agent.</li>
+		</ul>      
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## References
 
