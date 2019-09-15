@@ -33,7 +33,10 @@ of the underlying storage implementation,
 i.e. we wish to avoid tight coupling between the implementation of asset consumers and asset providers. 
 
 
+
 ## Requirements
+
+### API Design
 
 The Storage API:
 
@@ -43,6 +46,14 @@ The Storage API:
 - must allow content to be addressed via the Asset's DID
 - must integrate with authentication and authorisation mechanisms as required by the Storage Agent
 - should be easy to use and consistent with existing Internet tools and standards as far as possible
+
+### Access Control
+
+The implementation of the Storage API must implement appropriate access control mechanisms to prevent
+unauthorised access to Asset content.
+
+It is the responsibility of the operator of the storage Agent to ensure that any such access control 
+mechanisms are appropriately configured and secured.
 
 ## API Specification
 

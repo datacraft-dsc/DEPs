@@ -47,11 +47,31 @@ It may be observed that these operations:
 
 The Invoke API 
 
-- Provides a standardized interface to transform data assets.
+- Provides a standardised interface to transform data assets.
 - Facilitates creation of data pipeline(s) of data asset transformations.
 - Aid in establishing the provenance of data assets (by using DEP-12).
 
 ![User flow](https://user-images.githubusercontent.com/89076/61606548-78dab780-ac7d-11e9-9e41-6364988a6652.png)
+
+## Trustworthiness of executed Operations
+
+DEP6 deals with the execution of computations within the security context of a service provider. As such,
+the service provider must consider the trustworthiness of any Operations that it allows to be invoked. It should 
+be considered a major security risk to allow arbitrary consumers to execute arbitrary code, therefore sevice providers
+should almost always enforce some restrictions.
+
+Several approaches exist for providing more trustworthy execution, which may be employed at the 
+discretion of the Service Provider, balancing the needs of their consumers with the potential risks.
+
+| Approach | Description | Advantages | Risks and limitations |
+| Restricted Operations | The service provider offers only a limited set of Operations that it explicitly approves and/or maintains | <ul><li>High degree of control over code executed</li><li>Service provider may offer proprietary code without revealing algorithms</li><ul>|</ul><li>Consumers have limited choice of Operations</li><li>Service providers must fully anticipate usage and create appropriate API designs</li>/ul>|
+| Domain Specific Language | The service provider allows consumers to specify code with a constrained Domain Specific Language (DSL) that is designed to only allow certain language functions which the service provider considers safe | <ul><li>Gives relevant flexibility to Consumers within a given domain</li><li>May be secure given correct DSL design and implementation</li><li>May be possible to prove properties of DSL (e.g. non-Turing completeness)</li><ul>|</ul><li>Consumers are limited to capabilities provided by DSL</li><li>Risk of security flaws in DSL design and implementation</li>/ul>|
+| Secure Sandbox | The service provider allows consumers to specify arbitrary code to execute, but runs this within a secure sandboxed execution environment (e.g. a docker container) |<ul><li>Significant flexibility to consumers, may use existing preferred languages</li></ul>|<li><ul>Security dependent on the implementation of the sandoxed environment</ul><ul>May require additional controls on resource usage</ul></li>|
+| Trusted Consumers | The service provider permitted only trusted Consumers to execute code (e.g. with a whitelist) |<ul><li>May offer significant capabilities to trusted consumers</li><li>Reduced requirement to secure the execution environment</li></ul>|<li><ul></ul><ul>Risk of stolen trusted credentials allowing an attacker to execute arbitrary code</ul></li>|
+
+Service providers may also employ a combinations of the above techniques.
+
+
 
 ## Entities
 
