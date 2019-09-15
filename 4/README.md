@@ -63,6 +63,9 @@ services across multiple parties in a decentralised or federated model.
 
 ### Assets
 
+Assets are represented in Starfish as an abstraction enabling users to work with such Assets wherever they
+may be located in the Data Ecosystem.
+
 #### Asset Creation
 
 Starfish must provide the ability to create data assets, where the creator of the asset may specify 
@@ -108,6 +111,9 @@ support all possible data types and the interpretation of content types should b
 outside the scope of Starfish in general.
 
 ### Agents
+
+Agents are represented in Starfish as an abstraction enabling users to work with Agents wherever
+they are operated in the Data Ecosystem. 
 
 #### Remote Agents
 
@@ -195,20 +201,21 @@ invalid parameters, server failure, timeout etc.).
 
 #### Local Operations
 
-Starfish must allow the user to create an Operation in the scope of their local environment.
+Starfish must allow the user to create an Operation in their local context.
 
 Starfish must allow Local Operations to be used in the same way as Remote Operations in the context
 of the local environment.
 
-Starfish should allow the user to provide arbitrary executable code for their local operation.
+Starfish should allow the user to provide arbitrary executable code for their local operation (bearing in mind
+that it is the responsibility of the user to ensure security properties of this executable code)
 
 Note: It is beyond the scope of Starfish to allow Local Operations to be exposed to the ecosystem
 (to the extent that they could be invoked as Remote Operations by other parties), however
-service provider agent implementations may wish to offer this functionality.
+service provider agent implementations may wish to offer this functionality using the Invoke API.
 
 ### Marketplace
 
-Starfish standards for marketplace operations are are currently under
+TBC: Starfish standards for marketplace operations are are currently under
 development as part of the reference implementations.
 
 Overall goals for marketplace capabilities include:
@@ -245,19 +252,25 @@ appropriate mechanism (e.g. Sending Ocean Tokens to the publisher)
 Provide the ability for the Consumer to check that a purchase is complete, and for a service provider to
 verify that payment has been made before granting access to the purchased Asset.
 
-### Universal Resolver
+### Resolver
+
+The Resolver in starfish provides utilities to access Agents and Assets via DIDs / DDOs.
 
 #### Resolve Agent via DID
 
-Gets an existing Agent via the Universal Resolver
+Gets an existing Agent via the Universal Resolver. 
 
 #### Create and Register Agent DDO 
 
-Creates an Agent with a registered DDO on the Universal Resolver
+Creates an Agent with a registered DDO on the Resolver
 
-#### Create Agent with Local DDO
+#### Install Local DDO
 
-Primarily for local / test usage.
+Starfish provides the capability for the user to install a locally specified DDO.
+
+This is useful in the following scenarios:
+- Local / test usage
+- Accessing an Agent that is not listed on a public resolver service
 
 ### General functionality
 
