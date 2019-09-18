@@ -46,7 +46,7 @@ The main motivations of this DEP are:
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
 | addMetadata      | POST   | /data                        |
-| addMetadata      | PUT    | /data/{asset_id}             |
+| updateMetadata      | PUT    | /data/{asset_id}             |
 | getMetadata      | GET    | /data/{asset_id}             |
 | getMetadata      | GET    | /data/                       |
 
