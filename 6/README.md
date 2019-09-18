@@ -32,12 +32,31 @@ The Invoke API is a standardised solution to the problem of executing code (Oper
 the context of a decentralised data ecosystem.
 
 In order to build a useful data pipeline, actors in the data ecosystem will generally need the ability 
-to transform and process data assets. Example of operations that could be offered:
+to transform and process data assets. 
+
+Operations can segmented into three broad use cases:
+
+### Data transformation on public assets
+
+Examples:
 
 * A data cleaning operation that removes noise from data
 * A model training operation that returns a trained model given training data
 * A model verification operation that returns metrics of a model's performance, given a model and a test data set.
-* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry.
+
+### Operations on private assets
+
+Examples:
+
+* Run model training on private data.
+* Run model accuracy tests on a private test dataset.
+* Request to run a proprietary, private algorithm on a public data asset.
+
+### Retrieval queries that require provenance
+
+Example:
+
+* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry. The use case requires that the provenance of this query be associated with the retrieved result.
 
 It may be observed that these operations:
 
