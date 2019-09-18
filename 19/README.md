@@ -84,7 +84,7 @@ Current allocated endpoint types are listed below:
 
 Endpoint type           |   Description
 ------------------------|----------------------
-Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (DEP15)
+Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 ([DEP15](https://github.com/DEX-Company/DEPs/tree/master/15))
 Ocean.Invoke.v1         | Endpoint for an invokable service API (DEP6)
 Ocean.Storage.v1        | Endpoint for a generalised storage API (DEP7)
 Ocean.Auth.v1           | Endpoint the Authentication API (DEP20)
