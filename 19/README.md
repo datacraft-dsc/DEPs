@@ -87,7 +87,7 @@ Endpoint type           |   Description
 Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 (DEP15)
 Ocean.Invoke.v1         | Endpoint for an invokable service API (DEP6)
 Ocean.Storage.v1        | Endpoint for a generalised storage API (DEP7)
-Ocean.Authentication.v1 | Endpoint the Authentication API (DEP20)
+Ocean.Auth.v1           | Endpoint the Authentication API (DEP20)
 Ocean.Market.v1         | Endpoint for the Market Agent API (TBC)
 
 ## Implementations
