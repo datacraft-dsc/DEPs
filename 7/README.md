@@ -61,7 +61,6 @@ mechanisms are appropriately configured and secured.
 
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
-| uploadAsset      | PUT    | /api/v1/assets/{id}          |
 | uploadAsset      | POST   | /api/v1/assets/{id}          |
 | downloadAsset    | GET    | /api/v1/assets/{id}          |
 
@@ -128,7 +127,7 @@ Download behaviour follows the following rules:
 
 ## Motivation
 
-> “Everything should be made as simple as possible, but no simpler”
+> â€œEverything should be made as simple as possible, but no simplerâ€
 >
 > (attributed to Albert Einstein)
 
