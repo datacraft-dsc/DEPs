@@ -16,11 +16,11 @@ Table of Contents
 
 # Metadata Agent API
 
-This DEP describes the API by which Agents in the Ocean ecosystem can store and provide verifiable metadata to Ocean clients.
+This DEP describes the API by which Agents in the data ecosystem can store and provide verifiable metadata to clients.
 
 Metadata is identified by the hash of its content, i.e. a Meta Agent acts as content-addressable storage of metadata records.
 
-This service is primary used for storing Asset metadata, but should be open enough to provide metadata storage for other forms of metadata within the Ocean ecosystem.
+This service is primary used for storing Asset metadata, but should be open enough to provide metadata storage for other forms of metadata within the data ecosystem.
 
 ## Change Process
 
@@ -45,15 +45,16 @@ The main motivations of this DEP are:
 
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
-| addMetadata      | POST   | /data/{asset_id}             |
+| addMetadata      | POST   | /data                        |
 | addMetadata      | PUT    | /data/{asset_id}             |
 | getMetadata      | GET    | /data/{asset_id}             |
+| getMetadata      | GET    | /data/                       |
 
 
 -------------------------------------------------------------------------------
 ### addMetaData
 
-Add meta data to the server storage. The message body will be hashed using keccak256 to
+Add meta data to the server storage. The message body will be hashed using SHA3-256 to
 generate the asset id.
 
 If using the PUT method with {asset_id}, the asset ID will be compared to the given asset ID to ensure integrity. An error will occur if the hash is invalid.
@@ -104,7 +105,7 @@ It is the responsibility of the agent's API implementation to enforce access con
 
 #### Inputs
 
-The Asset ID (i.e. the keccak256 hash of the metadata) is provided in the URL.
+The Asset ID (i.e. the SHA3-256 hash of the metadata) is provided in the URL.
 
 #### Outputs
 
