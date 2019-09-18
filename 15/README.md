@@ -119,7 +119,7 @@ This returned metadata should be identical to the metadata provided to the addMe
 
 ```
 
-Clients may choose to verify the integrity of the metadata by computing the keccak256 hash of the returned metadata and comparing to
+Clients may choose to verify the integrity of the metadata by computing the SHA3-256 hash of the returned metadata and comparing to
 the requested metadata ID.
 
 
