@@ -266,7 +266,7 @@ The endpoint must accept
 
 The response to a valid request must contain a JSON payload. 
 
-- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|unknown] 
+- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|cancelled] 
 - Once the job has completed, and if it succeeded, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
