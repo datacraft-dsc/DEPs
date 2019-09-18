@@ -22,7 +22,7 @@ Table of Contents
 
 Starfish is an open source developer toolkit for building decentralised data ecosystems and use cases.
 
-Starfish provides the tools and capabilities required for a application developer to create,
+Starfish provides the tools and capabilities required for an application developer to create,
 orchestrate, execute and manage decentralised data supply lines spanning multiple parties in the 
 data ecosystem. The ability for such parties to interoperate is made possible by conformance to
 DEP Standard APIs.
@@ -182,7 +182,7 @@ to the Remote Operation.
 
 #### Invocation
 
-Starfish must allow the developer to "invoke" an Operation, in the sense defined in DEP6.
+Starfish must allow the developer to "invoke" an Operation, in the sense defined in [DEP6](https://github.com/DEX-Company/DEPs/tree/master/6).
 
 Starfish must allow input parameters to be passed to the invoked Operation, where such input
 parameters may be JSON values or Assets as defined in DEP6. Parameters should be provided in 
