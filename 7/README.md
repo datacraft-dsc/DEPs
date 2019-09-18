@@ -79,9 +79,7 @@ asset ID. The Storage API is agnostic to the file format used for content.
 The asset metadata must already be registered with the agent. The result of
 attempts to upload content for an unregistered asset is undefined.
 
-The PUT and POST endpoints perform the same function, with the following difference:
-- For PUT, the asset content must be the body of the HTTP PUT request
-- For POST, the asset content must be provided as a file (HTTP multipart form data)
+For the POST endpoints the asset content must be provided as a file (HTTP multipart form data)
 
 Success or failure of the upload operation is indicated as follows:
 
