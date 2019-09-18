@@ -266,8 +266,23 @@ The endpoint must accept
 
 The response to a valid request must contain a JSON payload. 
 
-- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|unknown] 
-- Once the job has completed, and if it succeeded, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
+- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed] 
+
+|Status |Description|
+|-|-|
+|scheduled| The job has been scheduled, but has not yet started|
+|running|The job is currently running|
+|succeeded|The job completed successfully|
+|failed|The job failed to complete successfully|
+
+Note that:
+- Implementations must adhere to the state transitions described in this diagram. 
+- A job can go from state `scheduled` to `failed` because it was unable to access data assets required for execution 
+
+![Job status state transitions](https://user-images.githubusercontent.com/89076/65109732-0121d280-da0b-11e9-90bd-acb2cc871b35.png)
+
+
+- Once the job has completed, and if it `succeeded`, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
 - A map (if type is **asset**)
