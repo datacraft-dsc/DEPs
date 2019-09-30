@@ -62,6 +62,7 @@ mechanisms are appropriately configured and secured.
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
 | uploadAsset      | POST   | /api/v1/assets/{id}          |
+| uploadAsset      | PUT   | /api/v1/assets/{id}          |
 | downloadAsset    | GET    | /api/v1/assets/{id}          |
 
 The Storage endpoints for any given asset DID can be constructed using the following procedure:

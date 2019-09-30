@@ -32,12 +32,31 @@ The Invoke API is a standardised solution to the problem of executing code (Oper
 the context of a decentralised data ecosystem.
 
 In order to build a useful data pipeline, actors in the data ecosystem will generally need the ability 
-to transform and process data assets. Example of operations that could be offered:
+to transform and process data assets. 
+
+Operations can segmented into three broad use cases:
+
+### Data transformation on public assets
+
+Examples:
 
 * A data cleaning operation that removes noise from data
 * A model training operation that returns a trained model given training data
 * A model verification operation that returns metrics of a model's performance, given a model and a test data set.
-* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry.
+
+### Operations on private assets
+
+Examples:
+
+* Run model training on private data.
+* Run model accuracy tests on a private test dataset.
+* Request to run a proprietary, private algorithm on a public data asset.
+
+### Retrieval queries that require provenance
+
+Example:
+
+* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry. The use case requires that the provenance of this query be associated with the retrieved result.
 
 It may be observed that these operations:
 
@@ -64,7 +83,7 @@ Several approaches exist for providing more trustworthy execution, which may be 
 discretion of the Service Provider, balancing the needs of their consumers with the potential risks.
 
 | Approach | Description | Advantages | Risks and limitations |
-| ======== | =========== | ========== | ===================== |
+| - | - | - | - |
 | Restricted Operations | The service provider offers only a limited set of Operations that it explicitly approves and/or maintains | <ul><li>High degree of control over code executed</li><li>Service provider may offer proprietary code without revealing algorithms</li></ul> | </ul><li>Consumers have limited choice of Operations</li><li>Service providers must fully anticipate usage and create appropriate API designs</li></ul> |
 | Domain Specific Language | The service provider allows consumers to specify code with a constrained Domain Specific Language (DSL) that is designed to only allow certain language functions which the service provider considers safe | <ul><li>Gives relevant flexibility to Consumers within a given domain</li><li>May be secure given correct DSL design and implementation</li><li>May be possible to prove properties of DSL (e.g. non-Turing completeness)</li></ul> | </ul><li>Consumers are limited to capabilities provided by DSL</li><li>Risk of security flaws in DSL design and implementation</li></ul> |
 | Secure Sandbox | The service provider allows consumers to specify arbitrary code to execute, but runs this within a secure sandboxed execution environment (e.g. a docker container) | <ul><li>Significant flexibility to consumers, may use existing preferred languages</li></ul>| <ul><li>Security dependent on the implementation of the sandoxed environment</li><li>May require additional controls on resource usage</li></ul> |
@@ -266,6 +285,7 @@ The endpoint must accept
 
 The response to a valid request must contain a JSON payload. 
 
+<<<<<<< HEAD
 - It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed] 
 
 |Status |Description|
@@ -274,6 +294,7 @@ The response to a valid request must contain a JSON payload.
 |running|The job is currently running|
 |succeeded|The job completed successfully|
 |failed|The job failed to complete successfully|
+|cancelled|The job was cancelled|
 
 Note that:
 - Implementations must adhere to the state transitions described in this diagram. 

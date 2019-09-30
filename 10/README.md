@@ -10,7 +10,7 @@ contributors: Mike Anderson <mike.anderson@dex.sg>
 # Table of Contents
 
    * [Table of Contents](#table-of-contents)
-   * [Overview](#overview
+   * [Overview](#overview)
    * [Requirements](#requirements)
    * [Specification](#specification)
        * TBD

@@ -65,6 +65,20 @@ The Agent should have a DDO (DID Document) to describe itslf to other parties. T
 - Any service endpoints offered by the Agent according to the DEP Standard APIs (see DEP15)
 - Any public cryptographic keys that the Agent wishes to share (e.g. for verification purposes)
 
+Example DDO with endpoints:
+
+```
+{"service":
+ [{"type":"Ocean.Invoke.v1",
+   "serviceEndpoint":"https:\/\/foo.com\/api\/v1"},
+  {"type":"Ocean.Meta.v1",
+   "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/meta"},
+  {"type":"Ocean.Auth.v1",
+   "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/auth"},
+  {"type":"Ocean.Storage.v1",
+   "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/assets"}]}
+```
+
 An Agent's DID / DDO must be registered via a Universal Resolver if the Agent wishes its service 
 endpoints to be generally discoverable by other parties in the data ecosystem.
 
