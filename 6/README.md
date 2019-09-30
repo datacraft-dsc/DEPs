@@ -285,7 +285,6 @@ The endpoint must accept
 
 The response to a valid request must contain a JSON payload. 
 
-<<<<<<< HEAD
 - It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed] 
 
 |Status |Description|
