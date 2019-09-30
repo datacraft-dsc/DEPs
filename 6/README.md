@@ -28,10 +28,10 @@ Table of Contents
 
 # Introduction
 
-The Invoke API is a standardised solution to the problem of executing code (Operations) upon Assets in 
+The Invoke API is a standardised solution to the problem of transforming data (Assets) using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
 the context of a decentralised data ecosystem.
 
-In order to build a useful data pipeline, actors in the data ecosystem will generally need the ability 
+In order to build a useful [data supply line](https://github.com/DEX-Company/DEPs/tree/master/0#data-supply-line), actors in the data ecosystem will generally need the ability 
 to transform and process data assets. 
 
 Operations can segmented into three broad use cases:
@@ -56,7 +56,7 @@ Examples:
 
 Example:
 
-* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry. The use case requires that the provenance of this query be associated with the retrieved result.
+* A consent filtering operation which filters a dataset by checking each dataset instance (e.g. a single patient's data in a healthcare study) against an external consent registry. The use case requires that the [Provenance](https://github.com/DEX-Company/DEPs/tree/master/0#provenance) of this query be associated with the retrieved result.
 
 It may be observed that these operations:
 
@@ -95,18 +95,18 @@ Service providers may also employ a combinations of the above techniques.
 
 ## Entities
 
-- Operation: A computation that may be executed via the Invoke API is as represented an Asset with a specific `type` ("operation") 
+- [Operation](https://github.com/DEX-Company/DEPs/tree/master/0#operation): A computation that may be executed via the Invoke API is as represented an Asset with a specific `type` ("operation") 
 - Account: An actor in the data system is identified using an Account.
-- Service provider: The actor that hosts the algorithm implemention on their server(s).
+- [Service provider](https://github.com/DEX-Company/DEPs/tree/master/0#service-provider): The actor that hosts the algorithm implemention on their server(s).
   - InvokeEndpoint: The operation is made available on one or more REST Endpoints on a Service Provider's server or cloud.
   
 - Storage Provider: The entity providing a storage service compliant with [DEP-7](https://github.com/DEX-Company/DEPs/tree/master/7). Note that the Invoke service provider may also run a Storage service, or use an external Storage service.
 
 - Service consumer: The actor that invokes the service.
 
-- Agent: The software entity that enables interactions with actors of the data ecosystem.
+- [Agent](https://github.com/DEX-Company/DEPs/tree/master/0#agent): The software entity that enables interactions with actors of the data ecosystem.
   
-- Starfish : A library used by consumers and providers to interact with the data ecosystem.
+- [Starfish](https://github.com/DEX-Company/DEPs/tree/master/0#starfish) : A library used by consumers and providers to interact with the data ecosystem.
 
 The rest of this document is written for the perspective of a data consumer. 
 
