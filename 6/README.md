@@ -299,7 +299,7 @@ Note that:
 - Implementations must adhere to the state transitions described in this diagram. 
 - A job can go from state `scheduled` to `failed` because it was unable to access data assets required for execution 
 
-![Job status state transitions](https://user-images.githubusercontent.com/89076/65109732-0121d280-da0b-11e9-90bd-acb2cc871b35.png)
+![Job status state transitions](https://user-images.githubusercontent.com/89076/65857597-be5ee380-e396-11e9-997c-a10bac51f0ed.png)
 
 
 - Once the job has completed, and if it `succeeded`, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
