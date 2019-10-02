@@ -287,6 +287,8 @@ The response to a valid request must contain a JSON payload.
 
 - It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed] 
 
+#### State transitions
+
 |Status |Description|
 |-|-|
 |scheduled| The job has been scheduled, but has not yet started|
