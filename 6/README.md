@@ -183,11 +183,14 @@ Here's an example of the Operation metadata for an operation that removes empty 
 
 The Invoke implementation must host the following APIs.
 
+It is the recommended that the server host the API under the path `/api/<version>/invoke`.
+
 | API                    | Description                                                   | Path |
 | -                      | -                                                             |-     |
-| Invoke Async Operation | Invoke an operation asynchronously                            |/invokeasync/operation-id|
-| Invoke Operation       | Invoke an operation synchronously                             |/invoke/operation-id|
-| Get Job status         | Get the status of an invoked job, and the result if completed |/jobs/jobid|
+| Invoke Async Operation | Invoke an operation asynchronously                            |/async/operation-id|
+| Invoke Operation       | Invoke an operation synchronously                             |/sync/operation-id|
+| Get Job status         | Get the status of an invoked job |/jobs/jobid|
+| Get Job result         | Get the result if completed |/jobs/result/jobid|
 
 - Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
 - The types of HTTP Requests (e.g. GET, POST) are defined in [RFC 2616](https://tools.ietf.org/html/rfc2616)
@@ -200,7 +203,7 @@ This is the primary interface by which a consumer can invoke an operation.
 
 The endpoint must accept 
 
-- POST requests to the `/invokeasync/operation-id` (e.g. https://service-endpoint/invokeasync/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
+- POST requests to the `/async/operation-id` (e.g. https://service-endpoint/async/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
 
 - The path argument operation-id must be the ID of the operation asset.
 - The keys in the (payload) map must be parameter names as specified in the operation metadata.
@@ -272,7 +275,7 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 |           5XX | error                                                                          | -                                         |
 |               |                                                                                |                                           |
 
-### Get job result 
+### Get job status 
 
 #### Request
 
@@ -303,11 +306,38 @@ Note that:
 
 ![Job status state transitions](https://user-images.githubusercontent.com/89076/65857597-be5ee380-e396-11e9-997c-a10bac51f0ed.png)
 
+Example of an operation whose status is 'succeeded'.
 
-- Once the job has completed, and if it `succeeded`, it must also contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
+
+```
+{ "status":"succeeded",
+}
+```
+
+Example of an operation that is in progress
+
+```
+{ "status":"running"}
+```
+
+
+### Get job result 
+
+#### Request
+
+The endpoint must accept
+
+- An HTTP GET request to `/jobs/result/jobid` 
+- The path parameter `jobid` must be the value returned by the Invoke Async Operation response
+
+#### Response
+
+The response to a valid request must contain a JSON payload. 
+
+- Once the job has completed, it must contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
-- A map (if type is **asset**)
+- A JSON dictionary (if type is **asset**)
 - A JSON value (if type is **json**)
 
 
@@ -327,27 +357,21 @@ The following table lists error codes that are specific to operations. This list
 |       8004 | asset id XX contents not accessible |
 |            |                                     |
 
-Example of an operation which hashes the value of an asset. Its status is succeeded and returns the payload.
-
+Example of an operation which hashes the value of an asset. 
 
 ```
-{ "status":"succeeded",
+{ 
   "result": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
 }
-```
-
-Example of an operation that is in progress
-
-```
-{ "status":"running"}
 ```
 
 Example of an operation that failed 
 
 ```
-{ "status":"failed",
+{ "error":{
   "errorcode":8004,
   "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
+  }
 }
 ```
 
