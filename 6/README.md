@@ -189,8 +189,8 @@ It is the recommended that the server host the API under the path `/api/<version
 | -                      | -                                                             |-     |
 | Invoke Async Operation | Invoke an operation asynchronously                            |/async/operation-id|
 | Invoke Operation       | Invoke an operation synchronously                             |/sync/operation-id|
-| Get Job status         | Get the status of an invoked job |/jobs/jobid|
-| Get Job result         | Get the result if completed |/jobs/result/jobid|
+| Get Job status         | Get the status of an invoked job |/job/status/jobid|
+| Get Job result         | Get the result if completed |/job/result/jobid|
 
 - Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
 - The types of HTTP Requests (e.g. GET, POST) are defined in [RFC 2616](https://tools.ietf.org/html/rfc2616)
@@ -281,14 +281,14 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 
 The endpoint must accept
 
-- An HTTP GET request to `/jobs/jobid` 
+- An HTTP GET request to `/job/status/jobid` 
 - The path parameter `jobid` must be the value returned by the Invoke Async Operation response
 
 #### Response
 
 The response to a valid request must contain a JSON payload. 
 
-- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed] 
+- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|cancelled] 
 
 #### State transitions
 
@@ -327,14 +327,14 @@ Example of an operation that is in progress
 
 The endpoint must accept
 
-- An HTTP GET request to `/jobs/result/jobid` 
+- An HTTP GET request to `/job/result/jobid` 
 - The path parameter `jobid` must be the value returned by the Invoke Async Operation response
 
 #### Response
 
 The response to a valid request must contain a JSON payload. 
 
-- Once the job has completed, it must contain a map against the `result` key. The map with key(s) as defined in the `returns` section of the asset metadata.
+- Once the job has completed, it must contain a map against the `results` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
 - A JSON dictionary (if type is **asset**)
@@ -361,14 +361,14 @@ Example of an operation which hashes the value of an asset.
 
 ```
 { 
-  "result": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
+  "results": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
 }
 ```
 
 Example of an operation that failed 
 
 ```
-{ "error":{
+{ "results":{
   "errorcode":8004,
   "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
   }
