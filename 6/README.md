@@ -189,8 +189,7 @@ It is the recommended that the server host the API under the path `/api/<version
 | -                      | -                                                             |-     |
 | Invoke Async Operation | Invoke an operation asynchronously                            |/async/operation-id|
 | Invoke Operation       | Invoke an operation synchronously                             |/sync/operation-id|
-| Get Job status         | Get the status of an invoked job |/job/status/jobid|
-| Get Job result         | Get the result if completed |/job/result/jobid|
+| Get Job result         | Get the result if completed |/jobs/jobid|
 
 - Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
 - The types of HTTP Requests (e.g. GET, POST) are defined in [RFC 2616](https://tools.ietf.org/html/rfc2616)
@@ -275,13 +274,13 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 |           5XX | error                                                                          | -                                         |
 |               |                                                                                |                                           |
 
-### Get job status 
+### Get job result
 
 #### Request
 
 The endpoint must accept
 
-- An HTTP GET request to `/job/status/jobid` 
+- An HTTP GET request to `/jobs/jobid` 
 - The path parameter `jobid` must be the value returned by the Invoke Async Operation response
 
 #### Response
@@ -306,33 +305,6 @@ Note that:
 
 ![Job status state transitions](https://user-images.githubusercontent.com/89076/65857597-be5ee380-e396-11e9-997c-a10bac51f0ed.png)
 
-Example of an operation whose status is 'succeeded'.
-
-
-```
-{ "status":"succeeded",
-}
-```
-
-Example of an operation that is in progress
-
-```
-{ "status":"running"}
-```
-
-
-### Get job result 
-
-#### Request
-
-The endpoint must accept
-
-- An HTTP GET request to `/job/result/jobid` 
-- The path parameter `jobid` must be the value returned by the Invoke Async Operation response
-
-#### Response
-
-The response to a valid request must contain a JSON payload. 
 
 - Once the job has completed, it must contain a map against the `results` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
@@ -361,6 +333,7 @@ Example of an operation which hashes the value of an asset.
 
 ```
 { 
+  "status":"succeeded",
   "results": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
 }
 ```
@@ -368,7 +341,9 @@ Example of an operation which hashes the value of an asset.
 Example of an operation that failed 
 
 ```
-{ "results":{
+{ 
+  "status":"failed",
+  "results":{
   "errorcode":8004,
   "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
   }
