@@ -21,6 +21,15 @@ by the Agent's operator. Open source reference implementations of Agents are ava
 for operators to configure and deploy if they wish, or alternatively operators may wish
 to develop their own Agents - the only requirement is conformance to the DEP Standard APIs.
 
+## Algorithm
+
+An algorithm is a sequence of instructions that can be execute to perform a computation.
+
+Service providers in the data ecosystem may choose to offer an algorithm for use by the
+broader ecosystem by adding appropriate metadata and bundling this as an Operation, which 
+can be invoked by consumers using the Invoke API (DEP6).
+
+
 ## Asset
 
 An entity in the Data Ecosystem which has potential value, and may be utilised by participants
