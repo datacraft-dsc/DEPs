@@ -29,6 +29,10 @@ Service providers in the data ecosystem may choose to offer an algorithm for use
 broader ecosystem by adding appropriate metadata and bundling this as an Operation, which 
 can be invoked by consumers using the Invoke API (DEP6).
 
+The DEPs place no restrictions on what language or underlying execution environment is 
+used to represent an algorithm, making it possible to plug-and-play with arbitrary 
+compute technologies in the data ecosystem.
+
 
 ## Asset
 
