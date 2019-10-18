@@ -178,7 +178,7 @@ The Ocean Network provides a resolver which handles DIDs registered on the Ocean
 ## Service Provider
 
 A Service Provider is a participant in the data ecosystem who makes Assets available to other participants
-via one or more Agents supporting the DEP Standard APIs. Service providers may provider additional APIs
+via one or more Agents supporting the DEP Standard APIs. Service providers may provide additional APIs
 not covered by the DEP Standards, but should be aware that this will limit the ability for such functionality
 to be used in an interoperable fashion, since such features will not be available to be used in general 
 purpose data supply lines.
