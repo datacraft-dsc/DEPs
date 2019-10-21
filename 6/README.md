@@ -23,16 +23,16 @@ Table of Contents
       * [Open Questions](#open-questions)
    * [License](#license)
 
-      
+
 <!--te-->
 
 # Introduction
 
-The Invoke API is a standardised solution to the problem of transforming data (Assets) using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
+The Invoke API is a standardised solution to the problem of transforming data (Assets) using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in
 the context of a decentralised data ecosystem.
 
-In order to build a useful [data supply line](https://github.com/DEX-Company/DEPs/tree/master/0#data-supply-line), actors in the data ecosystem will generally need the ability 
-to transform and process data assets. 
+In order to build a useful [data supply line](https://github.com/DEX-Company/DEPs/tree/master/0#data-supply-line), actors in the data ecosystem will generally need the ability
+to transform and process data assets.
 
 Operations can segmented into three broad use cases:
 
@@ -62,9 +62,9 @@ It may be observed that these operations:
 
 - Enable creation of dataset(s)
 - Accept input dataset(s) and transform it in some fashion
-- May require remote acquisition of input dataset(s) 
+- May require remote acquisition of input dataset(s)
 
-The Invoke API 
+The Invoke API
 
 - Provides a standardised interface to transform data assets.
 - Facilitates creation of data pipeline(s) of data asset transformations.
@@ -75,11 +75,11 @@ The Invoke API
 ## Trustworthiness of executed Operations
 
 DEP6 deals with the execution of computations within the security context of a service provider. As such,
-the service provider must consider the trustworthiness of any Operations that it allows to be invoked. It should 
+the service provider must consider the trustworthiness of any Operations that it allows to be invoked. It should
 be considered a major security risk to allow arbitrary consumers to execute arbitrary code, therefore sevice providers
 should almost always enforce some restrictions.
 
-Several approaches exist for providing more trustworthy execution, which may be employed at the 
+Several approaches exist for providing more trustworthy execution, which may be employed at the
 discretion of the Service Provider, balancing the needs of their consumers with the potential risks.
 
 | Approach | Description | Advantages | Risks and limitations |
@@ -95,28 +95,28 @@ Service providers may also employ a combinations of the above techniques.
 
 ## Entities
 
-- [Operation](https://github.com/DEX-Company/DEPs/tree/master/0#operation): A computation that may be executed via the Invoke API is as represented an Asset with a specific `type` ("operation") 
+- [Operation](https://github.com/DEX-Company/DEPs/tree/master/0#operation): A computation that may be executed via the Invoke API is as represented an Asset with a specific `type` ("operation")
 - Account: An actor in the data system is identified using an Account.
 - [Service provider](https://github.com/DEX-Company/DEPs/tree/master/0#service-provider): The actor that hosts the algorithm implemention on their server(s).
   - InvokeEndpoint: The operation is made available on one or more REST Endpoints on a Service Provider's server or cloud.
-  
+
 - Storage Provider: The entity providing a storage service compliant with [DEP-7](https://github.com/DEX-Company/DEPs/tree/master/7). Note that the Invoke service provider may also run a Storage service, or use an external Storage service.
 
 - Service consumer: The actor that invokes the service.
 
 - [Agent](https://github.com/DEX-Company/DEPs/tree/master/0#agent): The software entity that enables interactions with actors of the data ecosystem.
-  
+
 - [Starfish](https://github.com/DEX-Company/DEPs/tree/master/0#starfish) : A library used by consumers and providers to interact with the data ecosystem.
 
-The rest of this document is written for the perspective of a data consumer. 
+The rest of this document is written for the perspective of a data consumer.
 
 ### Consumer flow
 
-The following diagram is an example of consumer using Starfish to invoke an operation. Note that in this case, the Invoke Service provider uses an external Storage Provider. 
+The following diagram is an example of consumer using Starfish to invoke an operation. Note that in this case, the Invoke Service provider uses an external Storage Provider.
 
 ![Consumer flow ](https://user-images.githubusercontent.com/89076/61201489-3f52fb00-a717-11e9-90c9-cb51fe1afbc2.png)
 
-## Technical requirements 
+## Technical requirements
 
 The Invoke service
 
@@ -126,22 +126,22 @@ The Invoke service
 * May accept asset(s) as input(s) to the job  (along with access tokens to consume the asset)
 * May accept a JSON payload(s) as input(s)
 * May return the result of the execution as the payload or as an asset
-  - If it returns **asset**, it must register the generated asset(s) 
+  - If it returns **asset**, it must register the generated asset(s)
 * Recommends that the operation must terminate within a specified time. The Invoke service is not designed to support subscription services (e.g. a service that is active for 30 days).
-  
+
 ## Exclusions
 
 * This DEP does not prescribe the exact type of compute operations offered. It is open to service provider implementations to define them, providing that they conform with this API specification
 * This DEP does not cover discovery.
 * This DEP does not describe subscribable services, such as access to a dashboard for a fixed time period.
-* This DEP does not describe details of installation of the operations and/or its dependencies. 
+* This DEP does not describe details of installation of the operations and/or its dependencies.
 
-# API Definition 
+# API Definition
 
 This section is normative.
 
-The **Operation Metadata** information should be managed using [Metadata Agent API](https://github.com/DEX-Company/DEPs/tree/master/15). 
-The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST. 
+The **Operation Metadata** information should be managed using [Metadata Agent API](https://github.com/DEX-Company/DEPs/tree/master/15).
+The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST.
 
 Here's an example of the Operation metadata for an operation that removes empty rows from a data asset.
 ```
@@ -200,7 +200,7 @@ This is the primary interface by which a consumer can invoke an operation.
 
 #### Request
 
-The endpoint must accept 
+The endpoint must accept
 
 - POST requests to the `/async/operation-id` (e.g. https://service-endpoint/async/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
 
@@ -208,9 +208,9 @@ The endpoint must accept
 - The keys in the (payload) map must be parameter names as specified in the operation metadata.
 - All required parameters must be included.
 
-- The values must be one of 
+- The values must be one of
   - A map (if the type is **asset**).
-    - The map must contain the DID (the Decentralized ID) against the key **did** 
+    - The map must contain the DID (the Decentralized ID) against the key **did**
   - A valid JSON value (if the type is **json**). Here's the list of [valid JSON data types](https://json-schema.org/understanding-json-schema/reference/type.html)
 
 #### Design considerations
@@ -219,7 +219,7 @@ This section is non-normative.
 
 The values are categorised into two types (`asset` and `json`) to support libraries such as Starfish in:
 
-- Validating if payloads adhere to the operation schema 
+- Validating if payloads adhere to the operation schema
 - Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
 
 Here's an example of an request that defines a single input asset of type asset. The operation accepts an asset as input and returns the hash of the asset.
@@ -280,28 +280,28 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 
 The endpoint must accept
 
-- An HTTP GET request to `/jobs/jobid` 
+- An HTTP GET request to `/jobs/jobid`
 - The path parameter `jobid` must be the value returned by the Invoke Async Operation response
 
 #### Response
 
-The response to a valid request must contain a JSON payload. 
+The response to a valid request must contain a JSON payload.
 
-- It must return a map with the `status` key, the value of which must be one of [scheduled|running|succeeded|failed|cancelled] 
+- It must return a map with the `status` key, the value of which must be one of [wait|run|ok|fail|cancel]
 
 #### State transitions
 
 |Status |Description|
 |-|-|
-|scheduled| The job has been scheduled, but has not yet started|
-|running|The job is currently running|
-|succeeded|The job completed successfully|
-|failed|The job failed to complete successfully|
-|cancelled|The job was cancelled|
+|wait| The job has been scheduled, but has not yet started|
+|run|The job is currently running|
+|ok|The job completed successfully|
+|fail|The job failed to complete successfully|
+|cancel|The job was cancelled|
 
 Note that:
-- Implementations must adhere to the state transitions described in this diagram. 
-- A job can go from state `scheduled` to `failed` because it was unable to access data assets required for execution 
+- Implementations must adhere to the state transitions described in this diagram.
+- A job can go from state `wait` to `fail` because it was unable to access data assets required for execution
 
 ![Job status state transitions](https://user-images.githubusercontent.com/89076/65857597-be5ee380-e396-11e9-997c-a10bac51f0ed.png)
 
@@ -329,28 +329,28 @@ The following table lists error codes that are specific to operations. This list
 |       8004 | asset id XX contents not accessible |
 |            |                                     |
 
-Example of an operation which hashes the value of an asset. 
+Example of an operation which hashes the value of an asset.
 
 ```
-{ 
-  "status":"succeeded",
+{
+  "status":"ok",
   "results": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
 }
 ```
 
-Example of an operation that failed 
+Example of an operation that failed
 
 ```
-{ 
-  "status":"failed",
+{
+  "status":"fail",
   "results":{
-  "errorcode":8004,
+  "error_code":8004,
   "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
   }
 }
 ```
 
-Since the `json` type for params and results allows arbitrary JSON results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
+Since the `json` type for params and results allows arbitrary JSON results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema.
 
 ### Invoke operation synchronously
 
@@ -366,21 +366,21 @@ The endpoint must accept
 
 #### Response
 
-The response format is the same as returned by the get job result operation. 
+The response format is the same as returned by the get job result operation.
 
 ## Authentication and Authorisation
 
 - Implementations should ensure that requests which may result in execution of untrusted code are tightly controlled
 - Implementations may use various ways to authenticate and authorise that are transparent to the API. Refer to [DEP 20](https://github.com/DEX-Company/DEPs/tree/master/20) for further details.
-- Implementations may use specific access rules for each API (e.g. getting job status) 
+- Implementations may use specific access rules for each API (e.g. getting job status)
 
 ## Open questions
 
-- Assets generated by the invoke service may need to be purchased by the consumer in order to view them. 
+- Assets generated by the invoke service may need to be purchased by the consumer in order to view them.
 
 ## Reference implementations
 
-- [Koi-clj](https://github.com/DEX-Company/koi-clj) is a reference implementation of an invokable service. 
+- [Koi-clj](https://github.com/DEX-Company/koi-clj) is a reference implementation of an invokable service.
 
 ## Related Standards
 
