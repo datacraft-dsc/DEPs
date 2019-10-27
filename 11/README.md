@@ -7,12 +7,10 @@ editor: Mike Anderson <mike.anderson@dex.sg>
 contributors: Mike Anderson <mike.anderson@dex.sg>
 ```
 
-
 Table of Contents
 =================
 
    * [Table of Contents](#table-of-contents)
-
 
 # Agent Status API
 

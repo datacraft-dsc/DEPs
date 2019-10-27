@@ -82,6 +82,9 @@ Example DDO with endpoints:
 An Agent's DID / DDO must be registered via a Universal Resolver if the Agent wishes its service 
 endpoints to be generally discoverable by other parties in the data ecosystem.
 
+If an Agent does not have a DID/DDO registered with a resolver, it may still be accessed by clients
+by obtaining the DDO directly, e.g. by using DEP11 `api/ddo` endpoint. See: [DEP11](../11)
+
 The precise method of DID allocation is open to alternative implementations, however the use
 of sufficiently long random hex strings is a pragmatic choice. Univeral Resolver implementations 
 must ensure uniqueness of DID in their context, and that ability to update the DID for a given DDO
