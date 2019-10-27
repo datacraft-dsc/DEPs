@@ -72,6 +72,7 @@ Attribute          |   Type          | Description
 **name**           | String          | Human-readable, descriptive name of the Agent e.g. "DEX Test Agent"
 **description**    | String          | Extended description of the Agent. Free text at discretion of Agent operator
 **api-versions**   | Array of String | List of API versions supported e.g. ["v1","v2"]. If missing, "v1" should be assumed by default
+**custom**         | Any JSON Value  | Optional additional metadata provided by agent operator. Outside DEP standards.
 
 
 ## License
