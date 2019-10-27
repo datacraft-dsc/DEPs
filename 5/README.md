@@ -67,8 +67,11 @@ The Agent should have a DDO (DID Document) to describe itslf to other parties. T
 
 Example DDO with endpoints:
 
-```
-{"service":
+```json
+{"@context": "https://www.w3.org/2019/did/v1",
+ "id": "did:op:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7"
+
+ "service":
  [{"type":"Ocean.Invoke.v1",
    "serviceEndpoint":"https:\/\/foo.com\/api\/v1"},
   {"type":"Ocean.Meta.v1",
