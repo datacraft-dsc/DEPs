@@ -7,12 +7,16 @@
 This is the Data Ecosystem Proposal project, which defines a set of open standards for the 
 development of interoperable, decentralised data ecosystems.
 
+By presenting a uniform interface to data assets and service of all kinds, the DEPs make it 
+possible to work with decentralised data assets and services without building a hard 
+dependency on specific technology implementations. 
+
 You should consider adopting the DEP standards if:
 
 - You need to orchestrate data services across multiple organisations / participants
 - You need the ability to remotely invoke operations on a variety of data sources
 - You wish to unlock the value of existing data assets and services to a broader ecosystem
-- You plan to primarily make use of the capabilities of the Ocean Network, but wish to maintain a level of abstraction away from specific implementation details.
+- You plan to make use of decentralised data technology, but wish to maintain a level of abstraction away from specific implementation details.
 
 
 # Current DEPs
