@@ -255,14 +255,19 @@ verify that payment has been made before granting access to the purchased Asset.
 ### Resolver
 
 The Resolver in starfish provides utilities to access Agents and Assets via DIDs / DDOs.
+There are two supported implementations in starfish: first one for compatibility with Ocean Squid and second one from DEX. First one requires Aquarius service as storage of DDO while second one uses Ethereum network itself as storage. In both cases DID is registered on-chain. 
 
 #### Resolve Agent via DID
 
-Gets an existing Agent via the Universal Resolver. 
+Gets an existing Agent via the Universal Resolver.
 
 #### Create and Register Agent DDO 
 
 Creates an Agent with a registered DDO on the Resolver
+
+#### Update Agent DDO 
+
+DDO can be updated but only by owner. Owner is the one who signed the registration transaction
 
 #### Install Local DDO
 
