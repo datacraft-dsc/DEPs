@@ -70,11 +70,16 @@ such as those defined in the DEPs.
 
 ## Data Supply Line
 
-An orchestrated set of data flows that is designed to create value in a Data Ecosystem.
+A set of data flows that produces data outputs, designed to create value in a Data Ecosystem,
+and specified according to the DEP Standards.
 
 A Data Supply Line may be executed by one or more Agents, can transfer Assets between different
 participants, and can transform Assets through the use of Operations to create new, more valuable
 Assets.
+
+Data supply lines can be automated using the Orchestration capabilities in the DEP Standards.
+Alternatively, data supply lines can be manually executed by invoking the individual operations
+that make up the data supply line.
 
 ## DEP
 
