@@ -148,6 +148,25 @@ Examples of Operations may include:
 - Training a machine learning model
 - Aggregating multiple source data sets
 
+## Orchestration
+
+An Orchestration is a special type of Operation that represents the combination of multiple child 
+operations, which are arranged as a directed acylic graph.
+
+When "Invoked" in the context of an Agent, the agent is responsible for executing the child operations
+in an order consistent with the dependencies specified in the directed acylic graph.
+
+Like any other Operation, an Orchestration may accept one or more inputs, and produce one or more outputs,
+with the added consideration that these inputs may become inputs of child operations, and the outputs of
+child operations may become outputs of the overall Orchestration. Outputs of child Operations may also 
+become inputs of other child Operations, with the proviso that this must be consistent with the execution
+ordering specified in the directed acyclic graph.
+
+As such, an Orchestration can be used used to represent a fully automated Data Supply Line that can
+be executed and managed by agents in the data ecosystem.
+
+Orchestrations are defined in more depth in DEP13
+
 ## Provenance
 
 Provenance is a record of ownership or origin of an Asset, which may be valuable in enhancing the
