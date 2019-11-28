@@ -36,6 +36,8 @@ Short Name             | Title                                                  
 [10/TOKEN-PAY](10)     | Direct Payments with Ocean Tokens                            | Standard     | Raw        | Ilya Bukalov
 [11/AGENT-STATUS](11)  | Agent status and configuration API                           | Standard     | Raw        | Mike Anderson
 [12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
+[13/ORCHESTRATION](13) | Orchestration of Data Supply Lines                           | Standard     | Raw        | Mike Anderson
+[14/LISTINGS](14)      | Listings for assets management and marketplaces              | Standard     | Raw        | Mike Anderson
 [15/META-API](15)      | Metadata API                                                 | Standard     | Draft      | Mike Anderson
 [19/ENDPOINTS](19)     | DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
 [20/AUTHENTICATION](20)| Authentication Standard and API                              | Standard     | Raw        | TBD
