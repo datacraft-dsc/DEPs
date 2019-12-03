@@ -51,6 +51,10 @@ Asset Metadata standards are defined in DEP8.
 A special type of Asset that represents a collection of other Assets. A Bundle can be regarded
 as analogous to a folder or directory in traditional computer file systems.
 
+## Collection
+
+A collection is a set of assets managed by an agent on behalf of a set of users. A user may use a Collection to organise a set of assets for a workflow.
+
 ## Consumer
 
 A participant in the data system who acquires and utilises Assets in the Data Ecosystem.
