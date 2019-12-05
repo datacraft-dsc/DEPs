@@ -232,7 +232,7 @@ The endpoint must accept
 - All required parameters may be included.
 
 - The values can be any of following:
-   OpenAPI SchemaObject [OpenAPI Schema Object standards] (https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
+   OpenAPI SchemaObject [OpenAPI Schema Object standards](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
    This may include the following OpenAPI schema data types:
         object
         array
@@ -252,7 +252,7 @@ This section is non-normative.
     - x-format
 
 
-* The x-resolve and x-format must have one of the following values:
+* The **x-resolve** and **x-format** must have one of the following values:
     - did-asset
     - did
 
@@ -397,7 +397,7 @@ Note that:
 - Once the job has completed, it must contain a map against the `results` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
-   OpenAPI SchemaObject [OpenAPI Schema Object standards] (https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
+   OpenAPI SchemaObject [OpenAPI Schema Object standards](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
    This may include the following OpenAPI schema data types:
         object
         array
