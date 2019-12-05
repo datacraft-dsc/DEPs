@@ -146,35 +146,58 @@ The service providers hosting the API should expose the following capabilities i
 Here's an example of the Operation metadata for an operation that removes empty rows from a data asset.
 ```
 {
-  "license": "CC-BY",
-  "dateCreated": "2019-05-07T08:17:31.521445Z",
-  "author": "Filtering Inc",
-  "name": "Filter rows in a CSV dataset",
-  "inLanguage": "en",
-  "description": "filter rows in a csv dataset, if more than 10 columns are empty",
-  "type": "operation",
-  "contentType": "application\/octet-stream",
-  "operation": {
-                 "modes": ["sync",
-                           "async"],
-                 "params": {
-                             "dataset": {
-                                          "type": "asset",
-                                          "position": 0,
-                                          "required": true
-                                        },
-                             "max-empty-columns": {
-                                                    "type": "json",
-                                                    "position": 1,
-                                                    "required": false
-                                                  }
-                           },
-                 "results": {
-                              "filtered-dataset": {
-                                                    "type": "asset"
-                                                  }
-                            }
-               },
+    "license": "CC-BY",
+    "dateCreated": "2019-05-07T08:17:31.521445Z",
+    "author": "Filtering Inc",
+    "name": "Filter rows in a CSV dataset",
+    "inLanguage": "en",
+    "description": "filter rows in a csv dataset, if more than 10 columns are empty",
+    "type": "operation",
+    "contentType": "application\/octet-stream",
+    "operation": {
+        "modes": ["sync", "async"],
+        "params": {
+            "dataset": {
+                "type": "string",
+                "x-format": "did-asset",
+                "position": 0,
+                "required": true
+            },
+            "max-empty-columns": {
+                "type": "integer",
+                "position": 1,
+                "required": false
+            },
+            "dataset-filter": {
+                "type": "object",
+                "propereties": {
+                    "id": {
+                    "type": "integer"
+                },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+                "position": 2,
+                "required": false
+            },
+            "other-agents": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "x-format": "did"
+                }
+                "position": 3,
+                "required": false
+            }
+        },
+        "results": {
+            "filtered-dataset": {
+                "type": "string",
+                "x-format": "did-asset"
+            }
+        }
+    },
   "contentHash": "4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c48",
   "tags": ["row filtering"]
 ```
@@ -205,45 +228,110 @@ The endpoint must accept
 - POST requests to the `/async/operation-id` (e.g. https://service-endpoint/async/4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea) along with JSON formatted payload as described by the params section of the operation metadata.
 
 - The path argument operation-id must be the ID of the operation asset.
-- The keys in the (payload) map must be parameter names as specified in the operation metadata.
-- All required parameters must be included.
+- The keys in the (payload) map may be parameter names as specified in the operation metadata.
+- All required parameters may be included.
 
-- The values must be one of 
-  - A map (if the type is **asset**).
-    - The map must contain the DID (the Decentralized ID) against the key **did** 
-  - A valid JSON value (if the type is **json**). Here's the list of [valid JSON data types](https://json-schema.org/understanding-json-schema/reference/type.html)
+- The values can be any of following:
+   OpenAPI SchemaObject [OpenAPI Schema Object standards] (https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
+   This may include the following OpenAPI schema data types:
+        object
+        array
+        integer
+        number
+        string
+        boolean
+        
+- The parameters may be used to display swagger interface documentation.
 
 #### Design considerations
 
 This section is non-normative.
 
-The values are categorised into two types (`asset` and `json`) to support libraries such as Starfish in:
+* The `string` data type mave have the extended fields:
+    - x-resolve
+    - x-format
 
-- Validating if payloads adhere to the operation schema 
-- Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
+
+* The x-resolve and x-format must have one of the following values:
+    - did-asset
+    - did
+
+- **did-asset** describes the type asset as a did/asset. For example
+
+
+```
+    # full asset id
+    
+    did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea/0xf8c12e287be8199a8c12eb9bbb63bc302c318b2290ef1e40af5a934e3315022d
+```
+
+- **did** describes a single did agent. For example
+
+```
+    # did resolve to an agent
+    
+    did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea
+    
+```
+
+- **x-resolve** Trys to resolve the asset id or did depending on the reference value.
+
+- **x-format** Validates the string value to make sure the string value is the correct format ( did or did-asset)
+
 
 Here's an example of an request that defines a single input asset of type asset. The operation accepts an asset as input and returns the hash of the asset.
 
 - The key `to_hash` is the parameter name required by the operation (as declared in the operation's metadata)
-- Since the type is `asset` (as declared in the schema), the value must be a map with the `did` (and other optional keys)
+- Since the type is `string` with the `x-format` set to `did-asset` (as declared in the schema), the value must be a full asset address with did and asset id.
 
 ```
 {
     "to_hash": {
-             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+         "asset_id" : {
+            "type": "string",
+            "x-format": "did-asset"
+        }
     }
+}
+
+# calling
+
+{
+    "to_hash": {
+         "asset_id" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea/0xf8c12e287be8199a8c12eb9bbb63bc302c318b2290ef1e40af5a934e3315022d"
+    }
+
 }
 ```
 
-Here's an example of a request to the same operation which includes an optional parameter, the algorithm to be used for computing the hash.
+Here's an example of a request anoher operation that requires just the agent which also includes an optional parameter, the algorithm to be used for computing the hash.
 
 ```
 {
     "to_sign": {
-             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+         "did" : {
+            "type": "string",
+            "x-format": "did"
+        }
+        "asset": {
+            "type": "string",
+        }
+    }
+    "signing_algorithm": {
+        "algorithm": {
+            "type": "string"
+        }
+    }
+}
+
+# calling 
+{
+    "to_sign": {
+        "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+        "asset": "0xf8c12e287be8199a8c12eb9bbb63bc302c318b2290ef1e40af5a934e3315022d"
     },
     "signing_algorithm": {
-             "alg" : "ES256"
+        "algorithm" : "ES256"
     },
 }
 ```
@@ -309,8 +397,16 @@ Note that:
 - Once the job has completed, it must contain a map against the `results` key. The map with key(s) as defined in the `returns` section of the asset metadata.
  Each value in the map must be one of (as defined in the schema)
 
-- A JSON dictionary (if type is **asset**)
-- A JSON value (if type is **json**)
+   OpenAPI SchemaObject [OpenAPI Schema Object standards] (https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schema-object).
+   This may include the following OpenAPI schema data types:
+        object
+        array
+        integer
+        number
+        string
+        boolean
+    With the `string` data type extensions `x-format`.
+
 
 
 | Response code | Description                                       | Payload           |
@@ -350,7 +446,7 @@ Example of an operation that failed
 }
 ```
 
-Since the `json` type for params and results allows arbitrary JSON results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
+Since the `OpenAPI` type for params and results allows arbitrary results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
 
 ### Invoke operation synchronously
 
