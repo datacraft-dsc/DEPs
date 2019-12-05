@@ -106,6 +106,10 @@ be assigned to individuals, enabling self-sovereign identity management
 
 See: https://w3c-ccg.github.io/did-spec/
 
+## Job
+
+A Job has a 1:1 mapping of an Orchestration. The result status of the Job can be used to inspect the status of execution for each step of the Orchestration (including potential failures in child Operations).
+
 ## Listing
 
 An entity representing an Asset that is available for trade in the data economy.
