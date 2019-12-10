@@ -352,6 +352,15 @@ Example of an operation that failed
 
 Since the `json` type for params and results allows arbitrary JSON results, implementations are free to define schemas for inputs (params) and outputs (results). Implementations should return an HTTP Bad Request response code, along with descriptive error message, in cases where the input payloads do not conform to the schema. 
 
+#### Types of errors handled
+
+In order to aid user debugging and tools that invoke operations, implementations of DEP-6 must aim to communicate the following types of errors:
+
+- Internal Errors: errors generated due to configuration, or running the operation
+- Errors due to invalid inputs, such as invalid data formats/missing mandatory values/values being of a different type.
+- Errors due to other systems. Example: the operation needs an asset which is hosted on Surfer, and the operation fails to get the asset from Surfer.
+
+
 ### Invoke operation synchronously
 
 This is an convenience interface by which a consumer can invoke an operation. This is a synchronous request, and is expected to be used for jobs that finish quickly. Since the implementation is on top of low level protocols (as TCP/IP) the user should be aware of that waiting time may be limited by these protocols.
@@ -367,6 +376,7 @@ The endpoint must accept
 #### Response
 
 The response format is the same as returned by the get job result operation. 
+
 
 ## Authentication and Authorisation
 
