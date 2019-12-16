@@ -20,7 +20,7 @@ This DEP describes a standard for creating Orchestrations, which are type of Ope
 represents the combination of multiple child operations.
 
 Orchestrations enable Digital Supply Lines to be defined and automated using a common, flexible 
-standard. 
+standard.
 
 # Orchestration format
 
@@ -89,7 +89,7 @@ accordance with DEP6.
 The execution of the orchestration must be authorised by the orchestrating agent, as with any 
 invokable operation.
 
-
+TODO: Consider cases where callers need to pass credentials for child operations
 
 ## Failure conditions
 
