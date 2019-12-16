@@ -28,7 +28,8 @@ Table of Contents
 
 # Introduction
 
-The Invoke API is a standardised solution to the problem of transforming data (Assets) using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
+The Invoke API is a standardised solution to the problem of transforming data (Assets) 
+using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
 the context of a decentralised data ecosystem.
 
 In order to build a useful [data supply line](https://github.com/DEX-Company/DEPs/tree/master/0#data-supply-line), actors in the data ecosystem will generally need the ability 
