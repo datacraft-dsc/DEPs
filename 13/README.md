@@ -51,7 +51,7 @@ Example:
     "id":"parent",
 	"children":[
 		{
-		  "id": "child1"
+		  "id": "child1",
 		  "did":"did:dex:9a4d904f195889aee3b12b867f764dbc06fa4a54030c44b6f805c70f85cb05e7/bd41ffa50baf8fddbfead91c426de45fcaa474773a9278d63bcaa10200591362"
 		}
 	],
@@ -115,7 +115,7 @@ Example of a successful Job result:
 ```json
 { 
   "status":"succeeded",
-  "results": {"operation-output-param": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
+  "results": {"operation-output-param": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"},
   "children": {
     "child1": {
        "status":"succeeded",
