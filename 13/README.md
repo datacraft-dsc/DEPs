@@ -48,7 +48,7 @@ Example:
 
 ```json
 {
-    "id":"parent",
+  "id":"parent",
 	"children":[
 		{
 		  "id": "child1",
