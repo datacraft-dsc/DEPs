@@ -106,6 +106,17 @@ be assigned to individuals, enabling self-sovereign identity management
 
 See: https://w3c-ccg.github.io/did-spec/
 
+## Directed Acyclic Graph (DAG)
+
+A directed acyclic graph is a graph where edges indicate a direction and there are 
+no cycles (loops).
+
+DAGs are important for defining Orchestrations, where the direction of graph edges define the flow
+ of data between operations and the acyclic property guarantees that the orchestration can be
+ executed without infinite loops, and with all operations being executed at most once.
+
+See: https://en.wikipedia.org/wiki/Directed_acyclic_graph 
+
 ## Listing
 
 An entity representing an Asset that is available for trade in the data economy.
