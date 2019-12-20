@@ -4,7 +4,7 @@ name: Orchestration Operations
 type: Standard
 status: Raw
 editor: Mike Anderson <mike.anderson@dex.sg>
-contributors: 
+contributors: Pedro Girardi 
 ```
 
 
@@ -16,7 +16,7 @@ Table of Contents
 
 # Overview
 
-This DEP describes a standard for creating Orchestrations, which are type of Operation that 
+This DEP describes a standard for defining Orchestrations, which are type of Operation that 
 represents the combination of multiple child operations.
 
 Orchestrations enable Digital Supply Lines to be defined and automated using a common, flexible 
@@ -84,6 +84,16 @@ overall orchestration (i.e. inputs or outputs of the overall parent operation)
 An orchestration may be executed in the context of a given agent by invoking the orchestration in 
 accordance with DEP6.
 
+## Execution rules
+
+An agent may execute an orchestration according to the following rules:
+- Child operations *must* be executed according to the partial order defined by the DAG
+- The execution agent *may* execute operations in parallel in the case that no dependencies 
+prevent this
+- An operation *must* be executed if required parameters are not available for any reason
+- An child operation *must* be executed if all child operations that it depends upon have succeeded,
+subject to all required parameters being available.
+
 ## Authorisation
 
 The execution of the orchestration must be authorised by the orchestrating agent, as with any 
@@ -97,7 +107,7 @@ An orchestration may fail for any of the reasons below:
 - The orchestration DAG is not valid (e.g. contains a cycle)
 - A child operation fails
 - A required parameter is not provided
-- The client is not authorised to execute the orchestration
+- The client is not authorised to execute the orchestration in some way
 
 ## Orchestration results
 
