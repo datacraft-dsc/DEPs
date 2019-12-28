@@ -182,7 +182,7 @@ child operations may become outputs of the overall Orchestration. Outputs of chi
 become inputs of other child Operations, with the proviso that this must be consistent with the execution
 ordering specified in the directed acyclic graph.
 
-As such, an Orchestration can be used used to represent a fully automated Data Supply Line that can
+As such, an Orchestration can be used to represent a fully automated Data Supply Line that can
 be executed and managed by agents in the data ecosystem.
 
 Orchestrations are defined in more depth in DEP13
