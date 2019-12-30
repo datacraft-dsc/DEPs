@@ -48,7 +48,7 @@ for the following principles:
 - Open source and open standards
 - No centralised point of control
 - Decentralised ownership of assets and services
-- Support for orchestration of decentralised Data Supply Lines
+- Support for orchestration of decentralised Digital Supply Lines
 - Decentralisation of trust rules
 - Abstraction from specific technology choices
 - Support for arbitrary data formats
@@ -91,14 +91,14 @@ order to meet the requirements of the application layer.
 
 A central concept of the orchestration layer is to provide a toolkit required to assemble a flow of 
 arbitrary data assets across arbitrary  participants, possibly including arbitrary computations, and thus forming a 
-Data Supply Line. This is made possible by abstraction away from specific technologies to a common set of abstract
+Digital Supply Line. This is made possible by abstraction away from specific technologies to a common set of abstract
 concepts (Assets, Operations, Agents etc.) that are defined in the DEP standards to have common interfaces.
 
-Data Supply lines are typically orchestrated according to the custom requirements of the use case they are serving.
+Digital Supply lines are typically orchestrated according to the custom requirements of the use case they are serving.
 For example, the diagram below shows the application of predictive modelling to anonymised patient data sets from
 multiple healthcare providers, with secure aggregation of data handled by a trusted broker. 
 
-![Data Supply Line example diagram](images/data-supply-line.png "Data Supply Line example")
+![Digital Supply Line example diagram](images/data-supply-line.png "Digital Supply Line example")
 
 A significant set of open source software code providing the functionality for this layer is provided in
 the form of the Starfish developer toolkit (described in [DEP4](../4/README.md), which includes a set of libraries suitable for orchestrating
@@ -299,7 +299,7 @@ and refinements to existing decisions from contributors are welcome.
       <td>
         <ul>
           <li>Data assets alone are insufficient to deliver meaningful decentralised data use cases</li>
-          <li>A standardised representation of a computational operation is necessary to enable arbitrary services to participate in Data Supply Lines orchestrated according to DEP standards</li>
+          <li>A standardised representation of a computational operation is necessary to enable arbitrary services to participate in Digital Supply Lines orchestrated according to DEP standards</li>
 		</ul>      
       </td>
     </tr>

@@ -23,7 +23,7 @@ Table of Contents
 Starfish is an open source developer toolkit for building decentralised data ecosystems and use cases.
 
 Starfish provides the tools and capabilities required for an application developer to create,
-orchestrate, execute and manage decentralised data supply lines spanning multiple parties in the 
+orchestrate, execute and manage decentralised digital supply lines spanning multiple parties in the 
 data ecosystem. The ability for such parties to interoperate is made possible by conformance to
 DEP Standard APIs.
 
@@ -48,7 +48,7 @@ interoperate effectively.
 - Any existing data resource can be "packaged" into a Data Asset usable with Starfish 
 - Any existing compute resource or algorithm can be expressed as a Starfish Operation, and made
 available for remote invocation across the ecosystem (see DEP6)
-- "Data Supply Lines" can be constructed representing a flow of data assets and execution of
+- Digital Supply Lines can be constructed representing a flow of data assets and execution of
 algorithms / compute operations across many participants
 
 There is no practical limit to the types of operations that can be created, and potentially 
@@ -136,7 +136,7 @@ Starfish may offer specialised Capability Agent implementations that allow diffe
 to be accessed via the standard Agent APIs.
 
 Capability Agents are the recommended approach for a developer to integrate services or systems into 
-a Data Supply Line in situations where a remote or decentralised service does not support the DEP
+a Digital Supply Line in situations where a remote or decentralised service does not support the DEP
 Standard APIs. If the DEP Standard APIs are available, a standard Remote Agent should be used.
 
 Starfish should make it simple, as far as possible, for developers to create their own Capability 
@@ -158,7 +158,7 @@ any other Agent but intended for use only in the local environment.
 
 Local Agents may be used where Agent functionality is desired but sharing across the ecosystem is
 unnecessary. Example of such usage may include:
-- Testing and simulation of Data Supply Lines in a local environment
+- Testing and simulation of Digital Supply Lines in a local environment
 - Development of agent functionality prior to packaging for remote usage
 
 Local agents must conform to the same interfaces as remote agents, with certain limitations
