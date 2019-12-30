@@ -72,18 +72,18 @@ Consumers.
 An interconnected network of participants who are able to interoperate using standard protocols
 such as those defined in the DEPs.
 
-## Data Supply Line
+## Digital Supply Line
 
 A set of data flows that produces data outputs, designed to create value in a Data Ecosystem,
 and specified according to the DEP Standards.
 
-A Data Supply Line may be executed by one or more Agents, can transfer Assets between different
+A Digital Supply Line may be executed by one or more Agents, can transfer Assets between different
 participants, and can transform Assets through the use of Operations to create new, more valuable
 Assets.
 
-Data supply lines can be automated using the Orchestration capabilities in the DEP Standards.
-Alternatively, data supply lines can be manually executed by invoking the individual operations
-that make up the data supply line.
+Digital supply lines can be automated using the Orchestration capabilities in the DEP Standards.
+Alternatively, digital supply lines can be manually executed by invoking the individual operations
+that make up the digital supply line.
 
 ## DEP
 
@@ -91,7 +91,7 @@ Acronym for "Data Ecosystem Proposal", a document defining open standards for th
 
 DEPs are technology neutral, and free for anyone to implement and use. Systems making use of
 DEP standards will gain the benefits of interoperability with other systems in the Data 
-Ecosystem, including the capability to participate in decentralised Data Supply Lines.
+Ecosystem, including the capability to participate in decentralised Digital Supply Lines.
 
 ## DEP Standard APIs
 
@@ -182,7 +182,7 @@ child operations may become outputs of the overall Orchestration. Outputs of chi
 become inputs of other child Operations, with the proviso that this must be consistent with the execution
 ordering specified in the directed acyclic graph.
 
-As such, an Orchestration can be used to represent a fully automated Data Supply Line that can
+As such, an Orchestration can be used to represent a fully automated Digital Supply Line that can
 be executed and managed by agents in the data ecosystem.
 
 Orchestrations are defined in more depth in DEP13
@@ -220,7 +220,7 @@ A Service Provider is a participant in the data ecosystem who makes Assets avail
 via one or more Agents supporting the DEP Standard APIs. Service providers may provide additional APIs
 not covered by the DEP Standards, but should be aware that this will limit the ability for such functionality
 to be used in an interoperable fashion, since such features will not be available to be used in general 
-purpose data supply lines.
+purpose digital supply lines.
 
 Service providers may choose to make their assets free to all, available for a free, or restricted to 
 a controlled set of participants according to access control rules. This is at the discretion of the service
@@ -229,7 +229,7 @@ provider.
 ## Starfish
 
 Starfish is an open source developer toolkit for building applications and use cases with
-decentralised Data Supply Lines, available for multiple programming languages.
+decentralised Digital Supply Lines, available for multiple programming languages.
 
 The core set of abstract operations in Starfish are defined in DEP4, however the specific library functions
 and patterns may vary based on the implementation language. 
