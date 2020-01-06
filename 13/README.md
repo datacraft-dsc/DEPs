@@ -48,30 +48,34 @@ Example:
 
 ```json
 {
-  "id":"parent",
-	"children":[
-		{
-		  "id": "child1",
-		  "did":"did:dex:9a4d904f195889aee3b12b867f764dbc06fa4a54030c44b6f805c70f85cb05e7/bd41ffa50baf8fddbfead91c426de45fcaa474773a9278d63bcaa10200591362"
-		}
-	],
-	"edges":[
-	   {
-	     "id":"optional-edge-id",
-	     "source":"parent",
-	     "sourcePort":"operation-input-param", 
-	     "target":"child1",
-	     "targetPort":"child-input-param"
-	   },
-	   {
-	     "source":"child1",
-	     "sourcePort":"child-output-param",
-	     "target":"parent",
-	     "targetPort":"operation-output-param", 
-	     "custom": {"custom-edge-attribute":"baz"}
-	   }
-	],
-	"custom": {"custom-op-attribute":"foo"}
+  "id": "parent",
+  "children": [
+    {
+      "id": "child1",
+      "did": "did:dex:9a4d904f195889aee3b12b867f764dbc06fa4a54030c44b6f805c70f85cb05e7/bd41ffa50baf8fddbfead91c426de45fcaa474773a9278d63bcaa10200591362"
+    }
+  ],
+  "edges": [
+    {
+      "id": "optional-edge-id",
+      "source": "parent",
+      "sourcePort": "operation-input-param",
+      "target": "child1",
+      "targetPort": "child-input-param"
+    },
+    {
+      "source": "child1",
+      "sourcePort": "child-output-param",
+      "target": "parent",
+      "targetPort": "operation-output-param",
+      "custom": {
+        "custom-edge-attribute": "baz"
+      }
+    }
+  ],
+  "custom": {
+    "custom-op-attribute": "foo"
+  }
 }
 ```
 
