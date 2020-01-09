@@ -35,7 +35,7 @@ W3C defines provenance as:
 
 Readers may wish to refer to a longer introduction about the W3C Provenance standard [here](https://www.w3.org/TR/2013/NOTE-prov-primer-20130430/#intuitive-overview-of-prov).
 
-This document discusses provenance in the context of publisher declared information about assets and transformations of assets in data supply lines.
+This document discusses provenance in the context of publisher declared information about assets and transformations of assets in digital supply lines.
 
 Data assets could be
 

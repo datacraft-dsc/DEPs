@@ -7,8 +7,6 @@ editor: Kiran K <kiran.karkera@dex.sg>
 contributor: Mike Anderson <mike.anderson@dex.sg>
 ```
 
-<!--ts-->
-
 Table of Contents
 =================
 
@@ -19,7 +17,7 @@ Table of Contents
       * [Exclusions](#exclusions)
    * [API Definition](#api-definition)
       * [Methods](#methods)
-      * [Authentication and Authorization](#authentication-and-authorization)
+      * [Authentication and Authorisation](#authentication-and-authorisation)
       * [Open Questions](#open-questions)
    * [License](#license)
 
@@ -28,10 +26,11 @@ Table of Contents
 
 # Introduction
 
-The Invoke API is a standardised solution to the problem of transforming data (Assets) using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
+The Invoke API is a standardised solution to the problem of transforming data (Assets) 
+using [Operations](https://github.com/DEX-Company/DEPs/tree/master/0#operation)  in 
 the context of a decentralised data ecosystem.
 
-In order to build a useful [data supply line](https://github.com/DEX-Company/DEPs/tree/master/0#data-supply-line), actors in the data ecosystem will generally need the ability 
+In order to build a useful [digital supply line](https://github.com/DEX-Company/DEPs/tree/master/0#digital-supply-line), actors in the data ecosystem will generally need the ability 
 to transform and process data assets. 
 
 Operations can segmented into three broad use cases:
