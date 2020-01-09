@@ -117,6 +117,11 @@ DAGs are important for defining Orchestrations, where the direction of graph edg
 
 See: https://en.wikipedia.org/wiki/Directed_acyclic_graph 
 
+## Job
+
+A Job allows a user to view an Orchestration. The result status of the Job can be used to inspect the status of execution for each step of the Orchestration (including potential failures in child Operations).
+For further details, see [DEP6](https://github.com/DEX-Company/DEPs/tree/master/6).
+
 ## Listing
 
 An entity representing an Asset that is available for trade in the data economy.
