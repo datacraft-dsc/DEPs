@@ -11,8 +11,8 @@ The Resolver provides functionality to register DDO of given DID, to resolve DDO
 
 ## Implementations
 
-There are two supported implementations: first one for compatibility with Ocean Squid and second one from DEX. 
-First one requires Aquarius service as storage of DDO while second one uses Ethereum network itself as storage. 
+There are two supported implementations: first one for compatibility with Ocean Protocol network and second one from DEX. 
+First one uses Ocean Protocol services as storage of DDO while second one uses Ethereum network itself as storage. 
 In both cases DID is registered on-chain.
 
 ## Interface
