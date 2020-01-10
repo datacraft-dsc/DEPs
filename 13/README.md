@@ -50,7 +50,9 @@ Example:
 {
   "id": "parent",
   "children": {
-    "child1": "did:dex:9a4d904f195889aee3b12b867f764dbc06fa4a54030c44b6f805c70f85cb05e7/bd41ffa50baf8fddbfead91c426de45fcaa474773a9278d63bcaa10200591362"
+    "child1": {
+      "did": "did:dex:9a4d904f195889aee3b12b867f764dbc06fa4a54030c44b6f805c70f85cb05e7/bd41ffa50baf8fddbfead91c426de45fcaa474773a9278d63bcaa10200591362"
+    }
   },
   "edges": [
     {
