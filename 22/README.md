@@ -48,3 +48,12 @@ There are possible use cases when:
 2. There are different resolver in the different networks.
 
 All these cases are possible to reach using custom config described above.
+
+## Usage
+```
+DexResolver resolver = DexResolver.create("application.properties"); // config file described in the section above
+String DDO = "Some DDO";
+DID did = DID.createRandom();
+resolver.registerDID(did, DDO);
+String DDOResolved = resolver.getDDOString(did);
+```
