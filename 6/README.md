@@ -216,36 +216,35 @@ The endpoint must accept
 
 This section is non-normative.
 
-The values are categorised into two types (`asset` and `json`) to support libraries such as Starfish in:
+Here's an example of a request that defines a single input parameter (`dataset`) of type asset. The operation accepts an asset as input and returns the hash of the asset.
 
-- Validating if payloads adhere to the operation schema 
-- Adding support for metadata such as `assets` which require `did`s and `access_token`s to be fully specified.
-
-Here's an example of an request that defines a single input asset of type asset. The operation accepts an asset as input and returns the hash of the asset.
-
-- The key `to_hash` is the parameter name required by the operation (as declared in the operation's metadata)
+- The key `dataset` is the parameter name required by the operation (as declared in the operation's metadata)
 - Since the type is `asset` (as declared in the schema), the value must be a map with the `did` (and other optional keys)
 
 ```
 {
-    "to_hash": {
-             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
-    }
+  "dataset": {
+    "did": "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+  }
 }
 ```
 
-Here's an example of a request to the same operation which includes an optional parameter, the algorithm to be used for computing the hash.
+The `dataset` input parameter might be stored in a different Agent which requires authentication, for such cases an `"auth"` key must be provided:
+
 
 ```
 {
-    "to_sign": {
-             "did" : "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
-    },
-    "signing_algorithm": {
-             "alg" : "ES256"
-    },
+  "dataset": {
+    "did": "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
+    "auth": {
+      "token": "..."
+    }
+  }
 }
 ```
+
+The `"auth"` value is an Object with the `"token"` key. Authentication information will then be used by the Agent to resolve the `dataset` Asset required by the Operation.
+
 
 #### Response
 
