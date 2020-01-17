@@ -165,7 +165,7 @@ The values for **params** and **results** must be a map with the following attri
 | Value        | Value Type | Required | Description                                                                       | Used in         |
 |--------------|------------|----------|-----------------------------------------------------------------------------------|-----------------|
 | **type**     | list       | Yes      | Must be one of **asset** or **json**                                            | params, results |
-| **position** | int        | Optional | The value is an integer indicating the argument index.Used by libraries that support positional parameters. If absent, parameter names are required for each argument     | params          |
+| **position** | int        | Optional | The value is an integer indicating the argument index. Used by libraries that support positional parameters. If absent, parameter names are required for each argument     | params          |
 | **required** | boolean    | Optional | Indicates that this parameter is mandatory. If absent, default value is True | params          |
 
 
