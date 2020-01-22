@@ -362,7 +362,7 @@ Example:
 }
 ```
 
-Derivedby attribute (The source Entity from which the new Entity was derived). This section must specify:
+Derived attribute (The source Entity from which the new Entity was derived). This section must specify:
 
 - `prov:generatedEntity` : The entity that was generated. Usually `ns:this`.
 - `prov:usedEntity`: The identifier of the entity that was used as an input to the activity. If multiple entities were consumed, each one must be defined as a separate property. 
@@ -424,7 +424,7 @@ The provenance metadata must include:
 It must specify the following relations:
 
 - Generation (wasGeneratedBy)
-- Derivation (wasDerivedBy):
+- Derivation (wasDerivedFrom):
   - The source Entities from which the new Entity was derived
 - Association (wasAssociatedWith)
   - The agent(s) associated with the activity.
