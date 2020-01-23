@@ -4,6 +4,7 @@ name: Publisher Declared Provenance
 type: Standard
 status: Draft
 editor: Kiran Karkera <kiran.karkera@dex.sg>
+contributors: Mike Anderson <mike.anderson@dex.sg>
 ```
 
 Table of Contents
