@@ -42,7 +42,7 @@ The author of the DEP is responsible for building consensus within the community
 ### Types of DEP
 There are three types of DEPs:
 * A **Standard Track DEP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using DEP standards.
-* An **Informational DEP** describes a design issue, or provides general guidelines or information to the community, but does not propose a new feature. Informational DEPs do not necessarily represent OceanProtocol community consensus or a recommendation, so users and implementers are free to ignore Informational DEPs or follow their advice.
+* An **Informational DEP** describes a design issue, or provides general guidelines or information to the community, but does not propose a new feature. Informational DEPs do not necessarily represent community consensus or a recommendation, so users and implementers are free to ignore Informational DEPs or follow their advice.
 * A **Meta DEP** describes a process surrounding the development of Data Ecosystem Proposals or proposes a change to a process.
 
 ### DEP Format
