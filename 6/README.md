@@ -143,7 +143,7 @@ The **Operation Metadata** information should be managed using [Metadata Agent A
 The service providers hosting the API should expose the following capabilities in the Agent via HTTP REST. 
 
 Here's an example of the Operation metadata for an operation that removes empty rows from a data asset.
-```
+```json
 {
   "license": "CC-BY",
   "dateCreated": "2019-05-07T08:17:31.521445Z",
@@ -152,30 +152,35 @@ Here's an example of the Operation metadata for an operation that removes empty 
   "inLanguage": "en",
   "description": "filter rows in a csv dataset, if more than 10 columns are empty",
   "type": "operation",
-  "contentType": "application\/octet-stream",
+  "contentType": "application/octet-stream",
   "operation": {
-                 "modes": ["sync",
-                           "async"],
-                 "params": {
-                             "dataset": {
-                                          "type": "asset",
-                                          "position": 0,
-                                          "required": true
-                                        },
-                             "max-empty-columns": {
-                                                    "type": "json",
-                                                    "position": 1,
-                                                    "required": false
-                                                  }
-                           },
-                 "results": {
-                              "filtered-dataset": {
-                                                    "type": "asset"
-                                                  }
-                            }
-               },
+    "modes": [
+      "sync",
+      "async"
+    ],
+    "params": {
+      "dataset": {
+        "type": "asset",
+        "position": 0,
+        "required": true
+      },
+      "max-empty-columns": {
+        "type": "json",
+        "position": 1,
+        "required": false
+      }
+    },
+    "results": {
+      "filtered-dataset": {
+        "type": "asset"
+      }
+    }
+  },
   "contentHash": "4e03657aea45a94fc7d47ba826c8d667c0d1e6e33a64a036ec44f58fa12d6c48",
-  "tags": ["row filtering"]
+  "tags": [
+    "row filtering"
+  ]
+}
 ```
 
 ## Methods
