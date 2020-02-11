@@ -53,7 +53,7 @@ Endpoints are specified in the following form in the DDO:
 ```json
 {
   "service": [{
-    "type": "Ocean.Meta.v1",
+    "type": "DEP.Meta.v1",
     "serviceEndpoint": "https://mobi.com/api/v1/meta"
   }]
 }
@@ -84,11 +84,11 @@ Current allocated endpoint types are listed below:
 
 Endpoint type           |   Description
 ------------------------|----------------------
-Ocean.Meta.v1           | Endpoint for the Meta Agent API v1 ([DEP15](https://github.com/DEX-Company/DEPs/tree/master/15))
-Ocean.Invoke.v1         | Endpoint for an invokable service API ([DEP6](https://github.com/DEX-Company/DEPs/tree/master/6))
-Ocean.Storage.v1        | Endpoint for a generalised storage API ([DEP7](https://github.com/DEX-Company/DEPs/tree/master/7))
-Ocean.Auth.v1           | Endpoint the Authentication API ([DEP20](https://github.com/DEX-Company/DEPs/tree/master/20))
-Ocean.Market.v1         | Endpoint for the Market Agent API (TBC)
+DEP.Meta.v1           | Endpoint for the Meta Agent API v1 ([DEP15](https://github.com/DEX-Company/DEPs/tree/master/15))
+DEP.Invoke.v1         | Endpoint for an invokable service API ([DEP6](https://github.com/DEX-Company/DEPs/tree/master/6))
+DEP.Storage.v1        | Endpoint for a generalised storage API ([DEP7](https://github.com/DEX-Company/DEPs/tree/master/7))
+DEP.Auth.v1           | Endpoint the Authentication API ([DEP20](https://github.com/DEX-Company/DEPs/tree/master/20))
+DEP.Market.v1         | Endpoint for the Market Agent API (TBC)
 
 ## Implementations
 
@@ -100,6 +100,6 @@ DEP Standard API endpoint resolution is supported in the Starfish Developer Tool
 
 ## License
 
-Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2019-2020 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
