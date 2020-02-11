@@ -94,7 +94,7 @@ An agent may execute an orchestration according to the following rules:
 - The execution agent *may* execute operations in parallel in the case that no dependencies 
 prevent this
 - An operation *must* be executed if required parameters are not available for any reason
-- An child operation *must* be executed if all child operations that it depends upon have succeeded,
+- A child operation *must* be executed if all child operations that it depends upon have succeeded,
 subject to all required parameters being available.
 
 ## Authorisation
@@ -109,30 +109,34 @@ TODO: Consider cases where callers need to pass credentials for child operations
 An orchestration may fail for any of the reasons below:
 - The orchestration DAG is not valid (e.g. contains a cycle)
 - A child operation fails
-- A required parameter is not provided
+- A required input is not provided
 - The client is not authorised to execute the orchestration in some way
 
-## Orchestration results
+## Orchestration outputs
 
-Executing an orchestration will create and report operation results in accordance with DEP6. 
+Executing an orchestration will create and report operation outputs in accordance with DEP6. 
 
 An orchestration shall be considered to have succeeded if:
 - All immediate child operations have succeeded
 - All required output parameters of the orchestration have been produced
 
-In addition, the Job results map should contain nested results for child operations, so that
+In addition, the Job outputs map should contain nested results for child operations, so that
 the execution status of the complete operation can be inspected.
 
-Example of a successful Job result:
+Example of a successful Job:
 
 ```json
-{ 
-  "status":"succeeded",
-  "results": {"operation-output-param": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"},
+{
+  "status": "succeeded",
+  "outputs": {
+    "operation-output-param": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+  },
   "children": {
     "child1": {
-       "status":"succeeded",
-       "results": {"child-output-param": "foo"}
+      "status": "succeeded",
+      "outputs": {
+        "child-output-param": "foo"
+      }
     }
   }
 }
