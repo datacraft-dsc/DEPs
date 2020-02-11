@@ -35,8 +35,8 @@ Short Name             | Title                                                  
 [9/SQUID-INT](9)       | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
 [10/TOKEN-PAY](10)     | Direct Payments with Ocean Tokens                            | Standard     | Raw        | Ilya Bukalov
 [11/AGENT-STATUS](11)  | Agent status and configuration API                           | Standard     | Raw        | Mike Anderson
-[12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Kiran Karkera
-[13/ORCHESTRATION](13) | Orchestration of Digital Supply Lines                        | Standard     | Raw        | Mike Anderson
+[12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Pedro Girardi
+[13/ORCHESTRATION](13) | Orchestration of Digital Supply Lines                        | Standard     | Raw        | Pedro Girardi
 [14/LISTINGS](14)      | Listings for assets management and marketplaces              | Standard     | TODO       | Mike Anderson
 [15/META-API](15)      | Metadata API                                                 | Standard     | Draft      | Mike Anderson
 [16/SEARCH](16)        | Asset search API                                             | Standard     | TODO       | Mike Anderson

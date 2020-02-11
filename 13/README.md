@@ -3,8 +3,8 @@ shortname: 13/ORCHESTRATION
 name: Orchestration Operations
 type: Standard
 status: Raw
-editor: Mike Anderson <mike.anderson@dex.sg>
-contributors: Pedro Girardi 
+editor: Pedro Girardi <pedro.girardi@dex.sg>
+contributors:  Mike Anderson <mike.anderson@dex.sg>
 ```
 
 

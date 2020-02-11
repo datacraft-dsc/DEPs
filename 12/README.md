@@ -3,8 +3,8 @@ shortname: 12/Prov
 name: Publisher Declared Provenance
 type: Standard
 status: Draft
-editor: Kiran Karkera <kiran.karkera@dex.sg>
-contributors: Mike Anderson <mike.anderson@dex.sg>
+editor: Pedro Girardi <pedro.girardi@dex.sg>
+contributors: Mike Anderson <mike.anderson@dex.sg>, Kiran Karkera <kiran.karkera@dex.sg>
 ```
 
 Table of Contents
@@ -13,9 +13,9 @@ Table of Contents
    * [Table of Contents](#table-of-contents)
    * [Overview](#overview)
        * [W3C Provenance](#w3c-provenance)
-         * [Entities](#Entities)
-         * [Agents](#Agents)
-         * [Activities](#Activities)
+         * [Entities](#entities)
+         * [Agents](#agents)
+         * [Activities](#activities)
       * [Provenance for Entities and Interactions](#provenance-for-entities-and-their-interactions)
       * [Motivation and Use cases](#motivation-and-use-cases)
    * [Definitions](#definitions)
