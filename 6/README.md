@@ -158,7 +158,7 @@ Here's an example of the Operation metadata for an operation that removes empty 
       "sync",
       "async"
     ],
-    "params": {
+    "inputs": {
       "dataset": {
         "type": "asset",
         "position": 0,
@@ -170,7 +170,7 @@ Here's an example of the Operation metadata for an operation that removes empty 
         "required": false
       }
     },
-    "results": {
+    "outputs": {
       "filtered-dataset": {
         "type": "asset"
       }
@@ -193,7 +193,7 @@ It is the recommended that the server host the API under the path `/api/<version
 | -                      | -                                                             |-     |
 | Invoke Async Operation | Invoke an operation asynchronously                            |/async/operation-id|
 | Invoke Operation       | Invoke an operation synchronously                             |/sync/operation-id|
-| Get Job result         | Get the result if completed |/jobs/jobid|
+| Get Job result         | Get the result if completed                                   |/jobs/job-id|
 
 - Unless mentioned otherwise, all requests, response and error payloads must be in JSON.
 - The types of HTTP Requests (e.g. GET, POST) are defined in [RFC 2616](https://tools.ietf.org/html/rfc2616)
@@ -221,9 +221,9 @@ The endpoint must accept
 
 This section is non-normative.
 
-Here's an example of a request that defines a single input parameter (`dataset`) of type asset. The operation accepts an asset as input and returns the hash of the asset.
+Here's an example of a request that defines a single input parameter (`dataset`) of type asset. The operation accepts an asset as input and outputs the hash of the asset.
 
-- The key `dataset` is the parameter name required by the operation (as declared in the operation's metadata)
+- The key `dataset` is the input name required by the operation (as declared in the operation's metadata)
 - Since the type is `asset` (as declared in the schema), the value must be a map with the `did` (and other optional keys)
 
 ```
@@ -253,7 +253,7 @@ The `"auth"` value is an Object with the `"token"` key. Authentication informati
 
 #### Response
 
-The response to a valid request must be a JSON encoded map with the **jobid** and the corresponding value. Invalid requests must return a response code as described below.
+The response to a valid request must be a JSON encoded map with the **job-id** and the corresponding value. Invalid requests must return a response code as described below.
 
 The Service Provider should reject operations that the requestor is not authorised to perform with a 403 status.
 Service providers should use this 403 response in situations where the operation requested is not trusted for
@@ -263,13 +263,13 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 
 ```
 {
-    "jobid": "630363ce4a6a9ded23"
+    "job-id": "630363ce4a6a9ded23"
 }
 ```
 
 | Response code | Description                                                                    | JSON payload                              |
 |---------------|--------------------------------------------------------------------------------|-------------------------------------------|
-|           201 | job creation success                                                           | map with jobid key                        |
+|           201 | job creation success                                                           | map with job-id key                        |
 | 404 | asset id not found | none|
 |           400 | bad request-not according to prescribed format or invalid configuration options | map with error code and error description |
 |           401 | not authenticated (no authentication tokens provided)                              | map with error code and error description |
@@ -283,8 +283,8 @@ The choice of schema for the jobid's value is left to the implementor of the ope
 
 The endpoint must accept
 
-- An HTTP GET request to `/jobs/jobid` 
-- The path parameter `jobid` must be the value returned by the Invoke Async Operation response
+- An HTTP GET request to `/jobs/job-id` 
+- The path parameter `job-id` must be the value returned by the Invoke Async Operation response
 
 #### Response
 
@@ -335,20 +335,21 @@ The following table lists error codes that are specific to operations. This list
 Example of an operation which hashes the value of an asset. 
 
 ```
-{ 
-  "status":"succeeded",
-  "results": {"hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"}
+{
+  "status": "succeeded",
+  "outputs": {
+    "hashed_value": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+  }
 }
 ```
 
 Example of an operation that failed 
 
 ```
-{ 
-  "status":"failed",
-  "results":{
-  "errorcode":8004,
-  "description":"Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
+{
+  "status": "failed",
+  "error": {
+    "description": "Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
   }
 }
 ```
@@ -363,8 +364,8 @@ This is an convenience interface by which a consumer can invoke an operation. Th
 
 The endpoint must accept
 
-- A POST request to the https://service-endpoint/invoke/operation_id along with JSON formatted payload described by the params section of the operation metadata.
-- The path argument operation_id must be the ID of the operation asset.
+- A POST request to the https://service-endpoint/invoke/operation_id along with JSON formatted payload described by the inputs section of the operation metadata.
+- The path argument operation-id must be the ID of the operation asset.
 - The payload is the same as the asynchronous invocation
 
 #### Response
