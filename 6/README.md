@@ -3,8 +3,8 @@ shortname: 6/INVOKE
 name: API to invoke compute services
 type: Standard
 status: Raw
-editor: Kiran K <kiran.karkera@dex.sg>
-contributor: Mike Anderson <mike.anderson@dex.sg>
+editor: Pedro Giradi <pedro.girardi@dex.sg>
+contributor: Mike Anderson <mike.anderson@dex.sg>, Kiran K <kiran.karkera@dex.sg>
 ```
 
 Table of Contents

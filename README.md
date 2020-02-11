@@ -29,7 +29,7 @@ Short Name             | Title                                                  
 [3/ARCH](3)            | Architecture & Principles                                    | Standard     | Draft      | Mike Anderson
 [4/STARFISH](4)        | Starfish Abstract API                                        | Standard     | Raw        | Mike Anderson
 [5/IDENTITY](5)        | Agent and Asset Identity                                     | Standard     | Raw        | Mike Anderson
-[6/INVOKE](6)          | Invokable Services                                           | Standard     | Draft      | Kiran Karkera
+[6/INVOKE](6)          | Invokable Services                                           | Standard     | Draft      | Pedro Giradi
 [7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
 [9/SQUID-INT](9)       | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
