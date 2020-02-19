@@ -39,6 +39,11 @@ compute technologies in the data ecosystem.
 An entity in the Data Ecosystem which has potential value, and may be utilised by participants
 using systems supporting the DEPs standards.
 
+## Asset Instance
+
+A copy of an Asset held by an actor in the Data Ecosystem. Asset Instances may be created by copying
+asset data and metadata between agents (assuming appropriate access rights).
+
 ## Asset Metadata
 
 A JSON data object that describes an Asset in the Data Ecosystem. Every valid Asset in the 
