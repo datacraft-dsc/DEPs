@@ -64,6 +64,14 @@ A collection is a set of assets managed by an agent on behalf of a set of users.
 
 A participant in the data system who acquires and utilises Assets in the Data Ecosystem.
 
+## Content
+
+The data contained within an Asset, as distinct from the Metadata of the Asset.
+
+Operations may be considered to have "Content" which is equivalent to the executable code of the Operation. This
+may or may not be possible to share between different execution environments.
+
+
 ## Data Asset
 
 An Asset that represents a single data object that can be utilised in the data ecosystem.
