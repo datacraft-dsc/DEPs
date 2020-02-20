@@ -68,9 +68,11 @@ A participant in the data system who acquires and utilises Assets in the Data Ec
 
 The data contained within an Asset, as distinct from the Metadata of the Asset.
 
+Actors may include arbitrary content within an Asset that they create. To help specify the type / format of data
+included it is possible to tag the Content with an Optional MIME Type as per RFC2045 and related internet standards.
+
 Operations may be considered to have "Content" which is equivalent to the executable code of the Operation. This
 may or may not be possible to share between different execution environments.
-
 
 ## Data Asset
 
