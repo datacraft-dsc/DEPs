@@ -53,8 +53,11 @@ Asset Metadata standards are defined in DEP8.
 
 ## Bundle
 
-A special type of Asset that represents a collection of other Assets. A Bundle can be regarded
-as analogous to a folder or directory in traditional computer file systems.
+A special type of Asset that represents an aggregation of other Assets. 
+
+A Bundle can be regarded as analogous to a folder or directory in traditional computer file systems, except that
+a Bundle is immutable: the contents cannot be changed once it has been created. This is important for ensuring
+that data usage can be audited and integrity checked in the future.
 
 ## Collection
 
@@ -62,7 +65,7 @@ A collection is a set of assets managed by an agent on behalf of a set of users.
 
 ## Consumer
 
-A participant in the data system who acquires and utilises Assets in the Data Ecosystem.
+A participant in the data system who acquires and/or utilises Assets in the Data Ecosystem.
 
 ## Content
 
