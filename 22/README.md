@@ -26,7 +26,7 @@ void registerDID(DID did, String ddoString) throws ResolverException;
 ## Permission control
 
 The records are allowed to read (resolve) for everyone while to register (to write) is allowed only by the owner, which is actually the blockchain account which registered DDO the first time.
-This way it is possible to update DDO record by onwer/creator only. The permission is controlled by the blockchain itself.
+This way it is possible to update DDO record by owner/creator only. The permission is controlled by the blockchain itself.
 
 ## Config
 
