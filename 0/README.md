@@ -194,10 +194,10 @@ Examples of Operations may include:
 ## Orchestration
 
 An Orchestration is a special type of Operation that represents the combination of multiple child 
-operations, which are arranged as a directed acylic graph.
+operations, which are arranged as a directed acyclic graph.
 
 When "Invoked" in the context of an Agent, the agent is responsible for executing the child operations
-in an order consistent with the dependencies specified in the directed acylic graph.
+in an order consistent with the dependencies specified in the directed acyclic graph.
 
 Like any other Operation, an Orchestration may accept one or more inputs, and produce one or more outputs,
 with the added consideration that these inputs may become inputs of child operations, and the outputs of
