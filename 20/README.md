@@ -58,7 +58,7 @@ importantly distinct contexts:
 ### The Marketplace context
 
 First we expect that there will be many marketplaces that will participate
-in Ocean Protocol. A distinguishing feature of a Marketplace is
+in the data economy. A distinguishing feature of a Marketplace is
 that it may have responsibility for maintaining the legal
 identity of participants and thus must control (or delegate)
 authentication and authorization at least for activities directly
@@ -86,9 +86,9 @@ mechanism for Asset Providers would be a significant impediment to
 adoption of the Data Ecosystem Protocol and significantly limit
 the commercial applicability.
 
-### The Ocean Protocol Network context
+### The Network context
 
-Third the network which implements Ocean Protocol provides a basis for
+The network which implements the protocol provides a basis for
 community consensus sets (e.g. Ethereum smart contracts).
 Marketplaces cannot control this consensus nor prevent bad actors
 participating in the Ocean Protocol network or its operation or
@@ -123,22 +123,6 @@ records (including IP addresses).
 It is important to note that there are two interpretations of DID resolution:
 one in an "on chain" context and the other in an "off chain" context.
 
-### Marketplace Authentication
-
-In the case of marketplace service actions the marketplace must
-provide the necessary identification, authentication and authorization
-(including issuing credentials). Using DID/DDO for this is
-recommended (e.g a template DDO).
-
-For example a marketplace may refer to a given Asset Provider's identity
-based HTTP Basic Authentication using a [DID Scheme](https://w3c-ccg.github.io/did-spec/#the-generic-did-scheme) such as:
-
-    did:dep:commercial.assets.io/username#janedoe
-
-If an asset provider supports OAuth2 style tokens then a DID reference to
-such a token could be:
-
-    did:dep:commercial.assets.io/token#123456789abcdefghi
 
 ## Asset Provider Context Example Solution
 
@@ -150,7 +134,7 @@ supersets) yet will begin with mechanisms familiar to developers today.
 The Asset Provider example solution for the reference implementation
 is based upon HTTP Basic and Token authentication.
 
-The endpoint for the Authentication API is defined in [19/ENDPOINTS](../19/README.md) as **Ocean.Authentication.v1**
+The endpoint for the Authentication API is defined in [19/ENDPOINTS](../19/README.md) as **DEP.Authentication.v1**
 
 ### Transport Layer Security
 
@@ -192,6 +176,6 @@ The list of changes to apply in the proposed solution are:
 
 ## License
 
-Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2019-2020 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
