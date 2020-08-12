@@ -18,7 +18,7 @@ Table of Contents
          * [Activities](#activities)
       * [Provenance for Entities and Interactions](#provenance-for-entities-and-their-interactions)
       * [Motivation and Use cases](#motivation-and-use-cases)
-   * [Definitions](#definitions)
+   * [Specification](#specification)
       * [IDs](#identifiers)
       * [Entities](#entities)
       * [Provenance Metadata](#provenance-metadata-sections)
@@ -137,7 +137,7 @@ Comparing a colloquial statement with the canonical Provenance definition:
 |                                                     |                                                                                                                                                                                                                         |
 
 
-# Definitions 
+# Specification 
 
 This section is normative.
 
@@ -232,8 +232,9 @@ Assets must use following values for *prov:type* depending on the type of entity
 
 ## Provenance Metadata Sections 
 
-Recall that the asset metadata is a JSON object, which is an unordered set of name/value pairs. Provenance metadata is represented as a name/value pair in the asset metadata object, where the **name** must be `provenance`. 
-Note that provenance information is optional. However, if the **name** `provenance`exists, the value against that name must be a JSON object with valid provenance metadata, as described in the rest of this document.
+The asset metadata is a JSON object, which is an unordered set of name/value pairs. Provenance metadata is itself represented as a name/value pair in the Asset Metadata object as per DEP8, where the **name** must be `provenance`. 
+
+Note that provenance information is optional in DEP8. However, if the **name** `provenance` exists, the value against that name must be a JSON object with valid provenance metadata, as described in the rest of this document.
 
 The JSON Object representing provenance information consists of the following properties (this section is taken from the prov-json Overview)
 
@@ -269,24 +270,24 @@ Additionally, the DEP recommends that the following **relations** should be decl
 
 **Entity** is a JSON object consisting of name/value pairs. This object must contain references to all assets involved in the activity (described in the activity section). 
 
-- The **name** must be valid asset DIDs.
-- The json object against each **name** must  contain the type property, where types can be one of the supported asset types (e.g. asset, bundle or operation)
-- The **name** `ns:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
+- The **name** must be valid asset DIDs (or `dep:this`)
+- The JSON object against each **name** should contain the `prov:type` property, where types may be one of the supported asset types in DEP8 (e.g. asset, bundle or operation)
+- The **name** `dep:this` has a special meaning, indicating that it refers to the asset currently being registered, hence it refers to itself.
 
 Example of an entity declaration:
 ```
 {
 	"entity": {
-		"ns:this": {
+		"dep:this": {
 			"prov:type": {
-				"$": "ns:asset",
+				"$": "asset",
 				"type": "prov:string"
 			}
 		},
 
-		"ns:did:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d462201a6": {
+		"did:dep:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d462201a6": {
 			"prov:type": {
-				"$": "ns:asset",
+				"$": "asset",
 				"type": "prov:string"
 			}
 		}
@@ -294,6 +295,7 @@ Example of an entity declaration:
 }
 ```
 
+Note on `prov:type`: "PROV-DM is agnostic about the representation of types, and only states that the value associated with a prov:type attribute must be a PROV-DM Value"
 
 ### Activity 
 
