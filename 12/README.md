@@ -170,16 +170,31 @@ Service providers such as Storage service provider, with the DID of the Agent
 
 #### Users
 
-Consumers of services / users involved in the Digital Supply must be identified by specifying
-  - The account associated with the Agent (e.g. 
-  - If the user has a DID, s/he is encouraged to use the DID as the identifier. 
+Consumers of services / users involved in the Digital Supply should be identified by specifying:
+  - The Agent with which the user is registered, (`did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d`) and which is responsible for providing the User's identity and credentials (see DEP... Authentication)
+  - The public account name or ID associated with the Agent (e.g. `bob.smith`)
+  - If the user has a DID, s/he is encouraged to include the DID as an additional identifier e.g. `did:foo:user-name-at-foo-service`. This DID need not be a DEP-compatible DID.
 
 ### Activities
 
 Activities can be categorized into two types:
 
-- Invoke operations are activities, and they can be identified by their asset (operation) ID or DID.
-- Manual activities (e.g. data cleaning) will benefit by having an ID. However, it is not mandatory for manual activities to have an ID.
+#### Invoke Jobs
+
+Jobs which represent the invocation of operations (as per DEP6) are activities, and they must be identified by the following information:
+- The DID of the Agent where the Job was performed (e.g. `did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d`)
+- The Asset ID of the Operation
+- The Job ID of the Job as per DEP6
+
+Optionally, the Job should include:
+- The timestamp at which the Invoke was performed by the Agent, which should be in ISO 8601 format e.g. `2007-04-05T24:00`
+
+
+#### Publications
+
+A publication is an initial uplad / register of an Asset
+
+(e.g. data cleaning) will benefit by having an ID. However, it is not mandatory for manual activities to have an ID.
  
 ## Entities
 
