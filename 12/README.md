@@ -308,22 +308,23 @@ This DEP supports three types of activities:
 Each activity addresses a different use case, and therefore impacts the provenance metadata.
 
 -  Publishing
-   - The `ns:this` property must be present in the *entity* JSON object.
+   - The `dep:this` property must be present in the *entity* JSON object.
  
 - Importing
-   - The `ns:this` property must be present in the *entity* JSON object.
+   - The `dep:this` property must be present in the *entity* JSON object.
   
 - Invoking an operation
-   - The `ns:this` property must be present in the *entity* JSON object.
+   - The `dep:this` property must be present in the *entity* JSON object.
    - A list of entities that were consumed by this operation must be listed in the inputs.
   
   
 #### Properties of activity
+
 Activities must declare
 
 - An identifier, which must be a qualified name as defined by Provenance Data model. 
 - A `prov:type` property, indicating the type of the activity, as described above.
-- If the `prov:type` is `operation`, it must contain `ns:params` and `ns:results` properties. These are the inputs to, and output from, the invoke operation.
+- If the `prov:type` is `dep:job`, it must contain `dep:inputs` and `dep:outputs` properties. These are the inputs to, and output from, the invoke operation.
 
 It is recommended that activities declare
 
@@ -333,18 +334,18 @@ Example of an activity:
 ```
 {
 "activity": {
-    "ns:617c906f-4f29-49d7-a111-ab0ff2bb0d45": {
+    "617c906f-4f29-49d7-a111-ab0ff2bb0d45": {
       "prov:type": {
-        "$": "ns:operation",
+        "$": "dep:job",
         "type": "xsd:string"
       },
       "prov:endTime": "2019-05-22T10:13:04.779+08:00",
-      "ns:results": {
-        "$": "{\"results\":{\"hashval\": {\"did\":\"did:op:a6cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
+      "dep:outputs": {
+        "$": "{\"results\":{\"hashval\": {\"did\":\"did:dep:a6cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
         "type": "xsd:string"
       },
-      "ns:params": {
-        "$": "{\"params\":{\"to-hash\": {\"did\":\"did:op:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
+      "dep:inputs": {
+        "$": "{\"params\":{\"to-hash\": {\"did\":\"did:dep:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
         "type": "xsd:string"
       }
     }
@@ -360,9 +361,9 @@ The agent is the service provider responsible for running the activity.
 ```
 {
  "agent": {
-    "ns:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
+    "did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d": {
       "prov:type": {
-        "$": "ns:ethereum-account",
+        "$": "dep:service-provider",
         "type": "xsd:string"
       }
     }
@@ -385,8 +386,8 @@ Example:
 {
   "wasGeneratedBy": {
     "_:wGB1": {
-      "prov:entity": "ns:this",
-      "prov:activity": "ns:617c906f-4f29-49d7-a111-ab0ff2bb0d45"
+      "prov:entity": "dep:this",
+      "prov:activity": "617c906f-4f29-49d7-a111-ab0ff2bb0d45"
     }
   }
 }
@@ -402,8 +403,8 @@ Example:
 {
   "wasAssociatedWith": {
     "_:wAW1": {
-      "prov:agent": "ns:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
-      "prov:activity": "ns:617c906f-4f29-49d7-a111-ab0ff2bb0d45"
+      "prov:agent": "did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d",
+      "prov:activity": "617c906f-4f29-49d7-a111-ab0ff2bb0d45"
     }
   }
 }
@@ -420,8 +421,8 @@ Example:
 ```
 "wasDerivedFrom": {
     "_:wDF2": {
-      "prov:generatedEntity": "ns:this",
-      "prov:usedEntity": "ns:c98edc33b01c32b2d655fe0c5689fe6e5c0f71193796d3d0be035c58b1c6dfde"
+      "prov:generatedEntity": "dep:this",
+      "prov:usedEntity": "did:dep:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d462201a6"
     }
 }
 ```
