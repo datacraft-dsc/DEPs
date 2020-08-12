@@ -150,7 +150,7 @@ Provenance metadata must be compatible with W3C Prov. However, it may have addit
 
 Prov metadata must identify all Assets referenced by the asset DID.
 
-e.g. 'did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d/0506c78af6bd9ed44b053cdcc750764024201f608c2f4d08b88ae56177703153'
+e.g. `did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d/0506c78af6bd9ed44b053cdcc750764024201f608c2f4d08b88ae56177703153`
 
 This applies to both Data Assets and Operations.
 
@@ -177,11 +177,12 @@ Consumers of services / users involved in the Digital Supply should be identifie
 
 ### Activities
 
-Activities can be categorized into two types:
+Activities can be categorized into three types:
 
 #### Invoke Jobs
 
 Jobs which represent the invocation of operations (as per DEP6) are activities, and they must be identified by the following information:
+- The type of activity `dep:invoke`
 - The DID of the Agent where the Job was performed (e.g. `did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d`)
 - The Asset ID of the Operation
 - The Job ID of the Job as per DEP6
@@ -192,15 +193,28 @@ Optionally, the Job should include:
 
 #### Publications
 
-A publication is an initial uplad / register of an Asset
+A publication is an initial upload / register of an Asset. If the activity is a publication, it must include:
+- The type of activity `dep:publish`
+- The DID of the Agent where the Asset was registered (e.g. `did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d`)
 
-(e.g. data cleaning) will benefit by having an ID. However, it is not mandatory for manual activities to have an ID.
+The remaining metadata for the Asset may include other details providing information bout the Asset as per DEP8.
+
+Data which is published after manual processing should be classed as a publication.
+
+#### Imports
+
+When a Data Asset is copied from another Agent to create a new Asset with identical content (i.e. the same content hash), it should be classed as an "import" for the purposes of provenance.
+
+Imports must include:
+- The type of activity `dep:import`
+- The DID of the source Asset `did:dep:00db1cc7028ae8901767e991a3fed50fe025fcccecfbf3b69d044b004082f36d/0506c78af6bd9ed44b053cdcc750764024201f608c2f4d08b88ae56177703153`
+
  
 ## Entities
 
-Agents with underlying implementations (e.g. an OceanProtocol Agents) must use *prov:type* for entities, activities and agents. The Agent must use a namespace prefix that corresponds to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). For example, Ocean Protocol uses the `opf` and `prov` namespace prefixes. The standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
+DEP-Compatible Agents with underlying implementations must use *prov:type* for entities, activities and agents. The Agent must use a namespace prefix `dep` that corresponds to namespace [IRIs](https://dvcs.w3.org/hg/rdf/raw-file/default/rdf-concepts/index.html#dfn-namespace-iri). The W3C standard recommends that it is `common to abbreviate IRIs that start with namespace IRIs by using a namespace prefix in order to assist readability`.
 
-This DEP recommends the use of the following values for *prov:type* depending on the type of entity. The rest of this document assumes that `dep` refers to a namespaces prefix defined by the agent. 
+Assets must use following values for *prov:type* depending on the type of entity. 
 
 * Entities:
   - `dep:asset` : A data asset .
@@ -215,9 +229,6 @@ This DEP recommends the use of the following values for *prov:type* depending on
 * Agents:
 
   - `dep:did` : DID of an Agent, if available.
-  - `dep:address`: The address of the consumer.
-  - `dep:id_type` : The type of the agent id, could be `ethereum_account` or `did`
-
 
 ## Provenance Metadata Sections 
 
