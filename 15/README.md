@@ -46,8 +46,8 @@ The main motivations of this DEP are:
 | Name             | Method | URI                          |
 |------------------|--------|------------------------------|
 | addMetadata      | POST   | /data                        |
-| updateMetadata      | PUT    | /data/{asset_id}             |
-| getMetadata      | GET    | /data/{asset_id}             |
+| updateMetadata      | PUT    | /data/{assetId}             |
+| getMetadata      | GET    | /data/{assetId}             |
 | getMetadata      | GET    | /data/                       |
 
 
@@ -57,9 +57,9 @@ The main motivations of this DEP are:
 Add meta data to the server storage. The message body will be hashed using SHA3-256 to
 generate the asset id.
 
-If using the PUT method with {asset_id}, the asset ID will be compared to the given asset ID to ensure integrity. An error will occur if the hash is invalid.
+If using the PUT method with {assetId}, the asset ID will be compared to the given asset ID to ensure integrity. An error will occur if the hash is invalid.
 
-If the above executes correctly, the Meta Storage Server must ensure the metadata is persisted in its own storage, associating the {asset_id} with this metadata.
+If the above executes correctly, the Meta Storage Server must ensure the metadata is persisted in its own storage, associating the {assetId} with this metadata.
 
 Meta agents are recommended to limit usage of this service to authorised clients to avoid issues with spam.
 
