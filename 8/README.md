@@ -27,7 +27,7 @@ Table of Contents
 
 
 
-# Asset Metadata 
+# Asset Metadata
 
 Developing decentralised data ecosystems that are interoperable requires a standard for describing assets with metadata
 in a format that is machine readable and provides necessary information of the operation of relevant protocols.
@@ -52,14 +52,14 @@ Assets must be one of the following types:
 
 Type            | Description
 ----------------|---------------
-**dataset**     | A Data Asset which represents some form of content, e.g. a CSV file          
-**operation**   | An asset that represents a computational operation that may be invoked          
-**bundle**      | A composite Asset that may contain other Assets.          
+**dataset**     | A Data Asset which represents some form of content, e.g. a CSV file
+**operation**   | An asset that represents a computational operation that may be invoked
+**bundle**      | A composite Asset that may contain other Assets.
 
 
 ## Base attributes
 
-The following attributes may be included as part of Asset Metadata for any Asset, and have 
+The following attributes may be included as part of Asset Metadata for any Asset, and have
 specific meanings which participants should interpret accordingly.
 
 
@@ -71,8 +71,8 @@ Attribute          |   Type          |   Required    | Description
 **dateCreated**    | String (Date)   | No            | The timestamp at which the asset was created with ISO 8601 String format e.g. "2019-08-13T06:05:27+00:00"
 **creator**        | String          | No            | Free text name of the entity generating this data (e.g. Tfl, Disney Corp, etc.)
 **license**        | String          | No            | Short name referencing to the license of the asset (e.g. Public Domain, CC-0, CC-BY, No License Specified, etc. ).
-**copyrightHolder**| String          | No            | The party holding the legal copyright. 
-**links**          | Array of Link   | No            | Mapping of links for data samples, or links to find out more information. 
+**copyrightHolder**| String          | No            | The party holding the legal copyright.
+**links**          | Array of Link   | No            | Mapping of links for data samples, or links to find out more information.
 **inLanguage**     | String          | No            | The language used in this instance of Asset Metadata. Please use one of the language codes from the [IETF BCP 47 standard](https://tools.ietf.org/html/bcp47). Assumed to be "en" if not specified.
 **tags**           | Array of String | No            | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. Empty by default
 **additionalInformation** | JSON Map | No            | Additional aritrary JSON content at discretion of publisher
@@ -98,7 +98,7 @@ Additional information is opaque to the DEP Standards, and has no specific meani
 intended to work with arbitrary Assets should make no assumptions about the content or existence of additional
 information in the Asset Metadata.
 
-Some implementations may make use of this information, e.g. service providers might define their own standards 
+Some implementations may make use of this information, e.g. service providers might define their own standards
 for data formats here, which could affect processing in some circumstances. Service providers making this choice
 should be aware that their implementation may not be compatible with all valid Assets as a result.
 
@@ -117,7 +117,7 @@ An array of Links can be provided to give supplementary information about an Ass
 		"name" : "Data Format Definition",
 		"type" : "format",
 		"assetID: "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
-	}	
+	}
 ]
 ```
 
@@ -147,8 +147,8 @@ Attribute       |   Type        |   Required    | Description
 
 ### Operation descriptor map
 
-This section must be included whenever the Asset Type is **operation** and the value is a map 
-containing a definition of the **operation**, which contains the following attributes: 
+This section must be included whenever the Asset Type is **operation** and the value is a map
+containing a definition of the **operation**, which contains the following attributes:
 
 | Attribute   | Value Type | Required | Description                                |
 |-------------|------------|----------|--------------------------------------------|
@@ -160,7 +160,7 @@ containing a definition of the **operation**, which contains the following attri
 The values for **params** and **results** must be a map with the following attributes:
 
 - Keys are the parameter names
-- Value against the parameter name must be a map. This map must contain 
+- Value against the parameter name must be a map. This map must contain
 
 | Value        | Value Type | Required | Description                                                                       | Used in         |
 |--------------|------------|----------|-----------------------------------------------------------------------------------|-----------------|
@@ -170,26 +170,26 @@ The values for **params** and **results** must be a map with the following attri
 
 
 Example of `params` for an operation that hashes the input data asset, it accepts one input where:
-- parameter name for the value to be hashed is `to_hash`
+- parameter name for the value to be hashed is `toHash`
 - param value is of type asset, which required the DID of the asset to be passed.
 
 ```json
 {
-    "params" : {"to_hash":{"type": "asset",
+    "params" : {"toHash":{"type": "asset",
                            "position":0,
                            "required":true}}
 }
 ```
 
 Example of `params` for an operation that hashes the input payload. It accepts two inputs:
-- parameter name for the value to be hashed is `to_hash`
+- parameter name for the value to be hashed is `toHash`
   - param value is of type `json`.
 - parameter name for the hashing algorithm is `algorithm`
   - param value is type `json`
 
 ```json
 {
-    "params" : {"to_hash": {"type": "json"},
+    "params" : {"toHash": {"type": "json"},
                 "algorithm": {"type": "json"}}
 }
 ```
@@ -197,13 +197,13 @@ Example of `params` for an operation that hashes the input payload. It accepts t
 Example of `results` for an operation that generates predictions. It returns two outputs:
 - parameter name for the predicted class is `prediction`
   - param value is of type `json`.
-- parameter name for the confidence in the prediction is `confidence_level`
+- parameter name for the confidence in the prediction is `confidenceLevel`
   - param value is type `json`
 
 ```json
 {
     "results" : {"prediction": {"type": "json"},
-                "confidence_level": {"type": "json"}}
+                "confidenceLevel": {"type": "json"}}
 }
 ```
 
@@ -216,10 +216,10 @@ Example of a complete section of operation metadata:
   "operation":{
     "class":"unknown",
     "modes":["sync","async"],
-    "params" : {"to_hash":{"type": "asset",
+    "params" : {"toHash":{"type": "asset",
                            "position":0,
                            "required":true}},
-    "results":{"hash_value": {"type": "asset"}}
+    "results":{"hashValue": {"type": "asset"}}
   },
 }
 ```
@@ -242,7 +242,7 @@ Attribute      |   Type        |   Required    | Description
 Example:
 
 ```json
-{ 
+{
   "name": "Pyrotech firework safety data",
   "type": "bundle",
   "contents": {
@@ -251,7 +251,7 @@ Example:
   	"verify": {"assetID": "e2f910c3f44126323ace27daf9a6e18ab0cbcc3ab9fa74a7c9462d7e8247f8811"}
   }
 }
-```  
+```
 
 
 
@@ -285,7 +285,7 @@ Here is a an example Asset using the schema described:
 		    "name" : "Data Format Definition",
 		    "type" : "format",
 		    "assetID: "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
-	    }	
+	    }
     ],
     "inLanguage": "en",
     "tags": ["weather", "uk", "2011", "temperature", "humidity"],

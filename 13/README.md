@@ -16,10 +16,10 @@ Table of Contents
 
 # Overview
 
-This DEP describes a standard for defining Orchestrations, which are type of Operation that 
+This DEP describes a standard for defining Orchestrations, which are type of Operation that
 represents the combination of multiple child operations.
 
-Orchestrations enable Digital Supply Lines to be defined and automated using a common, flexible 
+Orchestrations enable Digital Supply Lines to be defined and automated using a common, flexible
 standard.
 
 # Orchestration format
@@ -29,7 +29,7 @@ standard.
 An orchestration is an asset of type `operation` and as such follows the general requirements for
 operations as defined in DEP6 and DEP8.
 
-The input and output parameters defined in the operation metadata automatically become input and 
+The input and output parameters defined in the operation metadata automatically become input and
 output parameters for the orchestration.
 
 The metadata must contain the additional attribute `"class":"orchestration"` as defined in DEP8 to
@@ -56,42 +56,42 @@ Example:
   },
   "edges": [
     {
-      "id": "optional-edge-id",
+      "id": "optionalEdgeId",
       "source": "parent",
-      "sourcePort": "operation-input-param",
+      "sourcePort": "operationInputParam",
       "target": "child1",
-      "targetPort": "child-input-param"
+      "targetPort": "childInputParam"
     },
     {
       "source": "child1",
-      "sourcePort": "child-output-param",
+      "sourcePort": "childOutputParam",
       "target": "parent",
-      "targetPort": "operation-output-param",
+      "targetPort": "operationOutputParam",
       "custom": {
-        "custom-edge-attribute": "baz"
+        "customEdgeAttribute": "baz"
       }
     }
   ],
   "custom": {
-    "custom-op-attribute": "foo"
+    "customOpAttribute": "foo"
   }
 }
 ```
 
 Notes:
 - If the `"source"` or `"target"` nodes are omitted from edges, they are assumed to refer to the
-overall orchestration (i.e. inputs or outputs of the overall parent operation) 
+overall orchestration (i.e. inputs or outputs of the overall parent operation)
 
 # Execution
 
-An orchestration may be executed in the context of a given agent by invoking the orchestration in 
+An orchestration may be executed in the context of a given agent by invoking the orchestration in
 accordance with DEP6.
 
 ## Execution rules
 
 An agent may execute an orchestration according to the following rules:
 - Child operations *must* be executed according to the partial order defined by the DAG
-- The execution agent *may* execute operations in parallel in the case that no dependencies 
+- The execution agent *may* execute operations in parallel in the case that no dependencies
 prevent this
 - An operation *must* be executed if required parameters are not available for any reason
 - A child operation *must* be executed if all child operations that it depends upon have succeeded,
@@ -99,7 +99,7 @@ subject to all required parameters being available.
 
 ## Authorisation
 
-The execution of the orchestration must be authorised by the orchestrating agent, as with any 
+The execution of the orchestration must be authorised by the orchestrating agent, as with any
 invokable operation.
 
 TODO: Consider cases where callers need to pass credentials for child operations
@@ -114,7 +114,7 @@ An orchestration may fail for any of the reasons below:
 
 ## Orchestration outputs
 
-Executing an orchestration will create and report operation outputs in accordance with DEP6. 
+Executing an orchestration will create and report operation outputs in accordance with DEP6.
 
 An orchestration shall be considered to have succeeded if:
 - All immediate child operations have succeeded
@@ -129,13 +129,13 @@ Example of a successful Job:
 {
   "status": "succeeded",
   "outputs": {
-    "operation-output-param": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+    "operationOutputParam": "4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
   },
   "children": {
     "child1": {
       "status": "succeeded",
       "outputs": {
-        "child-output-param": "foo"
+        "childOutputParam": "foo"
       }
     }
   }
