@@ -21,15 +21,10 @@ contributors: Mike Anderson <mike.anderson@dex.sg>
 
 # Overview 
 
-This DEP describes a payment system using ERC20 Tokens such as the Ocean Token, which allows data assets and services 
+This DEP describes a payment system using ERC20 Tokens, which allows data assets and services 
 to be made available for purchase using a direct token payment.
 
-The direct payment mechanism, by definition, does *not* support escrow, proof of service delivery or on-chain dispute resolution. 
-Actors wishing to make use of such features should use a different payment mechanism, for example the Service Execution Agreements 
-available on the Ocean Network.
-
-Direct Payment is functionally equivalent to transferring tokens, so should only be used in situations where the consumer 
-is willing to accept the risk that the publisher / service provider does not subsequently provide the asset or service. 
+Direct Payment is functionally equivalent to transferring tokens, so should be used in situations where the consumer is willing to accept the risk that the publisher / service provider does not subsequently provide the asset or service. 
 
 
 # Requirements
@@ -37,7 +32,7 @@ is willing to accept the risk that the publisher / service provider does not sub
 The Token payments system:
 
 - Must allow purchases to be made using any ERC20 token
-- Must allow purchases to be made on any Ethereum compatible network, including but not limited to the Ocean Network and the Ethereum Mainnet
+- Must allow purchases to be made on any Ethereum compatible network, including but not limited to the Ethereum Mainnet
 - Must allow service providers to verify that a purchase has been successfully made
 - Must allow purchases to be made that credit the publisher's account, without active participation by the publisher
 
@@ -100,6 +95,6 @@ Having these 4 parameters it is possible to clearly conclude whether the payment
 
 # License
 
-Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2019-2020 DEX Pte. Ltd., Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

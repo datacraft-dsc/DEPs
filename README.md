@@ -33,7 +33,7 @@ Short Name             | Title                                                  
 [7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
 [9/CONVEX-INT](10)     | Integration with Convex network                              | Standard     | TBC        | 
-[10/TOKEN-PAY](10)     | Direct Payments with Convex Tokens                           | Standard     | TBC        | 
+[10/TOKEN-PAY](10)     | Direct Payments with ERC20 Tokens                            | Standard     | Raw        | Ilya Bukalov
 [11/AGENT-STATUS](11)  | Agent status and configuration API                           | Standard     | Raw        | Mike Anderson
 [12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Pedro Girardi
 [13/ORCHESTRATION](13) | Orchestration of Digital Supply Lines                        | Standard     | Raw        | Pedro Girardi
