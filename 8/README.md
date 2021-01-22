@@ -322,7 +322,7 @@ Schemas:
 
 ## License
 
-Copyright (c) 2018 OceanProtocol Foundation.
+Copyright (c) 2018 Ocean Protocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
 Copyright (c) 2020-21 Datacraft
 

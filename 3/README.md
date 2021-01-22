@@ -220,7 +220,7 @@ and refinements to existing decisions from contributors are welcome.
     </tr>
     <tr>
       <td>Dependencies on underlying protocols</td>
-      <td>DEP Standards may refer to underlying protocols (e.g. the Ocean Protocol or ODBC for database access) but must not
+      <td>DEP Standards may refer to underlying protocols (e.g. ODBC for database access) but must not
           absolutely require these as a hard dependency</td>
       <td>
         <ul>

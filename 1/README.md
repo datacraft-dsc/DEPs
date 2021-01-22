@@ -119,7 +119,7 @@ Definition: **Public Contracts** _noun_ - All public APIs and protocols. In othe
 
 Copyright (c) 2009-2016 Pieter Hintjens.
 Copyright (c) 2018 BigchainDB GmbH.
-Copyright (c) 2018 OceanProtocol Foundation.
+Copyright (c) 2018 Ocean Protocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
 Copyright (c) 2020 Datacraft
 

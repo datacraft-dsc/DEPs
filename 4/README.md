@@ -216,7 +216,7 @@ development as part of the reference implementations.
 Overall goals for marketplace capabilities include:
 
 - The ability for asset publishers to create / manage listings of assets for sale on a data marketplace
-- The ability for asset consumers to execute transactions using the Ocean Network
+- The ability for asset consumers to execute transactions using the Convex Network
 
 
 #### Create listing
@@ -240,7 +240,7 @@ listing before purchase.
 #### Purchase
 
 Provides the capability for a Consumer to purchase an Asset via a Listing, making a payment using an
-appropriate mechanism (e.g. Sending Ocean Tokens to the publisher)
+appropriate mechanism (e.g. Sending digital tokens to the publisher using the Convex Network)
 
 #### Purchase confirmation
 
@@ -322,5 +322,6 @@ plumbing.
 ## License
 
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-21 DEX Pte. Ltd.
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License
