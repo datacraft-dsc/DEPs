@@ -32,8 +32,8 @@ Short Name             | Title                                                  
 [6/INVOKE](6)          | Invokable Services                                           | Standard     | Draft      | Pedro Giradi
 [7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
-[9/SQUID-INT](9)       | Squid Integration for Ocean Network                          | Standard     | TBC        | Bill Barman
-[10/TOKEN-PAY](10)     | Direct Payments with Ocean Tokens                            | Standard     | Raw        | Ilya Bukalov
+[9/CONVEX-INT](10)     | Integration with Convex network                              | Standard     | TBC        | 
+[10/TOKEN-PAY](10)     | Direct Payments with Convex Tokens                           | Standard     | TBC        | 
 [11/AGENT-STATUS](11)  | Agent status and configuration API                           | Standard     | Raw        | Mike Anderson
 [12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Pedro Girardi
 [13/ORCHESTRATION](13) | Orchestration of Digital Supply Lines                        | Standard     | Raw        | Pedro Girardi
@@ -50,7 +50,7 @@ Short Name             | Title                                                  
 
 DEPs are open source standard documents free for all in the community to use.
 
-This repository of DEPs is maintained by DEX Pte. Ltd. as a contribution to the Ocean Protocol community and the broader data economy.
+This repository of DEPs is maintained by Datacraft as a contribution to the open source community and the broader data economy.
 
 ## Contribution process
 
@@ -73,7 +73,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 The DEPs are open for anyone who wants to contribute.
 
 Current contributors include:
-- The DEX and Ocean technical team
+- The Datacraft team
 
 We prefer small, focused PRs that address a specific issue with a specific DEP and provide
 clear rationale for the where appropriate. PRs will be reviewed and 
