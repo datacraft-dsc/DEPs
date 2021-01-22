@@ -43,7 +43,7 @@ Short Name             | Title                                                  
 [19/ENDPOINTS](19)     | DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
 [20/AUTHENTICATION](20)| Authentication Standard and API                              | Standard     | Raw        | TBD
 [21/AUTHORISATION](21) | Authorisation Standard and API                               | Standard     | Raw        | TBD
-[22/RESOLVER](22)      | DID Resolver (Ethereum)                                      | Standard     | Retired    | Ilya Bukalov
+22                     | DID Resolver (Ethereum)                                      | Standard     | Retired    | Ilya Bukalov
 [23/RESOLVER](23)      | DID Resolver (Convex)                                        | Standard     | Raw        | TBD
 
 
