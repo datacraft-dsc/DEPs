@@ -6,13 +6,13 @@
                         "version" : "0.2"},
    "inputs" : [{
              "argname" :"training",
-             "type": "oceanasset",
+             "type": "asset",
              "mandatory" : "true"},
              {
              "argname" :"test",
-             "type": "oceanasset",
+             "type": "asset",
              "mandatory" : "true"}],
   "outputs": [ 
               {"argname" : "trained_model",
-              "type": "oceanasset"}] 
+              "type": "asset"}] 
   }

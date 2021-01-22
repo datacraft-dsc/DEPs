@@ -142,6 +142,7 @@ Copyright (c) 2008-16 Yurii Rashkovskii <yrashk@gmail.com>, Pieter Hintjens <ph@
 Copyright (c) 2018 BigchainDB GmbH
 Copyright (c) 2018 OceanProtocol Foundation
 Copyright (c) 2019 DEX Pte Ltd
+Copyright (c) 2020-2021 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 

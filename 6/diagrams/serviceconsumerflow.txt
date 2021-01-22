@@ -4,8 +4,8 @@ alt locate service provider
 ServiceConsumer->Starfish: given DID of service provider, get list of services
 note right of ServiceConsumer: Resolve the DDO, which contains the list of services and endpoint.
 
-Starfish->OceanNetwork: get DDO for DID
-OceanNetwork->ServiceConsumer: returns a DDO
+Starfish->ConvexNetwork: get DDO for DID
+ConvexNetwork->ServiceConsumer: returns a DDO
 
 end alt
 alt locate operation

@@ -68,7 +68,7 @@ mechanisms are appropriately configured and secured.
 The Storage endpoints for any given asset DID can be constructed using the following procedure:
 
 1. Use a Universal Resolver to obtain the `DDO` for the `DID`
-2. Extract the `"Ocean.Storage.v1"` `Service Endpoint` from the DDO e.g. `"https://big.data-service.com/api/v1/assets"`
+2. Extract the `"DEP.Storage.v1"` `Service Endpoint` from the DDO e.g. `"https://big.data-service.com/api/v1/assets"`
 3. Take the `Asset ID` from the `DID Path` e.g. `"23e33783fa7e81a78ed05310bdd4568e6cf23bf2a8d1f2498435f33e9b1848d1"`
 4. Compute `[Service Endpoint] + "/" + [Asset ID]` to get the correct Storage API URI
 
@@ -128,7 +128,7 @@ Download behaviour follows the following rules:
 
 ## Motivation
 
-> “Everything should be made as simple as possible, but no simpler”
+> "Everything should be made as simple as possible, but no simpler"
 >
 > (attributed to Albert Einstein)
 
@@ -160,5 +160,6 @@ tight coupling between producers and consumers.
 ## License
 
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-21 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

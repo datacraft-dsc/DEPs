@@ -2,7 +2,7 @@
     "other": "metadata",
     "provenance": {
         "agent": {
-            "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
+            "dep:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
                 "prov:type": {
                     "$": "ocn:ethereum-account",
                     "type": "xsd:string"
@@ -11,12 +11,12 @@
         },
         "wasGeneratedBy": {
             "_:wGB4": {
-                "prov:entity": "opf:this",
-                "prov:activity": "opf:112593b6-2120-49e9-b357-0d610a4119ea"
+                "prov:entity": "dep:this",
+                "prov:activity": "dep:112593b6-2120-49e9-b357-0d610a4119ea"
             }
         },
         "activity": {
-            "opf:112593b6-2120-49e9-b357-0d610a4119ea": {
+            "dep:112593b6-2120-49e9-b357-0d610a4119ea": {
                 "prov:type": {
                     "$": "ocn:publish",
                     "type": "xsd:string"
@@ -27,16 +27,16 @@
         "prefix": {
             "xsd": "http://www.w3.org/2001/XMLSchema#",
             "prov": "http://www.w3.org/ns/prov#",
-            "opf": "http://oceanprotocol.com/schemas"
+            "dep": "http://datacraft.sg/schemas"
         },
         "wasAssociatedWith": {
             "_:wAW4": {
-                "prov:agent": "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
-                "prov:activity": "opf:112593b6-2120-49e9-b357-0d610a4119ea"
+                "prov:agent": "dep:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+                "prov:activity": "dep:112593b6-2120-49e9-b357-0d610a4119ea"
             }
         },
         "entity": {
-            "opf:this": {
+            "dep:this": {
                 "prov:type": {
                     "$": "ocn:asset",
                     "type": "xsd:string"

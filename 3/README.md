@@ -55,12 +55,6 @@ for the following principles:
 - Available over the public internet
 - Peer-to-peer model
 
-DEX is a founding company of the Ocean Protocol Foundation. While the DEPs represent 
-open standards and do not mandate the use of the Ocean Network or any specific software 
-produced by DEX (e.g. Starfish), a key goal of DEX development efforts is provision 
-of convenient tools to build use cases and a vibrant data ecosystem on Ocean Protocol, 
-and reference implementations are designed to support this.
-
 ## Architecture Layers
 
 The components of a decentralised data ecosystem architecture can be conceptualised in four layers.
@@ -193,11 +187,11 @@ and refinements to existing decisions from contributors are welcome.
       </td>
     </tr>
     <tr style="vertical-align:top">
-      <td>Ocean Integration</td>
-      <td>The DEP Ecosystem shall support the Ocean Protocol / Ocean Network as a optional blockchain capability</td>
+      <td>Convex Integration</td>
+      <td>The DEP Ecosystem shall support optional DLT capability via the Convex network</td>
       <td>
         <ul>
-		  <li>Enable economic value exchange via the Ocean Token and smart contracts</li>
+		  <li>Enable economic value exchange via the Convex Network and smart contracts</li>
           <li>Support immutable on-chain records of provenance</li>
           <li>Provide an instance of a Universal Resolver to resolve DDOs according to the W3C DID specification</li>
           <li>Provide a shared, public utility network as a service to the ecosystem</li>
@@ -340,7 +334,6 @@ Note: initial reference implementations used the Keccak256 hash function for ass
       <td>
         <ul>
           <li>Enables Agents to be addressed in a standard fashion using DIDs as identifiers</li>
-          <li>Consistency with use of DIDs / DDOs on Ocean Network</li>
           <li>Conforms with W3C DID standard</li>
           <li>Not mandatory because some operators may chose to run a private Agent, using some other means of DDO resolution (e.g. secret sharing between known parties)</li>
 		</ul>      
@@ -378,5 +371,6 @@ Note: initial reference implementations used the Keccak256 hash function for ass
 ## License
 
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-21 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

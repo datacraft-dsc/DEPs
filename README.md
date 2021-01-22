@@ -32,7 +32,7 @@ Short Name             | Title                                                  
 [6/INVOKE](6)          | Invokable Services                                           | Standard     | Draft      | Pedro Giradi
 [7/STORAGE](7)         | Universal Storage API                                        | Standard     | Draft      | Mike Anderson
 [8/META](8)            | Asset Metadata Standard                                      | Standard     | Draft      | Mike Anderson
-[9/CONVEX-INT](10)     | Integration with Convex network                              | Standard     | TBC        | 
+[9/CONVEX-INT](10)     | Integration with Convex network                              | Standard     | TBC        | TBD
 [10/TOKEN-PAY](10)     | Direct Payments with ERC20 Tokens                            | Standard     | Raw        | Ilya Bukalov
 [11/AGENT-STATUS](11)  | Agent status and configuration API                           | Standard     | Raw        | Mike Anderson
 [12/PROV](12)          | Publisher Declared Provenance                                | Standard     | Draft      | Pedro Girardi
@@ -43,7 +43,8 @@ Short Name             | Title                                                  
 [19/ENDPOINTS](19)     | DEP Standard Endpoints                                       | Standard     | Draft      | Mike Anderson
 [20/AUTHENTICATION](20)| Authentication Standard and API                              | Standard     | Raw        | TBD
 [21/AUTHORISATION](21) | Authorisation Standard and API                               | Standard     | Raw        | TBD
-[22/RESOLVER](22)      | DID Resolver                                                 | Standard     | Raw        | Ilya Bukalov
+[22/RESOLVER](22)      | DID Resolver (Ethereum)                                      | Standard     | Retired    | Ilya Bukalov
+[23/RESOLVER](23)      | DID Resolver (Convex)                                        | Standard     | Raw        | TBD
 
 
 # Contributing

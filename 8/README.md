@@ -122,7 +122,7 @@ An array of Links can be provided to give supplementary information about an Ass
 ```
 
 Links may be to either a URL or another Asset. We expect tribes and/or marketplaces to converge
-on agreements of typical formats for linked data: The Ocean protocol itself does not mandate any
+on agreements of typical formats for linked data: The DEP standards do not mandate any
 specific formats as requirements are likely to be domain-specific.
 
 ## Data Asset attributes
@@ -324,5 +324,6 @@ Schemas:
 
 Copyright (c) 2018 OceanProtocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-21 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

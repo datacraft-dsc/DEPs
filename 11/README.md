@@ -48,11 +48,11 @@ Example payload:
 ```json
 {
   "@context": "https://www.w3.org/2019/did/v1",
-  "id": "did:op:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7",
+  "id": "did:dep:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7",
 
   "service": [{
-    "id:": "did:op:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7#meta",
-    "type": "Ocean.Meta.v1",
+    "id:": "did:dep:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7#meta",
+    "type": "DEP.Meta.v1",
     "serviceEndpoint": "https://my.agent1234.com/ap1/v1/meta"
   }]
 }

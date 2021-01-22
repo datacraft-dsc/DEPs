@@ -53,7 +53,7 @@ importantly distinct contexts:
 
 1. The Marketplace context
 2. The Asset Provider context
-3. The Ocean Protocol Network context
+3. The Convex Network context
 
 ### The Marketplace context
 
@@ -69,7 +69,7 @@ personally identifiable information) and/or commercial terms
 
 A legal binding between Marketplace principals and third parties is
 part of the value add of the Marketplace and not something which can
-be provided by the Ocean Protocol Network directly.  Note this binding
+be provided by the Convex Network directly.  Note this binding
 is distinct from any additional legal agreements between members of a
 marketplace.
 
@@ -89,12 +89,12 @@ the commercial applicability.
 ### The Network context
 
 The network which implements the protocol provides a basis for
-community consensus sets (e.g. Ethereum smart contracts).
+community consensus sets (e.g. Convex smart contracts).
 Marketplaces cannot control this consensus nor prevent bad actors
-participating in the Ocean Protocol network or its operation or
+participating in the Convex network or its operation or
 governance. Marketplaces, however, can discourage bad behavior by
 imposing and/or enforcing rules for membership and participation.
-Thus authorization and authentication in Ocean Protocol Network must be seen
+Thus authorization and authentication in Convex Network must be seen
 as distinct from that by Marketplaces and Asset Providers.
 
 ### Decentralized Identifiers
@@ -102,10 +102,6 @@ as distinct from that by Marketplaces and Asset Providers.
 In implementing authentication it is recommended to make use of
 Decentralized Identifiers (DID's)
 [w3c DID spec](https://w3c-ccg.github.io/did-spec/)
-[7/DID](https://github.com/oceanprotocol/OEPs/tree/master/7)
-and DID Documents (DDO's)
-[DDO](https://blog.oceanprotocol.com/ocean-protocol-squid-library-java-c92a6035ce39)
-[8/ASSET-DDO](https://github.com/oceanprotocol/OEPs/tree/master/8).
 
 DDO's are a direct and/or indirect representation of asset’s
 information, including potentially some metadata. If a DID is the

@@ -38,7 +38,7 @@ As discussed in [20/AUTHENTICATION](https://github.com/DEX-Company/DEPs/tree/mas
 
 1. The Marketplace context
 2. The Asset Provider context
-3. The Ocean Protocol Network context
+3. The Convex network context
 
 Each of these contexts may have a specific identifier for principals
 (recommended use of [DID](https://w3c-ccg.github.io/did-spec/)).
@@ -69,5 +69,6 @@ The list of changes to apply in the proposed solution are:
 ## License
 
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-21 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

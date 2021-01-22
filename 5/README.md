@@ -56,11 +56,11 @@ and do not depend on a centralised authority.
 
 An Agent should obtain a W3C DID to use as its identity in the data ecosystem.
 
-An example of a DID on the Ocean Network could be:
+An example of a DID on the that might be resolved on the Convex Network could be:
 
-`did:op:6064a7d73efef9ff22dbc0a03572763fae0f76e935736b34ed2e1f56aa07bbf5`
+`did:dep:6064a7d73efef9ff22dbc0a03572763fae0f76e935736b34ed2e1f56aa07bbf5`
 
-The Agent should have a DDO (DID Document) to describe itslf to other parties. This DDO should include:
+The Agent should have a DDO (DID Document) to describe itself to other parties. This DDO should include:
 
 - Any service endpoints offered by the Agent according to the DEP Standard APIs (see DEP15)
 - Any public cryptographic keys that the Agent wishes to share (e.g. for verification purposes)
@@ -72,13 +72,13 @@ Example DDO with endpoints:
  "id": "did:op:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7"
 
  "service":
- [{"type":"Ocean.Invoke.v1",
+ [{"type":"DEP.Invoke.v1",
    "serviceEndpoint":"https:\/\/foo.com\/api\/v1"},
-  {"type":"Ocean.Meta.v1",
+  {"type":"DEP.Meta.v1",
    "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/meta"},
-  {"type":"Ocean.Auth.v1",
+  {"type":"DEP.Auth.v1",
    "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/auth"},
-  {"type":"Ocean.Storage.v1",
+  {"type":"DEP.Storage.v1",
    "serviceEndpoint":"https:\/\/foo.com\/api\/v1\/assets"}]}
 ```
 
@@ -93,7 +93,7 @@ of sufficiently long random hex strings is a pragmatic choice. Univeral Resolver
 must ensure uniqueness of DID in their context, and that ability to update the DID for a given DDO
 is restricted to the owner of the DID.
 
-Note: Facilities for obtaining a DID/DDO on the Ocean Network are offered as part of the Starfish 
+Note: Facilities for obtaining a DID/DDO on the Convex Network are offered as part of the Starfish 
 Developer Toolkit.
 
 ### Asset Identity
@@ -114,7 +114,7 @@ W3C DID specification.
 
 An example of a Asset DID for the asset above located on the agent described above would be:
 
-`did:op:6064a7d73efef9ff22dbc0a03572763fae0f76e935736b34ed2e1f56aa07bbf5/840eb7aa2a9935de63366bacbe9d97e978a859e93dc792a0334de60ed52f8e99`
+`did:dep:6064a7d73efef9ff22dbc0a03572763fae0f76e935736b34ed2e1f56aa07bbf5/840eb7aa2a9935de63366bacbe9d97e978a859e93dc792a0334de60ed52f8e99`
 
 ## Rationale
 
@@ -134,7 +134,7 @@ available via a DID service endpoint"
 Reference implementations provided by DEX Pte Ltd., including the Starfish developer toolkit libraries,
 implement asset and agent identity as described in this DEP.
 
-The Ocean Protocol provides a Universal Resolver capable of registering DID/DDOs and resolving 
+Datacraft maintains a public Actor on The Convex Network capable of registering DID/DDOs and resolving 
 DID to DDOs.
 
 ## References
@@ -144,5 +144,7 @@ DID to DDOs.
 ## License
 
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-2021 Datacraft
+
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

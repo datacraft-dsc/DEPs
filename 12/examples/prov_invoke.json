@@ -2,7 +2,7 @@
     "other": "metadata",
     "provenance": {
         "agent": {
-            "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
+            "dep:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00": {
                 "prov:type": {
                     "$": "ocn:ethereum-account",
                     "type": "xsd:string"
@@ -11,22 +11,22 @@
         },
         "wasGeneratedBy": {
             "_:wGB1": {
-                "prov:entity": "opf:this",
-                "prov:activity": "opf:112593b6-2120-49e9-b357-0d610a4119ea"
+                "prov:entity": "dep:this",
+                "prov:activity": "dep:112593b6-2120-49e9-b357-0d610a4119ea"
             }
         },
         "activity": {
-            "opf:112593b6-2120-49e9-b357-0d610a4119ea": {
+            "dep:112593b6-2120-49e9-b357-0d610a4119ea": {
                 "prov:type": {
                     "$": "ocn:operation",
                     "type": "xsd:string"
                 },
                 "prov:endTime": "2019-05-22T10:28:30.706+08:00",
-                "opf:results": {
+                "dep:results": {
                     "$": "{\"results\":{\"hashval\": {\"did\":\"a6cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
                     "type": "xsd:string"
                 },
-                "opf:params": {
+                "dep:params": {
                     "$": "{\"params\":{\"to-hash\": {\"did\":\"26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135\"}}}",
                     "type": "xsd:string"
                 }
@@ -35,28 +35,28 @@
         "prefix": {
             "xsd": "http://www.w3.org/2001/XMLSchema#",
             "prov": "http://www.w3.org/ns/prov#",
-            "opf": "http://oceanprotocol.com/schemas"
+            "dep": "http://datacraft.sg/schemas"
         },
         "wasAssociatedWith": {
             "_:wAW1": {
-                "prov:agent": "opf:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
-                "prov:activity": "opf:112593b6-2120-49e9-b357-0d610a4119ea"
+                "prov:agent": "dep:503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+                "prov:activity": "dep:112593b6-2120-49e9-b357-0d610a4119ea"
             }
         },
         "wasDerivedFrom": {
             "_:wDF1": {
-                "prov:generatedEntity": "opf:this",
-                "prov:usedEntity": "opf:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136"
+                "prov:generatedEntity": "dep:this",
+                "prov:usedEntity": "dep:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136"
             }
         },
         "entity": {
-            "opf:this": {
+            "dep:this": {
                 "prov:type": {
                     "$": "ocn:asset",
                     "type": "xsd:string"
                 }
             },
-            "opf:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136": {
+            "dep:26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136": {
                 "prov:type": {
                     "$": "ocn:asset",
                     "type": "xsd:string"

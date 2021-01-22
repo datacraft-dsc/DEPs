@@ -135,5 +135,6 @@ the requested metadata ID.
 
 Copyright (c) 2018 Ocean Protocol Foundation.
 Copyright (c) 2019 DEX Pte. Ltd.
+Copyright (c) 2020-2021 Datacraft
 
 This DEP is free software; you can redistribute it and/or modify it under the terms of the Apache 2.0 License

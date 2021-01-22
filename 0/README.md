@@ -77,6 +77,16 @@ included it is possible to tag the Content with an Optional MIME Type as per RFC
 Operations may be considered to have "Content" which is equivalent to the executable code of the Operation. This
 may or may not be possible to share between different execution environments.
 
+## Convex Network
+
+The Convex Network is a public service utility which can be used for digital value exchange withing the data economy.
+
+Use of the DEP standards does not require using Convex, however Datacraft provides several useful facilities on the Convex network which may be of value to the data economy, including:
+
+- Value exchange / transactions using Tokens
+- Establishing immutable provenance records
+- Providing a Universal Resolver for DIDs / DDOs
+
 ## Data Asset
 
 An Asset that represents a single data object that can be utilised in the data ecosystem.
@@ -162,20 +172,6 @@ verify trust attributes, and perform economic transactions such as buying access
 Marketplace operators may choose who is allowed to make use of the marketplace functionality: it could be open to all in
 the ecosystem, or restricted to a trusted set of participants.
 
-## Ocean Network
-
-The Ocean Protocol Foundation provides the Ocean Network as a public service utility to the 
-data economy. The Network provides important capabilities for decentralised data exchange,
-including:
-- Value exchange / transactions using the Ocean Token
-- Establishing immutable provenance records
-- Providing a Universal Resolver for DIDs / DDOs
-
-## OEP
-
-Acronym for "Ocean Enhancement Proposal", which defines enhancements to the Ocean Network and
-related technologies. Current OEPs can be found at: https://github.com/oceanprotocol/OEPs.
-
 ## Operation
 
 A special type of Asset representing a computational service that can be "Invoked" via the DEP
@@ -233,9 +229,9 @@ is typically the Data Owner of the asset, or someone acting on the Data Owner's 
 A service available to the Data Ecosystem that maps DIDs to DDOs, effectively acting as a shared directory
 of decentralised services in the data ecosystem.
 
-The Ocean Network provides a resolver which handles DIDs registered on the Ocean network, which have the form:
+Datacraft provides a DEP-compliant Resolver using the public Convex Network, which handles DIDs of the form:
 
-`did:op:21f8a3a788fe465f81b146af04ed4c9bd7d9158bebbc458a8ca92d5dd57335d3`
+`did:dep:21f8a3a788fe465f81b146af04ed4c9bd7d9158bebbc458a8ca92d5dd57335d3`
 
 ## Service Provider
 

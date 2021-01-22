@@ -12,5 +12,5 @@ end alt
 
 alt service registration
 note right of ServiceProvider: Create a DDO with list of services offered and the endpoints they are available at.
-ServiceProvider->OceanNetwork: Register DID, DDO with list of services
+ServiceProvider->ConvexNetwork: Register DID, DDO with list of services
 end alt

@@ -142,11 +142,6 @@ Standard APIs. If the DEP Standard APIs are available, a standard Remote Agent s
 Starfish should make it simple, as far as possible, for developers to create their own Capability 
 Agents for custom purposes, e.g. by extending a common base implementation.
 
-Note: providing a Capability Agent of this nature is a technique used in reference implementations 
-to integrate the Ocean Network, by wrapping the Squid library provided by the Ocean Protocol Foundation.
-This technique is valuable because it allows a consistent Agent API to be maintained for user 
-while allowing for evolution and innovation in the underlying technology capabilities.
-
 Note: It is beyond the scope of Starfish to allow Capability Agents to be exposed to the ecosystem
 (to the extent that they could be invoked as Remote Agents by other parties), however
 service provider implementations may wish to offer this functionality.
@@ -254,8 +249,9 @@ verify that payment has been made before granting access to the purchased Asset.
 
 ### Resolver
 
-The Resolver in starfish provides utilities to access Agents and Assets via DIDs / DDOs.
-There are two supported implementations in starfish: first one for compatibility with Ocean Squid and second one from DEX. First one requires Aquarius service as storage of DDO while second one uses Ethereum network itself as storage. In both cases DID is registered on-chain. 
+The Resolver in starfish provides utilities to access Agents and Assets via DIDs / DDOs that are publicly registered
+
+The Resolver provided with Starfish supports DID/DDOs that are deployed on the Convex Network. 
 
 #### Resolve Agent via DID
 
