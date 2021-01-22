@@ -69,7 +69,7 @@ Example DDO with endpoints:
 
 ```json
 {"@context": "https://www.w3.org/2019/did/v1",
- "id": "did:op:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7"
+ "id": "did:dep:08e3b57916b153ecc3ba687b123e26eb15e9e8eb73311607788018559ec354c7"
 
  "service":
  [{"type":"DEP.Invoke.v1",

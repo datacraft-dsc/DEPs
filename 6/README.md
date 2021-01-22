@@ -229,7 +229,7 @@ Here's an example of a request that defines a single input parameter (`dataset`)
 ```
 {
   "dataset": {
-    "did": "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
+    "did": "did:dep:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea"
   }
 }
 ```
@@ -240,7 +240,7 @@ The `dataset` input parameter might be stored in a different Agent which require
 ```
 {
   "dataset": {
-    "did": "did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
+    "did": "did:dep:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908ea",
     "auth": {
       "token": "..."
     }
@@ -349,7 +349,7 @@ Example of an operation that failed
 {
   "status": "failed",
   "error": {
-    "description": "Unable to access asset did:op:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
+    "description": "Unable to access asset did:dep:4d517500da0acb0d65a716f61330969334630363ce4a6a9d39691026ac7908fa"
   }
 }
 ```
