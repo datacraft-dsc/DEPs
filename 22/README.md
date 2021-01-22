@@ -2,9 +2,11 @@
 shortname: 22/Resolver
 name: Resolver functionality
 type: Reference
-status: Draft
+status: Retired
 contributors: Ilia Bukalov
 ```
+**This DEP is retired as it is no longer supported, and it is not recommended to make use of a resolver on the Ethereum Network. If a DLT-based resolved is required, DEP23 covers the usage of the Convex Network, which offers superior performance and network capabilities, and is supported in the Datacraft reference implementations.**
+
 # Resolver
 
 The Resolver provides functionality to register DDO of given DID, to resolve DDO by DID and access rights control.
